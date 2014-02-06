@@ -1,11 +1,18 @@
-<h2>Sign in</h2>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "sign-in-form panel panel-primary"}) do |f| %>
+  <div class="panel-heading">
+    <h3 class="panel-title">Авторизація</h3>
+  </div>
+  <div class="panel-body">
+    <%= f.label :login %>
+    <%= f.text_field :login, :autofocus => true, :class => "form-control" %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :login %><br />
-  <%= f.text_field :login, :autofocus => true %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.submit "Sign in" %></div>
+    <%= f.label :password %>
+    <%= f.password_field :password, :class => "form-control" %>
+  </div>
+  <div class="panel-footer clearfix">
+    <%= f.submit "Вхід в систему" , :class => "btn btn-primary pull-right" %>
+  </div>
 <% end %>
+
+<div class="">
+</div>
