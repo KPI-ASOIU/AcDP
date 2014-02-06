@@ -1,4 +1,33 @@
-<h2>Page to edit/create/delete users</h2>
-<p>TODO: list of users</p>
-<p>TODO: form to edit/create users</p>
-<p>TODO: button to delete users</p>
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Login</th>
+      <th>Role</th>
+      <th>Full name</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=  user.login %></td>
+        <td><%=  user.role %></td>
+        <td><%=  user.full_name %></td>
+        <td><%=  user.email %></td>
+        <td><%= link_to 'Show', admin_user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_admin_user_path %>
