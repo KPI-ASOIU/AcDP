@@ -3,4 +3,8 @@
 FactoryGirl.define do
   factory :user do
   end
+
+  factory :user_admin, parent: :user do
+    # TODO: set role = admin
+  end
 end
