@@ -5,7 +5,8 @@
 
 ## Used gems
 - [Device](http://devise.plataformatec.com.br/) - flexible authentication solution
-
+- [Twitter Bootstrap](http://getbootstrap.com/) - front-end framework for UI
+- 
 ## Testing tools
 - [RSpec](http://rubydoc.info/gems/rspec-rails/frames)
 - [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers)
