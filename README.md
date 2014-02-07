@@ -1,8 +1,10 @@
 # Academic Department Portal for ASOIU
 
 [![Build Status](https://travis-ci.org/KPI-ASOIU/AcDP.png?branch=master)](https://travis-ci.org/KPI-ASOIU/AcDP)
+## Beta
+Each new version of the project is automaticaly deployed to http://acdp.herokuapp.com/
 
-## Development process:
+## Development process
 - [How to setup PostgreSQL](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-setup-PostgreSQL)
 - [How to work with project through GitHub](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-work-with-project-through-github)
 
