@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  util:
+    logout: Log out
