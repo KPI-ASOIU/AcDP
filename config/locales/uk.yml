@@ -254,3 +254,5 @@ uk:
   activerecord:
     errors:
       <<: *errors
+  util:
+    logout: Вихід
