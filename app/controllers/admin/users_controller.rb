@@ -24,25 +24,25 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to [:admin, @user], notice: 'User was successfully created.' 
+      redirect_to [:admin, @user], notice: 'User was successfully created.'
     else
-      render action: 'new' 
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /admin/users/1
   def update
     if @user.update(user_params)
-      redirect_to [:admin, @user], notice: 'User was successfully updated.' 
+      redirect_to [:admin, @user], notice: 'User was successfully updated.'
     else
-      render action: 'edit' 
+      render action: 'edit'
     end
   end
 
   # DELETE /admin/users/1
   def destroy
     @user.destroy
-    redirect_to admin_users_url 
+    redirect_to admin_users_url
   end
 
   private
