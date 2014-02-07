@@ -155,7 +155,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.0)
-  coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (~> 4.0)
   jbuilder (~> 1.2)
