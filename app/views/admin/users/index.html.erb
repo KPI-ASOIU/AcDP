@@ -1,12 +1,12 @@
-<h1>Listing Users</h1>
+<h1><%= t('util.user_list') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Login</th>
-      <th>Role</th>
-      <th>Full name</th>
-      <th>Email</th>
+      <th><%= t('activerecord.attributes.user.login') %></th>
+      <th><%= t('activerecord.attributes.user.role') %></th>
+      <th><%= t('activerecord.attributes.user.full_name') %></th>
+      <th><%= t('activerecord.attributes.user.email') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,9 +20,9 @@
         <td><%=  user.role %></td>
         <td><%=  user.full_name %></td>
         <td><%=  user.email %></td>
-        <td><%= link_to 'Show', admin_user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('util.show'), admin_user_path(user) %></td>
+        <td><%= link_to t('util.edit'), edit_admin_user_path(user) %></td>
+        <td><%= link_to t('util.destroy'), admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New User', new_admin_user_path %>
+<%= link_to t('util.new_user'), new_admin_user_path %>
