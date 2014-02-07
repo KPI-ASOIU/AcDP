@@ -1,7 +1,8 @@
 # Academic Department Portal for ASOIU
 
-## Configure development environment:
+## Development process:
 - [How to setup PostgreSQL](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-setup-PostgreSQL)
+- [How to work with project through GitHub](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-work-with-project-through-github)
 
 ## Used gems
 - [Device](http://devise.plataformatec.com.br/) - flexible authentication solution
