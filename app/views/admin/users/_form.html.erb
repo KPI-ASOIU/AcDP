@@ -19,7 +19,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if params[:action] == "edit" %>
-      <i>(<%= t('util.edit_password') %>)W</i>
+      <i>(<%= t('util.edit_password') %>)</i>
     <% end %>
     <br>
     <%= f.password_field :password %>
