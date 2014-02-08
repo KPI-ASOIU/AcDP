@@ -1,7 +1,7 @@
 <%= form_for([:admin, @user]) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= t('activerecord.errors.template.header', count: @user.errors.count) %></h2>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -19,7 +19,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if params[:action] == "edit" %>
-      <i>(leave blank if you don't want to change it)</i>
+      <i>(<%= t('util.edit_password') %>)</i>
     <% end %>
     <br>
     <%= f.password_field :password %>

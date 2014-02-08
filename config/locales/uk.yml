@@ -55,20 +55,17 @@ uk:
   datetime:
     distance_in_words:
       about_x_hours:
-        few: близько %{count} години
-        many: близько %{count} годин
-        one: близько %{count} година
-        other: близько %{count} години
+        one: близько 1 години
+        few: близько %{count} годин
+        other: близько %{count} годин
       about_x_months:
-        few: близько %{count} місяців
-        many: близько %{count} місяців
         one: близько %{count} місяця
-        other: близько %{count} місяця
+        few: близько %{count} місяців
+        other: близько %{count} місяців
       about_x_years:
-        few: близько %{count} років
-        many: близько %{count} років
         one: близько %{count} року
-        other: близько %{count} року
+        few: близько %{count} років
+        other: близько %{count} років
       almost_x_years:
         few: майже %{count} років
         many: майже %{count} років
@@ -76,40 +73,33 @@ uk:
         other: майже %{count} років
       half_a_minute: півхвилини
       less_than_x_minutes:
-        few: менше %{count} хвилин
-        many: менше %{count} хвилин
         one: менше %{count} хвилини
-        other: менше %{count} хвилини
+        few: менше %{count} хвилин
+        other: менше %{count} хвилин
       less_than_x_seconds:
-        few: менше %{count} секунд
-        many: менше %{count} секунд
         one: менше %{count} секунди
-        other: менше %{count} секунди
+        few: менше %{count} секунд
+        other: менше %{count} секунд
       over_x_years:
-        few: більше %{count} років
-        many: більше %{count} років
         one: більше %{count} року
-        other: більше %{count} року
+        few: більше %{count} років
+        other: більше %{count} років
       x_days:
-        few: ! '%{count} дні'
-        many: ! '%{count} днів'
-        one: ! '%{count} день'
-        other: ! '%{count} дня'
+        one: '%{count} день'
+        few: '%{count} дні'
+        other: '%{count} днів'
       x_minutes:
-        few: ! '%{count} хвилини'
-        many: ! '%{count} хвилин'
-        one: ! '%{count} хвилина'
-        other: ! '%{count} хвилини'
+        one: '%{count} хвилина'
+        few: '%{count} хвилини'
+        other: '%{count} хвилин'
       x_months:
-        few: ! '%{count} місяці'
-        many: ! '%{count} місяців'
-        one: ! '%{count} місяць'
-        other: ! '%{count} місяця'
+        one: '%{count} місяць'
+        few: '%{count} місяці'
+        other: '%{count} місяців'
       x_seconds:
-        few: ! '%{count} секунди'
-        many: ! '%{count} секунд'
-        one: ! '%{count} секунда'
-        other: ! '%{count} секунди'
+        one: '%{count} секунда'
+        few: '%{count} секунди'
+        other: '%{count} секунд'
     prompts:
       day: День
       hour: Година
@@ -118,11 +108,11 @@ uk:
       second: Секунда
       year: Рік
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: '%{attribute} %{message}'
     messages:
       accepted: має бути прийнятий
       blank: не може бути пустим
-      confirmation: не збігається з підтвердженням
+      confirmation: не збігається з оригіналом
       empty: не може бути порожнім
       equal_to: має дорівнювати %{count}
       even: має бути парним
@@ -136,33 +126,29 @@ uk:
       not_a_number: не число
       not_an_integer: не э цілим числом
       odd: має бути непарним
-      record_invalid: ! 'Виникли помилки: %{errors}'
+      record_invalid: 'Виникли помилки: %{errors}'
       taken: вже зайнятий
       too_long:
-        few: занадто довгий (максимум %{count} знаки)
-        many: занадто довгий (максимум %{count} знаків)
         one: занадто довгий (максимум %{count} знак)
-        other: занадто довгий (максимум %{count} знаку)
+        few: занадто довгий (максимум %{count} знаки)
+        other: занадто довгий (максимум %{count} знаків)
       too_short:
-        few: занадто короткий (мінімум %{count} знаки)
-        many: занадто короткий (мінімум %{count} знаків)
         one: занадто короткий (мінімум %{count} знак)
-        other: занадто короткий (мінімум %{count} знаку)
+        few: занадто короткий (мінімум %{count} знаки)
+        other: занадто короткий (мінімум %{count} знаків)
       wrong_length:
-        few: неправильна довжина (має бути %{count} знаки)
-        many: неправильна довжина (має бути %{count} знаків)
         one: неправильна довжина (має бути %{count} знак)
-        other: неправильна довжина (має бути %{count} знаку)
+        few: неправильна довжина (має бути %{count} знаки)
+        other: неправильна довжина (має бути %{count} знаків)
     template:
-      body: ! 'Помилки виявлено в таких полях:'
+      body: 'Помилки виявлено в таких полях:'
       header:
-        few: ! '%{model} не збережено через %{count} помилки'
-        many: ! '%{model} не збережено через %{count} помилок'
-        one: ! '%{model} не збережено через %{count} помилку'
-        other: ! '%{model} не збережено через %{count} помилки'
+        one: '%{model} не збережено через %{count} помилку'
+        few: '%{model} не збережено через %{count} помилки'
+        other: '%{model} не збережено через %{count} помилок'
   helpers:
     select:
-      prompt: ! 'Оберіть: '
+      prompt: 'Оберіть: '
     submit:
       create: Створити %{model}
       submit: Зберегти %{model}
@@ -170,47 +156,42 @@ uk:
   number:
     currency:
       format:
-        delimiter: ! ' '
-        format: ! '%n %u'
+        delimiter: ' '
+        format: '%n %u'
         precision: 2
-        separator: ! ','
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: грн.
     format:
-      delimiter: ! ' '
+      delimiter: ' '
       precision: 3
-      separator: ! ','
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion:
-            few: Мільярдів
-            many: Мільярдів
             one: Мільярд
+            few: Мільярди
             other: Мільярдів
           million:
-            few: Мільйонів
-            many: Мільйонів
             one: Мільйон
+            few: Мільйони
             other: Мільйонів
           quadrillion:
-            few: Квадрильйонів
-            many: Квадрильйонів
             one: Кквадрильйон
+            few: Квадрильйони
             other: Квадрильйонів
           thousand:
-            few: Тисяч
-            many: Тисяч
             one: Тисяча
+            few: Тисячі
             other: Тисяч
           trillion:
-            few: Трильйонів
-            many: Трильйонів
             one: Трильйон
+            few: Трильйони
             other: Трильйонів
           unit: ''
       format:
@@ -219,13 +200,12 @@ uk:
         significant: false
         strip_insignificant_zeros: false
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
-            few: байти
-            many: байтів
             one: байт
-            other: байту
+            few: байти
+            other: байтів
           gb: ГБ
           kb: кБ
           mb: МБ
@@ -238,21 +218,49 @@ uk:
         delimiter: ''
   support:
     array:
-      last_word_connector: ! ' та '
-      two_words_connector: ! ' і '
-      words_connector: ! ', '
+      last_word_connector: ' та '
+      two_words_connector: ' і '
+      words_connector: ', '
   time:
     am: до полудня
     formats:
-      default: ! '%a, %d %b %Y, %H:%M:%S %z'
-      long: ! '%d %B %Y, %H:%M'
-      short: ! '%d %b, %H:%M'
+      default: '%a, %d %b %Y, %H:%M:%S %z'
+      long: '%d %B %Y, %H:%M'
+      short: '%d %b, %H:%M'
     pm: по полудні
   activemodel:
     errors:
       <<: *errors
   activerecord:
+    models:
+      user: 'Користувач'
+    attributes:
+      user:
+        login: 'Логін'
+        password: 'Пароль'
+        password_confirmation: 'Підтвердження пароля'
+        role: 'Роль'
+        full_name: 'Повне ім’я'
+        email: 'Електронна пошта'
     errors:
-      <<: *errors
+      template:
+        header:
+          one: 'Будь ласка, виправте 1 помилку:'
+          few: 'Будь ласка, виправте %{count} помилки:'
+          other: 'Будь ласка, виправте %{count} помилок:'
+      models:
+        user:
+          attributes:
+            email:
+              blank: не може бути пустою
+              invalid: недійсна
   util:
+    edit_password: 'залиште це поле пустим, якщо не бажаєте його змінювати'
+    new_user: Новий Користувач
+    edit_user: Редагування Користувача
+    user_list: Перелік Користувачів
+    back: Назад
+    edit: Редагувати
+    show: Показати
+    destroy: Видалити
     logout: Вихід
