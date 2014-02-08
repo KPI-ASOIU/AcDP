@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  helper_method :get_role_name
+  helper_method :get_roles_collection
 
   # GET /admin/users
   def index
@@ -43,6 +45,20 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_url
+  end
+
+  def get_role_name(roleID)
+    if roleID == 1
+      t('roles.admin')
+    elsif roleID == 2
+      t('roles.student')
+    elsif roleID == 3
+      t('roles.lecturer')
+    end
+  end
+
+  def get_roles_collection
+    [[t('roles.admin'), 1], [t('roles.student'), 2], [t('roles.lecturer'), 3]]
   end
 
   private

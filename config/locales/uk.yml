@@ -264,3 +264,12 @@ uk:
     show: Показати
     destroy: Видалити
     logout: Вихід
+  users:
+    users_panel: 'Пошук по користувачам'
+    user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
+    fill_fields: 'Заповніть поля'
+    user_info: 'Інформація про користувача'
+  roles:
+    admin: 'Адміністратор'
+    student: 'Студент'
+    lecturer: 'Викладач'
