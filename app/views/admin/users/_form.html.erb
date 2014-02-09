@@ -1,51 +1,73 @@
-<%= form_for([:admin, @user]) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('activerecord.errors.template.header', count: @user.errors.count) %></h2>
+<div class="row-fluid">
+  <div class="span4 well">
+    <%= form_for([:admin, @user], :html => { :class => "form-horizontal", role: "form" }) do |f| %>
+      <fieldset>
+          <legend><%= t('users.fill_fields') %></legend>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= t('activerecord.errors.template.header', count: @user.errors.count) %></h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+              <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-  <div class="field">
-    <%= f.label :login %><br>
-    <%= f.text_field :login %>
-  </div>
+          <div class="form-group">
+            <%= f.label :login, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login') + '...', :class => 'form-control' %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if params[:action] == "edit" %>
-      <i>(<%= t('util.edit_password') %>)</i>
+          <div class="form-group">
+            <%= f.label :password, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.password_field :password, :placeholder => t('activerecord.attributes.user.password') + '...', :class => 'form-control' %>
+                <% if params[:action] == "edit" %>
+                  <i>(<%= t('util.edit_password') %>)</i>
+                <% end %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.password_field :password_confirmation, :placeholder => t('activerecord.attributes.user.password_confirmation') + '...', :class => 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :role, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.text_field :role, :class => 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :full_name, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.text_field :full_name, :placeholder => t('activerecord.attributes.user.full_name') + '...', :class => 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email, :class=>'col-sm-4 control-label' %>
+            <div class="col-sm-8">
+                <%= f.text_field :email, :placeholder => t('activerecord.attributes.user.email') + '...', :class => 'form-control' %>
+            </div>
+          </div>
+
+          <br>
+          <div class="form-group">
+          <p class="col-sm-4"></p>
+          <div class="actions col-sm-8">
+            <%= f.submit :class => "btn btn-primary form-control" %>
+          </div>
+          </div>
+      </fieldset>
     <% end %>
-    <br>
-    <%= f.password_field :password %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_field :role %>
-  </div>
-
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
