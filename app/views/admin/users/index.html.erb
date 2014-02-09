@@ -1,33 +1,52 @@
 <h1><%= t('util.user_list') %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= t('activerecord.attributes.user.login') %></th>
-      <th><%= t('activerecord.attributes.user.role') %></th>
-      <th><%= t('activerecord.attributes.user.full_name') %></th>
-      <th><%= t('activerecord.attributes.user.email') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= link_to new_admin_user_path, :class => "btn btn-primary" do %>
+      <span class='glyphicon glyphicon-plus'></span>
+      <%= t('util.new_user') %>
+<% end %>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%=  user.login %></td>
-        <td><%=  user.role %></td>
-        <td><%=  user.full_name %></td>
-        <td><%=  user.email %></td>
-        <td><%= link_to t('util.show'), admin_user_path(user) %></td>
-        <td><%= link_to t('util.edit'), edit_admin_user_path(user) %></td>
-        <td><%= link_to t('util.destroy'), admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<br><br>
 
-<br>
+<div class="panel panel-default">
+  <div class="panel-heading"><%= t('users.users_panel') %></div>
+  <div class="panel-body">
+    <p><%= t('users.user_panel_desc') %></p>
+    //TODO: search fields
+  </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-sm-2 "><%= t('activerecord.attributes.user.login') %></th>
+          <th class="col-sm-2 "><%= t('activerecord.attributes.user.role') %></th>
+          <th class="col-sm-4"><%= t('activerecord.attributes.user.full_name') %></th>
+          <th class="col-sm-4"><%= t('activerecord.attributes.user.email') %></th>
+          <th class="col-sm-1"></th>
+          <th class="col-sm-1"></th>
+          <th class="col-sm-1"></th>
+        </tr>
+      </thead>
 
-<%= link_to t('util.new_user'), new_admin_user_path %>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.login %></td>
+            <td><%= get_role_name user.role %></td>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to admin_user_path(user), :class => "btn btn-info btn-xs" do %>
+                  <span class='glyphicon glyphicon-zoom-in'></span>
+              <% end %>
+            </td>
+            <td><%= link_to edit_admin_user_path(user), :class => "btn btn-warning btn-xs" do %>
+                  <span class='glyphicon glyphicon-pencil'></span>
+              <% end %>
+            </td>
+            <td><%= link_to admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" do %>
+                  <span class='glyphicon glyphicon-remove'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

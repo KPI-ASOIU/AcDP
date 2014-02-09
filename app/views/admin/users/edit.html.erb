@@ -1,6 +1,13 @@
-<h1><%= t('util.edit_user') %></h1>
+<div class="form-std">
+    <h1><%= t('util.edit_user') %></h1>
+    <br>
+    <%= render 'form' %>
 
-<%= render 'form' %>
+    <br>
+    <%= link_to [:admin, @user], :class => "btn btn-info" do %>
+        <span class='glyphicon glyphicon-zoom-in'></span>
+        <%= t('util.show') %>
+    <% end %>
 
-<%= link_to t('util.show'), [:admin, @user] %> |
-<%= link_to t('util.back'), admin_users_path %>
+    <%= link_to t('util.back'), admin_users_path, :class => "btn btn-primary" %>
+</div>

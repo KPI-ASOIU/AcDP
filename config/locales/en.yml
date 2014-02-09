@@ -46,3 +46,12 @@ en:
     show: Show
     destroy: Destroy
     logout: Log out
+  users:
+    users_panel: 'Search users'
+    user_panel_desc: 'Here you can search users using different filters'
+    fill_fields: 'Fill fields'
+    user_info: 'User info'
+  roles:
+    admin: 'Administrator'
+    student: 'Student'
+    lecturer: 'Lecturer'
