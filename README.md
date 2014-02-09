@@ -7,6 +7,7 @@ Each new version of the project is automaticaly deployed to http://acdp.herokuap
 ## Development process
 - [How to setup PostgreSQL](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-setup-PostgreSQL)
 - [How to work with project through GitHub](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-work-with-project-through-github)
+- [Tips And Tricks](https://github.com/KPI-ASOIU/AcDP/wiki/Tips-And-Tricks)
 
 ## Used gems
 - [Device](http://devise.plataformatec.com.br/) - flexible authentication solution
