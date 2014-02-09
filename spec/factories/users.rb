@@ -25,4 +25,9 @@ FactoryGirl.define do
      "i#{group_letter}#{group_number}#{student_number}"
     end
   end
+
+  factory :invalid_user, parent: :user do
+    password "123"
+    email "ololo"
+  end
 end
