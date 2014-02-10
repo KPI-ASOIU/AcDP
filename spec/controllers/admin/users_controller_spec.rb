@@ -7,7 +7,7 @@ describe Admin::UsersController do
     it "assigns all users as @users" do
       user = FactoryGirl.create(:user)
       get :index
-      assigns(:users).should eq(User.all)
+      assigns(:users).should eq(User.page "1")
     end
 
     it "renders the :index view" do
