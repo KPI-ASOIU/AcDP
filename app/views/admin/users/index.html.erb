@@ -5,6 +5,24 @@
       <%= t('util.new_user') %>
 <% end %>
 
+<div id="modal_confirm_remove_user" class="modal fade bs-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><%= t('users.removing_title') %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%= t('users.removing_message') %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
+        <%= link_to t('util.destroy'), '', :method => :delete, :id => 'user_remove_path', :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br><br>
 
 <div class="panel panel-default">
@@ -41,7 +59,7 @@
                   <span class='glyphicon glyphicon-pencil'></span>
               <% end %>
             </td>
-            <td><%= link_to admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs" do %>
+            <td><%= link_to '', :id => 'btn_remove_user', :data => { :path => admin_user_path(user), :toggle => 'modal', :target => '#modal_confirm_remove_user' }, :class => "btn btn-danger btn-xs" do %>
                   <span class='glyphicon glyphicon-remove'></span>
               <% end %>
             </td>

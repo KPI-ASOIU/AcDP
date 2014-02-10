@@ -263,12 +263,15 @@ uk:
     edit: Редагувати
     show: Показати
     destroy: Видалити
+    cancel: Відхилити
     logout: Вихід
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
     fill_fields: 'Заповніть поля'
     user_info: 'Інформація про користувача'
+    removing_title: 'Видалення користувача'
+    removing_message: 'Ви впевнені ?'
   roles:
     admin: 'Адміністратор'
     student: 'Студент'
