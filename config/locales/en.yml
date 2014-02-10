@@ -44,13 +44,16 @@ en:
     back: Back
     edit: Edit
     show: Show
-    destroy: Destroy
+    destroy: Delete
+    cancel: Cancel
     logout: Log out
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
     fill_fields: 'Fill fields'
     user_info: 'User info'
+    removing_title: 'Removing user'
+    removing_message: 'Are you sure ?'
   roles:
     admin: 'Administrator'
     student: 'Student'
