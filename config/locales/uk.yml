@@ -265,6 +265,7 @@ uk:
     destroy: Видалити
     cancel: Відхилити
     logout: Вихід
+    access_denied: Доступ заборонений
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
