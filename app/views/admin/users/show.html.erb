@@ -1,32 +1,24 @@
-<div class="form-std">
-    <h1><%= t('users.user_info') %></h1>
-
-    <div class="panel panel-default">
-        <table class="table table-striped">
-        <tbody>
-            <tr>
-              <td><b><%=  t('activerecord.attributes.user.login') %></b></td>
-              <td><%=  @user.login %></td>
-            </tr>
-            <tr>
-              <td><b><%=  t('activerecord.attributes.user.role') %></b></td>
-              <td><%=  @user.role %></td>
-            </tr>
-            <tr>
-              <td><b><%=  t('activerecord.attributes.user.full_name') %></b></td>
-              <td><%=  @user.full_name %></td>
-            </tr>
-            <tr>
-              <td><b><%= t('activerecord.attributes.user.email')  %></b></td>
-              <td><%=  @user.email %></td>
-            </tr>
-        </tbody>
-        </table>
-    </div>
-
+<div class="panel panel-primary panel-narrow">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('users.user_info') %></h3>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt><%=  t('activerecord.attributes.user.login') %></dt>
+      <dd><%=  @user.login %></dd>
+      <dt><%=  t('activerecord.attributes.user.role') %></dt>
+      <dd><%=  @user.role %></dd>
+      <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
+      <dd><%=  @user.full_name %></dd>
+      <dt><%= t('activerecord.attributes.user.email')  %></dt>
+      <dd><%=  @user.email %></dd>
+    </dl>
+  </div>
+  <div class="panel-footer text-right">
+    <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
     <%= link_to edit_admin_user_path(@user), :class => "btn btn-warning" do %>
         <span class='glyphicon glyphicon-pencil'></span>
         <%= t('util.edit') %>
     <% end %>
-     <%= link_to t('util.back'), admin_users_path, :class => "btn btn-primary" %>
+  </div>
 </div>
