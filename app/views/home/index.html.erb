@@ -1,5 +1,7 @@
 <h2>Home Page</h2>
 <h3>Links to other pages</h3>
 <ul>
-  <li><%= link_to 'Admin Users', admin_users_path %></li>
+  <% if can? :manage, @users %>
+    <li><%= link_to 'Admin Users', admin_users_path %></li>
+  <% end %>
 </ul>

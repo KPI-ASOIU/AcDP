@@ -14,7 +14,7 @@ FactoryGirl.define do
     sequence(:login) do |n|
      "admin#{n}"
     end
-    # TODO: set role = admin
+    role 8
   end
 
   factory :user_student, parent: :user do
