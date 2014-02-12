@@ -276,6 +276,7 @@ uk:
     admin: 'Адміністратор'
     student: 'Студент'
     lecturer: 'Викладач'
+    array: ['Адміністратор', 'Студент', 'Викладач', 'Робітник']
   views:
     pagination:
       first: "&laquo; Перша"

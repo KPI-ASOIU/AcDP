@@ -58,6 +58,7 @@ en:
     admin: 'Administrator'
     student: 'Student'
     lecturer: 'Lecturer'
+    array: ['Administrator', 'Student', 'Lecturer', 'Worker']
   views:
     pagination:
       first: "&laquo; First"
