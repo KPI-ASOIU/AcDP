@@ -1,0 +1,15 @@
+<div class="panel-heading">
+  <h3 class="panel-title"><%= t('users.user_info') %></h3>
+</div>
+<div class="panel-body">
+  <dl class="dl-horizontal">
+    <dt><%=  t('activerecord.attributes.user.login') %></dt>
+    <dd><%=  @user.login %></dd>
+    <dt><%=  t('activerecord.attributes.user.role') %></dt>
+    <dd><%=  @user.role %></dd>
+    <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
+    <dd><%=  @user.full_name %></dd>
+    <dt><%= t('activerecord.attributes.user.email')  %></dt>
+    <dd><%=  @user.email %></dd>
+  </dl>
+</div>
