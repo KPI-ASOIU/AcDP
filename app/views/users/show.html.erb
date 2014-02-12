@@ -1,0 +1,4 @@
+<div class="panel panel-primary panel-narrow">
+  <%= render 'info' %>
+  <%= render 'options' if @user.eql? current_user %>
+</div>
