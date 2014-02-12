@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to [:admin, @user], notice: 'User was successfully created.'
+      redirect_to [:admin, @user], notice: t('users.notice.created')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   def update
     if @user.update(user_params)
-      redirect_to [:admin, @user], notice: 'User was successfully updated.'
+      redirect_to [:admin, @user], notice: t('users.notice.updated')
     else
       render action: 'edit'
     end
