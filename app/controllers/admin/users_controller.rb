@@ -35,10 +35,10 @@ class Admin::UsersController < ApplicationController
 
   # PATCH/PUT /admin/users/1
   def update
-    roles_update(user_params[:role])
-    (new_user_params = user_params).delete(:role)
+    @user.roles = user_params[:role]
+    (updated_user_params = user_params).delete(:role)
 
-    if @user.update(new_user_params)
+    if @user.update(updated_user_params)
       redirect_to [:admin, @user], notice: t('users.notice.updated')
     else
       render action: 'edit'
@@ -62,10 +62,5 @@ class Admin::UsersController < ApplicationController
     params.require(:user)
        .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name)
        .delete_if {|k, v| k =~ /password/ && v.blank?}
-  end
-
-  def roles_update(new_roles)
-    @user.roles = new_roles
-    @user.save
   end
 end
