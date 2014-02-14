@@ -273,13 +273,15 @@ uk:
     user_info: 'Інформація про користувача'
     removing_title: 'Видалення користувача'
     removing_message: 'Ви впевнені ?'
+    choose_role: 'Виберіть роль, будь ласка'
     notice:
       created: 'Користувача успішно зареєстровано.'
       updated: 'Дані користувача успішно оновлені.'
   roles:
     admin: 'Адміністратор'
     student: 'Студент'
-    lecturer: 'Викладач'
+    teacher: 'Викладач'
+    worker: 'Робітник'
   views:
     pagination:
       first: "&laquo; Перша"
