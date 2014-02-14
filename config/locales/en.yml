@@ -55,6 +55,7 @@ en:
     user_info: 'User info'
     removing_title: 'Removing user'
     removing_message: 'Are you sure ?'
+    choose_role: 'Choose your role, please'
     notice:
       created: 'User was successfully created.'
       updated: 'User was successfully updated.'

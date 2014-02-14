@@ -39,11 +39,7 @@
     <div class="form-group">
       <%= f.label :role, :class=>'col-sm-4 control-label' %>
       <div class="col-sm-8">
-          <% if params[:action] == "edit" %>
-            <%= f.select :role, options_for_select(translate_roles(User::ROLES), @user.roles), {}, { :class => "form-control chosen-select", :multiple => true } %>
-          <% else %>
-            <%= f.select :role, translate_roles(User::ROLES), {}, { :class => "form-control chosen-select", :multiple => true } %>
-          <% end %>
+        <%= f.select :role, options_for_select(translate_roles(User::ROLES), @user.roles), {}, { :class => "chosen-select", :multiple => true } %>
       </div>
     </div>
 

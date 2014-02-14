@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   ROLES = %w[student worker teacher admin]
 
   def roles=(roles)
-    self.role = (roles & ROLES) ? (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+) : 0
+    self.role = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
   def add_role(role)
