@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   authorize_resource
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  helper UsersHelper
 
   # GET /admin/users
   def index
@@ -23,6 +24,7 @@ class Admin::UsersController < ApplicationController
   # POST /admin/users
   def create
     @user = User.new(user_params)
+    @user.roles = user_params[:role]
 
     if @user.save
       redirect_to [:admin, @user], notice: t('users.notice.created')
@@ -33,7 +35,10 @@ class Admin::UsersController < ApplicationController
 
   # PATCH/PUT /admin/users/1
   def update
-    if @user.update(user_params)
+    roles_update(user_params[:role])
+    (new_user_params = user_params).delete(:role)
+
+    if @user.update(new_user_params)
       redirect_to [:admin, @user], notice: t('users.notice.updated')
     else
       render action: 'edit'
@@ -55,7 +60,12 @@ class Admin::UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user)
-      .permit(:login, :password, :password_confirmation, :role, :email, :full_name)
-      .delete_if {|k, v| k =~ /password/ && v.blank?}
+       .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name)
+       .delete_if {|k, v| k =~ /password/ && v.blank?}
+  end
+
+  def roles_update(new_roles)
+    @user.roles = new_roles
+    @user.save
   end
 end

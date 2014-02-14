@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :roles
   devise :database_authenticatable
 
   validates_presence_of   :login
@@ -14,7 +15,7 @@ class User < ActiveRecord::Base
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
-  ROLES = %w[student worker teacher admin]
+  ROLES = %w(student worker teacher admin)
 
   def roles=(roles)
     self.role = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

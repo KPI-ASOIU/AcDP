@@ -61,7 +61,8 @@ en:
   roles:
     admin: 'Administrator'
     student: 'Student'
-    lecturer: 'Lecturer'
+    teacher: 'Teacher'
+    worker: 'Worker'
   views:
     pagination:
       first: "&laquo; First"

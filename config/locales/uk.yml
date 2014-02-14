@@ -279,7 +279,8 @@ uk:
   roles:
     admin: 'Адміністратор'
     student: 'Студент'
-    lecturer: 'Викладач'
+    teacher: 'Викладач'
+    worker: 'Робітник'
   views:
     pagination:
       first: "&laquo; Перша"
