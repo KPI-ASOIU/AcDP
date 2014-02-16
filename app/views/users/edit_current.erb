@@ -1,0 +1,55 @@
+<div class="panel panel-primary panel-narrow">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('util.edit_user') %></h3>
+  </div>
+
+  <%= form_for(@user, url: current_user_update_users_path, :html => { :class => "form-horizontal", role: "form" }) do |f| %>
+      <div class="panel-body">
+        <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= t('activerecord.errors.template.header', count: @user.errors.count) %></h2>
+
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :password, :class=>'col-sm-4 control-label' %>
+          <div class="col-sm-8">
+            <%= f.password_field :password, :placeholder => t('activerecord.attributes.user.password') + '...', :class => 'form-control' %>
+            <i>(<%= t('util.edit_password') %>)</i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, :class=>'col-sm-4 control-label' %>
+          <div class="col-sm-8">
+            <%= f.password_field :password_confirmation, :placeholder => t('activerecord.attributes.user.password_confirmation') + '...', :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :full_name, :class=>'col-sm-4 control-label' %>
+          <div class="col-sm-8">
+            <%= f.text_field :full_name, :placeholder => t('activerecord.attributes.user.full_name') + '...', :class => 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, :class=>'col-sm-4 control-label' %>
+          <div class="col-sm-8">
+            <%= f.text_field :email, :placeholder => t('activerecord.attributes.user.email') + '...', :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer text-right">
+        <%= link_to t('util.back'), current_user_users_path, :class => "btn btn-default" %>
+        <%= f.submit :class => "btn btn-success" %>
+      </div>
+  <% end %>
+
+</div>
