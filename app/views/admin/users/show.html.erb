@@ -3,16 +3,25 @@
     <h3 class="panel-title"><%= t('users.user_info') %></h3>
   </div>
   <div class="panel-body">
-    <dl class="dl-horizontal">
-      <dt><%=  t('activerecord.attributes.user.login') %></dt>
-      <dd><%=  @user.login %></dd>
-      <dt><%=  t('activerecord.attributes.user.role') %></dt>
-      <dd><%=  @user.role %></dd>
-      <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
-      <dd><%=  @user.full_name %></dd>
-      <dt><%= t('activerecord.attributes.user.email')  %></dt>
-      <dd><%=  @user.email %></dd>
-    </dl>
+    <table class="dl-horizontal" width="100%">
+      <tr>
+          <td align="right"><b><%= t('activerecord.attributes.user.login') %>:&nbsp</b></td>
+          <td><%= @user.login %></td>
+          <td rowspan="4"><%= image_tag @user.avatar.url("large") %></td>
+      </tr>
+      <tr>
+          <td align="right"><b><%= t('activerecord.attributes.user.role') %>:&nbsp</b></td>
+          <td><%= @user.role %></td>
+      </tr>
+      <tr>
+          <td align="right"><b><%= t('activerecord.attributes.user.full_name') %>:&nbsp</b></td>
+          <td><%= @user.full_name %></td>
+      </tr>
+      <tr>
+          <td align="right"><b><%= t('activerecord.attributes.user.email') %>:&nbsp</b></td>
+          <td><%= @user.email %></td>
+      </tr>
+    </table>
   </div>
   <div class="panel-footer text-right">
     <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>

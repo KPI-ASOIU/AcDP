@@ -37,6 +37,10 @@ GEM
       sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     debug_inspector (0.0.2)
     devise (3.2.2)
@@ -75,8 +79,15 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.4)
     orm_adapter (0.5.0)
+    paperclip (4.1.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.3)
+    protected_attributes (1.0.5)
+      activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -160,7 +171,9 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-bootstrap (~> 3.0.1)
+  paperclip
   pg
+  protected_attributes
   rails (= 4.0.2)
   rails_12factor
   rspec-rails (~> 2.14)
