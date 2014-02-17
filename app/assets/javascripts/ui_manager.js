@@ -3,11 +3,9 @@ $(document).ready(function(){
         $("#user_remove_path").attr('href', $(this).data('path'));
     });
 
-    $('#admin_search_type_combo').click(function(event){
-        var targ = event ? event.target : window.event.srcElement,
-            doc = document;
-
-        doc.getElementById('admin_search_button').firstChild.innerHTML = targ.innerHTML;
-        doc.getElementById('admin_search_type').value = targ.getAttribute('data-id');
+    $(".j-admin-search-type-combo").on("click", function(e){
+        var $target = $(e.target);
+        $(".j-admin-search-btn-text").text($target.text());
+        $(".j-admin-search-type-input").val($target.data("search-type"));
     });
 });

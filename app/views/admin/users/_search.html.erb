@@ -1,0 +1,23 @@
+<%= form_tag admin_users_path, :method => 'get' do %>
+  <div class="input-group">
+    <div class="input-group-btn">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="j-admin-search-btn-text"><%= t('activerecord.attributes.user.' + params[:search_by]) %></span>
+        <span class="caret"></span>
+      </button>
+      <input class="j-admin-search-type-input" type="hidden" name="search_by" value="<%= params[:search_by] %>" />
+      <ul class="dropdown-menu j-admin-search-type-combo">
+        <li><a href="#" data-search-type="login"><%= t('activerecord.attributes.user.login') %></a></li>
+        <li><a href="#" data-search-type="email"><%= t('activerecord.attributes.user.email') %></a></li>
+        <li><a href="#" data-search-type="full_name"><%= t('activerecord.attributes.user.full_name') %></a></li>
+      </ul>
+    </div>
+    <input type="text" class="form-control" name="q" value="<%= params[:q] %>" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span>
+        <%= t('util.search') %>
+      </button>
+    </span>
+  </div>
+<% end %>

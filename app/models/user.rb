@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates_presence_of     :password, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
 
+  scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }
+
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end

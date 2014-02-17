@@ -4,26 +4,14 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    @searchType = params[:searchType]
-    @searchStr = params[:searchStr]
-    @searchTypeStr = ''
-    page = params[:page]
-
-    if @searchType.nil?
-      @users = User.page page
-      @searchType = '1'
-      @searchStr = ''
-      @searchTypeStr = t('activerecord.attributes.user.login')
-    elsif @searchType === '1'
-      @users = Kaminari.paginate_array(User.where(User.arel_table[:login].matches('%' + @searchStr + '%'))).page(page)
-      @searchTypeStr = t('activerecord.attributes.user.login')
-    elsif @searchType === '2'
-      @users = Kaminari.paginate_array(User.where(User.arel_table[:email].matches('%' + @searchStr + '%'))).page(page)
-      @searchTypeStr = t('activerecord.attributes.user.email')
-    elsif @searchType === '3'
-      @users = Kaminari.paginate_array(User.where(User.arel_table[:full_name].matches('%' + @searchStr + '%'))).page(page)
-      @searchTypeStr = t('activerecord.attributes.user.full_name')
+    users = if params[:q].present? && ['login', 'email', 'full_name'].include?(params[:search_by])
+      User.with_matched_field(params[:search_by], params[:q])
+    else
+      User.all
     end
+
+    params[:search_by] ||= 'login'
+    @users = users.page(params[:page])
   end
 
   # GET /admin/users/1

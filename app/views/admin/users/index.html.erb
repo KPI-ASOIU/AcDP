@@ -21,24 +21,7 @@
     <%= t('users.users_panel') %>
   </div>
   <div class="panel-body">
-        <%#= select_tag :city_id, options_for_select([[t('activerecord.attributes.user.login'), 1],
-           # [t('activerecord.attributes.user.email'), 2], [t('activerecord.attributes.user.full_name'), 3]]), { :class => 'chosen-no-search search-combo' } %>
-
-    <%= form_tag admin_users_path, :method => 'get' do %>
-    <div class="input-group search-div">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-info dropdown-toggle" id="admin_search_button" data-toggle="dropdown"><span><%= @searchTypeStr + ' ' %></span><span class="caret"></span></button>
-        <input id="admin_search_type" type="hidden" name="searchType" value="<%= @searchType %>" />
-        <ul class="dropdown-menu" id="admin_search_type_combo">
-          <li><a href="#" data-id="1"><%= t('activerecord.attributes.user.login') + ' '  %></a></li>
-          <li><a href="#" data-id="2"><%= t('activerecord.attributes.user.email') + ' '  %></a></li>
-          <li><a href="#" data-id="3"><%= t('activerecord.attributes.user.full_name') + ' '  %></a></li>
-        </ul>
-      </div>
-      <input type="text" class="form-control" name="searchStr" value="<%= @searchStr %>" />
-      <span class="input-group-btn"><input type="submit" value="<%= t('util.search') %>" class="btn btn-primary" /></span>
-    </div>
-    <% end %>
+    <%= render 'search' %>
   </div>
 </div>
 
