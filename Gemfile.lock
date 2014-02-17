@@ -150,6 +150,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  arel
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.0)
