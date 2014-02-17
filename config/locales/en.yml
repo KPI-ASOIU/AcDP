@@ -48,6 +48,7 @@ en:
     cancel: Cancel
     logout: Log out
     access_denied: Access denied
+    search: Search
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -55,6 +56,7 @@ en:
     user_info: 'User info'
     removing_title: 'Removing user'
     removing_message: 'Are you sure ?'
+    my_page: My page
     notice:
       created: 'User was successfully created.'
       updated: 'User was successfully updated.'
