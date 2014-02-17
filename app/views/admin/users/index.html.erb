@@ -46,7 +46,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.login %></td>
-            <td><%= user.role %></td>
+            <td><%= format_roles(user.roles, ", ") %></td>
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
             <td><%= link_to admin_user_path(user), :class => "btn btn-info btn-xs" do %>

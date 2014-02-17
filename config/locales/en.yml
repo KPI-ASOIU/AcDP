@@ -57,13 +57,15 @@ en:
     removing_title: 'Removing user'
     removing_message: 'Are you sure ?'
     my_page: My page
+    choose_role: 'Choose your role, please'
     notice:
       created: 'User was successfully created.'
       updated: 'User was successfully updated.'
   roles:
     admin: 'Administrator'
     student: 'Student'
-    lecturer: 'Lecturer'
+    teacher: 'Teacher'
+    worker: 'Worker'
   views:
     pagination:
       first: "&laquo; First"
