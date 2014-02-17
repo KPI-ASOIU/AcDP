@@ -16,6 +16,7 @@
       <%= f.label :login, :class=>'col-sm-4 control-label' %>
       <div class="col-sm-8">
           <%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login') + '...', :class => 'form-control' %>
+
       </div>
     </div>
 
@@ -56,7 +57,16 @@
           <%= f.text_field :email, :placeholder => t('activerecord.attributes.user.email') + '...', :class => 'form-control' %>
       </div>
     </div>
+
+    <div class="form-group">
+      <%= f.label :image, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.file_field :avatar %>
+      </div>
+    </div>
+
   </div>
+
   <div class="panel-footer text-right">
     <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
     <%= f.submit :class => "btn btn-success" %>

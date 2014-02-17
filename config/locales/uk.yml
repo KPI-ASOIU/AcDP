@@ -124,7 +124,7 @@ uk:
       less_than: має бути менше ніж %{count}
       less_than_or_equal_to: має бути менше ніж або дорівнювати %{count}
       not_a_number: не число
-      not_an_integer: не э цілим числом
+      not_an_integer: не є цілим числом
       odd: має бути непарним
       record_invalid: 'Виникли помилки: %{errors}'
       taken: вже зайнятий
@@ -242,6 +242,7 @@ uk:
         role: 'Роль'
         full_name: 'Повне ім’я'
         email: 'Електронна пошта'
+        image: 'Фотографія'
     errors:
       template:
         header:

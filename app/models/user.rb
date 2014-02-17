@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable
-
+  attr_accessible :avatar
+  has_attached_file :avatar,:styles => { :small => '48x48#', :medium => '64x64#', :large => '128x128#'},
+     :path => ":rails_root/public/system/users/avatars/:id/:style/:filename",
+     :url => "/system/users/avatars/:id/:style/:filename",
+     :default_url => '/system/users/avatars/default/missing.png'
+  validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_presence_of   :login
   validates_uniqueness_of :login
 
