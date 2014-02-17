@@ -1,0 +1,9 @@
+//enable chosen.js
+$(function(){
+	$('.chosen-select').chosen({
+		placeholder_text_multiple: "<%= I18n.t('users.choose_role') %>",
+		no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
+		width: '100%'
+	});
+});
+

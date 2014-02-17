@@ -31,7 +31,7 @@ class Admin::UsersController < ApplicationController
   # POST /admin/users
   def create
     @user = User.new(user_params)
-    @user.roles = user_params[:role]
+    @user.roles = user_params[:role] || []
 
     if @user.save
       redirect_to [:admin, @user], notice: t('users.notice.created')
@@ -42,10 +42,9 @@ class Admin::UsersController < ApplicationController
 
   # PATCH/PUT /admin/users/1
   def update
-    @user.roles = user_params[:role]
-    (updated_user_params = user_params).delete(:role)
+    @user.roles = user_params[:role] || []
 
-    if @user.update(updated_user_params)
+    if @user.update(user_params.except(:role))
       redirect_to [:admin, @user], notice: t('users.notice.updated')
     else
       render action: 'edit'

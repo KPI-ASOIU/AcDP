@@ -8,12 +8,5 @@ $(document).ready(function(){
         $(".j-admin-search-btn-text").text($target.text());
         $(".j-admin-search-type-input").val($target.data("search-type"));
     });
-
-    //enable chosen js
-    $('.chosen-select').chosen({
-		placeholder_text_multiple: 'Choose your role from list',
-		no_results_text: 'No results matched',
-		width: '100%'
-	});
 });
 

@@ -58,6 +58,7 @@ en:
     removing_message: 'Are you sure ?'
     my_page: My page
     choose_role: 'Choose your role, please'
+    chosen_no_result: No results matched
     notice:
       created: 'User was successfully created.'
       updated: 'User was successfully updated.'
