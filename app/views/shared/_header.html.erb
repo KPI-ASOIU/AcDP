@@ -9,9 +9,11 @@
                 <%= link_to "Користувачі", admin_users_path %>
             <% end %>
         </li>
+        <% if user_signed_in? %>
+        <li>
+          <%=link_to t('users.my_page'), current_user%>
+        </li>
       </ul>
-      <% if user_signed_in? %>
-          <p class="navbar-text"><%=link_to "Моя сторінка", current_user%></p>
           <p class="navbar-text navbar-right log-out-link"><%= current_user.login + ' (' %><%= link_to t('util.logout'), destroy_user_session_path, :method => :delete, class: "navbar-link" %>)</p>
       <% end %>
     </nav>
