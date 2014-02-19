@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   end
 
   # GET /admin/users/1
-  def shows
+  def show
   end
 
   # GET /admin/users/new
