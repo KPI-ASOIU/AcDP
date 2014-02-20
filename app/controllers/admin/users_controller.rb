@@ -66,7 +66,7 @@ class Admin::UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user)
-       .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name)
+       .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name, :avatar)
        .delete_if {|k, v| k =~ /password/ && v.blank?}
   end
 end

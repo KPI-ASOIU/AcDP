@@ -3,16 +3,24 @@
     <h3 class="panel-title"><%= t('users.user_info') %></h3>
   </div>
   <div class="panel-body">
-    <dl class="dl-horizontal">
-      <dt><%=  t('activerecord.attributes.user.login') %></dt>
-      <dd><%=  @user.login %></dd>
-      <dt><%=  t('activerecord.attributes.user.role') %></dt>
-      <dd><%=  format_roles(@user.roles, ", ") %></dd>
-      <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
-      <dd><%=  @user.full_name %></dd>
-      <dt><%=  t('activerecord.attributes.user.email')  %></dt>
-      <dd><%=  @user.email %></dd>
-    </dl>
+    <div class="thumbnail pull-left">
+      <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+    </div>
+    <div class="pull-left">
+      <% if @user.full_name.present? %>
+        <h3 class="text-center"><%=  @user.full_name %></h3>
+      <% end %>
+      <dl class="dl-horizontal">
+        <dt><%=  t('activerecord.attributes.user.login') %></dt>
+        <dd><%=  @user.login %></dd>
+        <dt><%=  t('activerecord.attributes.user.role') %></dt>
+        <dd><%=  format_roles(@user.roles, ", ") %></dd>
+        <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
+        <dd><%=  @user.full_name %></dd>
+        <dt><%=  t('activerecord.attributes.user.email')  %></dt>
+        <dd><%=  @user.email %></dd>
+      </dl>
+    </div>
   </div>
   <div class="panel-footer text-right">
     <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
