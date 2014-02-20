@@ -5,14 +5,11 @@
         <%= link_to "Корпоративний Портал Кафедри", root_path, class: "navbar-brand" %>
       </div>
       <ul class="nav navbar-nav">
-        <li><% if can? :manage, @users %>
-                <%= link_to "Користувачі", admin_users_path %>
-            <% end %>
-        </li>
         <% if user_signed_in? %>
-          <li>
-            <%=link_to t('users.my_page'), current_user%>
-          </li>
+          <li><%= link_to t('users.my_page'), current_user_users_path %></li>
+        <% end %>
+        <% if can? :manage, @users %>
+          <li><%= link_to "Користувачі", admin_users_path %></li>
         <% end %>
       </ul>
       <% if user_signed_in? %>
