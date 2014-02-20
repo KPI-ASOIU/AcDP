@@ -242,7 +242,7 @@ uk:
         role: 'Роль'
         full_name: 'Повне ім’я'
         email: 'Електронна пошта'
-        image: 'Фотографія'
+        avatar: 'Фотографія'
     errors:
       template:
         header:
@@ -268,6 +268,7 @@ uk:
     logout: Вихід
     access_denied: Доступ заборонений
     search: Пошук
+    actions: Дії
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'

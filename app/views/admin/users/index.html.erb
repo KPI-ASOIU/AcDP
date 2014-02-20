@@ -29,35 +29,34 @@
   <div class="panel-heading">
     <%= t('util.user_list') %>
   </div>
-    <table class="table table-striped">
+    <table class="table table-striped table-verticle-centered">
       <thead>
         <tr>
-          <th class="col-sm-2 "><%= t('activerecord.attributes.user.login') %></th>
-          <th class="col-sm-2 "><%= t('activerecord.attributes.user.role') %></th>
-          <th class="col-sm-4"><%= t('activerecord.attributes.user.full_name') %></th>
-          <th class="col-sm-4"><%= t('activerecord.attributes.user.email') %></th>
-          <th class="col-sm-1"></th>
-          <th class="col-sm-1"></th>
-          <th class="col-sm-1"></th>
+          <th class="c-admin-users-avatar-column"></th>
+          <th><%= t('activerecord.attributes.user.login') %></th>
+          <th><%= t('activerecord.attributes.user.role') %></th>
+          <th><%= t('activerecord.attributes.user.full_name') %></th>
+          <th><%= t('activerecord.attributes.user.email') %></th>
+          <th class="c-admin-users-actions-column"></th>
         </tr>
       </thead>
 
       <tbody>
         <% @users.each do |user| %>
           <tr>
+            <td><%= image_tag user.avatar.url("small"), :class => "thumbnail c-user-small-avatar" %></td>
             <td><%= user.login %></td>
             <td><%= format_roles(user.roles, ", ") %></td>
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
-            <td><%= link_to admin_user_path(user), :class => "btn btn-info btn-xs" do %>
+            <td>
+              <%= link_to admin_user_path(user), :class => "btn btn-info btn-xs" do %>
                   <span class='glyphicon glyphicon-zoom-in'></span>
               <% end %>
-            </td>
-            <td><%= link_to edit_admin_user_path(user), :class => "btn btn-warning btn-xs" do %>
+              <%= link_to edit_admin_user_path(user), :class => "btn btn-warning btn-xs" do %>
                   <span class='glyphicon glyphicon-pencil'></span>
               <% end %>
-            </td>
-            <td><%= link_to '', :id => 'btn_remove_user', :data => { :path => admin_user_path(user), :toggle => 'modal', :target => '#modal_confirm_remove_user' }, :class => "btn btn-danger btn-xs" do %>
+              <%= link_to '', :id => 'btn_remove_user', :data => { :path => admin_user_path(user), :toggle => 'modal', :target => '#modal_confirm_remove_user' }, :class => "btn btn-danger btn-xs" do %>
                   <span class='glyphicon glyphicon-remove'></span>
               <% end %>
             </td>
