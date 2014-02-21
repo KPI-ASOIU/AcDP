@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: acdp_production
   pool: 5
-  username: acdp
+  username: deployer
   password: asoiu

@@ -39,11 +39,11 @@ namespace :deploy do
  desc 'Setup'
   task :setup do
     on roles(:all) do
-      execute "mkdir  #{shared_path}/config/"
-      execute "mkdir  /var/www/apps/#{application}/run/"
-      execute "mkdir  /var/www/apps/#{application}/log/"
-      execute "mkdir  /var/www/apps/#{application}/socket/"
-      execute "mkdir #{shared_path}/system"
+      execute "mkdir -p #{shared_path}/config/"
+      execute "mkdir -p /var/www/apps/#{application}/run/"
+      execute "mkdir -p /var/www/apps/#{application}/log/"
+      execute "mkdir -p /var/www/apps/#{application}/socket/"
+      execute "mkdir -p #{shared_path}/system"
       sudo "ln -s /var/log/upstart /var/www/log/upstart"
 
       upload!('shared/Procfile', "#{shared_path}/Procfile")
@@ -59,9 +59,6 @@ namespace :deploy do
           execute :rake, "db:create"
         end
       end
-
-
-
     end
   end
 
