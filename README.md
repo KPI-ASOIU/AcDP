@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/KPI-ASOIU/AcDP.png?branch=master)](https://travis-ci.org/KPI-ASOIU/AcDP)
 ## Beta
-Each new version of the project is automaticaly deployed to http://acdp.herokuapp.com/
+New versions of the project are deployed to http://acdp.dmytroyarmak.com/
 
 ## Development process
 - [How to setup and run project](https://github.com/KPI-ASOIU/AcDP/wiki/How-to-setup-and-run-project)
