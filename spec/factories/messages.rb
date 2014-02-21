@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :message do
-    conversation_id 1
-    author_id 1
-    body "MyText"
+  	association :author, factory: :user
+    conversation_id { Time.now.to_i }
+    body "MyText" + Time.now.to_s
   end
 end
