@@ -55,7 +55,7 @@ namespace :deploy do
       sudo 'start nginx'
 
       within release_path do
-        with rails_env: fetch(:rails_env) do
+        with rails_env: 'production' do
           execute :rake, "db:create"
         end
       end
