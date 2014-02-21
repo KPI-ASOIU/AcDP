@@ -1,0 +1,7 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: acdp_production
+  pool: 5
+  username: acdp
+  password: asoiu

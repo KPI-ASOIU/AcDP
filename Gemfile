@@ -46,8 +46,19 @@ group :development, :test do
   gem 'binding_of_caller'
 end
 
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+end
+
 group :test do
   gem 'shoulda-matchers'
+end
+
+group :production do
+  gem 'unicorn'
 end
 
 gem 'factory_girl_rails', '~> 4.0'
