@@ -1,7 +1,5 @@
 class Message < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :author, class_name: "User"
 
-	validates_presence_of :conversation_id
-	validates_presence_of :author_id
-	validates_presence_of :body
+	validates :conversation_id, :author_id, :body, presence: true
 end
