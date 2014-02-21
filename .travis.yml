@@ -4,10 +4,3 @@ rvm:
 before_script:
 - cp config/database.travis.yml config/database.yml
 - psql -c 'create database acdp_test;' -U postgres
-deploy:
-  provider: heroku
-  api_key:
-    secure: DVII1Uepyz6aRs8CQV6S2xfw4nhgzzCE6/4Ci3H5a3DDP6pakctCZuWAtnJxa7OaRuNoEcwjVwKjVnc7vh7GaQNGUb5nyVqLuyM1dWzkCv0t0Rzi3ZGBHWjfKXWr1UB2J8UwBwjgsLWByxka40pu9UEawezP+xtUciD66dIJpwM=
-  app: acdp
-  on:
-    repo: KPI-ASOIU/AcDP

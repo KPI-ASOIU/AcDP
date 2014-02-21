@@ -31,12 +31,6 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
@@ -64,7 +58,6 @@ end
 gem 'factory_girl_rails', '~> 4.0'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.1.0'
-gem 'rails_12factor'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'cancan'
