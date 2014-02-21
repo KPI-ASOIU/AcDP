@@ -14,4 +14,22 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+ 
+  def update_current
+    @user = current_user
+    # @user.roles = user_params[:role] || []
+
+    if @user.update(user_params.except(:role))
+      redirect_to [:admin, @user], notice: t('users.notice.updated')
+    else
+      render action: 'edit'
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user)
+       .permit(:password, :password_confirmation, :email, :full_name, :avatar)
+       .delete_if {|k, v| k =~ /password/ && v.blank?}
+  end
 end
