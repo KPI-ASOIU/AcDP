@@ -2,11 +2,11 @@
   <div class="col-xs-12">
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
-        <%= link_to "Корпоративний Портал Кафедри", root_path, class: "navbar-brand" %>
+        <%= link_to t('views.main_title'), root_path, class: "navbar-brand" %>
       </div>
       <ul class="nav navbar-nav">
         <li><% if can? :manage, @users %>
-                <%= link_to "Користувачі", admin_users_path %>
+                <%= link_to t('util.users_manage'), admin_users_path %>
             <% end %>
         </li>
         <% if user_signed_in? %>

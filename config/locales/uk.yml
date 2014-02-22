@@ -267,6 +267,7 @@ uk:
     logout: Вихід
     access_denied: Доступ заборонений
     search: Пошук
+    users_manage: Користувачі
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -276,7 +277,7 @@ uk:
     removing_message: 'Ви впевнені ?'
     my_page: Моя сторінка
     choose_role: 'Виберіть роль, будь ласка'
-    chosen_no_result: 'Немає рузультатів що відповідають '
+    chosen_no_result: 'Немає результатів що відповідають '
     notice:
       created: 'Користувача успішно зареєстровано.'
       updated: 'Дані користувача успішно оновлені.'
@@ -286,6 +287,7 @@ uk:
     teacher: 'Викладач'
     worker: 'Робітник'
   views:
+    main_title: Корпоративний Портал Кафедри
     pagination:
       first: "&laquo; Перша"
       last: "Остання &raquo;"
