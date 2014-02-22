@@ -17,8 +17,9 @@ class UsersController < ApplicationController
  
   def update_current
     @user = current_user
-    if @user.update(user_params.except(:role))
-      redirect_to [:admin, @user], notice: t('users.notice.updated')
+    if @user.update(user_params)
+      redirect_to current_user_users_path, notice: t('users.notice.updated')
+
     else
       render action: 'edit'
     end
