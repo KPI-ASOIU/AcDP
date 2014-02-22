@@ -66,6 +66,7 @@ namespace :deploy do
   task :symlink do
     on roles(:all) do
       execute "ln -s #{shared_path}/Procfile #{release_path}/Procfile"
+      execute "rm -rf #{release_path}/public/system"
       execute "ln -s #{shared_path}/system #{release_path}/public/system"
     end
   end
