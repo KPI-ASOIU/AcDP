@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :message do
   	association :author, factory: :user
   	association :conversation
-  	body "MyText" + Time.now.to_s
+  	body { "MyText #{Time.now}" }
   end
 end
