@@ -9,5 +9,6 @@ describe Message do
 
   describe 'associations' do
   	it { should belong_to(:author).class_name('User') }
+  	it { should belong_to(:conversation) }
   end
 end
