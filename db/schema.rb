@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221222021) do
+ActiveRecord::Schema.define(version: 20140222213256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20140221222021) do
     t.integer  "conversation_id"
     t.integer  "author_id"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.integer  "unread_messages_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

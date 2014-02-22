@@ -7,9 +7,15 @@ FactoryGirl.define do
         end
 
         trait :with_messages do
-        	after(:create) do |conversation, evaluator|
+        	after(:create) do |conversation|
         		FactoryGirl.create_list(:message, 3, conversation: conversation)
         	end
+        end
+
+        trait :with_subscriptions do
+            after(:create) do |conversation|
+                FactoryGirl.create_list(:subscription, 3, conversation: conversation)
+            end
         end
     end
 end
