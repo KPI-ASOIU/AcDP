@@ -150,9 +150,9 @@ uk:
     select:
       prompt: 'Оберіть: '
     submit:
-      create: Створити %{model}
+      create: Створити %{model}а
       submit: Зберегти %{model}
-      update: Зберегти %{model}
+      update: Зберегти зміни
   number:
     currency:
       format:
