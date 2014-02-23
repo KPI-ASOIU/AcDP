@@ -8,6 +8,12 @@ FactoryGirl.define do
 
     password { |u| "#{u.login}-password" }
     email { |u| "#{u.login}@asoui.fiot.kpi.ua"}
+
+    trait :with_subscriptions do
+        after(:create) do |user|
+            FactoryGirl.create_list(:subscription, 3, user: user)
+        end
+    end
   end
 
   factory :user_admin, parent: :user do
@@ -29,5 +35,11 @@ FactoryGirl.define do
   factory :invalid_user, parent: :user do
     password "123"
     email "ololo"
+  end
+
+  trait :with_subscriptions do
+      after(:create) do |user|
+          FactoryGirl.create_list(:subscription, 3, user: user)
+      end
   end
 end

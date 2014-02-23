@@ -17,5 +17,11 @@ FactoryGirl.define do
                 FactoryGirl.create_list(:subscription, 3, conversation: conversation)
             end
         end
+
+        trait :with_participants do
+            after(:create) do |conversation|
+                FactoryGirl.create_list(:user, 3, conversation: conversation.subscriptions)
+            end
+        end
     end
 end

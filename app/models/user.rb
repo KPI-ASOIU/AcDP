@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
 
   scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }
 
+  has_many :subscriptions
+
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
