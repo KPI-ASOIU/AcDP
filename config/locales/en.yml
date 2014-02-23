@@ -51,6 +51,7 @@ en:
     access_denied: Access denied
     search: Search
     actions: Actions
+    users_manage: Users
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -70,6 +71,7 @@ en:
     teacher: 'Teacher'
     worker: 'Worker'
   views:
+    main_title: Departments Corporate Portal
     pagination:
       first: "&laquo; First"
       last: "Last &raquo;"
