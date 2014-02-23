@@ -6,6 +6,9 @@ FactoryGirl.define do
      "user#{n}"
     end
 
+    sequence(:full_name) do |n|
+      "username#{n}"
+    end
     password { |u| "#{u.login}-password" }
     email { |u| "#{u.login}@asoui.fiot.kpi.ua"}
 
