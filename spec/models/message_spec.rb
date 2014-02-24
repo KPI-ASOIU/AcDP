@@ -12,4 +12,8 @@ describe Message do
   	it { should belong_to(:conversation) }
   	it { should have_many(:subscriptions).through(:conversation) }
   end
+
+  describe 'subscription unread message counter incremention' do
+    it { should callback(:inc_unread_messages).after(:create) }
+  end
 end
