@@ -4,7 +4,11 @@ AcDP::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        delete "delete_avatar"
+      end
+    end
   end
 
   resources :users, only: [:show] do
