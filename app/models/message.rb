@@ -8,6 +8,6 @@ class Message < ActiveRecord::Base
 	validates :conversation_id, :author_id, :body, presence: true
 
 	def inc_unread_messages
-		Subscription.increment_counter(:unread_messages_count, Subscription.where('user_id <> ?', message.author_id).pluck(:id))
+		Subscription.increment_counter(:unread_messages_count, Subscription.where('user_id <> ?', self.author_id).pluck(:id))
 	end
 end
