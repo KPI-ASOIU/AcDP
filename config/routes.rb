@@ -6,7 +6,7 @@ AcDP::Application.routes.draw do
   namespace :admin do
     resources :users do
       member do
-        delete "delete_avatar"
+        delete "avatar"
       end
     end
   end
@@ -16,6 +16,7 @@ AcDP::Application.routes.draw do
     	get 'current' => "users#show_current", as: :current_user
       get 'current/edit' => "users#edit_current", as: :current_user_edit
       patch 'current' => "users#update_current", as: :current_user_update
+      delete 'current' => "users#avatar", as: :current_user_avatar
   	end
   end
 end

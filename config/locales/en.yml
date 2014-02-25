@@ -37,6 +37,9 @@ en:
         header:
           one: 'Please correct 1 mistake:'
           other: 'Please correct %{count} mistakes:'
+      models:
+        avatar:
+          delete: 'Error while deleting avatar'
   util:
     edit_password: leave blank if you don't want to change it
     new_user: New User

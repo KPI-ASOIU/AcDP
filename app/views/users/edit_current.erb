@@ -51,6 +51,9 @@
               <%= f.file_field :avatar %>
               </br>
               <%= image_tag @user.avatar.url("medium"), class: 'c-user-medium-avatar' %>
+              <% unless @user.new_record? %>
+              <%= link_to t('util.destroy'), current_user_avatar_users_path(@user), :method => :delete, :class => "btn btn-danger" %>
+              <% end %>
           </div>
         </div>
       </div>
