@@ -9,12 +9,17 @@ class User < ActiveRecord::Base
 
   validates_length_of       :password, within: Devise.password_length, :if => :password_required?
   validates_presence_of     :password, :if => :password_required?
+  validates_presence_of :password_confirmation, if: :password_changed?
   validates_confirmation_of :password, :if => :password_required?
 
   scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def password_changed?
+    password!=password_confirmation
   end
 
   ROLES = %w[student worker teacher admin]
