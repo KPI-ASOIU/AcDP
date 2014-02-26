@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   validates_length_of       :password, within: Devise.password_length, :if => :password_required?
   validates_presence_of     :password, :if => :password_required?
+  validates_presence_of :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
 
   scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }

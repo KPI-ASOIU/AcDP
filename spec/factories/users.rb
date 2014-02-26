@@ -10,6 +10,7 @@ FactoryGirl.define do
       "username#{n}"
     end
     password { |u| "#{u.login}-password" }
+    password_confirmation { |u| u.password }
     email { |u| "#{u.login}@asoui.fiot.kpi.ua"}
 
     trait :with_subscriptions do
