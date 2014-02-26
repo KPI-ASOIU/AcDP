@@ -25,6 +25,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def avatar
+    @user = current_user
+    if @user.avatar.destroy
+      @user.save
+      redirect_to current_user_edit_users_path
+    else
+      redirect_to current_user_edit_users_path, :alert => t('activerecord.errors.models.avatar.delete')
+    end
+  end
+
   private
   def user_params
     params.require(:user)

@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   authorize_resource
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar]
   helper UsersHelper
 
   # GET /admin/users
@@ -55,6 +55,15 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_url
+  end
+
+  def avatar
+    if @user.avatar.destroy
+      @user.save
+      redirect_to edit_admin_user_path(@user)
+    else
+      redirect_to edit_admin_user_path(@user), :alert => t('activerecord.errors.models.avatar.delete')
+    end
   end
 
   private

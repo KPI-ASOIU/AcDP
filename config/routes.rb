@@ -4,7 +4,11 @@ AcDP::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        delete "avatar"
+      end
+    end
   end
 
   resources :users, only: [:show] do
@@ -12,6 +16,7 @@ AcDP::Application.routes.draw do
     	get 'current' => "users#show_current", as: :current_user
       get 'current/edit' => "users#edit_current", as: :current_user_edit
       patch 'current' => "users#update_current", as: :current_user_update
+      delete 'current' => "users#avatar", as: :current_user_avatar
   	end
   end
 end
