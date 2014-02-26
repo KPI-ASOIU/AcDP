@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include ActiveModel::Dirty
   devise :database_authenticatable
 
   validates_presence_of   :login
