@@ -293,6 +293,11 @@ uk:
     student: 'Студент'
     teacher: 'Викладач'
     worker: 'Робітник'
+    plural:
+      admins: 'Адміністратори'
+      students: 'Студенти'
+      teachers: 'Викладачі'
+      workers: 'Робітники'
   views:
     main_title: Корпоративний Портал Кафедри
     pagination:
