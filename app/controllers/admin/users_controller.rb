@@ -5,8 +5,22 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    users = if params[:q].present? && ['login', 'email', 'full_name'].include?(params[:search_by])
-      User.with_matched_field(params[:search_by], params[:q])
+    roles = []
+    roles += ['admin'] if params[:search_admins] === 'on'
+    roles += ['student'] if params[:search_students] === 'on'
+    roles += ['teacher'] if params[:search_teachers] === 'on'
+    roles += ['worker'] if params[:search_workers] === 'on'
+
+    users = if !params[:q].nil?
+      params[:search_by] = 'login' unless ['login', 'email', 'full_name'].include?(params[:search_by])
+      params[:q] ||= ''
+
+      params[:search_admins] ||= 'off'
+      params[:search_students] ||= 'off'
+      params[:search_teachers] ||= 'off'
+      params[:search_workers] ||= 'off'
+
+      User.with_matched_field_and_role(params[:search_by], params[:q], roles)
     else
       User.all
     end
@@ -53,6 +67,7 @@ class Admin::UsersController < ApplicationController
 
   # DELETE /admin/users/1
   def destroy
+    @user.avatar.destroy
     @user.destroy
     redirect_to admin_users_url
   end

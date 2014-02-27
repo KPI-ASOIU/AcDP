@@ -5,8 +5,11 @@ $(document).ready(function(){
 
     $(".j-admin-search-type-combo").on("click", function(e){
         var $target = $(e.target);
-        $(".j-admin-search-btn-text").text($target.text());
-        $(".j-admin-search-type-input").val($target.data("search-type"));
+        if($target.prop('tagName') === 'A')
+        {
+            $(".j-admin-search-btn-text").text($target.text());
+            $(".j-admin-search-type-input").val($target.data("search-type"));
+        }
     });
 });
 

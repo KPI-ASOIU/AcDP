@@ -73,6 +73,11 @@ en:
     student: 'Student'
     teacher: 'Teacher'
     worker: 'Worker'
+    plural:
+      admins: 'Administrators'
+      students: 'Students'
+      teachers: 'Teachers'
+      workers: 'Workers'
   views:
     main_title: Departments Corporate Portal
     pagination:

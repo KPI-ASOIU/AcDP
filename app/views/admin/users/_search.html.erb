@@ -1,4 +1,19 @@
 <%= form_tag admin_users_path, :method => 'get' do %>
+  <label class="checkbox-inline">
+    <input type="checkbox" <%= 'checked' if(params[:search_admins].nil? || params[:search_admins] === 'on') %> name="search_admins"><%= t('roles.plural.admins') %>
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" <%= 'checked' if(params[:search_students].nil? || params[:search_students] === 'on') %> name="search_students"><%= t('roles.plural.students') %>
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" <%= 'checked' if(params[:search_teachers].nil? || params[:search_teachers] === 'on') %> name="search_teachers"><%= t('roles.plural.teachers') %>
+  </label>
+  <label class="checkbox-inline">
+    <input type="checkbox" <%= 'checked' if(params[:search_workers].nil? || params[:search_workers] === 'on') %> name="search_workers"><%= t('roles.plural.workers') %>
+  </label>
+
+<br><br>
+
   <div class="input-group">
     <div class="input-group-btn">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">

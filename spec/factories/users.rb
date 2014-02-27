@@ -1,5 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+include ActionDispatch::TestProcess
 FactoryGirl.define do
   factory :user do
     sequence(:login) do |n|
@@ -18,6 +19,10 @@ FactoryGirl.define do
             FactoryGirl.create_list(:subscription, 3, user: user)
         end
     end
+  end
+
+  factory :user_with_avatar, parent: :user do
+    avatar { fixture_file_upload(Rails.root.join('public/system/users/avatars/default/missing.png'), 'image/png') }
   end
 
   factory :user_admin, parent: :user do
