@@ -1,4 +1,14 @@
 <%= form_tag admin_users_path, :method => 'get' do %>
+
+  <% @roles.each do |role| %>
+    <label class="checkbox-inline">
+        <%= check_box_tag 'role_ids[]', role[:id], params[:role_ids].include?(role[:id]) -%>
+        <%= h role[:name] -%>
+    </label>
+  <% end %>
+
+  <br><br>
+
   <div class="input-group">
     <div class="input-group-btn">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
