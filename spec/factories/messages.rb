@@ -7,7 +7,7 @@ FactoryGirl.define do
 		body { "MyText #{Time.now}" }
 
 		trait :with_subscriptions do
-		    after(:create) do |message|
+		    after(:build) do |message|
 		        FactoryGirl.create_list(:subscription, 3, conversation: message.conversation)
 		    end
 		end

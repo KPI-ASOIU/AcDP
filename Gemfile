@@ -49,6 +49,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem "shoulda-callback-matchers", ">=0.3.0"
 end
 
 group :production do

@@ -7,19 +7,19 @@ FactoryGirl.define do
         end
 
         trait :with_messages do
-        	after(:create) do |conversation|
+        	after(:build) do |conversation|
         		FactoryGirl.create_list(:message, 3, conversation: conversation)
         	end
         end
 
         trait :with_subscriptions do
-            after(:create) do |conversation|
+            after(:build) do |conversation|
                 FactoryGirl.create_list(:subscription, 3, conversation: conversation)
             end
         end
 
         trait :with_participants do
-            after(:create) do |conversation|
+            after(:build) do |conversation|
                 FactoryGirl.create_list(:user, 3, conversation: conversation.subscriptions)
             end
         end
