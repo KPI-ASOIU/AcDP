@@ -33,6 +33,7 @@ en:
         email: E-mail
         avatar: 'Avatar'
         position: Position
+        about_me: About me
     errors:
       template:
         header:
