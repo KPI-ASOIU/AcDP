@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    users = if params[:q].present? && ['login', 'email', 'full_name', 'position'].include?(params[:search_by])
+    users = if params[:q].present? && ['login', 'email', 'full_name', 'position', 'about_me'].include?(params[:search_by])
       User.with_matched_field(params[:search_by], params[:q])
     else
       User.all
@@ -75,7 +75,7 @@ class Admin::UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user)
-       .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name, :avatar, :position)
+       .permit(:login, :password, :password_confirmation, { :role => [] }, :email, :full_name, :avatar, :position, :about_me)
        .delete_if {|k, v| k =~ /password/ && v.blank?}
   end
 end

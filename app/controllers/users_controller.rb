@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user)
-       .permit(:password, :password_confirmation, :email, :full_name, :avatar, :position)
+       .permit(:password, :password_confirmation, :email, :full_name, :avatar, :position, :about_me)
        .delete_if {|k, v| k =~ /password/ && v.blank?}
   end
 end
