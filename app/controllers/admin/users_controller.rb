@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    users = if params[:q].present? && ['login', 'email', 'full_name'].include?(params[:search_by])
+    users = if params[:q].present? && ['login', 'email', 'full_name', 'position'].include?(params[:search_by])
       User.with_matched_field(params[:search_by], params[:q])
     else
       User.all
