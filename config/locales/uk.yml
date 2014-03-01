@@ -244,6 +244,7 @@ uk:
         email: 'Електронна пошта'
         avatar: 'Фотографія'
         position: 'Посада'
+        about_me: 'Про себе'
     errors:
       template:
         header:
