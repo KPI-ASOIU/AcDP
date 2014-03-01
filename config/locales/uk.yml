@@ -243,6 +243,7 @@ uk:
         full_name: 'Повне ім’я'
         email: 'Електронна пошта'
         avatar: 'Фотографія'
+        position: 'Посада'
     errors:
       template:
         header:
