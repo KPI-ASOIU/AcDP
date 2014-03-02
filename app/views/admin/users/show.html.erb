@@ -10,7 +10,7 @@
       <% if @user.full_name.present? %>
         <h3 class="text-center"><%=  @user.full_name %></h3>
       <% end %>
-      <dl class="dl-horizontal">
+      <dl class="dl-horizontal break-words">
         <dt><%=  t('activerecord.attributes.user.login') %></dt>
         <dd><%=  @user.login %></dd>
         <dt><%=  t('activerecord.attributes.user.role') %></dt>
@@ -21,10 +21,14 @@
         <dd><%=  @user.email %></dd>
         <dt><%=  t('activerecord.attributes.user.position')  %></dt>
         <dd><%=  @user.position %></dd>
-        <dt><%=  t('activerecord.attributes.user.about_me')  %></dt>
-        <dd><%=  @user.about_me %></dd>
-      </dl>
+      </dl> 
     </div>
+    <div class="pull-left break-words">
+    <dl class="dl-horizontal">
+      <dt><%=  t('activerecord.attributes.user.about_me')  %></dt>
+      <dd><%=  @user.about_me %></dd>
+    </dl>
+  </div>
   </div>
   <div class="panel-footer text-right">
     <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
