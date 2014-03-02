@@ -243,7 +243,6 @@ uk:
         full_name: 'Повне ім’я'
         email: 'Електронна пошта'
         avatar: 'Фотографія'
-        position: 'Посада'
     errors:
       template:
         header:
@@ -274,7 +273,6 @@ uk:
     search: Пошук
     actions: Дії
     users_manage: Користувачі
-    close: Закрити
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -293,11 +291,6 @@ uk:
     student: 'Студент'
     teacher: 'Викладач'
     worker: 'Робітник'
-  messages:
-    send: 'Надіслати'
-    new: 'Нове повідомлення'
-    subject: 'Тема'
-    message: 'Текст повідомлення'
   views:
     main_title: Корпоративний Портал Кафедри
     pagination:

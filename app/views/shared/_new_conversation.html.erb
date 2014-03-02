@@ -1,0 +1,20 @@
+<!-- url here is temporary -->
+
+<%= form_for(conversation, url: "temp/url") do |f| %>
+  <div id="message" class="modal fade panel-primary" style="display: none;">
+    <div class="panel-heading">
+      <h4 class="modal-title"><%= t('messages.new') %></h4>
+    </div>
+    <div class="modal-body">
+      <p><%= f.text_field :subject, placeholder: t('messages.subject'), class: 'form-control' %></p>
+      <%= f.fields_for :message do |m| %>
+        <p><%= m.text_area :body, placeholder: t('messages.message'), class: 'form-control message-contents' %></p>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <a data-dismiss="modal" class="btn btn-default"><%= t('util.close') %></a>
+      <!-- Do we really need this f.submit and f.submit creates conversation??? AJAX -->
+      <%= f.submit class: "btn btn-success", value: t('messages.send') %>
+    </div>
+  </div>
+<% end %>

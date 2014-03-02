@@ -3,8 +3,15 @@
     <h3 class="panel-title"><%= t('users.user_info') %></h3>
   </div>
   <div class="panel-body">
-    <div class="thumbnail pull-left">
-      <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+    <div class="pull-left">
+      <div class="thumbnail">
+        <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+      </div>
+      <% if @user != current_user %>
+        <div id="message-send" align="center">
+          <a class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span> <%= t('messages.send') %></a>
+        </div>
+      <% end %>
     </div>
     <div class="pull-left">
       <% if @user.full_name.present? %>
@@ -19,8 +26,6 @@
         <dd><%=  @user.full_name %></dd>
         <dt><%=  t('activerecord.attributes.user.email')  %></dt>
         <dd><%=  @user.email %></dd>
-        <dt><%=  t('activerecord.attributes.user.position')  %></dt>
-        <dd><%=  @user.position %></dd>
       </dl>
     </div>
   </div>
@@ -32,3 +37,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render partial: "shared/new_conversation", locals: { conversation: Conversation.new } %>

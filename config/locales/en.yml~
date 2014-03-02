@@ -32,7 +32,6 @@ en:
         full_name: Full name
         email: E-mail
         avatar: 'Avatar'
-        position: Position
     errors:
       template:
         header:
@@ -74,11 +73,6 @@ en:
     student: 'Student'
     teacher: 'Teacher'
     worker: 'Worker'
-  messages:
-    send: 'Send message'
-    new: 'New message'
-    subject: 'Subject'
-    message: 'Message'
   views:
     main_title: Departments Corporate Portal
     pagination:
