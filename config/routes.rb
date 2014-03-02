@@ -19,4 +19,7 @@ AcDP::Application.routes.draw do
       delete 'current' => "users#avatar", as: :current_user_avatar
   	end
   end
+
+  post '/admin/users/:id/conversations' => 'conversations#create'
+  post '/users/:id/conversations' => 'conversations#create'
 end
