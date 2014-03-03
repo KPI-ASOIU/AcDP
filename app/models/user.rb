@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password_required?
 
   scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }
+  scope :with_roles, ->(roles) { where('role & ? > 0', User.roles_to_int(roles))}
+
+  def self.with_matched_field_and_role(field, value, roles)
+    User.where('"users"."' + field + '" ILIKE \'%' + value + '%\' AND "users"."role" & ' +
+                   User.roles_to_int(roles).to_s + ' > 0')
+  end
 
   has_many :subscriptions
 
@@ -32,8 +38,12 @@ class User < ActiveRecord::Base
 
   ROLES = %w[student worker teacher admin]
 
+  def self.roles_to_int(roles)
+    (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
   def roles=(roles)
-    self.role = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.role = User.roles_to_int(roles)
   end
 
   def add_role(role)
