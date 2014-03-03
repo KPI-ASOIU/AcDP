@@ -20,6 +20,5 @@ AcDP::Application.routes.draw do
   	end
   end
 
-  post '/admin/users/:id/conversations' => 'conversations#create'
-  post '/users/:id/conversations' => 'conversations#create'
+  resources :conversations, only: [:create, :index]
 end

@@ -5,14 +5,18 @@ class ConversationsController < ApplicationController
 
     participants = params[:participants_ids].split(" ")
       .map { |id| User.find(id.to_i) }
-
-    @conversation.messages.build({ body: params[:message][:body], author: current_user })
     @conversation.participants = participants
-    @conversation.save
+    @conversation.messages.build({ body: params[:message][:body], author: current_user })
 
-    participants.each { |p| 
-      @conversation.subscriptions.build({ user: p }) 
-    }
+    if @conversation.save
+      redirect_to "/conversations", notice: t('messages.notice.send')
+      # TODO else error message    
+    end
+  end
+
+  def index
+    @conversations = Conversation.find(current_user
+      .subscriptions.pluck(:conversation_id))
   end
 
   private

@@ -298,6 +298,9 @@ uk:
     new: 'Нове повідомлення'
     subject: 'Тема'
     message: 'Текст повідомлення'
+    notice:
+      send: 'Повідомлення успішно відправлено'
+      error_send: 'Повідомлення не відправлено.'
   views:
     main_title: Корпоративний Портал Кафедри
     pagination:
@@ -306,3 +309,7 @@ uk:
       previous: "&lsaquo; Попередня"
       next: "Наступна &rsaquo;"
       truncate: "..."
+  conversations:
+    conversation: Діалог
+    subject: Тема
+    participants: Учасники діалогу

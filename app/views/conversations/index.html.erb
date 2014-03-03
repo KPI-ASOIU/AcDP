@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('conversations.conversation') %>
+  </div>
+    <table class="table table-hover table-verticle-centered">
+      <thead>
+        <tr>
+          <th><%= t('conversations.subject') %></th>
+          <th><%= t('conversations.participants') %></th>
+          <th class="c-admin-users-actions-column"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @conversations.each do |conversation| %>
+          <tr>
+            <td><%= conversation.subject %></td>
+            <td><%= conversation.participants.map{|p| p.full_name}.join(", ") %></td>
+            <td align="center">
+              <%= link_to '', class: "btn btn-danger btn-xs" do %>
+                  <span class='glyphicon glyphicon-remove'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

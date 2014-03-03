@@ -1,6 +1,6 @@
 <!-- url here is temporary -->
 
-<%= form_for(conversation, url: "#{@user.id}/conversations") do |f| %>
+<%= form_for conversation do |f| %>
   <div id="message" class="modal fade panel-primary" style="display: none;">
     <div class="panel-heading">
       <h4 class="modal-title"><%= t('messages.new') %></h4>
