@@ -6,7 +6,7 @@
     <div class="thumbnail pull-left">
       <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
     </div>
-    <div class="pull-left">
+    <div class="pull-left break-words">
       <% if @user.full_name.present? %>
         <h3 class="text-center"><%=  @user.full_name %></h3>
       <% end %>
@@ -19,5 +19,11 @@
         <dd><%=  @user.position %></dd>
       </dl>
     </div>
+    <div class="pull-left break-words">
+    <dl class="dl-horizontal">
+      <dt><%= t('activerecord.attributes.user.about_me')  %></dt>
+      <dd><%=  @user.about_me %></dd>
+    </dl>
+  </div>
   </div>
 </div>

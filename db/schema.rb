@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140301190915) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "position",                      default: "", null: false
+    t.text     "about_me",                      default: "", null: false
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
