@@ -20,5 +20,7 @@ AcDP::Application.routes.draw do
   	end
   end
 
-  resources :conversations, only: [:create, :index]
+  resources :conversations, only: [:create, :index] do
+    resources :messages, only: [:index, :create]
+  end
 end

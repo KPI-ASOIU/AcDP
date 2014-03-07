@@ -7,6 +7,14 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
           <li><%= link_to t('users.my_page'), current_user_users_path %></li>
+          <li>
+            <%= link_to conversations_path do %> 
+              <%= t('conversations.dialogs') %> 
+              <% if (umc = unread_messages_for(current_user)) != 0 %>
+                <span class="badge"><%= umc %></span> 
+              <% end %>
+            <% end %>
+          </li>
         <% end %>
         <% if can? :manage, @users %>
           <li><%= link_to t('util.users_manage'), admin_users_path %></li>

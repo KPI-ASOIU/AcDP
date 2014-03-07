@@ -1,3 +1,8 @@
+/*
+ * TODO
+ *   bootstrap styles redefining problem solve
+ */
+
 .modal {
 	background: #fff;
 	border-radius: 6px;
@@ -33,3 +38,58 @@
 	height: 100px !important;
 	resize: none;
 }
+
+.dialogs > thead > tr > th,
+.dialogs > tbody > tr > td {
+	cursor: default;
+} 
+
+.dialogs > tbody > tr:hover > td{
+	cursor: pointer;
+} 
+
+.conversation {
+	height: 350px;
+	margin: 0 auto;
+	overflow-y: scroll;
+	padding: 5px;
+	width: 65%;
+}
+
+.message {
+	margin-bottom: 5px;
+	padding: 8px 20px 4px 20px;
+	position: relative;
+}
+
+.dialog-box {
+	margin: 20px 0 5px 0;
+	padding: 5px 5px 5px 8px;
+	width: 100%;
+}
+
+.dialog-box:focus {
+	outline: none;
+}
+
+.m_author {
+	font-weight: bold;
+	padding: 0 0 2px 2px;
+}
+
+.m_body {
+	padding-left: 45px;
+	width: 95%;
+}
+
+.avatar-message-size {
+	height: 36px;
+	margin: 0 8px 0 0;
+	width: 36px;
+}
+
+.message-send {
+	margin: 0 auto;
+	width: 65%;
+}
+

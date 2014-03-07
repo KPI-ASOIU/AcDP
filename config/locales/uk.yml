@@ -310,6 +310,7 @@ uk:
       next: "Наступна &rsaquo;"
       truncate: "..."
   conversations:
-    conversation: Діалог
+    dialogs: Діалоги
     subject: Тема
     participants: Учасники діалогу
+    last_message: Останнє повідомлення

@@ -1,7 +1,9 @@
 class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
-    @conversation.save
+    # TODO 
+    #   - think about doing save only once and not getting error with messages
+    @conversation.save!
 
     participants = params[:participants_ids].split(" ")
       .map { |id| User.find(id.to_i) }
