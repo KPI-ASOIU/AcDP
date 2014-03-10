@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('conversations.dialogs') %>
+  </div>
+  <table class="dialogs table table-hover table-verticle-centered">
+    <thead>
+      <tr>
+        <th><%= t('conversations.subject') %></th>
+        <th><%= t('conversations.participants') %></th>
+        <th><%= t('conversations.last_message') %></th>
+        <th class="c-admin-users-actions-column"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @conversations.each do |conversation| %>
+        <tr data-link=<%= conversation_messages_path(conversation_id: conversation.id) %>>
+          <td class="col-sm-2"><%= conversation.subject %></td>
+          <td class="col-sm-3">
+            <% for p in Array(conversation.participants) do %>
+              <% if p != current_user %>
+                <%= image_tag p.avatar.url("small"), class: 'c-user-small-avatar' %>
+                <%= p.full_name %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= conversation.messages.last.body %></td>
+          <td class="text-center col-sm-1">
+            <!-- TODO Ajax delete button??? -->
+            <%= button_to conversation_path(conversation), method: :delete, class: "btn btn-danger btn-xs" do %>
+              <span class='glyphicon glyphicon-remove'></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

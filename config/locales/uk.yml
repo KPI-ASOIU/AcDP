@@ -275,6 +275,7 @@ uk:
     search: Пошук
     actions: Дії
     users_manage: Користувачі
+    close: Закрити
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -293,6 +294,14 @@ uk:
     student: 'Студент'
     teacher: 'Викладач'
     worker: 'Робітник'
+  messages:
+    send: 'Надіслати'
+    new: 'Нове повідомлення'
+    subject: 'Тема'
+    message: 'Текст повідомлення'
+    notice:
+      send: 'Повідомлення успішно відправлено'
+      error_send: 'Виникли помилки при відправленні повідомлення. Спробуйте ще раз будь ласка. Перевірте чи всі поля були заповненію'
   views:
     main_title: Корпоративний Портал Кафедри
     pagination:
@@ -301,3 +310,8 @@ uk:
       previous: "&lsaquo; Попередня"
       next: "Наступна &rsaquo;"
       truncate: "..."
+  conversations:
+    dialogs: Діалоги
+    subject: Тема
+    participants: Учасники діалогу
+    last_message: Останнє повідомлення
