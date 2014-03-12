@@ -2,8 +2,15 @@
   <h3 class="panel-title"><%= t('users.my_page') %></h3>
 </div>
 <div class="panel-body">
-  <div class="thumbnail pull-left">
-    <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+  <div class="pull-left">
+    <div class="thumbnail">
+      <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+    </div>
+    <% if @user != current_user %>
+      <div id="message-send">
+        <a class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span> <%= t('messages.send') %></a>
+      </div>
+    <% end %>
   </div>
   <div class="pull-left break-words">
     <% if @user.full_name.present? %>
@@ -28,4 +35,18 @@
     <dd><%=  @user.about_me %></dd>
   </dl>
 </div>
+</div>
+
+<div id="message" class="modal fade panel-primary" style="display: none;">
+  <div class="panel-heading">
+    <h4 class="modal-title"><%= t('messages.new') %></h4>
+  </div>
+  <div class="modal-body">
+    <p><input type="text" class="form-control" placeholder="<%= t('messages.subject') %>"></p>
+    <p><textarea class="form-control message-contents" placeholder="<%= t('messages.message') %>"></textarea></p>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss="modal" class="btn btn-default"><%= t('util.close') %></a>
+    <input type="submit" class="btn btn-success" value="<%= t('messages.send') %>"></a>
+  </div>
 </div>

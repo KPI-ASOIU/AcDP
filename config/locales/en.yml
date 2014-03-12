@@ -75,6 +75,11 @@ en:
     student: 'Student'
     teacher: 'Teacher'
     worker: 'Worker'
+  messages:
+    send: 'Send message'
+    new: 'New message'
+    subject: 'Subject'
+    message: 'Message'
   views:
     main_title: Departments Corporate Portal
     pagination:

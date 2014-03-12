@@ -1,0 +1,18 @@
+<!-- url here is temporary -->
+
+<%= form_for conversation do |f| %>
+  <div id="message" class="modal in fade panel-primary common-modal">
+    <div class="panel-heading">
+      <h4 class="modal-title"><%= t('messages.new') %></h4>
+    </div>
+    <div class="modal-body">
+      <%= hidden_field_tag :participants_ids, participants_ids %>
+      <p><%= f.text_field :subject, placeholder: t('messages.subject'), class: 'form-control' %></p>
+      <p><%= text_area "message", :body, placeholder: t('messages.message'), class: 'form-control message-contents' %></p>
+    </div>
+    <div class="modal-footer common-modal-footer">
+      <a data-dismiss="modal" class="btn btn-default"><%= t('util.close') %></a>
+      <%= f.submit class: "btn btn-success", value: t('messages.send') %>
+    </div>
+  </div>
+<% end %>

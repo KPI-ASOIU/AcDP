@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
       ((role.to_i || 0) & 2**ROLES.index(r)).zero?
     end
   end
+
+  def unread_messages_count_sum
+    self.subscriptions.sum("unread_messages_count")
+  end
 end

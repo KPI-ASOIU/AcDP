@@ -21,4 +21,13 @@ module ControllerMacros
       response.should redirect_to root_path
     end
   end
+
+  # PURPOSE:
+  #   login user and get the @current_user variable for usage 
+  #   in tests as analogue of current_user in controllers
+  def login_user_assign_current
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @current_user = FactoryGirl.create(:user)
+    sign_in @current_user
+  end
 end
