@@ -315,3 +315,6 @@ uk:
     subject: Тема
     participants: Учасники діалогу
     last_message: Останнє повідомлення
+    unread: Непрочитаних повідомлень
+    no_conversations: У вас поки що немає жодного діалогу
+    new_conversation: Розпочати діалог

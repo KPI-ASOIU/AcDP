@@ -88,3 +88,10 @@ en:
       previous: "&lsaquo; Prev"
       next: "Next &rsaquo;"
       truncate: "..."
+  conversations:
+    dialogs: Conversations
+    subject: Subject
+    participants: Participants
+    last_message: Last message
+    no_conversations: You haven't got any conversations yet
+    new_conversation: Start new conversation
