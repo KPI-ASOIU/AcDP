@@ -9,6 +9,7 @@ AcDP::Application.routes.draw do
         delete "avatar"
       end
     end
+    resources :groups
   end
 
   resources :users, only: [:show] do
