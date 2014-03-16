@@ -1,0 +1,52 @@
+<%= form_for([:admin, @group], :html => { :class => "form-horizontal", role: "form" }) do |f| %>
+  <div class="panel-body">
+
+    <div class="form-group">
+      <%= f.label :name, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.text_field :name, :placeholder => t('activerecord.attributes.group.name') + '...', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :start_year, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.text_field :start_year, :placeholder => t('activerecord.attributes.group.start_year') + '...', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :graduation_year, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.text_field :graduation_year, :placeholder => t('activerecord.attributes.group.graduation_year') + '...', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :speciality, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.text_field :speciality, :placeholder => t('activerecord.attributes.group.speciality') + '...', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :speciality_code, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.text_field :speciality_code, :placeholder => t('activerecord.attributes.group.speciality_code') + '...', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :form_of_learning, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.select :full_time, options_for_select(translate_forms(Group::FORMS), @group.forms), {include_blank: true}, { :class => "chosen-select", :multiple => false } %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :degree, :class=>'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+          <%= f.select :degree, options_for_select(translate_degree(Group::DEGREE), @group.degrees), {include_blank: true}, { :class => "chosen-select", :multiple => false } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer text-right">
+    <%= link_to t('util.back'), admin_groups_path, :class => "btn btn-default" %>
+    <%= create_button(@group, f) %>
+  </div>
+<% end %>

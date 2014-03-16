@@ -23,6 +23,7 @@ en:
   activerecord:
     models:
       user: User
+      group: Group
     attributes:
       user:
         login: Login
@@ -34,6 +35,16 @@ en:
         avatar: 'Avatar'
         position: Position
         about_me: About me
+      group:
+        name: 'Name'
+        start_year: 'Start year'
+        graduation_year: 'Graduation year'
+        form_of_learning: 'Form of learning'
+        intramural: 'Intramural'
+        extramural: 'Extramural'
+        degree: 'Degree'
+        speciality: 'Speciality'
+        speciality_code: 'Speciality code'
     errors:
       template:
         header:
@@ -45,8 +56,11 @@ en:
   util:
     edit_password: leave blank if you don't want to change it
     new_user: New User
+    new_group: New Group
     edit_user: Editing User
+    edit_group: Editing Group
     user_list: Listing Users
+    group_list: Listing Groups
     back: Back
     edit: Edit
     show: Show
@@ -57,6 +71,8 @@ en:
     search: Search
     actions: Actions
     users_manage: Users
+    groups_manage: Groups
+    create_group: Create Group
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -70,6 +86,8 @@ en:
     notice:
       created: 'User was successfully created.'
       updated: 'User was successfully updated.'
+  groups:
+    removing_title: 'Removing group'
   roles:
     admin: 'Administrator'
     student: 'Student'
@@ -80,6 +98,10 @@ en:
     new: 'New message'
     subject: 'Subject'
     message: 'Message'
+  degree:
+    bachelor: Bachelor
+    specialist: Specialist
+    master: Master
   views:
     main_title: Departments Corporate Portal
     pagination:

@@ -18,6 +18,7 @@
         <% end %>
         <% if can? :manage, @users %>
           <li><%= link_to t('util.users_manage'), admin_users_path %></li>
+          <li><%= link_to t('util.groups_manage'), admin_groups_path %></li>
         <% end %>
       </ul>
       <% if user_signed_in? %>
