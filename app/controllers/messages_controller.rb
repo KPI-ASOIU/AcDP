@@ -1,7 +1,11 @@
+# TODO
+# => messages aren't really instant - we must fix it
+
 class MessagesController < ApplicationController
   before_action :load_conversation, only: [:index, :create]
 
 	def index
+    @last_10 = Conversation.all.order(updated_at: :desc).limit(10)
     @messages = @conversation.messages
     (@conversation.subscriptions.find_by user: current_user).update_attribute(:unread_messages_count, 0)
   end

@@ -51,6 +51,16 @@
 	margin-bottom: 5px;
 	padding: 8px 20px 4px 20px;
 	position: relative;
+	text-align: justify;
+	white-space: normal;
+	word-wrap: break-word;
+}
+
+.um {
+	margin: 0 3px 3px 0;
+	background-color: #FE2F2F;
+	vertical-align: super;
+	font-size: 10px
 }
 
 .dialog-box {
@@ -84,3 +94,11 @@
 	width: 65%;
 }
 
+.no-conversations {
+	padding-top: 15px;
+}
+
+.conv-start {
+	margin-bottom: 15px;
+	width: 200px;
+}

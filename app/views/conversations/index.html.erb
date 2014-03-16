@@ -1,38 +1,50 @@
+
 <div class="panel panel-primary">
   <div class="panel-heading">
     <%= t('conversations.dialogs') %>
   </div>
-  <table class="dialogs table table-hover table-verticle-centered">
-    <thead>
-      <tr>
-        <th><%= t('conversations.subject') %></th>
-        <th><%= t('conversations.participants') %></th>
-        <th><%= t('conversations.last_message') %></th>
-        <th class="c-admin-users-actions-column"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @conversations.each do |conversation| %>
-        <tr data-link=<%= conversation_messages_path(conversation_id: conversation.id) %>>
-          <td class="col-sm-2"><%= conversation.subject %></td>
-          <td class="col-sm-3">
-            <% for p in Array(conversation.participants) do %>
-              <% if p != current_user %>
-                <%= image_tag p.avatar.url("small"), class: 'c-user-small-avatar' %>
-                <%= p.full_name %>
-              <% end %>
-            <% end %>
-          </td>
-          <td><%= conversation.messages.last.body %></td>
-          <td class="text-center col-sm-1">
-            <!-- TODO Ajax delete button??? -->
-            <%= button_to conversation_path(conversation), method: :delete, class: "btn btn-danger btn-xs" do %>
-              <span class='glyphicon glyphicon-remove'></span>
-            <% end %>
-          </td>
+  <% if not @conversations.empty? %>  
+    <table class="dialogs table table-hover table-verticle-centered">
+      <thead>
+        <tr>
+          <th><%= t('conversations.subject') %></th>
+          <th><%= t('conversations.participants') %></th>
+          <th><%= t('conversations.last_message') %></th>
+          <th class="c-admin-users-actions-column"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @conversations.each do |conversation| %>
+          <tr data-link=<%= conversation_messages_path(conversation_id: conversation.id) %>>
+            <td class="col-sm-2">
+              <%= !conversation.subject.empty? ? conversation.subject : "(no topic)" %>
+              <% if (umc = conversation.subscriptions.find_by(user: current_user).unread_messages_count) != 0 %>
+                <span class="badge um"><%= umc %></span>
+              <% end  %>
+            </td>
+            <td class="col-sm-3">
+              <% for p in Array(conversation.participants) do %>
+                <% if p != current_user %>
+                  <%= image_tag p.avatar.url("small"), class: 'c-user-small-avatar' %>
+                  <%= p.full_name %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= (lm = conversation.messages.last.body).length > 70 ? lm[0..70] << "..." : lm %></td>
+            <td class="text-center col-sm-1">
+              <!-- TODO Ajax delete button??? -->
+              <%= button_to conversation_path(conversation), method: :delete, class: "btn btn-danger btn-xs" do %>
+                <span class='glyphicon glyphicon-remove'></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center text-muted no-conversations"><%= t('conversations.no_conversations') %></p>
+    <!-- It soon will work -->
+    <a class="btn btn-success center-block conv-start"><%= t('conversations.new_conversation') %></a>
+  <% end %>
 </div>
