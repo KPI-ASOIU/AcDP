@@ -51,7 +51,6 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   def update
     @user.roles = user_params[:role] || []
-
     if @user.update(user_params.except(:role))
       redirect_to [:admin, @user], notice: t('users.notice.updated')
     else
