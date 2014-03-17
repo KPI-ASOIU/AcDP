@@ -33,7 +33,9 @@ class User < ActiveRecord::Base
 
   ROLES = %w[student worker teacher admin]
 
-#  ROLES_WITH_IDS = {'student' => 1, 'worker' => 2, 'teacher' => 4, 'admin' => 8 }
+  def self.get_roles_ids
+    ROLES
+  end
 
   def self.roles_to_int(roles)
     (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

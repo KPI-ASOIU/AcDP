@@ -316,10 +316,10 @@ uk:
     teacher: 'Викладач'
     worker: 'Робітник'
     plural:
-      admins: 'Адміністратори'
-      students: 'Студенти'
-      teachers: 'Викладачі'
-      workers: 'Робітники'
+      admin: 'Адміністратори'
+      student: 'Студенти'
+      teacher: 'Викладачі'
+      worker: 'Робітники'
   messages:
     send: 'Надіслати'
     new: 'Нове повідомлення'
