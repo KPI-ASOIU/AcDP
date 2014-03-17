@@ -20,7 +20,7 @@
       <dt><%=  t('activerecord.attributes.user.login') %></dt>
       <dd><%=  @user.login %></dd>
       <dt><%=  t('activerecord.attributes.user.role') %></dt>
-      <dd><%=  @user.role %></dd>
+      <dd><%=  format_roles(@user.roles, ", ") %></dd>
       <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
       <dd><%=  @user.full_name %></dd>
       <dt><%= t('activerecord.attributes.user.email')  %></dt>

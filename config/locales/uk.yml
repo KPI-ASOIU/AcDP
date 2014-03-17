@@ -315,6 +315,11 @@ uk:
     student: 'Студент'
     teacher: 'Викладач'
     worker: 'Робітник'
+    plural:
+      admin: 'Адміністратори'
+      student: 'Студенти'
+      teacher: 'Викладачі'
+      worker: 'Робітники'
   messages:
     send: 'Надіслати'
     new: 'Нове повідомлення'

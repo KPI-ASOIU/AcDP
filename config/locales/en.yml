@@ -93,6 +93,11 @@ en:
     student: 'Student'
     teacher: 'Teacher'
     worker: 'Worker'
+    plural:
+      admin: 'Administrators'
+      student: 'Students'
+      teacher: 'Teachers'
+      worker: 'Workers'
   messages:
     send: 'Send message'
     new: 'New message'
