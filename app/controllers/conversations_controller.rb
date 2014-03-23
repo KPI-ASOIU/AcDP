@@ -2,9 +2,8 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.create(conversation_params)
     handle_errors
-    participants = params[:participants_ids].split(" ")
-      .map { |id| User.find(id.to_i) }
-    @conversation.participants = participants
+    members = params[:receivers_ids].push(params[:sender_id]).map { |id| User.find(id) }
+    @conversation.participants = members
     @conversation.messages.build({ body: params[:message][:body], author: current_user })
 
     if @conversation.save

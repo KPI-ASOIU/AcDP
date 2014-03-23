@@ -1,3 +1,6 @@
+.conv-message-center {
+	height: 355px !important;
+}
 
 .common-modal {
 	background: #fff;
@@ -73,9 +76,15 @@
 	outline: none;
 }
 
+.author_part {
+	float: none;
+}
+
 .m_author {
 	font-weight: bold;
+	margin: 0;
 	padding: 0 0 2px 2px;
+	width: 75%;
 }
 
 .m_body {
@@ -101,4 +110,10 @@
 .conv-start {
 	margin-bottom: 15px;
 	width: 200px;
+}
+
+time {
+	color: grey;
+	float: right;
+	font-size: 12px;
 }
