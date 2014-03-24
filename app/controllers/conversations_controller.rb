@@ -2,9 +2,9 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.create(conversation_params)
     handle_errors
-    participants = params[:participants_ids].split(" ")
-      .map { |id| User.find(id.to_i) }
-    @conversation.participants = participants
+    members_ids = params[:receivers_ids].push(params[:sender_id])
+    members = User.where(id: members_ids)
+    @conversation.participants = members
     @conversation.messages.build({ body: params[:message][:body], author: current_user })
 
     if @conversation.save
@@ -21,8 +21,6 @@ class ConversationsController < ApplicationController
   def index
     @conversations = Conversation.find(current_user
       .subscriptions.pluck(:conversation_id))
-    # TODO
-    # => sort conversations: most recent go to top 
   end
 
   def destroy

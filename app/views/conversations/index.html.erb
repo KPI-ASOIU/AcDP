@@ -26,12 +26,16 @@
             <td class="col-sm-3">
               <% for p in Array(conversation.participants) do %>
                 <% if p != current_user %>
-                  <%= image_tag p.avatar.url("small"), class: 'c-user-small-avatar' %>
-                  <%= p.full_name %>
+                  <%= link_to image_tag(p.avatar.url("small"), class: 'c-user-small-avatar', 
+                    title: p.full_name), user_path(p.id) %>
                 <% end %>
               <% end %>
             </td>
-            <td><%= (lm = conversation.messages.last.body).length > 70 ? lm[0..70] << "..." : lm %></td>
+            <td>
+              <%= link_to image_tag((mes = conversation.messages.last).author.avatar.url("small"), 
+                class: 'c-user-small-avatar', title: mes.author.full_name), user_path(mes.author.id) %> 
+              <%= (lm = mes.body).length > 70 ? lm[0..70] << "..." : lm %>
+            </td>
             <td class="text-center col-sm-1">
               <!-- TODO Ajax delete button??? -->
               <%= button_to conversation_path(conversation), method: :delete, class: "btn btn-danger btn-xs" do %>
@@ -45,6 +49,12 @@
   <% else %>
     <p class="text-center text-muted no-conversations"><%= t('conversations.no_conversations') %></p>
     <!-- It soon will work -->
-    <a class="btn btn-success center-block conv-start"><%= t('conversations.new_conversation') %></a>
+    <div id="first-conversation" class="text-center" data-toggle="modal">
+      <a class="btn btn-success center-block conv-start">
+        <%= t('conversations.new_conversation') %>
+      </a>
+    </div>
   <% end %>
 </div>
+
+<%= render partial: "shared/new_conversation", locals: { conversation: Conversation.new, sender_id: current_user.id, receivers_ids: [], modal_title: t('conversations.new') } %>

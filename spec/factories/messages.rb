@@ -14,6 +14,6 @@ FactoryGirl.define do
 	    after(:build) do |message|
 	      FactoryGirl.create_list(:subscription, 3, conversation: message.conversation)
 	    end
-		end
+		end		
 	end
 end

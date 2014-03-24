@@ -1,0 +1,16 @@
+$("#message-send").on("click", function(){ 
+	$("#conversation-open").modal();    
+}); 
+
+$(document).ready(function(){
+	jQuery.timeago.settings.lang = "<%= I18n.locale %>"
+	var dialog_box = $(".conversation");
+	if (dialog_box.length)
+		dialog_box.scrollTop(dialog_box[0].scrollHeight);
+});
+
+$(document).on('ajax:success', function(){
+	$('time[data-time-ago]').last().timeago();
+});
+
+

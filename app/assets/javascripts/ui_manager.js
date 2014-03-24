@@ -17,4 +17,8 @@ $(document).ready(function(){
     	e.stopPropagation();
     	window.location = this.getAttribute("data-link");
     });
+
+    $("#first-conversation").on("click", function(){
+        $("#conversation-open").modal();
+    })
 });

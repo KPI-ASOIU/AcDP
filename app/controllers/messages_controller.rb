@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
   before_action :load_conversation, only: [:index, :create]
 
 	def index
-    @last_10 = Conversation.all.order(updated_at: :desc).limit(10)
     @messages = @conversation.messages
     (@conversation.subscriptions.find_by user: current_user).update_attribute(:unread_messages_count, 0)
   end
@@ -15,6 +14,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        format.html
         format.js
       else
         format.json { render json: @message.errors.full_messages }

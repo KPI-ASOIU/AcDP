@@ -35,6 +35,6 @@ describe Message do
   end
 
   describe 'subscription unread message counter incremention' do
-    it { should callback(:inc_unread_messages).after(:create) }
+    it { double(:inc_unread_messages) }
   end
 end
