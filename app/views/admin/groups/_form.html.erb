@@ -1,6 +1,17 @@
 <%= form_for([:admin, @group], :html => { :class => "form-horizontal", role: "form" }) do |f| %>
   <div class="panel-body">
 
+  <% if @group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= t('activerecord.errors.template.header', count: @group.errors.count) %></h2>
+        <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="form-group">
       <%= f.label :name, :class=>'col-sm-4 control-label' %>
       <div class="col-sm-8">
