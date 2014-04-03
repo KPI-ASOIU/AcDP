@@ -5,4 +5,6 @@ class UserHasAttachment < ActiveRecord::Base
 	after_destroy do |attachment|
 		if attachment.users.nil?
 			attachment.destroy
+		end
+	end
 end

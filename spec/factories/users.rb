@@ -19,6 +19,12 @@ FactoryGirl.define do
           FactoryGirl.create_list(:subscription, 3, user: user)
       end
     end
+
+    factory :user_with_attachments do
+      after(:build) do |user|
+          FactoryGirl.create_list(:attachment, 3, user_has_attachment: user.user_has_attachment)
+      end
+    end
   end
 
   factory :user_with_avatar, parent: :user do

@@ -5,4 +5,4 @@ describe UserHasAttachment do
   	it { should belong_to(:user) }
   	it { should belong_to(:attachment) }
   end
-end #end?
+end

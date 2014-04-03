@@ -7,4 +7,5 @@ class Attachment < ActiveRecord::Base
   #validates_attachment :file,
    # :size => { :in => 0..50.megabytes }
   has_many :users, through: :user_has_attachments
+  has_many :user_has_attachments
 end
