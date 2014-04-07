@@ -3,9 +3,9 @@ $(document).ready(function(){
         $("#user_remove_path").attr('href', $(this).data('path'));
     });
 
-    $(document).on("click", "#btn_remove_group", function () {
-        $("#group_remove_path").attr('href', $(this).data('path'));
-    });
+    // $(document).on("click", "#btn_remove_group", function () {
+    //     $("#group_remove_path").attr('href', $(this).data('path'));
+    // });
 
     $(".j-admin-search-type-combo").on("click", function(e){
         var $target = $(e.target);
