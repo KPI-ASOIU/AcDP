@@ -5,10 +5,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    @roles = [{ :name => t('roles.plural.students'), :id => 'student' },
-              { :name => t('roles.plural.workers'), :id => 'worker' } ,
-              { :name => t('roles.plural.teachers'), :id => 'teacher' },
-              { :name => t('roles.plural.admins'), :id => 'admin' }]
+    @roles = User.get_roles_ids
 
     users = if !params[:q].nil?
               params[:search_by] = 'login' unless ['login', 'email', 'full_name'].include?(params[:search_by])
@@ -51,7 +48,6 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   def update
     @user.roles = user_params[:role] || []
-
     if @user.update(user_params.except(:role))
       redirect_to [:admin, @user], notice: t('users.notice.updated')
     else

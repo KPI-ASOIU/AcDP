@@ -1,0 +1,11 @@
+
+<div class="conversation">
+	<% for message in @messages do %>
+		<%= render partial: message %>
+	<% end %>
+</div>
+
+<%= form_for(:message, remote: true, html: { class: "message-send" }) do |f| %>
+	<%= f.text_area :body, placeholder: t('messages.message'), class: 'message-contents dialog-box' %>
+	<%= f.submit class: "btn btn-success", id: "message-send-btn", value: t('messages.send') %>
+<% end %>

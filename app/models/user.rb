@@ -25,11 +25,6 @@ class User < ActiveRecord::Base
   scope :with_matched_field, ->(field, value) { where(User.arel_table[field].matches('%' + value + '%')) }
   scope :with_roles, ->(roles) { where('role & ? > 0', User.roles_to_int(roles))}
 
-  def self.with_matched_field_and_role(field, value, roles)
-    User.where('"users"."' + field + '" ILIKE \'%' + value + '%\' AND "users"."role" & ' +
-                   User.roles_to_int(roles).to_s + ' > 0')
-  end
-
   has_many :subscriptions
 
   def password_required?
@@ -37,6 +32,10 @@ class User < ActiveRecord::Base
   end
 
   ROLES = %w[student worker teacher admin]
+
+  def self.get_roles_ids
+    ROLES
+  end
 
   def self.roles_to_int(roles)
     (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
@@ -62,5 +61,9 @@ class User < ActiveRecord::Base
     ROLES.reject do |r|
       ((role.to_i || 0) & 2**ROLES.index(r)).zero?
     end
+  end
+
+  def unread_messages_count_sum
+    self.subscriptions.sum("unread_messages_count")
   end
 end

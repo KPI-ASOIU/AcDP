@@ -9,6 +9,7 @@ AcDP::Application.routes.draw do
         delete "avatar"
       end
     end
+    resources :groups
   end
 
   resources :users, only: [:show] do
@@ -18,5 +19,9 @@ AcDP::Application.routes.draw do
       patch 'current' => "users#update_current", as: :current_user_update
       delete 'current' => "users#avatar", as: :current_user_avatar
   	end
+  end
+
+  resources :conversations, only: [:create, :index, :destroy] do
+    resources :messages, only: [:index, :create]
   end
 end

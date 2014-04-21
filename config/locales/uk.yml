@@ -234,6 +234,7 @@ uk:
   activerecord:
     models:
       user: 'Користувач'
+      group: 'Група'
     attributes:
       user:
         login: 'Логін'
@@ -245,6 +246,16 @@ uk:
         avatar: 'Фотографія'
         position: 'Посада'
         about_me: 'Про себе'
+      group:
+        name: 'Назва'
+        start_year: 'Рік вступу'
+        graduation_year: 'Рік випуску'
+        form_of_learning: 'Форма навчання'
+        intramural: 'Очна'
+        extramural: 'Заочна'
+        degree: 'Ступінь'
+        speciality: 'Спеціальність'
+        speciality_code: 'Шифр спецальності'
     errors:
       template:
         header:
@@ -263,8 +274,11 @@ uk:
   util:
     edit_password: 'залиште це поле пустим, якщо не бажаєте його змінювати'
     new_user: Новий Користувач
+    new_group: Нова Група
     edit_user: Редагування Користувача
+    edit_group: Редагування Групи
     user_list: Перелік Користувачів
+    group_list: 'Перелік груп'
     back: Назад
     edit: Редагувати
     show: Показати
@@ -275,6 +289,9 @@ uk:
     search: Пошук
     actions: Дії
     users_manage: Користувачі
+    close: Закрити
+    groups_manage: Групи
+    create_group: Створити Групу
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -288,16 +305,33 @@ uk:
     notice:
       created: 'Користувача успішно зареєстровано.'
       updated: 'Дані користувача успішно оновлені.'
+  groups:
+    removing_title: 'Видалення групи'
+    notice:
+      created: 'Групу успішно створено.'
+      updated: 'Дані групи успішно оновлені.'
   roles:
     admin: 'Адміністратор'
     student: 'Студент'
     teacher: 'Викладач'
     worker: 'Робітник'
     plural:
-      admins: 'Адміністратори'
-      students: 'Студенти'
-      teachers: 'Викладачі'
-      workers: 'Робітники'
+      admin: 'Адміністратори'
+      student: 'Студенти'
+      teacher: 'Викладачі'
+      worker: 'Робітники'
+  messages:
+    send: 'Надіслати'
+    new: 'Нове повідомлення'
+    subject: 'Тема'
+    message: 'Текст повідомлення'
+    notice:
+      send: 'Повідомлення успішно відправлено'
+      error_send: 'Виникли помилки при відправленні повідомлення. Спробуйте ще раз будь ласка. Перевірте чи всі поля були заповненію'
+  degree:
+    bachelor: 'Бакалавр'
+    specialist: 'Спеціаліст'
+    master: 'Магістр'
   views:
     main_title: Корпоративний Портал Кафедри
     pagination:
@@ -306,3 +340,11 @@ uk:
       previous: "&lsaquo; Попередня"
       next: "Наступна &rsaquo;"
       truncate: "..."
+  conversations:
+    dialogs: Діалоги
+    subject: Тема
+    participants: Учасники діалогу
+    last_message: Останнє повідомлення
+    unread: Непрочитаних повідомлень
+    no_conversations: У вас поки що немає жодного діалогу
+    new_conversation: Розпочати діалог
