@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301190915) do
+ActiveRecord::Schema.define(version: 20140425183204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20140301190915) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "executing_tasks_executors", force: true do |t|
+    t.integer "task_id"
+    t.integer "executor_id"
   end
 
   create_table "groups", force: true do |t|
@@ -46,6 +51,27 @@ ActiveRecord::Schema.define(version: 20140301190915) do
     t.integer  "user_id"
     t.integer  "conversation_id"
     t.integer  "unread_messages_count", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_has_tags", force: true do |t|
+    t.integer "task_id"
+    t.integer "tag_id"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "end_date"
+    t.string   "status"
+    t.text     "check_list"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -24,4 +24,6 @@ AcDP::Application.routes.draw do
   resources :conversations, only: [:create, :index, :destroy] do
     resources :messages, only: [:index, :create]
   end
+
+  resources :tasks, only: [:create, :show, :new]
 end
