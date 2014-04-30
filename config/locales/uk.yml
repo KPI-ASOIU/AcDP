@@ -292,6 +292,8 @@ uk:
     close: Закрити
     groups_manage: Групи
     create_group: Створити Групу
+    new_task: Нове завдання
+    edit_task: Редагувати завдання
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'

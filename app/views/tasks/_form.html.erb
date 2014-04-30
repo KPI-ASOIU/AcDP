@@ -1,0 +1,46 @@
+<div class="panel-body">
+  <div class="form-group">
+    <%= f.label t('tasks.name'), :class=>'control-label' %>
+    <div>
+        <%= f.text_field :name, :placeholder => t('tasks.name') + '...', :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('tasks.description'), :class=>'control-label' %>
+    <div>
+      <%= f.text_field :description, :placeholder => t('tasks.description') + '...', :class => 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('tasks.end_date'), :class=>'control-label' %>
+    <div>
+      <%= date_select("task", "end_date", :default => Date.today, :order => [:month, :day, :year], 
+        :start_year => Date.today.year, :end_year => Date.today.year + 3) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('tasks.status'), :class=>'control-label' %>
+    <div>
+      <% if params[:action] == "edit" %>
+        <%= f.select :status, options_for_select(Task::STATUS, @task.status) %>
+      <% else %>
+        <%= f.select :status, options_for_select(Task::STATUS) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t('tasks.check_list'), :class=>'control-label' %>
+    <div>
+      <%= f.text_field :check_list, :placeholder => t('tasks.check_list') + '...', :class => 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="panel-footer text-right">
+  <%= link_to t('util.back'), :back, :class => "btn btn-default" %>
+  <%= f.submit :class => "btn btn-success" %>
+</div>

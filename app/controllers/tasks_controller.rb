@@ -1,11 +1,21 @@
 class TasksController < ApplicationController
 	def create
-		Task.create(task_params)
-		render action: 'show'
+		@task = Task.create(task_params)
+		render action: 'show', id: @task.id
 	end
 
 	def show
-		@task = Task.find(task_params)
+		@task = Task.find(params[:id])
+	end
+
+	def edit
+		@task = Task.find(params[:id])
+	end
+
+	def update
+		@task = Task.find(params[:id])
+		@task.update_attributes(task_params)
+		render action: 'show', id: @task.id
 	end
 
 	private

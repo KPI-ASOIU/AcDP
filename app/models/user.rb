@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions
 
   has_and_belongs_to_many :executing_tasks, class_name: "Task", join_table: :executing_tasks_executors, foreign_key: :executor_id
-  has_many :leading_tasks, class_name: "Task", foreign_key: :id
+  has_many :leading_tasks, class_name: "Task"
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?

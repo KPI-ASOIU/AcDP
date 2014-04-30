@@ -1,0 +1,9 @@
+<!-- <div class="container width80"> -->
+<div class="panel panel-primary panel-narrow">
+	<div class="panel-heading">
+		<h3 class="panel-title"><%= t('util.edit_task') %></h3>
+	</div>
+	<%= form_for :task, url: task_path(@task.id), method: :patch do |form| %>
+		<%= render partial: 'form', locals: { f: form } %>
+	<% end %>
+</div>

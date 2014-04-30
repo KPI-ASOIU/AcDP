@@ -25,5 +25,5 @@ AcDP::Application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
-  resources :tasks, only: [:create, :show, :new]
+  resources :tasks, only: [:create, :show, :new, :edit, :update]
 end
