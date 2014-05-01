@@ -2,24 +2,10 @@
   <div class="col-xs-12">
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
-        <%= link_to t('views.main_title'), root_path, class: "navbar-brand" %>
+        <%= link_to yield(:page_title), root_path, class: "navbar-brand" %>
       </div>
       <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-          <li><%= link_to t('users.my_page'), current_user_users_path %></li>
-          <li>
-            <%= link_to conversations_path do %> 
-              <%= t('conversations.dialogs') %> 
-              <% if (umc = current_user.unread_messages_count_sum) != 0 %>
-                <span class="badge"><%= umc %></span> 
-              <% end %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if can? :manage, @users %>
-          <li><%= link_to t('util.users_manage'), admin_users_path %></li>
-          <li><%= link_to t('util.groups_manage'), admin_groups_path %></li>
-        <% end %>
+        <%= yield :navbar %>
       </ul>
       <% if user_signed_in? %>
           <p class="navbar-text navbar-right log-out-link"><%= current_user.login + ' (' %><%= link_to t('util.logout'), destroy_user_session_path, :method => :delete, class: "navbar-link" %>)</p>
