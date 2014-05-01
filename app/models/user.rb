@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable
+  has_one :student_info
+  has_one :group, through: :student_info
 
   has_attached_file :avatar,
     :styles => { :small => '48x48#', :medium => '64x64#', :large => '128x128#'},

@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+	has_many :student_info
+	has_many :user, through: :student_info
 	validates :name, :start_year, :graduation_year, :speciality, :speciality_code, :degree, presence: true
 	validates :start_year, numericality: {greater_than: 0}
 	validates :graduation_year, numericality: {greater_than: :start_year}
