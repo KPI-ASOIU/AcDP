@@ -6,6 +6,7 @@
     <div id="message-send" class="text-center" data-toggle="modal" data-target="#message">
       <a class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span> <%= t('messages.send') %></a>
     </div>
-    <%= render partial: "shared/new_conversation", locals: { conversation: Conversation.new, participants_ids: [current_user.id, @user.id] } %>
+    <%= render partial: "shared/new_conversation", locals: { conversation: Conversation.new, sender_id: current_user.id,
+    	receivers_ids: [@user.id], modal_title: t('messages.new') } %>
   <% end %>
 </div>

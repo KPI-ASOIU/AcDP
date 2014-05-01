@@ -322,6 +322,7 @@ uk:
       worker: 'Робітники'
   messages:
     send: 'Надіслати'
+    receivers: 'Одержувачі'
     new: 'Нове повідомлення'
     subject: 'Тема'
     message: 'Текст повідомлення'
@@ -341,6 +342,8 @@ uk:
       next: "Наступна &rsaquo;"
       truncate: "..."
   conversations:
+    active: Активний діалог
+    new: Новий діалог
     dialogs: Діалоги
     subject: Тема
     participants: Учасники діалогу
@@ -348,3 +351,5 @@ uk:
     unread: Непрочитаних повідомлень
     no_conversations: У вас поки що немає жодного діалогу
     new_conversation: Розпочати діалог
+  admin_panel: Панель адміністратора
+  client_part: Користувацька частина

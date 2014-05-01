@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Корпоративний Портал Кафедри</title>
-    <%= stylesheet_link_tag    "application", media: "all"%>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <div class="container">
-      <%= render partial: "shared/header", flash: flash %>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= render partial: "shared/flash_messages", flash: flash %>
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-    <%= javascript_include_tag "application"%>
-  </body>
-</html>
+<% content_for :page_title do %>
+  <%= t('views.main_title') %>
+<% end %>
+
+<% content_for :navbar do %>
+  <% if user_signed_in? %>
+    <li><%= link_to t('users.my_page'), current_user_users_path %></li>
+    <li>
+      <%= link_to conversations_path do %>
+        <%= t('conversations.dialogs') %>
+        <% if (umc = current_user.unread_messages_count_sum) != 0 %>
+          <span class="badge"><%= umc %></span>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+  <% if can? :manage, @users %>
+    <li><%= link_to t('admin_panel'), admin_users_path %></li>
+  <% end %>
+<% end %>
+
+<%= render template: "layouts/base" %>

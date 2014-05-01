@@ -1,12 +1,11 @@
-<!-- url here is temporary -->
-
-<%= form_for conversation do |f| %>
-  <div id="message" class="modal in fade panel-primary common-modal">
+<%= form_for conversation, method: :post do |f| %>
+  <div id="conversation-open" class="modal in fade panel-primary common-modal conv-message-center">
     <div class="panel-heading">
-      <h4 class="modal-title"><%= t('messages.new') %></h4>
+      <h4 class="modal-title"><%= modal_title %></h4>
     </div>
     <div class="modal-body">
-      <%= hidden_field_tag :participants_ids, participants_ids %>
+      <%= select_tag :receivers_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }, receivers_ids), { class: "chosen-select", multiple: true, include_blank: true } %>
+      <%= hidden_field_tag :sender_id, sender_id %>
       <p><%= f.text_field :subject, placeholder: t('messages.subject'), class: 'form-control' %></p>
       <p><%= text_area "message", :body, placeholder: t('messages.message'), class: 'form-control message-contents' %></p>
     </div>

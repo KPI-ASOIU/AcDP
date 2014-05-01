@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301190915) do
+ActiveRecord::Schema.define(version: 20140425221859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,34 @@ ActiveRecord::Schema.define(version: 20140301190915) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "document_has_types", force: true do |t|
+    t.integer "document_type_id", null: false
+    t.integer "document_id",      null: false
+  end
+
+  create_table "document_types", force: true do |t|
+    t.string "title", limit: 45, null: false
+  end
+
+  create_table "documents", force: true do |t|
+    t.integer  "parent_directory"
+    t.integer  "type",                        null: false
+    t.integer  "owner_id",                    null: false
+    t.datetime "date_created",                null: false
+    t.datetime "date_updated",                null: false
+    t.boolean  "public",                      null: false
+    t.string   "title",            limit: 50
+    t.string   "description"
+    t.string   "tags"
+  end
+
+  create_table "file_infos", force: true do |t|
+    t.integer "document_id",            null: false
+    t.string  "path",                   null: false
+    t.integer "size",                   null: false
+    t.string  "extension",   limit: 10
   end
 
   create_table "groups", force: true do |t|
@@ -42,12 +70,25 @@ ActiveRecord::Schema.define(version: 20140301190915) do
     t.datetime "updated_at"
   end
 
+  create_table "student_infos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
     t.integer  "conversation_id"
     t.integer  "unread_messages_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "user_has_accesses", force: true do |t|
+    t.integer "user_id",                null: false
+    t.integer "document_id",            null: false
+    t.string  "type",        limit: 45, null: false
   end
 
   create_table "users", force: true do |t|

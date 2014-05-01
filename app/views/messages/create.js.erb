@@ -1,4 +1,5 @@
-$("<%= escape_javascript(render partial: @message) %>").appendTo(".conversation");
+$("<%= escape_javascript(render partial: @message) %>").appendTo(".conversation .list-group");
+$("time[data-time-ago]").timeago();
 $(".dialog-box")[0].value = "";
 dialog_box = $(".conversation")
 dialog_box.scrollTop(dialog_box[0].scrollHeight);

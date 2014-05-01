@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable
+  has_one :student_info
+  has_one :group, through: :student_info
 
   has_attached_file :avatar,
     :styles => { :small => '48x48#', :medium => '64x64#', :large => '128x128#'},
@@ -26,6 +28,8 @@ class User < ActiveRecord::Base
   scope :with_roles, ->(roles) { where('role & ? > 0', User.roles_to_int(roles))}
 
   has_many :subscriptions
+  has_many :documents, through: :user_has_accesses
+  has_many :user_has_accesses
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?

@@ -1,3 +1,6 @@
+.conv-message-center {
+	height: 355px !important;
+}
 
 .common-modal {
 	background: #fff;
@@ -33,18 +36,10 @@
 .dialogs > thead > tr > th,
 .dialogs > tbody > tr > td {
 	cursor: default;
-} 
+}
 
 .dialogs > tbody > tr:hover > td{
 	cursor: pointer;
-} 
-
-.conversation {
-	height: 350px;
-	margin: 0 auto;
-	overflow-y: scroll;
-	padding: 5px;
-	width: 65%;
 }
 
 .message {
@@ -73,11 +68,6 @@
 	outline: none;
 }
 
-.m_author {
-	font-weight: bold;
-	padding: 0 0 2px 2px;
-}
-
 .m_body {
 	padding-left: 45px;
 	width: 95%;
@@ -90,8 +80,7 @@
 }
 
 .message-send {
-	margin: 0 auto;
-	width: 65%;
+	padding: 0 50px;
 }
 
 .no-conversations {
@@ -101,4 +90,39 @@
 .conv-start {
 	margin-bottom: 15px;
 	width: 200px;
+}
+
+time {
+	color: grey;
+	float: right;
+	font-size: 12px;
+}
+
+.conversation {
+	height: 350px;
+	padding: 0 50px;
+	overflow-y: auto;
+}
+
+.conversation .list-group-item {
+	min-height: 67px;
+	padding-left: 75px;
+	position: relative;
+}
+
+.conversation .thumbnail {
+	position: absolute;
+	left: 15px;
+	top: 10px;
+}
+
+.conversation .message-author {
+	font-weight: bold;
+}
+
+.conversation .message-author a,
+.conversation .message-author a:active,
+.conversation .message-author a:hover,
+.conversation .message-author a:visited {
+	color: #333333;
 }
