@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   scope :with_roles, ->(roles) { where('role & ? > 0', User.roles_to_int(roles))}
 
   has_many :subscriptions
+  has_many :attachments, through: :user_has_attachments
+  has_many :user_has_attachments
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
