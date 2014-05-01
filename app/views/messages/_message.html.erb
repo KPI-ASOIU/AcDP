@@ -1,9 +1,9 @@
-<div class="message">
-	<%= image_tag message.author.avatar.url, class: 'avatar-message-size pull-left' %>
-	<div class="author_part">
-    <%= timeago_tag message.created_at, :nojs => true, :limit => 1.hours.ago, 
+<div class="list-group-item">
+  <%= link_to user_path(message.author), class: 'thumbnail' do %>
+    <%= image_tag message.author.avatar.url, class: 'avatar-message-size', alt: message.author.full_name %>
+  <% end %>
+  <%= timeago_tag message.created_at, :nojs => true, :limit => 1.hours.ago,
       title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" } %>
-		<div class="m_author"><%= message.author.full_name %></div>
-	</div>
-	<div class="m_body"><%= message.body %></div>
+  <h5 class="list-group-item-heading message-author"><%= link_to message.author.full_name, user_path(message.author) %></h5>
+  <div class="list-group-item-text"><%= message.body %></div>
 </div>

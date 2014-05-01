@@ -342,6 +342,7 @@ uk:
       next: "Наступна &rsaquo;"
       truncate: "..."
   conversations:
+    active: Активний діалог
     new: Новий діалог
     dialogs: Діалоги
     subject: Тема
