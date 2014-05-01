@@ -3,6 +3,8 @@ require 'spec_helper'
 describe User do
   describe 'associations' do
     it { should have_many(:subscriptions) }
+    it { should have_many(:documents).through(:user_has_accesses)}
+    it { should have_many(:user_has_accesses)}
   end
 
   describe 'validations' do
