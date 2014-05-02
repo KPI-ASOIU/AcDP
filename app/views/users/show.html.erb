@@ -3,7 +3,14 @@
     <h3 class="panel-title"><%= t('users.user_info') %></h3>
   </div>
   <div class="panel-body">
-    <%= render partial: "shared/send_message_modal" %>
+    <div class="pull-left text-center">
+      <div class="thumbnail">
+        <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+      </div>
+      <% if @user != current_user %>
+        <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
+      <% end %>
+    </div>
     <div class="pull-left">
       <% if @user.full_name.present? %>
         <h3 class="text-center"><%=  @user.full_name %></h3>

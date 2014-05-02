@@ -48,12 +48,13 @@
     </table>
   <% else %>
     <p class="text-center text-muted no-conversations"><%= t('conversations.no_conversations') %></p>
-    <div class="text-center">
-      <a class="btn btn-success center-block conv-start" data-toggle="modal" data-target="#conversation-open">
-        <%= t('conversations.new_conversation') %>
-      </a>
-      <%= render partial: "shared/new_conversation", locals: { conversation: Conversation.new, sender_id: current_user.id, receivers_ids: [], modal_title: t('conversations.new') } %>
-    </div>
+    <p class="text-center">
+      <%= render partial: "conversations/new_conversation_button", locals: {
+            receiver_ids: [],
+            modal_title: t('conversations.new'),
+            button_text: t('conversations.new_conversation')
+          } %>
+    </p>
   <% end %>
 </div>
 
