@@ -1,16 +1,15 @@
 //enable chosen.js
 $(function(){
-	$('div#role .chosen-select').chosen({
+	$('#role .chosen-select').chosen({
 		placeholder_text_multiple: "<%= I18n.t('users.choose_role') %>",
 		no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
 		width: '100%'
 	});
 
-	$('div#conversation-open .chosen-select').chosen({
+	$('#conversation-open .chosen-select').chosen({
 		placeholder_text_multiple: "<%= I18n.t('messages.receivers') %>",
 		no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
 		width: '100%'
 	});
-	$('div#conversation-open .search-field input').css("width", "101px");
 });
 
