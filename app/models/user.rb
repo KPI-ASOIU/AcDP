@@ -2,6 +2,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable
   has_one :student_info
   has_one :group, through: :student_info
+  has_and_belongs_to_many :contacts,
+      join_table: "contacts",
+      class_name: "User",
+      foreign_key: "user_id",
+      association_foreign_key: "contact_user_id",
+      uniq: true
 
   has_attached_file :avatar,
     :styles => { :small => '48x48#', :medium => '64x64#', :large => '128x128#'},

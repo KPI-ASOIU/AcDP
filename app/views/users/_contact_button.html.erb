@@ -1,0 +1,16 @@
+<% if current_user.contacts.exists?(id: @user.id) %>
+  <%= form_tag contact_path(@user.id), method: :delete do |f| %>
+    <button class="btn mb5 btn-block btn-danger">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <%= t('contacts.remove') %>
+    </button>
+  <% end %>
+<% else %>
+  <%= form_tag contacts_path, method: :post do |f| %>
+    <%= hidden_field_tag :id, @user.id %>
+    <button class="btn mb5 btn-block btn-success">
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <%= t('contacts.add') %>
+    </button>
+  <% end %>
+<% end %>
