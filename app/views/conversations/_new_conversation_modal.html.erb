@@ -1,5 +1,5 @@
 <%= form_for conversation, method: :post do |f| %>
-  <div id="conversation-open" class="modal in fade panel-primary common-modal conv-message-center">
+  <div id="conversation-open-<%= receiver_ids.join('-') %>" class="modal in fade panel-primary common-modal conv-message-center new-conversation-modal">
     <div class="panel-heading">
       <h4 class="modal-title"><%= modal_title %></h4>
     </div>

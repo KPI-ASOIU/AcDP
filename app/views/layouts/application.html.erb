@@ -13,6 +13,7 @@
         <% end %>
       <% end %>
     </li>
+    <li><%= link_to t('contacts.nav_link'), contacts_path %></li>
   <% end %>
   <% if can? :manage, @users %>
     <li><%= link_to t('admin_panel'), admin_users_path %></li>

@@ -1,4 +1,4 @@
-<button class="btn mb5 btn-block btn-primary" data-toggle="modal" data-target="#conversation-open">
+<button class="btn mb5 btn-block btn-primary" data-toggle="modal" data-target="#conversation-open-<%= receiver_ids.join('-') %>">
   <span class="glyphicon glyphicon-envelope"></span>
   <%= local_assigns[:button_text] || t('messages.send') %>
 </button>

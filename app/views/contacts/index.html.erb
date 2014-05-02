@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('contacts.list') %>
+  </div>
+  <div class="panel-body">
+    <strong>
+      <%= t('contacts.count', count: current_user.contacts.size ) %>
+    </strong>
+    <hr>
+    <ul class="list-group contacts-list">
+      <% @contacts.each do |user| %>
+        <li class="list-group-item contacts-list-item">
+          <div class="media">
+            <%= link_to user_path(user), class: 'pull-left' do %>
+              <%= image_tag user.avatar.url("medium"), :class => "thumbnail media-object contact-avatar c-user-medium-avatar" %>
+            <% end %>
+            <div class="media-body">
+              <div class="pull-right" style="width: 250px">
+                <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
+                <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
+              </div>
+              <h4 class="media-heading contact-fullname"><%= user.full_name %></h4>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <%= paginate @contacts %>
+  </div>
+</div>

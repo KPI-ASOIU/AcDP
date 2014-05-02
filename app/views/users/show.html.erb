@@ -9,7 +9,7 @@
       </div>
       <% if @user != current_user %>
         <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
-        <%= render partial: "users/contact_button" %>
+        <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
       <% end %>
     </div>
     <div class="pull-left">

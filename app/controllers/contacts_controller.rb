@@ -1,4 +1,8 @@
 class ContactsController < ApplicationController
+  def index
+    @contacts = current_user.contacts.page(params[:page])
+  end
+
   def create
     contact_user = User.find(params[:id])
     current_user.contacts << contact_user unless current_user.contacts.exists?(params[:id])
