@@ -66,3 +66,6 @@ gem 'chosen-rails'
 gem 'paperclip'
 gem 'foreman'
 gem 'rails-timeago', '~> 2.0'
+gem "haml-rails"
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'

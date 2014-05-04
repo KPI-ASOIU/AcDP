@@ -17,5 +17,7 @@
 //= require rails-timeago
 //= require locales/jquery.timeago.uk.js
 //= require locales/jquery.timeago.ru.js
+//= require moment
+//= require bootstrap-datetimepicker
 //= require chosen-jquery
 //= require_tree .

@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429205328) do
+ActiveRecord::Schema.define(version: 20140504170850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
@@ -67,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140429205328) do
   end
 
   create_table "tasks", force: true do |t|
-    t.integer  "author_id"
     t.string   "name"
     t.text     "description"
     t.datetime "end_date"
@@ -76,6 +84,11 @@ ActiveRecord::Schema.define(version: 20140429205328) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "user_has_attachments", force: true do |t|
+    t.integer "user_id"
+    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|
@@ -92,7 +105,6 @@ ActiveRecord::Schema.define(version: 20140429205328) do
     t.datetime "avatar_updated_at"
     t.string   "position",                      default: "", null: false
     t.text     "about_me",                      default: "", null: false
-    t.integer  "task_id"
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree

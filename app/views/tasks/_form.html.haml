@@ -1,0 +1,24 @@
+= form_for(task, :html => { :class => "form-horizontal", role: "form" }) do |f|
+  .panel-body
+    .form-group
+      = f.label t('tasks.name'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        = f.text_field :name, :placeholder => t('tasks.name') + '...', :class => 'form-control'
+    .form-group
+      = f.label t('tasks.description'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        = f.text_area :description, :placeholder => t('tasks.description') + '...', :class => 'form-control'
+    .form-group
+      = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        #datetimepicker1.input-group.date{"data-date-format" => "DD/MM/YYYY hh:mm:ss"}
+          = f.text_field :end_date, class: "form-control"
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+    .form-group
+      = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
+      .col-sm-8
+        = f.text_field :check_list, :placeholder => t('tasks.check_list') + '...', :class => 'form-control'  
+  .panel-footer.text-right 
+    = link_to t('util.back'), :back, :class => "btn btn-default"
+    = f.submit :class => "btn btn-success"
