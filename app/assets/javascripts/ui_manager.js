@@ -21,4 +21,20 @@ $(document).ready(function(){
     $("#first-conversation").on("click", function(){
         $("#conversation-open").modal();
     })
+
+    // documents
+    $("#documents_new_file").change(function (){
+        var fileName = $(this).val();
+        $("#documents_new_doc_title").val(fileName.split('\\').pop());
+    });
+
+    $('.docs-title').mouseover(function(event) {
+        $(this).find('.docs-navbar-tool').show();
+    }).mouseout(function(event) {
+        $(this).find('.docs-navbar-tool').hide();
+    });
+
+    $('.docs-navbar-tool').click(function(event){
+        event.stopPropagation();
+    });
 });

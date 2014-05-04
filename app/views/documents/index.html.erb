@@ -1,0 +1,43 @@
+<h1><%= t('documents.documents') %></h1>
+
+<%= render 'documents/modals/new_file' %>
+<%= render 'documents/modals/new_folder' %>
+
+<%= render 'search' %>
+<%= render 'folder_info' %>
+
+<div class="text-center">
+  <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_file' }, :class => 'btn btn-success' do %>
+      <span class='glyphicon glyphicon-plus'></span>
+      <%= t('documents.add_file') %>
+  <% end %>
+
+  <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_folder' }, :class => 'btn btn-success' do %>
+      <span class='glyphicon glyphicon-plus'></span>
+      <%= t('documents.add_folder') %>
+  <% end %>
+</div>
+<br>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('documents.docs_in_cur_dir') %>
+  </div>
+    <table class="table table-striped table-verticle-centered" style="table-layout:fixed;">
+      <thead>
+      <tr>
+        <th style="width: 3%"></th>
+        <th style="width: 27%"><%= t('documents.title') %></th>
+        <th style="width: 25%"><%= t('documents.type') %></th>
+        <th style="width: 8%"><%= t('documents.format') %></th>
+        <th style="width: 10%"><%= t('documents.date_created') %></th>
+        <th style="width: 10%"><%= t('documents.date_changed') %></th>
+        <th style="width: 11%"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <%= render partial: 'file', collection: @files %>
+      <%= render partial: 'folder', collection: @folders %>
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,21 @@
+<tr data-toggle="collapse" data-target="#doc-info<%= folder.id %>" class="accordion-toggle docs-title">
+  <td><span class="glyphicon glyphicon-folder-open"></span></td>
+  <td><%= folder.title %></td>
+  <td><%= %></td>
+  <td><%= t('documents.folder') %></td>
+  <td><%= folder.date_created.strftime "%m.%d.%y %H:%M" %></td>
+  <td><%= folder.date_updated.strftime "%m.%d.%y %H:%M" %></td>
+  <td>
+    <%= link_to '', :class => 'btn btn-success  docs-navbar-tool' do %>
+        <span class='glyphicon glyphicon-eye-open'></span>
+        <%= t('documents.open') %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td colspan="7" class="hiddenRow">
+    <div class="accordian-body collapse" id="doc-info<%= folder.id %>">
+      Тут буде купа всіляких описів
+    </div>
+  </td>
+</tr>

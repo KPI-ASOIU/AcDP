@@ -1,0 +1,22 @@
+<% doc = file.document %>
+<tr data-toggle="collapse" data-target="#doc-info<%= doc.id %>" class="accordion-toggle docs-title">
+  <td><span class="glyphicon glyphicon-file"></span></td>
+  <td><%= doc.title %></td>
+  <td><%=  %></td>
+  <td><%= File.extname file.file.path %></td>
+  <td><%= doc.date_created.strftime "%m.%d.%y %H:%M" %></td>
+  <td><%= doc.date_updated.strftime "%m.%d.%y %H:%M" %></td>
+  <td>
+    <%= link_to file.file.url(:original, false), :target => :blank, :class => 'btn btn-success docs-navbar-tool' do %>
+        <span class='glyphicon glyphicon-cloud-download'></span>
+        <%= t('documents.download') %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td colspan="7" class="hiddenRow">
+    <div class="accordian-body collapse" id="doc-info<%= doc.id %>">
+      Тут буде купа всіляких описів
+    </div>
+  </td>
+</tr>

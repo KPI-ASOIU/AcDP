@@ -1,4 +1,8 @@
 AcDP::Application.routes.draw do
+  get 'documents', to: 'documents#index'
+  post 'documents', to: 'documents#new'
+  delete 'documents', to: 'documents#delete'
+
   root "users#show_current"
 
   devise_for :users

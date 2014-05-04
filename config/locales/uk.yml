@@ -292,6 +292,8 @@ uk:
     close: Закрити
     groups_manage: Групи
     create_group: Створити Групу
+    all: Всі
+    save: Зберегти
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -353,3 +355,41 @@ uk:
     new_conversation: Розпочати діалог
   admin_panel: Панель адміністратора
   client_part: Користувацька частина
+  documents:
+    documents: Документи
+    document: Документ
+    files: Файли
+    file: Файл
+    folder: Папка
+    owned: Власні
+    shared: Спільні
+    new_shared: Нові спільні
+    formats: Формати
+    types: Типи
+    search: Пошук
+    search_by_docs: Пошук по документам
+    by_title: По назві
+    by_tags: По тегам
+    by_title_and_tags: По назві та тегам
+    open: Відкрити
+    download: Скачати
+
+    information: Інформація
+
+    add_file: Додати файл
+    adding_file: Додання файлу
+    enter_file_title: Введіть назву для документу. За замовчанням буде використана назва файлу.
+    title: Назва
+    file_add_success: Файл додано
+
+    add_folder: Додати папку
+    adding_folder: Додання папки
+    enter_folder_title: Введіть назву папки.
+    folder_creation_success: Папка успішно створена
+
+    docs_in_cur_dir: Документи та папки в поточній папці
+    title: Назва
+    format: Формат
+    type: Тип
+    date_created: Створено
+    date_changed: Змінено

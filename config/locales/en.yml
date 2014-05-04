@@ -73,6 +73,8 @@ en:
     users_manage: Users
     groups_manage: Groups
     create_group: Create Group
+    all: All
+    save: Save
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -122,3 +124,41 @@ en:
     last_message: Last message
     no_conversations: You haven't got any conversations yet
     new_conversation: Start new conversation
+  documents:
+    documents: Documents
+    document: Document
+    files: Files
+    file: file
+    folder: Folder
+    owned: Owned
+    shared: Shared
+    new_shared: New shared
+    formats: Formats
+    types: Types
+    search: Search
+    search_by_docs: Search by documents
+    by_title: By title
+    by_tags: By tags
+    by_title_and_tags: By title and tags
+    open: Open
+    download: Download
+
+    information: Information
+
+    add_file: Add file
+    adding_file: Adding file
+    enter_file_title: Enter title of document. By default file name will be used.
+    title: title
+    file_add_success: File added
+
+    add_folder: Add folder
+    adding_folder: Adding folder
+    enter_folder_title: Enter title of folder.
+    folder_creation_success: Folder created
+
+    docs_in_cur_dir: Documents and folders in current folder
+    title: Title
+    format: Format
+    type: type
+    date_created: Created
+    date_changed: Changed

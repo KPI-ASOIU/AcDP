@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425221859) do
+ActiveRecord::Schema.define(version: 20140504113718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
   create_table "conversations", force: true do |t|
     t.string   "subject"
@@ -33,21 +42,23 @@ ActiveRecord::Schema.define(version: 20140425221859) do
 
   create_table "documents", force: true do |t|
     t.integer  "parent_directory"
-    t.integer  "type",                        null: false
-    t.integer  "owner_id",                    null: false
-    t.datetime "date_created",                null: false
-    t.datetime "date_updated",                null: false
-    t.boolean  "public",                      null: false
-    t.string   "title",            limit: 50
+    t.integer  "doc_type",                                null: false
+    t.integer  "owner_id",                                null: false
+    t.datetime "date_created",                            null: false
+    t.datetime "date_updated",                            null: false
+    t.string   "title",            limit: 80,             null: false
     t.string   "description"
     t.string   "tags"
+    t.integer  "for_roles",                   default: 0, null: false
+    t.integer  "original_doc_id"
   end
 
   create_table "file_infos", force: true do |t|
-    t.integer "document_id",            null: false
-    t.string  "path",                   null: false
-    t.integer "size",                   null: false
-    t.string  "extension",   limit: 10
+    t.integer  "document_id",       null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "groups", force: true do |t|
@@ -86,9 +97,15 @@ ActiveRecord::Schema.define(version: 20140425221859) do
   end
 
   create_table "user_has_accesses", force: true do |t|
-    t.integer "user_id",                null: false
-    t.integer "document_id",            null: false
-    t.string  "type",        limit: 45, null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "document_id",             null: false
+    t.string   "access_type",  limit: 45, null: false
+    t.datetime "date_created",            null: false
+  end
+
+  create_table "user_has_attachments", force: true do |t|
+    t.integer "user_id"
+    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|
