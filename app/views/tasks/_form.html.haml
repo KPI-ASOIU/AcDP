@@ -11,10 +11,7 @@
     .form-group
       = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
       .col-sm-8
-        #datetimepicker1.input-group.date{"data-date-format" => "YYYY-MM-DD hh:mm:ss"}
-          = f.text_field :end_date, class: "form-control"
-          %span.input-group-addon
-            %span.glyphicon.glyphicon-calendar
+        = f.text_field :end_date, class: "form-control date", id: "datetimepicker1", html: {"data-date-format" => "YYYY-MM-DD hh:mm:ss"}
     .form-group
       = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
       .col-sm-8

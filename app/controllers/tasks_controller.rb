@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task)
       .permit(:name, :description, :end_date, :status, :check_list, \
-              checklists_attributes: [:done, :name])
+              checklists_attributes: [:id, :done, :name])
       .merge({ executors: User.where(id: params[:executors]) })
   end
 end

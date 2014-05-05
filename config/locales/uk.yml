@@ -353,9 +353,10 @@ uk:
     no_conversations: У вас поки що немає жодного діалогу
     new_conversation: Розпочати діалог
   tasks:
+    task_info: Картка завдання
     name: Назва
     description: Опис
     end_date: Кінцева дата
     status: Статус
-    check_list: Підпункти
+    check_list: Задачі
     executors: Виконавці
