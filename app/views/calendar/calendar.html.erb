@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="calendar_container">
 	<h2 id="month">
 		<%= link_to date: @date.prev_month do%>
@@ -38,3 +39,13 @@
 	<div class="header"> <%= t('task_list') %></div>
 	<div class="list"></div>
 </div>
+=======
+<h2 id="month">
+	<%= link_to "<", date: @date.prev_month %> 
+	<%= @date.strftime("%B %Y") %>
+	<%= link_to ">", date: @date.next_month %>
+</h2>
+<%= calendar @date do |date| %>
+	<%= date.day %>
+<% end %>
+>>>>>>> Create calendar template

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function hover (elem, color) {
   $(".calendar > tbody").children().each(function (index) {
     if (index > 0) {
@@ -47,3 +48,7 @@ $(document).ready(function(){
     else $('td:contains("1")').not(".notmonth").first().click();
   }
 });
+=======
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+>>>>>>> Create calendar template

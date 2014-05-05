@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $calendar_width: 50%;
 
 .calendar {
@@ -12,21 +13,46 @@ $calendar_width: 50%;
     padding: 6px;
     border: 1px solid #999;
     width: 14.285714286%;
+=======
+// Place all the styles related to the Calendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.calendar {
+  border-collapse: collapse;
+  width: 70%;
+
+  td, th {
+    font-family: inherit;
+	font-weight: 500;
+    font-size: 16px;
+    padding: 6px;
+    border: 1px solid #999;
+>>>>>>> Create calendar template
   }
 
   th {
     background: #428bca;
     color: #fff;
     text-align: center;
+<<<<<<< HEAD
     height: 40px;    
   }
 
   td {
     background: inherit;
+=======
+    width: 14.2857142857143%;
+    height: 40px;
+  }
+
+  td {
+    background: #FFF;
+>>>>>>> Create calendar template
     color: #777;
     height: 80px;
     vertical-align: top;
     font-size: 16px;
+<<<<<<< HEAD
     height: 80px;
   }
 
@@ -44,6 +70,12 @@ $calendar_width: 50%;
   .notmonth { background-color: rgb(245,245,245); }
   .today { background-color: #D7F2FF; }
   .past { color: #CCC; }
+=======
+  }
+
+  .notmonth, .notmonth a { color: #CCC; }
+  .today { background-color: #D7F2FF; }
+>>>>>>> Create calendar template
 }
 
  #month {
@@ -51,6 +83,7 @@ $calendar_width: 50%;
   padding-bottom: 10px;
   text-align: center;
   font-size: 22px;
+<<<<<<< HEAD
   width: 100%;
   a {
     text-decoration: none;
@@ -113,3 +146,16 @@ $calendar_width: 50%;
   float: left;
 }
 
+=======
+  a {
+    text-decoration: none;
+    padding: 0 10px;
+    color: #999;
+  }
+}
+
+.calendar ul {
+  font-size: 11px;
+  padding-left: 20px;
+}
+>>>>>>> Create calendar template
