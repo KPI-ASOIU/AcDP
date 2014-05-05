@@ -1,0 +1,25 @@
+= form_for(task, :html => { :class => "form-horizontal", role: "form" }) do |f|
+  .panel-body
+    .form-group
+      = f.label t('tasks.name'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        = f.text_field :name, :placeholder => t('tasks.name') + '...', :class => 'form-control'
+    .form-group
+      = f.label t('tasks.description'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        = f.text_area :description, :placeholder => t('tasks.description') + '...', :class => 'form-control'
+    .form-group
+      = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
+      .col-sm-8
+        = f.text_field :end_date, class: "form-control date", id: "datetimepicker1", html: {"data-date-format" => "YYYY-MM-DD hh:mm:ss"}
+    .form-group
+      = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
+      .col-sm-8
+        = render partial: 'form_checklist', locals: { f: f } 
+    .form-group
+      = f.label t('tasks.executors'), :class=>'col-sm-4 control-label' 
+      .col-sm-8    
+        = select_tag :executors, options_for_select(User.all.map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
+  .panel-footer.text-right 
+    = link_to t('util.back'), :back, :class => "btn btn-default"
+    = f.submit :class => "btn btn-success", :value => val
