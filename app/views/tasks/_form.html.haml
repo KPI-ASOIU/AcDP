@@ -18,7 +18,7 @@
     .form-group
       = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
       .col-sm-8
-        = f.text_field :check_list, :placeholder => t('tasks.check_list') + '...', :class => 'form-control'  
+        = render partial: 'form_checklist', locals: { f: f } 
     .form-group
       = f.label t('tasks.executors'), :class=>'col-sm-4 control-label' 
       .col-sm-8    

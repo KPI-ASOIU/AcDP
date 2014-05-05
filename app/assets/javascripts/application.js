@@ -20,4 +20,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require chosen-jquery
+//= require jquery.nested-fields
 //= require_tree .

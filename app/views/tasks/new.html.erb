@@ -1,8 +1,0 @@
-<div class="panel panel-primary panel-narrow">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t('util.new_task') %></h3>
-  </div>
-  <%= form_for :task, url: tasks_path do |form| %>
-    <%= render partial: 'form', locals: { f: form } %>
-  <% end %>
-</div>
