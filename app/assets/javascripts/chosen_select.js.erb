@@ -11,5 +11,13 @@ $(function(){
     no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
     width: '100%'
   });
+
+  $('div#conversation-open .search-field input').css("width", "101px");
+
+  $('#executors.chosen-select').chosen({
+    placeholder_text_multiple: "<%= I18n.t('tasks.executors') %>",
+    no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
+    width: '100%'
+  });
 });
 

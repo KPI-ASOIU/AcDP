@@ -17,5 +17,12 @@
 //= require rails-timeago
 //= require locales/jquery.timeago.uk.js
 //= require locales/jquery.timeago.ru.js
+//= require moment
+//= require bootstrap-datetimepicker
+//= require moment/uk
+//= require locales/bootstrap-datetimepicker.uk.js
+//= require moment/ru
+//= require locales/bootstrap-datetimepicker.ru.js
 //= require chosen-jquery
+//= require jquery.nested-fields
 //= require_tree .

@@ -30,4 +30,6 @@ AcDP::Application.routes.draw do
   end
 
   resources :contacts, only: [:index, :create, :destroy]
+
+  resources :tasks
 end

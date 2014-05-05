@@ -1,0 +1,57 @@
+<div class="panel panel-primary panel-narrow">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('tasks.task_info') %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="pull-left">
+      <% if @task.name.present? %>
+        <h3 class="text-center"><%= @task.name %></h3>
+      <% end %>
+      <dl class="dl-horizontal break-words">
+      	<% if @task.description.present? %>
+	        <dt><%= t('tasks.description') %></dt>
+	        <dd><%= @task.description %></dd>
+        <% end %>
+        <% if @task.end_date.present? %>
+	        <dt><%= t('tasks.end_date') %></dt>
+	        <dd><%= l(@task.end_date, format: :short_month) %></dd>
+        <% end %>
+        <% if @task.status.present? %>
+	        <dt><%= t('tasks.status') %></dt>
+	        <dd><%= @task.status %></dd>
+        <% end %>
+        <% if @task.executors.any? %>
+        	<dt><%= t('tasks.executors') %></dt>
+        	<dd>
+	        	<% @task.executors.each do |exec| %>
+	    			<%= link_to image_tag(exec.avatar.url("small"), class: 'c-user-small-avatar', 
+	                    title: exec.full_name), user_path(exec.id) %>
+	        	<% end %>
+        	</dd>
+        <% end %>
+        <% if @task.checklists.any? %>
+        	<dt><%= t('tasks.check_list') %></dt>
+        	<dd>
+        		<% @task.checklists.each do |c| %>
+        			<div>
+				  		<%= check_box_tag :done, 1, c.done, disabled: true  %>
+				    	<%= label_tag :name, c.name %>
+					</div>
+	        	<% end %>
+			</dd>
+			<dd class="width100"><div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
+			    <%= checklist_percentage(@task) %>%
+			  </div>
+			</div></dd>
+        <% end %>
+      </dl> 
+    </div>
+  </div>
+  <div class="panel-footer text-right">
+    <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
+        <span class='glyphicon glyphicon-pencil'></span>
+        <%= t('util.edit') %>
+    <% end %>
+  </div>
+</div>

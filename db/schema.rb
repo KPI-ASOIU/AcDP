@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504113718) do
+ActiveRecord::Schema.define(version: 20140505160508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklists", force: true do |t|
+    t.boolean  "done"
+    t.string   "name"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contacts", force: true do |t|
     t.integer  "user_id"
@@ -49,6 +57,11 @@ ActiveRecord::Schema.define(version: 20140504113718) do
     t.string   "tags"
     t.integer  "for_roles",                   default: 0, null: false
     t.integer  "original_doc_id"
+  end
+
+  create_table "executing_tasks_executors", force: true do |t|
+    t.integer "task_id"
+    t.integer "executor_id"
   end
 
   create_table "file_infos", force: true do |t|
@@ -94,16 +107,32 @@ ActiveRecord::Schema.define(version: 20140504113718) do
     t.datetime "updated_at"
   end
 
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_has_tags", force: true do |t|
+    t.integer "task_id"
+    t.integer "tag_id"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "end_date"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
   create_table "user_has_accesses", force: true do |t|
     t.integer  "user_id",                 null: false
     t.integer  "document_id",             null: false
     t.string   "access_type",  limit: 45, null: false
     t.datetime "date_created",            null: false
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|
