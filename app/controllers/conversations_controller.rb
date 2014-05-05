@@ -2,7 +2,8 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.create(conversation_params)
     handle_errors
-    members_ids = params[:receivers_ids].push(params[:sender_id])
+    params[:receiver_ids] ||= []
+    members_ids = params[:receiver_ids].push(params[:sender_id])
     members = User.where(id: members_ids)
     @conversation.participants = members
     @conversation.messages.build({ body: params[:message][:body], author: current_user })
@@ -38,7 +39,7 @@ class ConversationsController < ApplicationController
   end
 
   def handle_errors
-    if @conversation.errors.any? 
+    if @conversation.errors.any?
       # TODO
       # => is it needed to handle all errors, or just this messages is enough????
       flash[:error] = t('messages.notice.error_send')

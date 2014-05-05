@@ -16,13 +16,11 @@ ActiveRecord::Schema.define(version: 20140504113718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attachments", force: true do |t|
+  create_table "contacts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "contact_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
   end
 
   create_table "conversations", force: true do |t|
