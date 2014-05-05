@@ -6,7 +6,6 @@ class CreateTasks < ActiveRecord::Migration
       t.datetime :end_date
       t.string :status
       t.text :check_list
-      t.integer :user_id
 
       t.timestamps
     end

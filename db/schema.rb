@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20140505160508) do
   end
 
   create_table "tasks", force: true do |t|
-    t.integer  "author_id"
     t.string   "name"
     t.text     "description"
     t.datetime "end_date"

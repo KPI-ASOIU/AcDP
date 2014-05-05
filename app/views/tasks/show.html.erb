@@ -14,7 +14,7 @@
         <% end %>
         <% if @task.end_date.present? %>
 	        <dt><%= t('tasks.end_date') %></dt>
-	        <dd><%= @task.end_date %></dd>
+	        <dd><%= l(@task.end_date, format: :short_month) %></dd>
         <% end %>
         <% if @task.status.present? %>
 	        <dt><%= t('tasks.status') %></dt>
@@ -22,14 +22,24 @@
         <% end %>
         <% if @task.executors.any? %>
         	<dt><%= t('tasks.executors') %></dt>
-        	<% @task.executors.each do |exec| %>
-        		<dd><%= image_tag exec.avatar.url("small"), class: 'c-user-small-avatar' %></dd>
-        		<dd class="break-words"><%= exec.full_name %></dd>
-        	<% end %>
+        	<dd>
+	        	<% @task.executors.each do |exec| %>
+	    			<%= link_to image_tag(exec.avatar.url("small"), class: 'c-user-small-avatar', 
+	                    title: exec.full_name), user_path(exec.id) %>
+	        	<% end %>
+        	</dd>
         <% end %>
         <% if @task.checklists.any? %>
         	<dt><%= t('tasks.check_list') %></dt>
-        	<dd><div class="progress">
+        	<dd>
+        		<% @task.checklists.each do |c| %>
+        			<div>
+				  		<%= check_box_tag :done, 1, c.done, disabled: true  %>
+				    	<%= label_tag :name, c.name %>
+					</div>
+	        	<% end %>
+			</dd>
+			<dd class="width100"><div class="progress">
 			  <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
 			    <%= checklist_percentage(@task) %>%
 			  </div>
@@ -39,8 +49,7 @@
     </div>
   </div>
   <div class="panel-footer text-right">
-    <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
-    <%= link_to edit_admin_user_path(@task), :class => "btn btn-warning" do %>
+    <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
         <span class='glyphicon glyphicon-pencil'></span>
         <%= t('util.edit') %>
     <% end %>

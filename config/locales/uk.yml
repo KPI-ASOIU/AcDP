@@ -227,6 +227,7 @@ uk:
       default: '%a, %d %b %Y, %H:%M:%S %z'
       long: '%d %B %Y, %H:%M'
       short: '%d %b, %H:%M'
+      short_month: '%d.%m.%Y, %H:%M'
     pm: по полудні
   activemodel:
     errors:
@@ -294,6 +295,8 @@ uk:
     create_group: Створити Групу
     new_task: Нове завдання
     edit_task: Редагувати завдання
+    add_task: Додати задачу
+    create_task: Створити завдання
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'

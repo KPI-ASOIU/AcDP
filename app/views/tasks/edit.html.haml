@@ -2,4 +2,4 @@
   .panel-heading
     %h3.panel-title
       = t('util.edit_task')
-  = render partial: 'form', locals: { task: @task }
+  = render partial: 'form', locals: { task: @task, val: t('util.edit_task') }
