@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def new
     @task = current_user.leading_tasks.new
   end
+  
   def create
     @task = Task.create(task_params)
     render action: 'show', id: @task.id
@@ -26,5 +27,6 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task)
       .permit(:name, :description, :end_date, :status, :check_list)
+      .merge({ executors: User.where(id: params[:executors]) })
   end
 end

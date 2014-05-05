@@ -11,7 +11,7 @@
     .form-group
       = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
       .col-sm-8
-        #datetimepicker1.input-group.date{"data-date-format" => "DD/MM/YYYY hh:mm:ss"}
+        #datetimepicker1.input-group.date{"data-date-format" => "YYYY-MM-DD hh:mm:ss"}
           = f.text_field :end_date, class: "form-control"
           %span.input-group-addon
             %span.glyphicon.glyphicon-calendar
@@ -19,6 +19,10 @@
       = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
       .col-sm-8
         = f.text_field :check_list, :placeholder => t('tasks.check_list') + '...', :class => 'form-control'  
+    .form-group
+      = f.label t('tasks.executors'), :class=>'col-sm-4 control-label' 
+      .col-sm-8    
+        = select_tag :executors, options_for_select(User.all.map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
   .panel-footer.text-right 
     = link_to t('util.back'), :back, :class => "btn btn-default"
     = f.submit :class => "btn btn-success"
