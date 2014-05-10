@@ -14,7 +14,7 @@
         <% end %>
         <% if @task.end_date.present? %>
 	        <dt><%= t('tasks.end_date') %></dt>
-	        <dd><%= l(@task.end_date, format: :short_month) %></dd>
+	        <dd><%= l(@task.end_date, format: :short) %></dd>
         <% end %>
         <% if @task.status.present? %>
 	        <dt><%= t('tasks.status') %></dt>
@@ -33,17 +33,19 @@
         	<dt><%= t('tasks.check_list') %></dt>
         	<dd>
         		<% @task.checklists.each do |c| %>
-        			<div>
+        		<div>
 				  		<%= check_box_tag :done, 1, c.done, disabled: true  %>
 				    	<%= label_tag :name, c.name %>
-					</div>
-	        	<% end %>
-			</dd>
-			<dd class="width100"><div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
-			    <%= checklist_percentage(@task) %>%
-			  </div>
-			</div></dd>
+					  </div>
+          	<% end %>
+          </dd>
+    			<dd class="width100">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
+                <%= checklist_percentage(@task) %>
+              </div>
+            </div>
+          </dd>
         <% end %>
       </dl> 
     </div>
