@@ -2,28 +2,28 @@ $(function() {
   $('#datetimepicker1').datetimepicker({
   	// TODO
   	// 	=> make here default project language
-    useCurrent: false,
+    defultDate: '',
   	language: 'uk'
   });
 
   $('#datetimepicker2').datetimepicker({
   	// TODO
   	// 	=> make here default project language
-  	useCurrent: false,
+    defultDate: '',
   	language: 'uk'
   });
 
   $('#datetimepicker3').datetimepicker({
   	// TODO
   	// 	=> make here default project language
-  	useCurrent: false,
+    defultDate: '',
   	language: 'uk'
   });
 
   $('#datetimepicker4').datetimepicker({
   	// TODO
   	// 	=> make here default project language
-  	useCurrent: false,
+    defultDate: '',
   	language: 'uk'
   });
 
@@ -43,6 +43,6 @@ $(document).ready(function() {
 $(".searchclear").click(function(){
     if((inp = $(this).siblings("input.form-control")).length != 0)
       inp.val('');
-    else
-      $(this).siblings(".chosen-container").find(".chosen-choices").children(":first").remove()
+    else if((chosen = $(this).siblings(".chosen-container").find(".chosen-choices")).children().length > 1)
+      chosen.children(":first").remove()
 });

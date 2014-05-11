@@ -52,8 +52,4 @@ module TasksHelper
 	def translate_status(status)
 		t('tasks.statuses.' + status)
 	end
-
-	def local_time_convert(time)
-	    DateTime.strptime(time, I18n.l('time.formats.short'))
-	end
 end
