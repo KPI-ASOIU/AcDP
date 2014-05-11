@@ -37,7 +37,11 @@ class User < ActiveRecord::Base
   has_many :documents, through: :user_has_accesses
   has_many :user_has_accesses
 
-  has_and_belongs_to_many :executing_tasks, class_name: "Task", join_table: :executing_tasks_executors, foreign_key: :executor_id
+  has_and_belongs_to_many :executing_tasks,   
+    class_name: "Task", 
+    join_table: :executing_tasks_executors, 
+    foreign_key: :executor_id
+
   has_many :leading_tasks, class_name: "Task"
 
   def password_required?

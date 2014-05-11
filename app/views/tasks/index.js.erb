@@ -1,0 +1,18 @@
+$("table.tasks").empty()
+<% if @tasks.any? %>
+	$("table.tasks").append(
+		"<%= escape_javascript(render partial: 'search_header', locals: { tasks: @tasks }) %> \
+		 <tbody> \
+			<%= escape_javascript(render partial: 'search_results', locals: { tasks: @tasks }) %> \
+		 </tbody>");
+<% else %>
+	$('table.tasks').append(
+		"<div class='text-center top-paddings-fix'> \
+			<%= t('tasks.no_search_result') %> \
+		 </div>")
+<% end %>
+
+$("tr[data-link]").on("click", function(e) {
+e.stopPropagation();
+window.location = this.getAttribute("data-link");
+});

@@ -33,7 +33,7 @@ uk:
     formats:
       default: ! '%d.%m.%Y'
       long: ! '%-d %B %Y'
-      short: ! '%-d %b'
+      short: ! '%d.%m.%Y'
     month_names:
     -
     - Січень
@@ -226,8 +226,7 @@ uk:
     formats:
       default: '%a, %d %b %Y, %H:%M:%S %z'
       long: '%d %B %Y, %H:%M'
-      short: '%d %b, %H:%M'
-      short_month: '%d.%m.%Y, %H:%M'
+      short: '%d.%m.%Y %H:%M'
     pm: по полудні
   activemodel:
     errors:
@@ -236,6 +235,7 @@ uk:
     models:
       user: 'Користувач'
       group: 'Група'
+      tasks: 'Завдання'
     attributes:
       user:
         login: 'Логін'
@@ -297,8 +297,14 @@ uk:
     save: Зберегти
     new_task: Нове завдання
     edit_task: Редагувати завдання
+    add_new_task: Додати нове завдання
     add_task: Додати задачу
     create_task: Створити завдання
+    from: З
+    to: До
+    extended_search: Розширений пошук
+    I: Я
+    not_I: 'Всі, крім мене'
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -410,7 +416,8 @@ uk:
     notices:
       add_success: Користувач був успішно доданий в список контактів
       remove_success: Користувач був успішно видалений з списку контактів
-  tasks:
+  tasks:    
+    author: Автор
     task_info: Картка завдання
     name: Назва
     description: Опис
@@ -418,3 +425,15 @@ uk:
     status: Статус
     check_list: Задачі
     executors: Виконавці
+    no_search_result: За вашим запитом не знайдено жодного завдання
+    status_chosen_no_result: Такого статусу не знайдено
+    author_chosen_no_result: Не знайдено автора з таким ім’ям
+    executor_chosen_no_result: Не знайдено виконавців з таким ім’ям
+    no_tasks: У вас поки що немає жодного завдання
+    progress: Прогрес
+    creation_date: Дата створення
+    statuses:
+      Active: Активний
+      Frozen: Заморожено
+      Undone: Не виконано
+      Done: Виконано

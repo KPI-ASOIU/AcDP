@@ -19,5 +19,23 @@ $(function(){
     no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
     width: '100%'
   });
+
+  $('#author.chosen-select').chosen({
+    placeholder_text_multiple: " ",
+    no_results_text: "<%= I18n.t('author_chosen_no_result') %>",
+    width: '100%'
+  });
+
+  $('#executor.chosen-select').chosen({
+    placeholder_text_multiple: " ",
+    no_results_text: "<%= I18n.t('executor_chosen_no_result') %>",
+    width: '100%'
+  });
+
+  $('#status.chosen-select').chosen({
+    placeholder_text_multiple: " ",
+    no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
+    width: '100%'
+  });
 });
 

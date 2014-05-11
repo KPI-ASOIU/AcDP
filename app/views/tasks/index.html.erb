@@ -1,0 +1,39 @@
+<% if not @tasks.empty? %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-white">
+        <%= t('util.extended_search') %>
+      </a>
+      <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>
+        <span class='glyphicon glyphicon-search'></span>
+      <% end %>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+          <%= render 'extended_search' %>        
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('activerecord.models.tasks') %>
+    <%= link_to new_task_path, class: "pull-right text-white", title: I18n.t('util.add_new_task') do %>
+      <span class='glyphicon glyphicon-plus'></span>
+    <% end %>
+  </div>
+  <% if not @tasks.empty? %>
+    <table class="tasks table table-hover table-verticle-centered">
+      <%= render partial: 'search_header', locals: { tasks: @tasks } %>
+      <tbody id="tasks">
+        <%= render partial: 'search_results', locals: { tasks: @tasks } %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center text-muted no-conversations"><%= t('tasks.no_tasks') %></p>
+  <% end %>
+</div>
+
+
