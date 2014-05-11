@@ -30,7 +30,7 @@
   <div class="col-md-3">
     <%= t('tasks.status') %>:
     <div>
-      <%= select_tag :status, options_for_select(translate_statuses(Task::STATUS)), { class: "chosen-select", multiple: true, include_blank: true } %>
+      <%= select_tag :status, options_for_select(Task::STATUS.map { |s| [translate_status(s), s] }), { class: "chosen-select", multiple: true, include_blank: true } %>
       <span class="searchclear glyphicon glyphicon-remove"></span>
     </div>
   </div>

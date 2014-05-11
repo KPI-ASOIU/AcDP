@@ -15,7 +15,7 @@
     .form-group
       = f.label t('tasks.status'), :class=>'col-sm-4 control-label'
       .col-sm-8
-        = f.select :status, options_for_select(Task::STATUS, (Task::STATUS).last), {}, { class: "form-control" }
+        = f.select :status, options_for_select(Task::STATUS.map { |t| [translate_status(t), t]}), {}, { class: "form-control" }
     .form-group
       = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
       .col-sm-8

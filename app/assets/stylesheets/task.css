@@ -49,3 +49,11 @@ a.text-white {
 .clear-date.first {
 	right: 53%;
 }
+
+.col-12-percent {
+	width: 12%;
+}
+
+.col-10-percent {
+	width: 10%;
+}

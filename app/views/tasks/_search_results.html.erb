@@ -4,22 +4,22 @@
       <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
           title: author.full_name), user_path(author.id) %>
     </td>
-    <td class="col-sm-2 break-words">
+    <td class="col-12-percent break-words">
       <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
     </td>
     <td>
       <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
     </td>
-    <td class="col-sm-3">
+    <td class="col-sm-2">
       <% for ex in Array(task.executors) do %>
         <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
           title: ex.full_name), user_path(ex.id) %>
       <% end %>
     </td>
-    <td class="col-sm-1 no-margins">
+    <td class="col-10-percent no-margins">
       <%= label_tag translate_status(task.status), nil, class: status_class(task.status) %>
     </td>
-    <td class="col-sm-2">
+    <td class="col-12-percent">
       <%= l(task.end_date, format: :short) %>
     </td>
     <% if task.author == current_user %>

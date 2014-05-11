@@ -2,6 +2,7 @@ $(function() {
   $('#datetimepicker1').datetimepicker({
   	// TODO
   	// 	=> make here default project language
+    useCurrent: false,
     defultDate: '',
   	language: 'uk'
   });
@@ -9,6 +10,7 @@ $(function() {
   $('#datetimepicker2').datetimepicker({
   	// TODO
   	// 	=> make here default project language
+    useCurrent: false,
     defultDate: '',
   	language: 'uk'
   });
@@ -16,6 +18,7 @@ $(function() {
   $('#datetimepicker3').datetimepicker({
   	// TODO
   	// 	=> make here default project language
+    useCurrent: false,
     defultDate: '',
   	language: 'uk'
   });
@@ -23,13 +26,13 @@ $(function() {
   $('#datetimepicker4').datetimepicker({
   	// TODO
   	// 	=> make here default project language
+    useCurrent: false,
     defultDate: '',
   	language: 'uk'
   });
 
   $('FORM').nestedFields();
 });
-
 
 $(document).ready(function() {
   $('#searchBtn').on('click', function() { 

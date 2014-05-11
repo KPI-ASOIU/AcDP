@@ -36,12 +36,12 @@ class TasksController < ApplicationController
                 .with_author(params[:author].split(" "))
                 .with_end_date(local_time_convert(params[:exec_start_date]), local_time_convert(params[:exec_end_date]))
                 .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
-                .order("created_at DESC")
+                .order("created_at DESC").uniq
 
       if !params[:executor].nil?
         # This is made, because params[:executor] can be [1, [2, 3]]
         params[:executor] = params[:executor].join(" ")
-        @tasks = @tasks.with_executors(params[:executor].split(" ")).order("created_at DESC") 
+        @tasks = @tasks.with_executors(params[:executor].split(" ")).order("created_at DESC").uniq
       end
 
       respond_to do |format|
