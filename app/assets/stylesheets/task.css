@@ -14,3 +14,38 @@ a.text-white {
 .no-margins {
 	margin: 0;
 }
+
+.no-paddings {
+	padding: 0;
+}
+
+.no-styling-btn {
+	background: transparent;
+	border: 0;
+	outline: none;
+}
+
+.top-paddings-fix {
+	padding: 5px 0 5px 0;
+}
+
+.searchclear {
+    position: absolute;
+    right: 22px;
+    top: 29px;
+    bottom: 0;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.clear-date {
+	right: 7px;
+	top: 10px;
+	z-index: 10;
+}
+
+.clear-date.first {
+	right: 53%;
+}

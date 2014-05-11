@@ -20,6 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      default: ! '%m/%d/%Y'
+      long: ! '%m/%d/%Y'
+      short: ! '%m/%d/%Y'
+  time:
+    formats:
+      default: ! '%m/%d/%Y %h:%m:%s'
+      long: ! '%m/%d/%Y %h:%m:%s'
+      short: ! '%m/%d/%Y %h:%m:%s'
   activerecord:
     models:
       user: User
@@ -162,3 +172,19 @@ en:
     type: type
     date_created: Created
     date_changed: Changed
+  tasks:    
+    author: Author
+    task_info: Task info
+    name: Title
+    description: Description
+    end_date: Finish date
+    status: Status
+    check_list: Checklist
+    executors: Executors
+    no_search_result: "Sorry, we haven't found any tasks for your query"
+    status_chosen_no_result: "Such status hasn't been found"
+    author_chosen_no_result: "Such author hasn't been found"
+    executor_chosen_no_result: "Such executors haven't been found"
+    no_tasks: You have not received any tasks yet
+    progress: Progress
+    creation_date: Creation date

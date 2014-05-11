@@ -1,20 +1,20 @@
-<div class="panel-group" id="accordion">
+<% if not @tasks.empty? %>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-white">
         <%= t('util.extended_search') %>
       </a>
-      <%= link_to '#', id: "searchBtn", class: "pull-right text-white invisible", title: I18n.t('util.search') do %>
+      <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>
         <span class='glyphicon glyphicon-search'></span>
       <% end %>
     </div>
     <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
-        <%= render 'extended_search' %>
+          <%= render 'extended_search' %>        
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 
 <div class="panel panel-primary">
@@ -25,74 +25,15 @@
     <% end %>
   </div>
   <% if not @tasks.empty? %>
-    <table class="dialogs table table-hover table-verticle-centered">
-      <thead>
-        <tr>
-          <th><%= t('tasks.author') %></th>
-          <th><%= t('tasks.name') %></th>
-          <th><%= t('tasks.description') %></th>
-          <th><%= t('tasks.executors') %></th>
-          <th><%= t('tasks.status') %></th>
-          <% if any_checklists(@tasks) %>
-            <th><%= t('tasks.progress') %> </th>
-          <% end %>
-          <th><%= t('tasks.end_date') %></th>
-          <% if any_authored_tasks(@tasks) %>
-            <th class="c-admin-users-actions-column"></th>
-          <% end %>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @tasks.each do |task| %>
-          <tr>
-            <td class="col-sm-1">
-              <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'c-user-small-avatar',
-                  title: author.full_name), user_path(author.id) %>
-            </td>
-            <td>
-              <%= task.name %>
-            </td>
-            <td>
-              <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
-            </td>
-            <td class="col-sm-3">
-              <% for ex in Array(task.executors) do %>
-                <%= link_to image_tag(ex.avatar.url("small"), class: 'c-user-small-avatar',
-                  title: ex.full_name), user_path(ex.id) %>
-              <% end %>
-            </td>
-            <td class="col-sm-1 no-margins">
-              <%= label_tag task.status, nil, class: status_class(task.status) %>
-            </td>
-            <% if task.checklists.any? %>
-              <td class="col-sm-1">
-                <div class="progress no-margins">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(task) %>%;">
-                  </div>
-                </div>
-              </td>
-            <% end %>
-            <td class="col-sm-2">
-              <%= l(task.end_date, format: :short) %>
-            </td>
-            <% if task.author == current_user %>
-              <td class="text-center col-sm-1">
-                <%= link_to edit_task_path(task), :class => "btn btn-warning btn-xs" do %>
-                    <span class='glyphicon glyphicon-pencil'></span>
-                <% end %>
-                <!-- TODO Ajax delete button??? -->
-                <%= link_to task_path(task), method: :delete, class: "btn btn-danger btn-xs" do %>
-                  <span class='glyphicon glyphicon-remove'></span>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
+    <table class="tasks table table-hover table-verticle-centered">
+      <%= render partial: 'search_header', locals: { tasks: @tasks } %>
+      <tbody id="tasks">
+        <%= render partial: 'search_results', locals: { tasks: @tasks } %>
       </tbody>
     </table>
   <% else %>
     <p class="text-center text-muted no-conversations"><%= t('tasks.no_tasks') %></p>
   <% end %>
 </div>
+
 

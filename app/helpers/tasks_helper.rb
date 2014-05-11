@@ -26,4 +26,34 @@ module TasksHelper
 		tasks.each { |t| return true if t.author == current_user}
 		false
 	end
+
+	def tasks_not_authored_by_me
+		Task.all.map { |t| t.author.id }.uniq.reject { |id| id == current_user.id }.join(" ")
+	end
+
+	def all_authors_of_my_tasks
+		current_user.executing_tasks.map { |t| [t.author.full_name, t.author.id] }
+			.uniq.reject{ |t| t[1] == current_user.id }
+	end
+
+	def tasks_not_executed_by_me
+		Task.all.map { |t| t.executors.pluck(:id) }.flatten.uniq
+        	.reject { |exec| exec == current_user.id }.join(" ")
+	end
+
+	def all_executors
+		Task.all.map { |t| t.executors }.uniq.flatten.reject{ |u| u == current_user }.map { |e| [e.full_name, e.id] }
+	end
+
+	def translate_statuses(statuses)
+		statuses.map { |status| [t('tasks.statuses.' + status), []] } 
+	end
+
+	def translate_status(status)
+		t('tasks.statuses.' + status)
+	end
+
+	def local_time_convert(time)
+	    DateTime.strptime(time, I18n.l('time.formats.short'))
+	end
 end

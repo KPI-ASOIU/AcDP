@@ -12,10 +12,10 @@
       = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
       .col-sm-8
         = f.text_field :end_date, class: "form-control date", id: "datetimepicker1"
-    .form-groups
+    .form-group
       = f.label t('tasks.status'), :class=>'col-sm-4 control-label'
       .col-sm-8
-        = f.select :status, options_for_select(Task::STATUS, (Task::STATUS).last), { include_blank: true }, { class: "chosen-select" }
+        = f.select :status, options_for_select(Task::STATUS, (Task::STATUS).last), {}, { class: "form-control" }
     .form-group
       = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
       .col-sm-8

@@ -1,0 +1,37 @@
+<% tasks.each do |task| %>
+  <tr data-link=<%= task_path(task.id) %>>
+    <td class="col-sm-1">
+      <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: author.full_name), user_path(author.id) %>
+    </td>
+    <td class="col-sm-2 break-words">
+      <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
+    </td>
+    <td>
+      <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
+    </td>
+    <td class="col-sm-3">
+      <% for ex in Array(task.executors) do %>
+        <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: ex.full_name), user_path(ex.id) %>
+      <% end %>
+    </td>
+    <td class="col-sm-1 no-margins">
+      <%= label_tag translate_status(task.status), nil, class: status_class(task.status) %>
+    </td>
+    <td class="col-sm-2">
+      <%= l(task.end_date, format: :short) %>
+    </td>
+    <% if task.author == current_user %>
+      <td class="text-center col-sm-1">
+        <%= link_to edit_task_path(task), :class => "btn btn-warning btn-xs" do %>
+            <span class='glyphicon glyphicon-pencil'></span>
+        <% end %>
+        <!-- TODO Ajax delete button??? -->
+        <%= link_to task_path(task), method: :delete, class: "btn btn-danger btn-xs" do %>
+          <span class='glyphicon glyphicon-remove'></span>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+<% end %>

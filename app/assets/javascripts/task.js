@@ -2,8 +2,7 @@ $(function() {
   $('#datetimepicker1').datetimepicker({
   	// TODO
   	// 	=> make here default project language
-  	useCurrent: false,
-  	defaultDate: new Date(),
+    useCurrent: false,
   	language: 'uk'
   });
 
@@ -11,7 +10,6 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
   	useCurrent: false,
-  	defaultDate: new Date(),
   	language: 'uk'
   });
 
@@ -19,7 +17,6 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
   	useCurrent: false,
-  	defaultDate: new Date(),
   	language: 'uk'
   });
 
@@ -27,18 +24,25 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
   	useCurrent: false,
-  	defaultDate: new Date(),
   	language: 'uk'
   });
 
   $('FORM').nestedFields();
-
-  $('[href=#collapseOne]').on("click", function(){
-  	$("#searchBtn").toggleClass('invisible')
-  });
 });
 
 
 $(document).ready(function() {
-  $('#searchBtn').on('click', function() { $('#extendSearch').submit(); });
+  $('#searchBtn').on('click', function() { 
+    $('#extendSearch').submit(); 
+  });
+  $('[href=#collapseOne]').on("click", function(){
+    $("#searchBtn").toggleClass('invisible')
+  });
+});
+
+$(".searchclear").click(function(){
+    if((inp = $(this).siblings("input.form-control")).length != 0)
+      inp.val('');
+    else
+      $(this).siblings(".chosen-container").find(".chosen-choices").children(":first").remove()
 });

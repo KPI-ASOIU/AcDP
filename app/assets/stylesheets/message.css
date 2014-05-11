@@ -38,11 +38,14 @@
 }
 
 .dialogs > thead > tr > th,
-.dialogs > tbody > tr > td {
+.dialogs > tbody > tr > td,
+.tasks > thead > tr > th,
+.tasks > tbody > tr > td {
   cursor: default;
 }
 
-.dialogs > tbody > tr:hover > td{
+.dialogs > tbody > tr:hover > td,
+.tasks > tbody > tr:hover > td {
   cursor: pointer;
 }
 

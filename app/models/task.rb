@@ -21,5 +21,7 @@ class Task < ActiveRecord::Base
   scope :with_executors, ->(executors) { joins(:executors).where("executing_tasks_executors.executor_id" => executors) }
   scope :with_end_date, ->(date1, date2) { where(end_date: date1..date2) }
   scope :created_at, ->(date1, date2) { where(created_at: date1..date2) }
+
+  validates_presence_of :name
 end
 
