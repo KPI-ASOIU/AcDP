@@ -10,7 +10,7 @@
     <td>
       <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
     </td>
-    <td class="col-sm-2">
+    <td class="col-sm-3">
       <% for ex in Array(task.executors) do %>
         <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
           title: ex.full_name), user_path(ex.id) %>

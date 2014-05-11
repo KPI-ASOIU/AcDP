@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20140505160508) do
   end
 
   create_table "contacts", force: true do |t|
-    t.integer "user_id"
-    t.integer "contact_user_id"
+    t.integer  "user_id"
+    t.integer  "contact_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "conversations", force: true do |t|
@@ -131,11 +133,6 @@ ActiveRecord::Schema.define(version: 20140505160508) do
     t.integer  "document_id",             null: false
     t.string   "access_type",  limit: 45, null: false
     t.datetime "date_created",            null: false
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|
