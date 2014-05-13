@@ -17,10 +17,14 @@
       <% end %>
     </td>
     <td class="col-10-percent no-margins">
-      <%= label_tag translate_status(task.status), nil, class: status_class(task.status) %>
+      <%= label_tag translate_status(task.status), nil, class: status_class(task.status) << ' no-margins' %>
     </td>
     <td class="col-12-percent">
-      <%= l(task.end_date, format: :short) %>
+      <% if task.end_date.present? %>
+        <%= l(task.end_date, format: :short) %>
+      <% else %>
+        <%= t('tasks.no_end_date_given') %>
+      <% end %>
     </td>
     <% if task.author == current_user %>
       <td class="text-center col-sm-1">
