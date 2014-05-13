@@ -422,6 +422,7 @@ uk:
     name: Назва
     description: Опис
     end_date: Кінцева дата
+    no_end_date_given: Без терміну
     status: Статус
     check_list: Задачі
     executors: Виконавці

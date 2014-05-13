@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  authorize_resource
+  
   def new
     @task = current_user.leading_tasks.new
   end
@@ -49,10 +51,9 @@ class TasksController < ApplicationController
         format.js
       end
     else
-      @tasks = Task.joins(:executors)
+      @tasks = Task.joins('LEFT JOIN executing_tasks_executors ON tasks.id = executing_tasks_executors.task_id')
         .where('executing_tasks_executors.executor_id = ? OR tasks.user_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
-
     end
   end
 
