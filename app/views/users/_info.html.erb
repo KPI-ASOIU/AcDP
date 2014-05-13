@@ -7,7 +7,7 @@
       <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
     </div>
   </div>
-  <div class="pull-left break-words">
+  <div class="pull-left break-words c-user-info-block">
     <% if @user.full_name.present? %>
       <h3 class="text-center"><%=  @user.full_name %></h3>
     <% end %>
