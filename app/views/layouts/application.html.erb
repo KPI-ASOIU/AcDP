@@ -15,7 +15,7 @@
     </li>
     <li><%= link_to t('documents.documents'), documents_path %></li>
     <li><%= link_to t('contacts.nav_link'), contacts_path %></li>
-    <% if can? :crud, @users %>
+    <% if can? :crud, Task %>
       <li><%= link_to t('activerecord.models.tasks'), tasks_path %></li>
     <% end %>
   <% end %>
