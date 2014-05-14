@@ -1,4 +1,5 @@
 AcDP::Application.routes.draw do
+  opinio_model
   get 'documents', to: 'documents#index'
   post 'documents', to: 'documents#new'
   delete 'documents', to: 'documents#delete'
@@ -31,5 +32,7 @@ AcDP::Application.routes.draw do
 
   resources :contacts, only: [:index, :create, :destroy]
 
-  resources :tasks
+  resources :tasks do
+    opinio
+  end
 end

@@ -38,8 +38,13 @@ $(document).ready(function() {
   $('#searchBtn').on('click', function() { 
     $('#extendSearch').submit(); 
   });
+  
   $('[href=#collapseOne]').on("click", function(){
     $("#searchBtn").toggleClass('invisible')
+  });
+
+  $('#commentsSubmit').click(function(){
+    $('#tasksComments').submit();
   });
 });
 
@@ -49,3 +54,5 @@ $(".searchclear").click(function(){
     else if((chosen = $(this).siblings(".chosen-container").find(".chosen-choices")).children().length > 1)
       chosen.children(":first").remove()
 });
+
+$('.popover').popover('show');

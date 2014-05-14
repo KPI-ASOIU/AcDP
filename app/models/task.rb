@@ -23,5 +23,7 @@ class Task < ActiveRecord::Base
   scope :created_at, ->(date1, date2) { where(created_at: date1..date2) }
 
   validates_presence_of :name
+
+  opinio_subjectum
 end
 

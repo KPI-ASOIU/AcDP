@@ -133,6 +133,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
+    opinio (0.3.0)
     orm_adapter (0.5.0)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
@@ -141,6 +142,8 @@ GEM
       mime-types
     pg (0.17.1)
     polyglot (0.3.4)
+    protected_attributes (1.0.7)
+      activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -247,8 +250,10 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap (~> 3.0.1)
   momentjs-rails (~> 2.5.0)
+  opinio
   paperclip
   pg
+  protected_attributes
   rails (= 4.0.2)
   rails-timeago (~> 2.0)
   rspec-rails (~> 2.14)
