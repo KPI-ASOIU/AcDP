@@ -70,6 +70,7 @@ gem "haml-rails"
 gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 gem 'awesome_nested_fields'
+<<<<<<< HEAD
 gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio'
@@ -80,3 +81,6 @@ gem 'websocket-rails'
 gem 'bootstrap-wysihtml5-rails', :git => 'git://github.com/KPI-ASOIU/bootstrap-wysihtml5-rails.git'
 gem 'html_truncator', '~> 0.4.0'
 gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
+=======
+gem 'groupdate'
+>>>>>>> Create calendar

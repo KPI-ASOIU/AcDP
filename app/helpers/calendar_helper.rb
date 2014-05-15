@@ -5,10 +5,14 @@ module CalendarHelper
 
   class Calendar < Struct.new(:view, :date, :callback)
 <<<<<<< HEAD
+<<<<<<< HEAD
     HEADER = [I18n.t('date.day_names.Monday'), I18n.t('date.day_names.Tuesday'), I18n.t('date.day_names.Wednesday'), I18n.t('date.day_names.Thursday'), I18n.t('date.day_names.Friday'), I18n.t('date.day_names.Saturday'), I18n.t('date.day_names.Sunday')]
 =======
     HEADER = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
 >>>>>>> Create calendar template
+=======
+    HEADER = [I18n.t('date.day_names.Monday'), I18n.t('date.day_names.Tuesday'), I18n.t('date.day_names.Wednesday'), I18n.t('date.day_names.Thursday'), I18n.t('date.day_names.Friday'), I18n.t('date.day_names.Saturday'), I18n.t('date.day_names.Sunday')]
+>>>>>>> Create calendar
     START_DAY = :monday
 
     delegate :content_tag, to: :view
@@ -42,9 +46,13 @@ module CalendarHelper
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
 <<<<<<< HEAD
+<<<<<<< HEAD
       classes << "past" if day < Date.today
 =======
 >>>>>>> Create calendar template
+=======
+      classes << "past" if day < Date.today
+>>>>>>> Create calendar
       classes.empty? ? nil : classes.join(" ")
     end
 

@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="calendar_container">
+=======
+<div class="container1">
+>>>>>>> Create calendar
 	<h2 id="month">
 		<%= link_to date: @date.prev_month do%>
 			<div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
@@ -26,8 +30,12 @@
 						if (!tasks[date_id]) tasks[date_id] = [];
 						tasks[date_id].push({
 							name:'<%= task.name %>',
+<<<<<<< HEAD
 							time:'<%= task.end_date.strftime("%H:%M") %>',
 							link:'<%= task_path(task) %>',
+=======
+							time:'<%= task.end_date.strftime("%H:%M:%S") %>',
+>>>>>>> Create calendar
 						});
 					</script>
 				<% end %>
@@ -38,6 +46,7 @@
 <div class="task_list">
 	<div class="header"> <%= t('task_list') %></div>
 	<div class="list"></div>
+<<<<<<< HEAD
 </div>
 =======
 <h2 id="month">
@@ -49,3 +58,6 @@
 	<%= date.day %>
 <% end %>
 >>>>>>> Create calendar template
+=======
+</div>
+>>>>>>> Create calendar
