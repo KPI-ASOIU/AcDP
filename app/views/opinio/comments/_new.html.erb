@@ -1,4 +1,4 @@
-<div class='comments-form'>
+<div>
   <% if current_user %>
     <%= form_for Comment.new, :remote => true do |f| %>
       <p>
@@ -6,7 +6,7 @@
       </p>
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
-      <%= f.submit t('comments.send_comment'), class: 'btn btn-default form-control' %>
+      <%= f.submit t('comments.send_comment'), class: 'btn btn-primary form-control' %>
     <% end %>
   <% else %>
     <p>

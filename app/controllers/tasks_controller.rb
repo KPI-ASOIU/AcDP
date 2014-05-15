@@ -22,7 +22,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes(task_params)
-    render action: 'show', id: @task.id
+    redirect_to task_path(@task.id)
   end
 
   def index

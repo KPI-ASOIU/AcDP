@@ -26,3 +26,5 @@
 //= require chosen-jquery
 //= require jquery.nested-fields
 //= require_tree .
+//= require jquery.jscrollpane
+//= require jquery.mousewheel

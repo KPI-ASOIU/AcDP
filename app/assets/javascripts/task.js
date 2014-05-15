@@ -46,6 +46,8 @@ $(document).ready(function() {
   $('#commentsSubmit').click(function(){
     $('#tasksComments').submit();
   });
+
+  $('.comments-form').jScrollPane({autoReinitialise: true});
 });
 
 $(".searchclear").click(function(){

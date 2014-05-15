@@ -25,6 +25,10 @@ a.text-white {
 	outline: none;
 }
 
+.no-outline-btn {
+	outline: none;
+}
+
 .top-paddings-fix {
 	padding: 5px 0 5px 0;
 }
@@ -62,8 +66,13 @@ a.text-white {
 /* Comments */
 #comments .popover {
 	position: relative;
+	width: 350px;
 	display: block;
 	margin: 15px;
+}
+
+#comments .popover time {
+	margin-top: -9px;
 }
 
 .clear-comment {
@@ -82,8 +91,21 @@ a.text-white {
 }
 
 .comments-form {
+	height: 450px;
 	margin: 0 auto;
-	width: 52%;
 	overflow: auto;
-	height: 150px;
+	outline: 0;
+	width: 100%;
+}
+
+.task-info-area {
+	width: 49%;
+}
+
+.comments-area {
+	width: 49%;
+}
+
+.comments-title {
+	width: 89%;
 }

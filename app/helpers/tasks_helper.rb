@@ -52,4 +52,8 @@ module TasksHelper
 	def translate_status(status)
 		t('tasks.statuses.' + status)
 	end
+
+	def comment_class_name(comment)
+		(comment.owner == current_user) ? 'popover right' : 'popover left pull-right'
+	end
 end
