@@ -1,8 +1,39 @@
-<h2 id="month">
-	<%= link_to "<", date: @date.prev_month %> 
-	<%= @date.strftime("%B %Y") %>
-	<%= link_to ">", date: @date.next_month %>
-</h2>
-<%= calendar @date do |date| %>
-	<%= date.day %>
-<% end %>
+<div class="container1">
+	<h2 id="month">
+		<%= link_to date: @date.prev_month do%>
+			<div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
+		<% end %>
+		<div class="label label-primary"><%= l(@date, format: "%B %Y")%></div>
+		<%= link_to date: @date.next_month do%>
+			<div class="glyphicon glyphicon-circle-arrow-right" style="float: right"></div>
+		<% end %>
+	</h2>
+	<script type="text/javascript">
+		var month = <%= @date.month %> ;
+		var tasks = {};
+	</script>
+	<%= calendar @date do |date| %>
+		<%= date.day %>
+		<% if @tasks_by_date[date] %>
+			<ul>
+				<% @tasks_by_date[date].each do |task| %>
+					<li><div class="glyphicon glyphicon-tasks" style=
+						<%= task.user_id == current_user.id ? "color:green;" : "color:red;" %>
+					></div></li>
+					<script type="text/javascript">
+						var date_id = <%= date.day.to_s+date.month.to_s %>;
+						if (!tasks[date_id]) tasks[date_id] = [];
+						tasks[date_id].push({
+							name:'<%= task.name %>',
+							time:'<%= task.end_date.strftime("%H:%M:%S") %>',
+						});
+					</script>
+				<% end %>
+			</ul>
+		<% end %>
+	<% end %>
+</div>
+<div class="task_list">
+	<div class="header"> <%= t('task_list') %></div>
+	<div class="list"></div>
+</div>
