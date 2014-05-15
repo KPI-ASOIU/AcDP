@@ -23,13 +23,13 @@ uk:
     - лист.
     - груд.
     day_names:
-    - неділя
-    - понеділок
-    - вівторок
-    - середа
-    - четвер
-    - п'ятниця
-    - субота
+      Sunday: неділя
+      Monday: понеділок
+      Tuesday: вівторок
+      Wednesday: середа
+      Thursday: четвер
+      Friday: п'ятниця
+      Saturday: субота
     formats:
       default: ! '%d.%m.%Y'
       long: ! '%-d %B %Y'
@@ -365,6 +365,8 @@ uk:
     no_conversations: У вас поки що немає жодного діалогу
     new_conversation: Розпочати діалог
   admin_panel: Панель адміністратора
+  calendar: Календар
+  task_list: Список задач
   client_part: Користувацька частина
   documents:
     documents: Документи

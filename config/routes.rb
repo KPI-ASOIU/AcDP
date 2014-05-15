@@ -1,6 +1,8 @@
 AcDP::Application.routes.draw do
+  get "calendar/index"
   get 'documents', to: 'documents#index'
   post 'documents', to: 'documents#new'
+  get 'calendar', to: 'calendar'
   delete 'documents', to: 'documents#delete'
 
   root "users#show_current"

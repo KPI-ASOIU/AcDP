@@ -1,6 +1,10 @@
 <div class="panel-footer text-right">
+	<%= link_to calendar_path, :class => "btn btn-info", :style => "float: left;" do %>  
+		<span class='glyphicon glyphicon-calendar'></span>
+		<%= t('Calendar') %>
+	<% end %>
 	<%= link_to current_user_edit_users_path, :class => "btn btn-warning" do %>
-	    <span class='glyphicon glyphicon-pencil'></span>
-	    <%= t('util.edit') %>
+		<span class='glyphicon glyphicon-pencil'></span>
+		<%= t('util.edit') %>
 	<% end %>
 </div>
