@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $.fn.editable.defaults.mode = 'inline';
+
   $(document).on("click", "#btn_remove_user", function () {
     $("#user_remove_path").attr('href', $(this).data('path'));
   });
@@ -24,13 +26,59 @@ $(document).ready(function(){
       $("#documents_new_doc_title").val(fileName.split('\\').pop());
   });
 
-  $('.docs-title').mouseover(function(event) {
+  $('#documents-table').on('mouseover' ,'.docs-title', function(event) {
       $(this).find('.docs-navbar-tool').show();
-  }).mouseout(function(event) {
+  }).on('mouseout', '.docs-title', function(event) {
+      $(this).find('.docs-navbar-tool').hide();
+  }).on('click', '.docs-navbar-tool', function(event){
+      event.stopPropagation();
+  }).on('click', '#btn_remove_document', function(event) {
+      $("#document_remove_path").attr('href', $(this).data('path'));
+  });
+
+  $('#documents-users-table').on('mouseover' ,'.docs-title', function(event) {
+      $(this).find('.docs-navbar-tool').show();
+  }).on('mouseout', '.docs-title', function(event) {
       $(this).find('.docs-navbar-tool').hide();
   });
 
-  $('.docs-navbar-tool').click(function(event){
-      event.stopPropagation();
+  $(document).on('click', '.add-user-access-view', function() {
+      $('#docs-add-access').val($(this).data('value'));
+      $('#docs-add-access-type').val(0);
+  });
+
+  $(document).on('click', '.add-user-access-edit', function() {
+      $('#docs-add-access').val($(this).data('value'));
+      $('#docs-add-access-type').val(1);
+  });
+
+  $('.doc-title').editable({
+    success: function(response, newValue) {
+        if(response.status == 'error') {
+            return response.msg;
+        } else {
+            $('#doc-title-' + response.doc_id).html(newValue);
+        }
+    }
+  });
+
+  $('.doc-tags').editable({
+    inputclass: 'input-large',
+    success: function(response, newValue) {
+        if(response.status == 'error') return response.msg;
+    },
+    select2: {
+      tags: [],
+      width: '1000px',
+      tokenSeparators: [",", " "]
+      }
+    });
+
+  $('.doc-description').editable({
+      rows: 3,
+      inputclass: 'doc-tags-desc-input',
+      success: function(response, newValue) {
+          if(response.status == 'error') return response.msg;
+      }
   });
 });

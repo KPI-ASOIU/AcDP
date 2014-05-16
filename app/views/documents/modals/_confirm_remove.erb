@@ -1,0 +1,19 @@
+<div id="modal_confirm_remove_document" class="modal fade bs-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><%= t('documents.modal_confirm_remove_title') %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%= t('documents.modal_confirm_remove_message') %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
+        <%= link_to '', :method => :delete, :class => 'btn btn-danger', :id => 'document_remove_path' do %>
+            <%= t('documents.delete') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

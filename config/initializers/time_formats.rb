@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:docs_time] = lambda { |time| time.strftime("%m.%d.%y %H:%M") }

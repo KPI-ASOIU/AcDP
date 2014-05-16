@@ -1,0 +1,43 @@
+<h1><%= t('documents.documents') %></h1>
+
+<%= render 'search' %>
+
+<div class="text-center">
+<%= link_to '/documents', :class => 'btn btn-info' do %>
+      <span class='glyphicon glyphicon-user'></span>
+      <%= t('documents.owned_docs') %>
+  <% end %>
+</div>
+<br>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('documents.found_users') %>
+    <% if !@current_folder.nil? %>
+        <%= link_to @current_folder.parent_directory.nil? ? documents_path : document_path(@current_folder.parent_directory), :class => 'btn-sm btn-success docs-up-folder-btn' do %>
+            <span class='glyphicon glyphicon-parents'></span>
+            <%= t('documents.up_folder') %>
+        <% end %>
+    <% end %>
+  </div>
+  <table id="documents-users-table" class="table table-striped table-verticle-centered" style="table-layout:fixed;">
+    <thead>
+    <tr>
+      <th style="width: 3%"></th>
+      <th style="width: 15%"><%= t('activerecord.attributes.user.login') %></th>
+      <th style="width: 25%"><%= t('activerecord.attributes.user.full_name') %></th>
+      <th style="width: 30%"><%= t('activerecord.attributes.user.email') %></th>
+      <th style="width: 16%"><%= t('activerecord.attributes.user.role') %></th>
+      <th style="width: 11%"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+      <%= render partial: 'user', collection: @users %>
+    </tbody>
+  </table>
+</div>
+
+<div class="panel-body text-center">
+  <%= paginate @users %>
+</div>

@@ -6,7 +6,7 @@
   <td><%= folder.date_created.strftime "%m.%d.%y %H:%M" %></td>
   <td><%= folder.date_updated.strftime "%m.%d.%y %H:%M" %></td>
   <td>
-    <%= link_to '', :class => 'btn btn-success  docs-navbar-tool' do %>
+    <%= link_to document_path(folder), :class => 'btn btn-success  docs-navbar-tool' do %>
         <span class='glyphicon glyphicon-eye-open'></span>
         <%= t('documents.open') %>
     <% end %>
@@ -14,8 +14,14 @@
 </tr>
 <tr>
   <td colspan="7" class="hiddenRow">
-    <div class="accordian-body collapse" id="doc-info<%= folder.id %>">
-      Тут буде купа всіляких описів
+    <div class="accordian-body collapse doc-info" id="doc-info<%= folder.id %>">
+      <div class="docs-info-collapse">
+          <%= link_to '', :id => 'btn_remove_document', :data => { :path => folder.parent_directory.nil? ? document_delete_root_path(folder) :
+              document_delete_path(id: folder.parent_directory, delete_id: folder.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => "btn btn-danger" do %>
+              <span class='glyphicon glyphicon-remove'></span>
+              <%= t('documents.delete') %>
+          <% end %>
+      </div>
     </div>
   </td>
 </tr>
