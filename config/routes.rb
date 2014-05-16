@@ -7,6 +7,7 @@ AcDP::Application.routes.draw do
   get 'documents/:id', to: 'documents#index', as: 'document'
   post 'documents', to: 'documents#new'
 <<<<<<< HEAD
+<<<<<<< HEAD
   post 'documents/update', to: 'documents#update'
   post 'documents/update_access', to: 'documents#update_access'
   post 'documents/:id', to: 'documents#new', as: 'document_new'
@@ -16,6 +17,17 @@ AcDP::Application.routes.draw do
   get 'calendar', to: 'calendar'
   delete 'documents', to: 'documents#delete'
 >>>>>>> Create calendar template
+=======
+  get 'calendar', to: 'calendar'
+  delete 'documents', to: 'documents#delete'
+=======
+  post 'documents/update', to: 'documents#update'
+  post 'documents/update_access', to: 'documents#update_access'
+  post 'documents/:id', to: 'documents#new', as: 'document_new'
+  delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
+  delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
+>>>>>>> Added basic documents functionality
+>>>>>>> Added basic documents functionality
 
   root "users#show_current"
 
