@@ -21,6 +21,8 @@ class DocumentsController < ApplicationController
       @docs = Document.includes('user_has_accesses').where(parent_directory: nil, owner_id: params[:user_id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
     else
       @docs = Document.includes('user_has_accesses').where(parent_directory: params[:id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
+      @can_edit_current_folder = UserHasAccess.where(user_id: current_user.id, document_id: params[:id]).first.access_type
+      @current_folder = Document.where(id: params[:id]).first
     end
 
     if !@docs.nil?

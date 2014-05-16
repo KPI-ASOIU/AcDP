@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title"><%= t('documents.select_users') %></h4>
       </div>
-      <%= form_tag('documents/update_access', :method => :post, :remote => true, :html => { :class => "form-vertical", role: "form" }) do %>
+      <%= form_tag('/documents/update_access', :method => :post, :remote => true, :html => { :class => "form-vertical", role: "form" }) do %>
           <div class="modal-body">
             <div id="role" class="form-group">
               <%= label_tag :new_doc_title, t('documents.select_users'), :class=>'col-sm-0 control-label' %>
