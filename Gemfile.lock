@@ -37,6 +37,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
+    bootstrap-x-editable-rails (1.5.1.1)
+      railties (>= 3.0)
     bootstrap3-datetimepicker-rails (3.0.0)
       momentjs-rails (~> 2.5.0)
     builder (3.1.4)
@@ -231,6 +233,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.0)
+  bootstrap-x-editable-rails
   bootstrap3-datetimepicker-rails (~> 3.0.0)
   cancan
   capistrano

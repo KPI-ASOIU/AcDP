@@ -45,6 +45,8 @@ en:
         degree: 'Degree'
         speciality: 'Speciality'
         speciality_code: 'Speciality code'
+      doctype:
+        title: Type
     errors:
       template:
         header:
@@ -162,3 +164,9 @@ en:
     type: type
     date_created: Created
     date_changed: Changed
+  doctypes:
+    manage: Document types
+    list: Listing document types
+    new: Add type
+    placeholder: Type
+    removing: Type removing

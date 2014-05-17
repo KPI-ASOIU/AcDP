@@ -257,6 +257,8 @@ uk:
         degree: 'Ступінь'
         speciality: 'Спеціальність'
         speciality_code: 'Шифр спецальності'
+      doctype:
+        title: Тип
     errors:
       template:
         header:
@@ -418,3 +420,9 @@ uk:
     status: Статус
     check_list: Задачі
     executors: Виконавці
+  doctypes:
+    manage: Типи документів
+    list: Перелік типів документів
+    new: Додати тип
+    placeholder: Тип
+    removing: Видалення типу

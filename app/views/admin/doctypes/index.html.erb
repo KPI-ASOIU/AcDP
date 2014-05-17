@@ -1,0 +1,55 @@
+<div id="modal_confirm_remove_doctype" class="modal fade bs-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><%= t('doctypes.removing') %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%= t('users.removing_message') %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
+        <%= link_to t('util.destroy'), '', :method => :delete, :id   => 'doctype_remove_path', :class => "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-footer text-center">
+		<%= form_for :document_type do |f| %>
+      <%= f.text_field :title, placeholder: t('doctypes.placeholder') %>
+      <%= f.submit class: "btn btn-success",  value: t('doctypes.new') %>
+      <!--where to put it?  <span class='glyphicon glyphicon-plus'></span>-->
+    <% end %>
+  </div>
+  <div class="panel-heading">
+    <%= t('doctypes.list') %>
+  </div>
+    <table class="table table-striped table-verticle-centered">
+      <thead>
+        <tr>
+          <th><%= t('activerecord.attributes.doctypes.title') %></th>
+          <th class="c-admin-users-actions-column"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @doctypes.each do |doctype| %>
+          <tr>
+            <td id="doctype_id" class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> data-title="Enter title" ><%= doctype.title%></td>
+            
+            <td>
+            		<%= link_to '', :id => 'btn_remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => '#modal_confirm_remove_doctype' }, :class => "btn btn-danger btn-xs" do %>
+                  <span class='glyphicon glyphicon-remove'></span>
+              	<% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="panel-body text-center">
+      <%= paginate @doctypes %>
+    </div>
+</div>
