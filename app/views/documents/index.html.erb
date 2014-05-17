@@ -8,6 +8,7 @@
 <%= render 'search' %>
 <%= render 'folder_info' if !@current_folder.nil? %>
 
+<<<<<<< HEAD
 <div class="text-center">
 <% if !@shared || @can_edit_current_folder %>
   <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_file' }, :class => 'btn btn-success' do %>
@@ -32,6 +33,26 @@
 <% end %>
 </div>
 
+=======
+<% if !@shared %>
+    <div class="text-center">
+      <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_file' }, :class => 'btn btn-success' do %>
+          <span class='glyphicon glyphicon-cloud-upload'></span>
+          <%= t('documents.add_file') %>
+      <% end %>
+
+      <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_folder' }, :class => 'btn btn-success' do %>
+          <span class='glyphicon glyphicon-cloud-upload'></span>
+          <%= t('documents.add_folder') %>
+      <% end %>
+
+      <%= link_to '/documents/shared', :class => 'btn btn-info' do %>
+          <span class='glyphicon glyphicon-retweet'></span>
+          <%= t('documents.shared_docs') %>
+      <% end %>
+    </div>
+<% end %>
+>>>>>>> Added basic documents functionality
 <br>
 
 <div class="panel panel-primary">

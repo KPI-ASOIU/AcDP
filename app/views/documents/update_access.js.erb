@@ -1,3 +1,11 @@
 $('#modal_search_user').modal('hide');
 
+<<<<<<< HEAD
 $('#docs-<%= @access_type == '0' ? 'view' : 'edit' %>-access-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'access_list', :locals => { doc: @doc, access_type: @access_type }) %>');
+=======
+<% if @access_type == 1 %>
+$('#docs-edit-access-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'access_list', :locals => { doc: @doc, access_type: @access_type }) %>');
+<% else %>
+$('#docs-view-access-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'access_list', :locals => { doc: @doc, access_type: @access_type }) %>');
+<% end %>
+>>>>>>> Added basic documents functionality

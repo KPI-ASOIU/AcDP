@@ -6,7 +6,11 @@
   <td><%= folder.date_created.strftime "%m.%d.%y %H:%M" %></td>
   <td><%= folder.date_updated.strftime "%m.%d.%y %H:%M" %></td>
   <td>
+<<<<<<< HEAD
     <%= link_to @shared ? document_shared_path(folder.owner_id, folder.id) : document_path(folder), :class => 'btn btn-success  docs-navbar-tool' do %>
+=======
+    <%= link_to document_path(folder), :class => 'btn btn-success  docs-navbar-tool' do %>
+>>>>>>> Added basic documents functionality
         <span class='glyphicon glyphicon-eye-open'></span>
         <%= t('documents.open') %>
     <% end %>
@@ -16,6 +20,7 @@
   <td colspan="7" class="hiddenRow">
     <div class="accordian-body collapse doc-info" id="doc-info<%= folder.id %>">
       <div class="docs-info-collapse">
+<<<<<<< HEAD
 
         <b><%= t('documents.title') %>: </b><a href="#" data-type="text" data-url="/documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= folder.id %>" data-title="Enter title" class="doc-title"><%= folder.title %></a><br>
         <b><%= t('documents.owner') %>: </b><%= link_to folder.owner.login, user_path(folder.owner_id), :target => :blank %><br>
@@ -63,6 +68,13 @@
         <% end %>
       </div>
         <% end %>
+=======
+          <%= link_to '', :id => 'btn_remove_document', :data => { :path => folder.parent_directory.nil? ? document_delete_root_path(folder) :
+              document_delete_path(id: folder.parent_directory, delete_id: folder.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => "btn btn-danger" do %>
+              <span class='glyphicon glyphicon-remove'></span>
+              <%= t('documents.delete') %>
+          <% end %>
+>>>>>>> Added basic documents functionality
       </div>
     </div>
   </td>
