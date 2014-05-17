@@ -1,4 +1,5 @@
 AcDP::Application.routes.draw do
+  opinio_model
   get 'documents', to: 'documents#index'
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
@@ -39,5 +40,7 @@ AcDP::Application.routes.draw do
 
   resources :contacts, only: [:index, :create, :destroy]
 
-  resources :tasks
+  resources :tasks do
+    opinio
+  end
 end

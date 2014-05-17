@@ -467,3 +467,6 @@ uk:
       Frozen: Заморожено
       Undone: Не виконано
       Done: Виконано
+  comments:
+    new_comment: Новий коментар
+    send_comment: Коментувати

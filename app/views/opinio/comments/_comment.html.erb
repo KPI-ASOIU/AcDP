@@ -1,0 +1,18 @@
+<% reply = defined?(reply) ? reply : false %>
+<div id="comment_<%= comment.id %>" class="popover right">
+  <div class="arrow"></div>
+  <h3 class="popover-title"><b><%= comment.owner.full_name %></b></h3>
+  <div class="popover-content">
+    <p><%= comment.body %></p>
+  </div>
+  <%= link_to comment_path(comment), :method => :delete, :remote => true do %>
+    <span class="searchclear clear-comment glyphicon glyphicon-remove"></span>
+  <% end %>
+  <%# this enables only 1 level of replies %>
+  <% if Opinio.accept_replies && !reply %>
+    <span><%= link_to t("opinio.reply", :default => "Reply"), reply_comment_path(comment), :remote => true %></span>
+    <ul id="comment_<%= comment.id %>_replies" class="replies">
+      <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
+    </ul>
+  <% end %>
+</div>
