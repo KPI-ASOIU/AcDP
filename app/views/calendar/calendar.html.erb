@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <div class="calendar_container">
-=======
-<div class="container1">
->>>>>>> dfa7a7cb27d974761af39922a6d67278dadaffcb
 	<h2 id="month">
 		<%= link_to date: @date.prev_month do%>
 			<div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
@@ -29,12 +25,8 @@
 						if (!tasks[date_id]) tasks[date_id] = [];
 						tasks[date_id].push({
 							name:'<%= task.name %>',
-<<<<<<< HEAD
 							time:'<%= task.end_date.strftime("%H:%M") %>',
-							link:'<%= task_path(task) %>',
-=======
-							time:'<%= task.end_date.strftime("%H:%M:%S") %>',
->>>>>>> dfa7a7cb27d974761af39922a6d67278dadaffcb
+							link:'<%= task_path(task) %>',b
 						});
 					</script>
 				<% end %>
