@@ -33,4 +33,6 @@ AcDP::Application.routes.draw do
   resources :contacts, only: [:index, :create, :destroy]
 
   resources :tasks
+
+  resources :events
 end

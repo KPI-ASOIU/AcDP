@@ -15,6 +15,10 @@ a.text-white {
 	margin: 0;
 }
 
+.margin-btm10 {
+	margin-bottom: 10px
+}
+
 .no-paddings {
 	padding: 0;
 }
@@ -27,6 +31,10 @@ a.text-white {
 
 .no-outline-btn {
 	outline: none;
+}
+
+.no-resize {
+	resize: none;
 }
 
 .top-paddings-fix {
@@ -112,4 +120,8 @@ a.text-white {
 
 .comments-title {
 	width: 89%;
+}
+
+.fix-in-border {
+	margin: 1% 0 0 3%;
 }

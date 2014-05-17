@@ -1,0 +1,49 @@
+<% events.each do |event| %>
+  <tr data-link=<%= event_path(event.id) %>>
+    <td class="col-sm-1">
+      <%= link_to image_tag((author = event.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: author.full_name), user_path(author.id) %>
+    </td>
+    <td class="col-12-percent break-words">
+      <%= (name = event.name).length > 40 ? name[0..40] << "..." : name %>
+    </td>
+    <td class="col-sm-2">
+      <% if event.date.present? %>
+        <%= l(event.date, format: :short) %>
+      <% else %>
+        <%= t('util.undefined') %>
+      <% end %>
+    </td>
+    <td class="col-sm-2">
+      <% if event.place.present? %>
+        <%= event.place %>
+      <% else %>
+        <%= t('util.undefined') %>
+      <% end %>
+    </td>
+    <td class="col-12-percent">
+      <% if event.plan.present? %>
+        <%= event.plan %>
+      <% else %>
+        <%= t('util.undefined') %>
+      <% end %>
+    </td>
+    <td class="col-sm-3">
+      <% for guest in Array(event.guests) do %>
+        <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: guest.full_name), user_path(guest.id) %>
+      <% end %>
+    </td>
+    <% if event.author == current_user %>
+      <td class="text-center col-sm-1">
+        <%= link_to edit_event_path(event), :class => "btn btn-warning btn-xs" do %>
+            <span class='glyphicon glyphicon-pencil'></span>
+        <% end %>
+        <!-- TODO Ajax delete button??? -->
+        <%= button_to event_path(event), method: :delete, class: "btn btn-danger btn-xs no-outline-btn" do %>
+          <span class='glyphicon glyphicon-remove'></span>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514172823) do
+ActiveRecord::Schema.define(version: 20140517111741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,22 @@ ActiveRecord::Schema.define(version: 20140514172823) do
     t.string   "tags"
     t.integer  "for_roles",                   default: 0, null: false
     t.integer  "original_doc_id"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "date"
+    t.string   "place"
+    t.text     "plan"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "author_id"
+  end
+
+  create_table "events_has_guests", force: true do |t|
+    t.integer "event_id"
+    t.integer "guest_id"
   end
 
   create_table "executing_tasks_executors", force: true do |t|

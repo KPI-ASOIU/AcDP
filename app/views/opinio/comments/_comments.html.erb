@@ -6,7 +6,7 @@
 	  <% unless comments.empty? %>
 	    <%= render :partial => 'opinio/comments/comment', :collection => comments %>
 	  <% else %>
-	    <div id="no_comments"><%= t 'opinio.no_comments_found', :default => "No comments found" %></div>
+	    <div id="no_comments" class='fix-in-border'><%= t 'opinio.no_comments_found', :default => "No comments found" %></div>
 	  <% end %>
 	</div>
 </div>
