@@ -1,0 +1,49 @@
+<div class="panel panel-primary panel-narrow pull-left task-info-area">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('events.info') %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="pull-left">
+      <% if @event.name.present? %>
+        <h3 class="text-center break-words"><%= @event.name %></h3>
+      <% end %>
+      <dl class="dl-horizontal break-words">
+      	<% if @event.description.present? %>
+	        <dt><%= t('events.description') %></dt>
+	        <dd><%= @event.description %></dd>
+        <% end %>
+        <% if @event.date.present? %>
+	        <dt><%= t('events.date') %></dt>
+	        <dd><%= l(@event.date, format: :short) %></dd>
+        <% end %>
+        <% if @event.place.present? %>
+	        <dt><%= t('events.place') %></dt>
+	        <dd><%= @event.place %></dd>
+        <% end %>
+        <% if @event.plan.present? %>
+        	<dt><%= t('events.plan') %></dt>
+        	<dd><%= @event.plan %></dd>
+        <% end %>
+        <% if @event.guests.any? %>
+          <dt><%= t('events.guests') %></dt>
+          <dd>
+            <% @event.guests.each do |guest| %>
+            <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
+                      title: guest.full_name), user_path(guest.id) %>
+            <% end %>
+          </dd>
+        <% end %>
+      </dl> 
+    </div>
+  </div>
+  <div class="panel-footer text-right">
+    <%= link_to t('util.back'), events_path, :class => "btn btn-default" %>
+    <%= link_to edit_event_path(@event), :class => "btn btn-warning" do %>
+        <span class='glyphicon glyphicon-pencil'></span>
+        <%= t('util.edit') %>
+    <% end %>
+  </div>
+</div>
+<div class='pull-right comments-area'>
+  <%= comments_for @event %>
+</div>

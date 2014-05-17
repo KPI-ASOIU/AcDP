@@ -6,8 +6,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    render action: 'show', id: @task.id
+    @task = Task.new(task_params)
+    if @task.save
+      render action: 'show', id: @task.id
+    else
+      redirect_to :back
+    end
   end
 
   def show
@@ -22,7 +26,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes(task_params)
-    render action: 'show', id: @task.id
+    redirect_to task_path(@task.id)
   end
 
   def index
@@ -79,6 +83,6 @@ class TasksController < ApplicationController
   end
   
   def validate_date_strings(date_string)
-    date_string.empty? || date_string.nil?
+    date_string.nil? || date_string.empty?
   end
 end

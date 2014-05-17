@@ -1,15 +1,12 @@
-<div>
-  <%= paginate comments %>
-</div>
-
-<div id="comments" class="comments-form">
-  <% unless comments.empty? %>
-    <%= render :partial => 'opinio/comments/comment', :collection => comments %>
-  <% else %>
-    <div id="no_comments"><%= t 'opinio.no_comments_found', :default => "No comments found" %></div>
-  <% end %>
-</div>
-
-<div>
-  <%= paginate comments %>
+<div class="panel panel-primary panel-narrow">
+	<div class="panel-heading">
+	    <h3 class="panel-title"><%= t('comments.discussion') %></h3>
+	  </div>
+	<div id="comments" class="comments-form">
+	  <% unless comments.empty? %>
+	    <%= render :partial => 'opinio/comments/comment', :collection => comments %>
+	  <% else %>
+	    <div id="no_comments" class='fix-in-border'><%= t 'opinio.no_comments_found', :default => "No comments found" %></div>
+	  <% end %>
+	</div>
 </div>

@@ -40,7 +40,7 @@ AcDP::Application.routes.draw do
 
   resources :contacts, only: [:index, :create, :destroy]
 
-  resources :tasks do
-    opinio
-  end
+  resources :tasks
+
+  resources :events
 end

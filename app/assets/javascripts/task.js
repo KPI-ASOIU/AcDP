@@ -43,9 +43,7 @@ $(document).ready(function() {
     $("#searchBtn").toggleClass('invisible')
   });
 
-  $('#commentsSubmit').click(function(){
-    $('#tasksComments').submit();
-  });
+  $('.comments-form').jScrollPane({autoReinitialise: true});
 });
 
 $(".searchclear").click(function(){

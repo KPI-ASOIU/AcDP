@@ -236,6 +236,7 @@ uk:
       user: 'Користувач'
       group: 'Група'
       tasks: 'Завдання'
+      events: 'Події'
     attributes:
       user:
         login: 'Логін'
@@ -302,6 +303,12 @@ uk:
     add_new_task: Додати нове завдання
     add_task: Додати задачу
     create_task: Створити завдання
+    new_event: Нова подія
+    edit_event: Редагувати подію
+    add_new_event: Додати нову подію
+    add_event: Додати подію
+    create_event: Створити подію
+    undefined: Не визначено
     from: З
     to: До
     extended_search: Розширений пошук
@@ -470,3 +477,15 @@ uk:
   comments:
     new_comment: Новий коментар
     send_comment: Коментувати
+    discussion: Обговорення
+  events:
+    author: Автор
+    name: Назва
+    description: Опис
+    date: Дата проведення
+    place: Місце проведення
+    plan: План події
+    info: Картка події
+    guests: Запрошені
+    no_events: Найближчим часом немає жодних подій
+    no_search_result: За вашим запитом не знайдено жодної події
