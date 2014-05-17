@@ -17,17 +17,10 @@
   <td colspan="7" class="hiddenRow">
     <div class="accordian-body collapse doc-info" id="doc-info<%= file.id %>">
       <div class="docs-info-collapse">
-<<<<<<< HEAD
         <b><%= t('documents.title') %>: </b><a href="#" data-type="text" data-url="/documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= file.id %>" data-title="Enter title" class="doc-title"><%= file.title %></a><br>
         <b><%= t('documents.owner') %>: </b><%= link_to file.owner.login, user_path(file.owner_id), :target => :blank %><br>
         <b><%= t('documents.tags') %>: </b><a href="#" data-type="select2" data-pk="<%= file.id %>" data-name="tags" data-url="/documents/update" data-title="Enter tags" class="doc-tags"><%= file.tags %></a><br>
         <b><%= t('documents.description') %>: </b><a href="#" data-type="textarea" data-url="/documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= file.id %>" data-title="Enter description" class="doc-description"><%= file.description %></a><br><br>
-=======
-        <b><%= t('documents.title') %>: </b><a href="#" data-type="text" data-url="documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= file.id %>" data-title="Enter title" class="doc-title"><%= file.title %></a><br>
-        <b><%= t('documents.owner') %>: </b><%= link_to file.owner.login, user_path(file.owner_id), :target => :blank %><br>
-        <b><%= t('documents.tags') %>: </b><a href="#" data-type="select2" data-pk="<%= file.id %>" data-name="tags" data-url="documents/update" data-title="Enter tags" class="doc-tags"><%= file.tags %></a><br>
-        <b><%= t('documents.description') %>: </b><a href="#" data-type="textarea" data-url="documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= file.id %>" data-title="Enter description" class="doc-description"><%= file.description %></a><br><br>
->>>>>>> Added basic documents functionality
 
         <div class="doc-info-list">
           <b><%= t('documents.edit_access') + ': ' %></b>
@@ -36,11 +29,7 @@
                   <span class='glyphicon glyphicon-plus'></span>
               <% end %>
               <div id="docs-edit-access-list-<%= file.id %>">
-<<<<<<< HEAD
                 <%= render :partial => 'access_list', :locals => { :doc => file, access_type: '1' } %>
-=======
-                <%= render :partial => 'access_list', :locals => { :doc => file, access_type: 1 } %>
->>>>>>> Added basic documents functionality
               </div>
           <% else %>
               <% file.edit_accesses.each do |access| %>
@@ -56,11 +45,7 @@
                   <span class='glyphicon glyphicon-plus'></span>
               <% end %>
               <div id="docs-view-access-list-<%= file.id %>">
-<<<<<<< HEAD
                 <%= render :partial => 'access_list', :locals => { doc: file, access_type: '0' } %>
-=======
-                <%= render :partial => 'access_list', :locals => { doc: file, access_type: 0 } %>
->>>>>>> Added basic documents functionality
               </div>
           <% else %>
               <% file.view_accesses.each do |access| %>
@@ -70,20 +55,13 @@
         </div>
 
         <% if !@shared %>
-<<<<<<< HEAD
             <br><div>
-=======
-            <br>
->>>>>>> Added basic documents functionality
             <%= link_to '', :id => 'btn_remove_document', :data => { :path => file.parent_directory.nil? ? document_delete_root_path(file) :
                       document_delete_path(id: file.parent_directory, delete_id: file.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => 'btn btn-danger' do %>
               <span class='glyphicon glyphicon-remove'></span>
               <%= t('documents.delete') %>
             <% end %>
-<<<<<<< HEAD
             </div>
-=======
->>>>>>> Added basic documents functionality
         <% end %>
       </div>
     </div>

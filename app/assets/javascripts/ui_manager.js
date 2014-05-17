@@ -36,13 +36,10 @@ $(document).ready(function(){
       $("#document_remove_path").attr('href', $(this).data('path'));
   });
 
-<<<<<<< HEAD
   $('#collapseInfo').on('click', '#btn_remove_document', function(event) {
       $("#document_remove_path").attr('href', $(this).data('path'));
   });
 
-=======
->>>>>>> Added basic documents functionality
   $('#documents-users-table').on('mouseover' ,'.docs-title', function(event) {
       $(this).find('.docs-navbar-tool').show();
   }).on('mouseout', '.docs-title', function(event) {
@@ -51,20 +48,12 @@ $(document).ready(function(){
 
   $(document).on('click', '.add-user-access-view', function() {
       $('#docs-add-access').val($(this).data('value'));
-<<<<<<< HEAD
       $('#docs-add-access-type').val('0');
-=======
-      $('#docs-add-access-type').val(0);
->>>>>>> Added basic documents functionality
   });
 
   $(document).on('click', '.add-user-access-edit', function() {
       $('#docs-add-access').val($(this).data('value'));
-<<<<<<< HEAD
       $('#docs-add-access-type').val('1');
-=======
-      $('#docs-add-access-type').val(1);
->>>>>>> Added basic documents functionality
   });
 
   $('.doc-title').editable({

@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 <% accesses = access_type == '0' ? doc.view_accesses : doc.edit_accesses %>
 <% accesses.each do |access| %>
     <br>
     <%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
     <%= link_to '/documents/update_access', data: { method: :post, remote: true, params: { pk: access.document_id, access_id: access.id, access_type: access.access_type }.to_param } do %>
-=======
-<% accesses = access_type == 0 ? doc.view_accesses : doc.edit_accesses %>
-<% accesses.each do |access| %>
-    <br>
-    <%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
-    <%= link_to 'documents/update_access', data: { method: :post, remote: true, params: { pk: access.document_id, access_id: access.id, access_type: access_type }.to_param } do %>
->>>>>>> Added basic documents functionality
         <span class="glyphicon glyphicon-remove red"></span>
     <% end %>
 <% end %>
