@@ -66,13 +66,17 @@ a.text-white {
 /* Comments */
 #comments .popover {
 	position: relative;
-	width: 350px;
+	width: 50%;
 	display: block;
-	margin: 15px;
+	margin: 15px 15px 15px 80px;
 }
 
 #comments .popover time {
 	margin-top: -9px;
+}
+
+#comments img {
+	margin-top: 11px;
 }
 
 .clear-comment {
@@ -91,7 +95,7 @@ a.text-white {
 }
 
 .comments-form {
-	height: 450px;
+	height: 400px;
 	margin: 0 auto;
 	overflow: auto;
 	outline: 0;

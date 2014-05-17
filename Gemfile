@@ -73,4 +73,5 @@ gem 'awesome_nested_fields'
 gem 'opinio'
 gem 'protected_attributes'
 gem 'jscrollpane-rails'
-gem "jquery-mousewheel-rails"
+gem 'jquery-mousewheel-rails'
+gem 'websocket-rails'
