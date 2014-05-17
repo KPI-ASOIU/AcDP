@@ -10,6 +10,13 @@ AcDP::Application.routes.draw do
   post 'documents/:id', to: 'documents#new', as: 'document_new'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
+  get 'calendar', to: 'calendar'
+  delete 'documents', to: 'documents#delete'
+  get 'calendar', to: 'calendar'
+  delete 'documents', to: 'documents#delete'
+  post 'documents/update', to: 'documents#update'
+  post 'documents/update_access', to: 'documents#update_access'
+  post 'documents/:id', to: 'documents#new'
 
   root "users#show_current"
 

@@ -1,0 +1,112 @@
+// Place all the styles related to the Calendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$calendar_width: 50%;
+
+.calendar {
+  border-collapse: collapse;
+  display: inline-block;
+  -webkit-user-select: none;
+
+  td, th {
+    font-family: inherit;
+	  font-weight: 500;
+    font-size: 16px;
+    padding: 6px;
+    border: 1px solid #999;
+    width: 14.285714286%;
+  }
+
+  th {
+    background: #428bca;
+    color: #fff;
+    text-align: center;
+    height: 40px;
+    
+  }
+
+  td {
+    background: inherit;
+    color: #777;
+    height: 80px;
+    vertical-align: top;
+    font-size: 16px;
+
+  }
+
+  li{
+    overflow: hidden;
+    display: inline;
+  }
+
+  .notmonth { background-color: rgb(245,245,245); }
+  .today { background-color: #D7F2FF; }
+  .past { color: #CCC; }
+}
+
+ #month {
+  margin: 0;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 22px;
+  width: 100%;
+  a {
+    text-decoration: none;
+    padding: 0 10px;
+    color: #428bca;
+  }
+}
+
+.calendar ul {
+  font-size: 11px;
+  padding-left: 20px;
+}
+
+.task_list{
+  width: 35%;
+  display: inline-block;
+  border: 1px solid #428bca;
+  float: right;
+  height: 441px;
+  margin-top: 34px;
+}
+
+.header{
+  background: #428bca;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  padding-top: 4px;
+}
+
+.list{
+  overflow: auto;
+  li{
+    list-style: none;
+    padding-left: 10px;
+    padding-top: 20px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 60%;
+    float: left;
+  }
+}
+
+.selected{
+  background: #f89406 !important; 
+}
+
+.calendar_container{
+  width: $calendar_width;
+  float: left;
+}
