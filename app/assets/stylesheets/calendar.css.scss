@@ -37,7 +37,7 @@ $calendar_width: 50%;
 
   li{
     overflow: hidden;
-    width: 5em;
+    display: inline;
   }
 
   .notmonth { background-color: rgb(245,245,245); }
@@ -84,6 +84,7 @@ $calendar_width: 50%;
 }
 
 .list{
+  overflow: auto;
   li{
     list-style: none;
     padding-left: 10px;
@@ -105,7 +106,7 @@ $calendar_width: 50%;
   background: #f89406 !important; 
 }
 
-.container1{
+.calendar_container{
   width: $calendar_width;
   float: left;
 }
