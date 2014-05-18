@@ -1,0 +1,13 @@
+<tr class="docs-title">
+  <td><span class="glyphicon glyphicon-user"></span></td>
+  <td><%= user.login %></td>
+  <td><%= user.full_name %></td>
+  <td><%= user.email %></td>
+  <td><%= format_roles(user.roles, ", ") %></td>
+  <td>
+    <%= link_to document_shared_root_path(user.id), :class => 'btn btn-success docs-navbar-tool' do %>
+        <span class='glyphicon glyphicon-eye-open'></span>
+        <%= t('documents.open') %>
+    <% end %>
+  </td>
+</tr>

@@ -6,7 +6,7 @@
   <td><%= folder.date_created.strftime "%m.%d.%y %H:%M" %></td>
   <td><%= folder.date_updated.strftime "%m.%d.%y %H:%M" %></td>
   <td>
-    <%= link_to '', :class => 'btn btn-success  docs-navbar-tool' do %>
+    <%= link_to @shared ? document_shared_path(folder.owner_id, folder.id) : document_path(folder), :class => 'btn btn-success  docs-navbar-tool' do %>
         <span class='glyphicon glyphicon-eye-open'></span>
         <%= t('documents.open') %>
     <% end %>
@@ -14,8 +14,56 @@
 </tr>
 <tr>
   <td colspan="7" class="hiddenRow">
-    <div class="accordian-body collapse" id="doc-info<%= folder.id %>">
-      Тут буде купа всіляких описів
+    <div class="accordian-body collapse doc-info" id="doc-info<%= folder.id %>">
+      <div class="docs-info-collapse">
+
+        <b><%= t('documents.title') %>: </b><a href="#" data-type="text" data-url="/documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= folder.id %>" data-title="Enter title" class="doc-title"><%= folder.title %></a><br>
+        <b><%= t('documents.owner') %>: </b><%= link_to folder.owner.login, user_path(folder.owner_id), :target => :blank %><br>
+        <b><%= t('documents.tags') %>: </b><a href="#" data-type="select2" data-pk="<%= folder.id %>" data-name="tags" data-url="/documents/update" data-title="Enter tags" class="doc-tags"><%= folder.tags %></a><br>
+        <b><%= t('documents.description') %>: </b><a href="#" data-type="textarea" data-url="/documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= folder.id %>" data-title="Enter description" class="doc-description"><%= folder.description %></a><br><br>
+
+        <div class="doc-info-list">
+          <b><%= t('documents.edit_access') + ': ' %></b>
+          <% if !@shared %>
+              <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => folder.id }, :class => 'btn btn-success btn-xs add-user-access-edit' do %>
+                  <span class='glyphicon glyphicon-plus'></span>
+              <% end %>
+              <div id="docs-edit-access-list-<%= folder.id %>">
+                <%= render :partial => 'access_list', :locals => { :doc => folder, access_type: '1' } %>
+              </div>
+          <% else %>
+              <% folder.edit_accesses.each do |access| %>
+                  <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="doc-info-list">
+          <b><%= t('documents.read_access') + ': ' %></b>
+          <% if !@shared %>
+              <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => folder.id }, :class => 'btn btn-success btn-xs add-user-access-view' do %>
+                  <span class='glyphicon glyphicon-plus'></span>
+              <% end %>
+              <div id="docs-view-access-list-<%= folder.id %>">
+                <%= render :partial => 'access_list', :locals => { doc: folder, access_type: '0' } %>
+              </div>
+          <% else %>
+              <% folder.view_accesses.each do |access| %>
+                  <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
+              <% end %>
+          <% end %>
+        </div>
+
+        <% if !@shared %>
+            <br><div>
+        <%= link_to '', :id => 'btn_remove_document', :data => { :path => folder.parent_directory.nil? ? document_delete_root_path(folder) :
+                document_delete_path(id: folder.parent_directory, delete_id: folder.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => "btn btn-danger" do %>
+            <span class='glyphicon glyphicon-remove'></span>
+            <%= t('documents.delete') %>
+        <% end %>
+      </div>
+        <% end %>
+      </div>
     </div>
   </td>
 </tr>

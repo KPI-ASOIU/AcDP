@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions
   has_many :documents, through: :user_has_accesses
-  has_many :user_has_accesses
+  has_many :user_has_accesses, foreign_key: :user_id, :dependent => :destroy
 
   has_and_belongs_to_many :executing_tasks,   
     class_name: "Task", 

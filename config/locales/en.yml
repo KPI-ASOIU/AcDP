@@ -142,6 +142,8 @@ en:
     folder: Folder
     owned: Owned
     shared: Shared
+    shared_docs: Shared documents
+    owned_docs: Owned documents
     new_shared: New shared
     formats: Formats
     types: Types
@@ -167,11 +169,35 @@ en:
     folder_creation_success: Folder created
 
     docs_in_cur_dir: Documents and folders in current folder
+    up_folder: Upper folder
     title: Title
     format: Format
     type: type
     date_created: Created
     date_changed: Changed
+
+    owner: Owner
+    elements_count: Elements count
+    private: Private
+    public: Public
+    edit_access: Who can edit
+    read_access: Who can view
+    tags: Tags
+    description: Description
+    enter_description: Enter description
+    move: Move
+    delete: Delete
+    select_users: Select users
+
+    found_users: Found users
+
+    error_not_recognized: Action not recognized
+    error_cannot_update: Error updating record
+    error_document_not_found: Document not found
+
+    modal_confirm_remove_title: Removing item
+    modal_confirm_remove_message: Really remove item
+    flash_removed_item: Item removed
   tasks:    
     author: Author
     task_info: Task info

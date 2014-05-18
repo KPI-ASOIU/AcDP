@@ -258,6 +258,8 @@ uk:
         degree: 'Ступінь'
         speciality: 'Спеціальність'
         speciality_code: 'Шифр спецальності'
+      document:
+        description: Опис
     errors:
       template:
         header:
@@ -381,6 +383,8 @@ uk:
     folder: Папка
     owned: Власні
     shared: Спільні
+    shared_docs: Спільні документи
+    owned_docs: Власні документи
     new_shared: Нові спільні
     formats: Формати
     types: Типи
@@ -406,15 +410,40 @@ uk:
     folder_creation_success: Папка успішно створена
 
     docs_in_cur_dir: Документи та папки в поточній папці
+    up_folder: Верхня папка
     title: Назва
     format: Формат
     type: Тип
     date_created: Створено
     date_changed: Змінено
+
+    owner: Власник
+    elements_count: Кількість елементів
+    private: Приватна
+    public: Публічна
+    edit_access: Можуть редагувати
+    read_access: Можуть переглядати
+    tags: Теги
+    description: Опис
+    enter_description: Введіть опис
+    move: Перемістити
+    delete: Видалити
+    select_users: Виберіть користувачів
+
+    found_users: Знайдені користувачі
+
+    error_not_recognized: Дія не розпізнана
+    error_cannot_update: Помилка при оновленні запису
+    error_document_not_found: Документ не знайдено
+
+    modal_confirm_remove_title: Видалення елементу
+    modal_confirm_remove_message: Дійсно видалити ?
+    flash_removed_item: Елемент успішно видалено
   contacts:
     count:
       zero: Ви маєте 0 контактів
       one: Ви маєте 1 контакт
+      few: Ви маєте %{count} контакта
       other: Ви маєте %{count} контактів
     list: Список контактів
     nav_link: Контакти
@@ -423,7 +452,7 @@ uk:
     notices:
       add_success: Користувач був успішно доданий в список контактів
       remove_success: Користувач був успішно видалений з списку контактів
-  tasks:    
+  tasks:
     author: Автор
     task_info: Картка завдання
     name: Назва
@@ -460,3 +489,4 @@ uk:
     guests: Запрошені
     no_events: Найближчим часом немає жодних подій
     no_search_result: За вашим запитом не знайдено жодної події
+    cannot_visit: Не зможу прийти
