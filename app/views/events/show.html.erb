@@ -36,12 +36,20 @@
       </dl> 
     </div>
   </div>
-  <div class="panel-footer text-right">
-    <%= link_to t('util.back'), events_path, :class => "btn btn-default" %>
-    <%= link_to edit_event_path(@event), :class => "btn btn-warning" do %>
+  <div class="panel-footer">
+    <div class="pull-left text-left">
+      <%= form_tag event_path(@event), :method => 'get' do %>
+        <%= hidden_field_tag :cannot_visit, 'true' %>
+        <%= submit_tag t('events.cannot_visit'), :class => "btn btn-success" %>
+      <% end %>
+    </div>
+    <div class="text-right">
+      <%= link_to t('util.back'), events_path, :class => "btn btn-default" %>
+      <%= link_to edit_event_path(@event), :class => "btn btn-warning" do %>
         <span class='glyphicon glyphicon-pencil'></span>
         <%= t('util.edit') %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class='pull-right comments-area'>

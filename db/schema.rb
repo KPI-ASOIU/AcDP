@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517111741) do
+ActiveRecord::Schema.define(version: 20140517214822) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attachments", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-  end
 
   create_table "checklists", force: true do |t|
     t.boolean  "done"
@@ -88,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140517111741) do
   create_table "events_has_guests", force: true do |t|
     t.integer "event_id"
     t.integer "guest_id"
+    t.integer "status",   default: 1
   end
 
   create_table "executing_tasks_executors", force: true do |t|
@@ -164,16 +157,6 @@ ActiveRecord::Schema.define(version: 20140517111741) do
     t.integer  "document_id", null: false
     t.integer  "access_type", null: false
     t.datetime "created_at",  null: false
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
   end
 
   create_table "user_has_attachments", force: true do |t|
