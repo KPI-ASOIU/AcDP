@@ -38,9 +38,12 @@ $(document).ready(function() {
   $('#searchBtn').on('click', function() { 
     $('#extendSearch').submit(); 
   });
+  
   $('[href=#collapseOne]').on("click", function(){
     $("#searchBtn").toggleClass('invisible')
   });
+
+  $('.comments-form').jScrollPane({autoReinitialise: true});
 });
 
 $(".searchclear").click(function(){
@@ -49,3 +52,5 @@ $(".searchclear").click(function(){
     else if((chosen = $(this).siblings(".chosen-container").find(".chosen-choices")).children().length > 1)
       chosen.children(":first").remove()
 });
+
+$('.popover').popover('show');

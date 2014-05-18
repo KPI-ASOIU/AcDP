@@ -1,0 +1,19 @@
+<div id="comment_<%= comment.id %>" class='fix-in-border'>
+  <%= link_to image_tag((author = comment.owner).avatar.url("medium"), class: 'img-thumbnail c-user-medium-avatar pull-left', title: author.full_name), user_path(author.id) %>
+  <div class="popover right">
+    <div class="arrow"></div>
+    <h3 class="popover-title">
+      <b><%= comment.owner.full_name %></b>
+    </h3>
+    <div class="popover-content">
+      <p><%= comment.body %></p>
+      <%= timeago_tag comment.created_at, :nojs => true, :limit => 1.hours.ago,
+        title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" } %>
+    </div>
+    <% if comment.owner == current_user %>
+      <%= link_to comment_path(comment), :method => :delete, :remote => true do %>
+        <span class="searchclear clear-comment glyphicon glyphicon-remove"></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

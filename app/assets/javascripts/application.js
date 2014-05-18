@@ -28,3 +28,7 @@
 //= require bootstrap3-editable/bootstrap-editable
 //= require select2
 //= require_tree .
+//= require jquery.jscrollpane
+//= require jquery.mousewheel
+//= require websocket_rails/main
+

@@ -25,5 +25,6 @@ module AcDP
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     I18n.enforce_available_locales = true
     config.i18n.default_locale = :uk
+    config.active_record.whitelist_attributes = false
   end
 end

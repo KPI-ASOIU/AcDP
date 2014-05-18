@@ -1,4 +1,4 @@
-<div class="panel panel-primary panel-narrow">
+<div class="panel panel-primary panel-narrow pull-left task-info-area">
   <div class="panel-heading">
     <h3 class="panel-title"><%= t('tasks.task_info') %></h3>
   </div>
@@ -60,4 +60,7 @@
         <%= t('util.edit') %>
     <% end %>
   </div>
+</div>
+<div class='pull-right comments-area'>
+  <%= comments_for @task %>
 </div>

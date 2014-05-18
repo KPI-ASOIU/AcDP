@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515112710) do
+ActiveRecord::Schema.define(version: 20140517214822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attachments", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-  end
 
   create_table "checklists", force: true do |t|
     t.boolean  "done"
@@ -33,11 +24,18 @@ ActiveRecord::Schema.define(version: 20140515112710) do
     t.datetime "updated_at"
   end
 
-  create_table "contacts", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "contact_user_id"
+  create_table "comments", force: true do |t|
+    t.integer  "owner_id",         null: false
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
+    t.text     "body",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.integer "user_id"
+    t.integer "contact_user_id"
   end
 
   create_table "conversations", force: true do |t|
@@ -66,6 +64,23 @@ ActiveRecord::Schema.define(version: 20140515112710) do
     t.string   "tags"
     t.integer  "for_roles",                   default: 0, null: false
     t.integer  "original_doc_id"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "date"
+    t.string   "place"
+    t.text     "plan"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "author_id"
+  end
+
+  create_table "events_has_guests", force: true do |t|
+    t.integer "event_id"
+    t.integer "guest_id"
+    t.integer "status",   default: 1
   end
 
   create_table "executing_tasks_executors", force: true do |t|

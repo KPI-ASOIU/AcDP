@@ -44,6 +44,13 @@ class User < ActiveRecord::Base
 
   has_many :leading_tasks, class_name: "Task"
 
+  has_and_belongs_to_many :visiting_events,   
+    class_name: "Event", 
+    join_table: :events_has_guests, 
+    foreign_key: :guest_id
+
+  has_many :leading_events, class_name: "Event", foreign_key: :author_id
+
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end

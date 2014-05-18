@@ -1,0 +1,13 @@
+<thead>
+  <tr>
+    <th><%= t('events.author') %></th>
+    <th><%= t('events.name') %></th>
+    <th><%= t('events.date') %></th>
+    <th><%= t('events.place') %></th>
+    <th><%= t('events.plan') %></th>
+    <th><%= t('events.guests') %></th>
+    <% if any_authored_events(events) %>
+      <th class="c-admin-users-actions-column"></th>
+    <% end %>
+  </tr>
+</thead>
