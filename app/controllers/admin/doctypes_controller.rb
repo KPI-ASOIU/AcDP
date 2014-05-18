@@ -1,6 +1,6 @@
 module Admin
 	class DoctypesController < AdminController
-		before_action :set_doctype, only: [:show, :edit, :destroy, :update]
+		before_action :set_doctype, only: [:edit, :destroy, :update]
 		def index
 			@doctypes=DocumentType.order("title").page(params[:page])
 		end
@@ -32,7 +32,7 @@ module Admin
 
       if request.xhr?
         render :json => {
-        #:status => stat,
+        :status => status,
         :msg => msg
       }
     end

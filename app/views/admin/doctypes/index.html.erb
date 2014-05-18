@@ -16,14 +16,9 @@
   </div>
 </div>
 
+<%= render 'new' %>
+
 <div class="panel panel-primary">
-	<div class="panel-footer text-center">
-		<%= form_for :document_type do |f| %>
-      <%= f.text_field :title, placeholder: t('doctypes.placeholder') %>
-      <%= f.submit class: "btn btn-success",  value: t('doctypes.new') %>
-      <!--where to put it?  <span class='glyphicon glyphicon-plus'></span>-->
-    <% end %>
-  </div>
   <div class="panel-heading">
     <%= t('doctypes.list') %>
   </div>
@@ -38,7 +33,11 @@
       <tbody>
         <% @doctypes.each do |doctype| %>
           <tr>
-            <td id="doctype_id" class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> data-title="Enter title" ><%= doctype.title%></td>
+            <td>
+              <div class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
+                <%= doctype.title%>
+              </div>
+            </td>
             
             <td>
             		<%= link_to '', :id => 'btn_remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => '#modal_confirm_remove_doctype' }, :class => "btn btn-danger btn-xs" do %>

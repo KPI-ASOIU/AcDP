@@ -15,6 +15,7 @@ $(document).ready(function(){
 
   $.fn.editable.defaults.ajaxOptions = {type: "PATCH"};
   $('.doctype_edit').editable({
+    inputclass: 'inputdoctype',
     success: function(response, newValue) {
         if(response.status == 'error') {
             return response.msg;

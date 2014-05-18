@@ -168,5 +168,6 @@ en:
     manage: Document types
     list: Listing document types
     new: Add type
+    add_panel: Adding types of documents
     placeholder: Type
     removing: Type removing
