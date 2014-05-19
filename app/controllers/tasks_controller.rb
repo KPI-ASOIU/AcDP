@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   authorize_resource
+  include PublicActivity::StoreController 
   
   def new
     @task = current_user.leading_tasks.new
@@ -7,10 +8,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save
+    if @task.save!
       render action: 'show', id: @task.id
     else
       redirect_to :back
+      flash[:error] = @task.errors.full_messages.join('. ')
     end
   end
 
@@ -25,8 +27,12 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update_attributes(task_params)
-    redirect_to task_path(@task.id)
+    if @task.update_attributes(task_params)
+      redirect_to task_path(@task.id)
+    else
+      redirect_to :back
+      flash[:error] = @task.errors.full_messages.join('. ')
+    end
   end
 
   def index

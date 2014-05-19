@@ -28,7 +28,16 @@
           <dt><%= t('events.guests') %></dt>
           <dd>
             <% @event.guests.each do |guest| %>
-            <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
+              <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
+                      title: guest.full_name), user_path(guest.id) %>
+            <% end %>
+          </dd>
+        <% end %>
+        <% if !can_all_visit?(@event) %>
+          <dt><%= t('events.not_visiting') %></dt>
+          <dd>
+            <% all_not_visiting(@event).each do |guest| %>
+              <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
                       title: guest.full_name), user_path(guest.id) %>
             <% end %>
           </dd>
@@ -39,8 +48,13 @@
   <div class="panel-footer">
     <div class="pull-left text-left">
       <%= form_tag event_path(@event), :method => 'get' do %>
-        <%= hidden_field_tag :cannot_visit, 'true' %>
-        <%= submit_tag t('events.cannot_visit'), :class => "btn btn-success" %>
+        <% if visit?(@event) %>
+          <%= hidden_field_tag :can_visit, 'false' %>
+          <%= submit_tag t('events.cannot_visit'), :class => "btn btn-success" %>
+        <% else %>
+          <%= hidden_field_tag :can_visit, 'true' %>
+          <%= submit_tag t('events.can_visit'), :class => "btn btn-success" %>
+        <% end %>
       <% end %>
     </div>
     <div class="text-right">
