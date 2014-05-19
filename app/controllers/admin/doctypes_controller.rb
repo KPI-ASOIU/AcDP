@@ -14,8 +14,15 @@ module Admin
 
 		def create
 			@doctype=DocumentType.create(doctype_params)
-			redirect_to admin_doctypes_path
-		end
+      if @doctype.save
+        status = msg = 'ok'
+        redirect_to admin_doctypes_path 
+      else
+        status = 'error'
+        msg = @doctype.errors.full_messages.join(',')
+        redirect_to admin_doctypes_path, notice: msg
+      end
+    end
 
 		def destroy
       @doctype.destroy
