@@ -25,5 +25,8 @@ class Task < ActiveRecord::Base
   validates_presence_of :name
 
   opinio_subjectum
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 end
 

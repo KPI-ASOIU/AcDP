@@ -44,10 +44,11 @@ class User < ActiveRecord::Base
 
   has_many :leading_tasks, class_name: "Task"
 
-  has_and_belongs_to_many :visiting_events,   
-    class_name: "Event", 
-    join_table: :events_has_guests, 
-    foreign_key: :guest_id
+  has_many :event_has_guests, foreign_key: :guest_id
+  has_many :visiting_events,   
+    through: :event_has_guests,
+    foreign_key: :guest_id,
+    source: :event
 
   has_many :leading_events, class_name: "Event", foreign_key: :author_id
 

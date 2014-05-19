@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  include PublicActivity::StoreController 
+  
 	def new
     @event = current_user.leading_events.new
   end
@@ -6,14 +8,20 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
+      EventHasGuest.create({guest_id: params[:event][:guests], event_id: @event.id}) 
       render action: 'show', id: @event.id
     else
       redirect_to :back
+      flash[:error] = @event.errors.full_messages.join('.\n ')
     end
   end
 
   def show
     @event = Event.find(params[:id])
+    if !params[:can_visit].nil?
+      @event_has_guest = EventHasGuest.where(event_id: @event.id)
+      @event_has_guest.first.update_attributes(status: params[:can_visit] == "true" ? 1 : 0)
+    end
   end
 
   def edit
@@ -53,8 +61,8 @@ class EventsController < ApplicationController
         format.js
       end
     else
-      @events = Event.joins('LEFT JOIN events_has_guests ON events.id = events_has_guests.event_id')
-        .where('events_has_guests.guest_id = ? OR events.author_id = ?', current_user.id, current_user.id)
+      @events = Event.joins('LEFT JOIN event_has_guests ON events.id = event_has_guests.event_id')
+        .where('event_has_guests.guest_id = ? OR events.author_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
     end
   end

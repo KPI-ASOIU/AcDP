@@ -260,6 +260,13 @@ uk:
         speciality_code: 'Шифр спецальності'
       document:
         description: Опис
+      task:
+        name: Назва
+        description: Опис
+        end_date: Кінцева дата
+        status: Статус
+        check_list: Задачі
+        executors: Виконавці
     errors:
       template:
         header:
@@ -274,7 +281,12 @@ uk:
               invalid: недійсна
             avatar:
               delete: 'Помилка при видаленні фотографії'
-
+        task:
+          attributes:
+            name:
+              blank: не може бути пустою
+            end_date:
+              invalid: недійсна
   util:
     edit_password: 'залиште це поле пустим, якщо не бажаєте його змінювати'
     new_user: Новий Користувач
@@ -490,3 +502,7 @@ uk:
     no_events: Найближчим часом немає жодних подій
     no_search_result: За вашим запитом не знайдено жодної події
     cannot_visit: Не зможу прийти
+    can_visit: Зможу прийти
+    not_visiting: Не зможуть прийти
+  opinio:
+    no_comments_found: Ще немає жодного коментаря
