@@ -20,7 +20,7 @@ module Admin
       else
         status = 'error'
         msg = @doctype.errors.full_messages.join(',')
-        redirect_to admin_doctypes_path, notice: msg
+        redirect_to admin_doctypes_path, :flash => { :error =>  msg }
       end
     end
 
@@ -42,8 +42,8 @@ module Admin
         :status => status,
         :msg => msg
       }
+      end
     end
-  end
 
     def edit	
     end
