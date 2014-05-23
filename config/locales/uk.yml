@@ -260,6 +260,8 @@ uk:
         speciality_code: 'Шифр спецальності'
       document:
         description: Опис
+      doctype:
+        title: Тип
     errors:
       template:
         header:
@@ -490,3 +492,10 @@ uk:
     no_events: Найближчим часом немає жодних подій
     no_search_result: За вашим запитом не знайдено жодної події
     cannot_visit: Не зможу прийти
+  doctypes:
+    manage: Типи документів
+    list: Перелік типів документів
+    new: Додати тип
+    add_panel: Додавання типів документів
+    placeholder: Тип
+    removing: Видалення типу

@@ -55,6 +55,8 @@ en:
         degree: 'Degree'
         speciality: 'Speciality'
         speciality_code: 'Speciality code'
+      doctype:
+        title: Type
     errors:
       template:
         header:
@@ -214,3 +216,10 @@ en:
     no_tasks: You have not received any tasks yet
     progress: Progress
     creation_date: Creation date
+  doctypes:
+    manage: Document types
+    list: Listing document types
+    new: Add type
+    add_panel: Adding types of documents
+    placeholder: Type
+    removing: Type removing

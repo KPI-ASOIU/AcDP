@@ -23,6 +23,7 @@ AcDP::Application.routes.draw do
       end
     end
     resources :groups
+    resources :doctypes
   end
 
   resources :users, only: [:show] do

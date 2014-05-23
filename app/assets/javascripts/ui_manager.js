@@ -9,10 +9,20 @@ $(document).ready(function(){
     $("#group_remove_path").attr('href', $(this).data('path'));
   });
 
-  $(".j-admin-search-type-combo").on("click", "a", function(e){
-    var $target = $(this);
-    $(".j-admin-search-btn-text").text($target.text());
-    $(".j-admin-search-type-input").val($target.data("search-type"));
+  $(document).on("click", "#btn_remove_doctype", function () {
+    $("#doctype_remove_path").attr('href', $(this).data('path'));
+  });
+
+  $.fn.editable.defaults.ajaxOptions = {type: "PATCH"};
+  $('.doctype_edit').editable({
+    inputclass: 'inputdoctype',
+    success: function(response, newValue) {
+        if(response.status == 'error') {
+            return response.msg;
+        } else {
+          $('this').html(newValue);
+        }
+    }
   });
 
   $("tr[data-link]").on("click", function(e) {
