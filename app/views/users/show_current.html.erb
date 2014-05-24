@@ -1,4 +1,11 @@
-<div class="panel panel-primary panel-narrow">
+<div class="pull-left panel panel-primary panel-narrow">
   <%= render 'info' %>
   <%= render 'options'%>
+</div>
+
+<!-- FIX: not all, but only connected to current user -->
+<div class="activity-list panel-activity panel panel-primary">
+  <%= render_activities(PublicActivity::Activity.all.order('created_at DESC')
+  							.select { |a| a[:parameters][:connected_to_users]
+  							.include?(current_user.id)}) %>
 </div>

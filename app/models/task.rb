@@ -27,6 +27,13 @@ class Task < ActiveRecord::Base
   opinio_subjectum
 
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked owner: Proc.new{ |controller, model| controller.current_user },
+          params: {
+            summary: Proc.new { |controller, model| model.name.truncate(30) },   # by default save truncated summary of the post's body
+            trackable_id: Proc.new {|controller, model| model.id },
+            connected_to_users: Proc.new { |controller, model| 
+              [model.author.id].concat(model.executors.map { |e| e.id }) 
+            }
+          }
 end
 

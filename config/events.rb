@@ -14,4 +14,8 @@ WebsocketRails::EventMap.describe do
   namespace :comments do
     subscribe :broadcast_new, to: CommentController, with_method: :broadcast_new
   end
+
+  namespace :activity
+    subscribe :broadcast_new, to: NotificationController, with_method: :broadcast_new
+  end 
 end
