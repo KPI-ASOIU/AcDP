@@ -558,3 +558,19 @@ uk:
     not_visiting: Не зможуть прийти
   opinio:
     no_comments_found: Ще немає жодного коментаря
+  activity:
+    trackable:
+      event: подію
+      task: завдання
+      comment: коментар
+    comment:
+      create: прокоментував
+      destroy: видалив
+    task:
+      create: створив нове
+      update: оновив інформацію про
+      destroy: видалив
+    event:
+      create: сповістив про
+      update: оновив інформацію про
+      destroy: видалив

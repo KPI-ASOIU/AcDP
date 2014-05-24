@@ -1,0 +1,46 @@
+.panel-activity {
+  height: 500px;
+  margin-left: 30px;
+  overflow: auto;
+  width: 100%;
+}
+
+.activity-list {
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+.activity {
+  margin-bottom: 20px;
+}
+
+.activity a {
+	color: #0088cc;
+	text-decoration: none;
+}
+
+.activity .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.activity time {
+  float: none;
+}
+
+.activity .avatar img {
+  margin-right: 5px;
+}
+
+.activity .glyphicon {
+  background-position: center center;
+  background-size: 32px auto;
+  background-repeat: no-repeat;
+  color: #BBB;
+  height: 32px;
+  float: left;
+  padding: 3px;
+  width: 25px;
+  zoom: 2.2;
+}
+
