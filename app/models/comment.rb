@@ -8,8 +8,8 @@ class Comment < ActiveRecord::Base
             trackable_id: Proc.new {|controller, model| model.commentable_id },
             connected_to_users: Proc.new { |controller, model|
               target = model.commentable
-              [model.author.id].concat(target.executors.nil? ? [] : target.executors.map { |e| e.id }.uniq)
-                .concat(target.guests.nil? ? [] : target.guests.map { |e| e.id }.uniq)
+              [model.owner_id].concat(model.commentable_type == 'Task' ? target.executors.map { |e| e.id }.uniq : [])
+                .concat(model.commentable_type == 'Event' ? target.guests.map { |e| e.id }.uniq : [])
             }
           }
 end
