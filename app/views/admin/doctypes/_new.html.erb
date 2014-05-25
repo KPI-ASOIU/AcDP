@@ -1,20 +1,11 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= t('doctypes.add_panel') %>
-  </div>
-  <div class="panel-body">
-    <div class="panel">
-      <%= form_for :document_type do |f| %>
-        <div class="input-group ">
-          <%= f.text_field :title, class: 'form-control', placeholder: t('doctypes.placeholder') %>
-          <span class="input-group-btn">
-            <%= button_tag(type: 'submit', class: "btn btn-success") do %>
-              <span class='glyphicon glyphicon-plus'></span>
-              <%= t('doctypes.new') %>
-            <% end %>
-          </span>
-        </div>
-      <%end%>
-    </div>
-  </div>
+<%= form_for :document_type do |f| %>
+<div class="input-group doctypes-add-group">
+  <%= f.text_field :title, class: 'form-control', placeholder: t('doctypes.placeholder') %>
+  <span class="input-group-btn">
+    <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+      <span class='glyphicon glyphicon-plus'></span>
+      <%= t('doctypes.new') %>
+    <% end %>
+  </span>
 </div>
+<%end%>

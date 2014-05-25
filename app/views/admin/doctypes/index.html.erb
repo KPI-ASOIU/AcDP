@@ -17,16 +17,17 @@
 </div>
 
 <%= render 'new' %>
+<br>
 
 <div class="panel panel-primary">
   <div class="panel-heading">
     <%= t('doctypes.list') %>
   </div>
-    <table class="table table-striped table-verticle-centered">
+    <table class="table table-striped table-verticle-centered doctypes-table">
       <thead>
         <tr>
-          <th><%= t('activerecord.attributes.doctypes.title') %></th>
-          <th class="c-admin-users-actions-column"></th>
+          <th></th>
+          <th><%= t('activerecord.attributes.doctype.title') %></th>
         </tr>
       </thead>
 
@@ -34,15 +35,15 @@
         <% @doctypes.each do |doctype| %>
           <tr>
             <td>
+              <%= link_to '', :id => 'btn_remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => '#modal_confirm_remove_doctype' }, :class => "btn btn-danger btn-xs" do %>
+                  <span class='glyphicon glyphicon-remove'></span>
+              <% end %>
+            </td>
+
+            <td>
               <div class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
                 <%= doctype.title%>
               </div>
-            </td>
-            
-            <td>
-            		<%= link_to '', :id => 'btn_remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => '#modal_confirm_remove_doctype' }, :class => "btn btn-danger btn-xs" do %>
-                  <span class='glyphicon glyphicon-remove'></span>
-              	<% end %>
             </td>
           </tr>
         <% end %>

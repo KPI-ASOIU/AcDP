@@ -2,7 +2,7 @@
 <tr data-toggle="collapse" data-target="#doc-info<%= file.id %>" class="accordion-toggle docs-title">
   <td><span class="glyphicon glyphicon-file"></span></td>
   <td id="doc-title-<%= file.id %>"><%= file.title %></td>
-  <td><%=  %></td>
+  <td><%= DocumentHasType.where(document_id: file.id).map { |t| t.document_type.title }.join ', ' %></td>
   <td><%= File.extname file_info.file.path %></td>
   <td><%= file.date_created.to_formatted_s :docs_time %></td>
   <td><%= file.date_updated.to_formatted_s :docs_time %></td>
@@ -22,40 +22,58 @@
         <b><%= t('documents.tags') %>: </b><a href="#" data-type="select2" data-pk="<%= file.id %>" data-name="tags" data-url="/documents/update" data-title="Enter tags" class="doc-tags"><%= file.tags %></a><br>
         <b><%= t('documents.description') %>: </b><a href="#" data-type="textarea" data-url="/documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= file.id %>" data-title="Enter description" class="doc-description"><%= file.description %></a><br><br>
 
-        <div class="doc-info-list">
-          <b><%= t('documents.edit_access') + ': ' %></b>
-          <% if !@shared %>
-              <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => file.id }, :class => 'btn btn-success btn-xs add-user-access-edit' do %>
-                  <span class='glyphicon glyphicon-plus'></span>
+        <div>
+            <div class="doc-info-list">
+              <b><%= t('documents.types') + ': ' %></b>
+              <% if !@shared %>
+                  <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_type', :value => file.id }, :class => 'btn btn-success btn-xs add-doc-type' do %>
+                      <span class='glyphicon glyphicon-plus'></span>
+                  <% end %>
+                  <div id="docs-types-list-<%= file.id %>" class="doc-info-list-content">
+                    <%= render :partial => 'types_list', :locals => { :doc => file } %>
+                  </div>
+              <% else %>
+                  <% DocumentHasType.where(document_id: file.id).each do |type| %>
+                      <br><%= type.document_type_id %>
+                  <% end %>
               <% end %>
-              <div id="docs-edit-access-list-<%= file.id %>">
-                <%= render :partial => 'access_list', :locals => { :doc => file, access_type: '1' } %>
-              </div>
-          <% else %>
-              <% file.edit_accesses.each do |access| %>
-                  <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
-              <% end %>
-          <% end %>
-        </div>
+            </div>
 
-        <div class="doc-info-list">
-          <b><%= t('documents.read_access') + ': ' %></b>
-          <% if !@shared %>
-              <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => file.id }, :class => 'btn btn-success btn-xs add-user-access-view' do %>
-                  <span class='glyphicon glyphicon-plus'></span>
+            <div class="doc-info-list">
+              <b><%= t('documents.edit_access') + ': ' %></b>
+              <% if !@shared %>
+                  <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => file.id }, :class => 'btn btn-success btn-xs add-user-access-edit' do %>
+                      <span class='glyphicon glyphicon-plus'></span>
+                  <% end %>
+                  <div id="docs-edit-access-list-<%= file.id %>" class="doc-info-list-content">
+                    <%= render :partial => 'access_list', :locals => { :doc => file, access_type: '1' } %>
+                  </div>
+              <% else %>
+                  <% file.edit_accesses.each do |access| %>
+                      <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
+                  <% end %>
               <% end %>
-              <div id="docs-view-access-list-<%= file.id %>">
-                <%= render :partial => 'access_list', :locals => { doc: file, access_type: '0' } %>
-              </div>
-          <% else %>
-              <% file.view_accesses.each do |access| %>
-                  <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
+            </div>
+
+            <div class="doc-info-list">
+              <b><%= t('documents.read_access') + ': ' %></b>
+              <% if !@shared %>
+                  <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_search_user', :value => file.id }, :class => 'btn btn-success btn-xs add-user-access-view' do %>
+                      <span class='glyphicon glyphicon-plus'></span>
+                  <% end %>
+                  <div id="docs-view-access-list-<%= file.id %>" class="doc-info-list-content">
+                    <%= render :partial => 'access_list', :locals => { doc: file, access_type: '0' } %>
+                  </div>
+              <% else %>
+                  <% file.view_accesses.each do |access| %>
+                      <br><%= link_to access.user.login, user_path(access.user_id), :target => :blank %>
+                  <% end %>
               <% end %>
-          <% end %>
+            </div>
         </div>
 
         <% if !@shared %>
-            <br><div>
+            <div class="doc-info-buttons">
             <%= link_to '', :id => 'btn_remove_document', :data => { :path => file.parent_directory.nil? ? document_delete_root_path(file) :
                       document_delete_path(id: file.parent_directory, delete_id: file.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => 'btn btn-danger' do %>
               <span class='glyphicon glyphicon-remove'></span>

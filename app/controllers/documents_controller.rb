@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   def index
-    if params[:id].nil?
+    if params[:id].blank?
       @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
       @current_folder = nil
     else
@@ -15,9 +15,9 @@ class DocumentsController < ApplicationController
 
   def shared
     @shared = true
-    if params[:user_id].nil?
+    if params[:user_id].blank?
       @users = User.where.not(id: current_user.id).page(params[:page])
-    elsif params[:id].nil?
+    elsif params[:id].blank?
       @docs = Document.includes('user_has_accesses').where(parent_directory: nil, owner_id: params[:user_id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
     else
       @docs = Document.includes('user_has_accesses').where(parent_directory: params[:id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
@@ -25,7 +25,7 @@ class DocumentsController < ApplicationController
       @current_folder = Document.where(id: params[:id]).first
     end
 
-    if !@docs.nil?
+    unless @docs.nil?
       @folders = @docs.select { |doc| doc.doc_type == 0 }
       @files = @docs.select { |doc| doc.doc_type == 1 }
       render 'index'
@@ -33,7 +33,7 @@ class DocumentsController < ApplicationController
   end
 
   def new
-    if params[:documents][:new_file].nil?
+    if params[:documents][:new_file].blank?
       if create_document(0).save
         flash[:notice] = t('documents.folder_creation_success')
       end
@@ -72,7 +72,7 @@ class DocumentsController < ApplicationController
       msg = t('documents.error_document_not_found')
     else
       if params[:name] == 'tags'
-        doc.tags = params[:value].join(',')
+        doc.tags = params[:value].blank? ? '' : params[:value].join(',')
       elsif params[:name] == 'desc'
         doc.description = params[:value]
       elsif params[:name] == 'title'
@@ -96,10 +96,11 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def update_access
+  def update_lists
     stat = msg = 'ok'
+    @doc = nil
 
-    if params[:pk].nil?
+    if params[:pk].blank?
       stat = 'error'
       msg = t('documents.error_not_recognized')
     else
@@ -108,19 +109,32 @@ class DocumentsController < ApplicationController
       if @doc.nil?
         stat = 'error'
         msg = t('documents.error_document_not_found')
-      elsif !params[:access_type].nil? && !params[:receiver_ids].nil? && params[:receiver_ids].length > 0
+      elsif !params[:access_type].blank? and !params[:receiver_ids].blank? and params[:receiver_ids].length > 0
         params[:receiver_ids].each do |user|
           access = UserHasAccess.new(document_id: @doc.id, user_id: user, access_type: params[:access_type])
-          if !access.save
+          unless access.save
             stat = 'error'
             msg = access.errors.full_messages.join(',')
           end
         end
-
-      elsif !params[:access_id].nil?
-        if !UserHasAccess.destroy(params[:access_id])
+      elsif !params[:access_id].blank?
+        unless UserHasAccess.destroy(params[:access_id])
           stat = 'error'
           msg = t('documents.error_not_recognized')
+        end
+
+      elsif !params[:type_id].blank?
+        unless DocumentHasType.destroy(params[:type_id])
+          stat = 'error'
+          msg = t('documents.error_not_recognized')
+        end
+      elsif !params[:types_ids].blank? and params[:types_ids].length > 0
+        params[:types_ids].each do |type|
+          doc_type = DocumentHasType.new(document_id: @doc.id, document_type_id: type)
+          unless doc_type.save
+            stat = 'error'
+            msg = doc_type.errors.full_messages.join(',')
+          end
         end
       end
     end

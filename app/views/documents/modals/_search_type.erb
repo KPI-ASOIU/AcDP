@@ -1,17 +1,16 @@
-<div id="modal_search_user" class="modal fade">
+<div id="modal_search_type" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= t('documents.select_users') %></h4>
+        <h4 class="modal-title"><%= t('documents.select_types') %></h4>
       </div>
       <%= form_tag('/documents/update_lists', :method => :post, :remote => true, :html => { :class => "form-vertical", role: "form" }) do %>
           <div class="modal-body">
             <div id="role" class="form-group">
-              <%= label_tag :new_doc_title, t('documents.select_users'), :class=>'col-sm-0 control-label' %>
-              <%= hidden_field_tag :pk, '', :id => 'docs-add-access' %>
-              <%= hidden_field_tag :access_type, '', :id => 'docs-add-access-type' %>
-              <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }), { class: "chosen-select", multiple: true, include_blank: true } %>
+              <%= label_tag :new_doc_title, t('documents.select_types'), :class=>'col-sm-0 control-label' %>
+              <%= hidden_field_tag :pk, '', :id => 'docs-add-types' %>
+              <%= select_tag :types_ids, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.id] }), { class: "chosen-select", multiple: true, include_blank: true } %>
             </div>
           </div>
           <div class="modal-footer">

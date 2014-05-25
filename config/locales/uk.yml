@@ -261,7 +261,7 @@ uk:
       document:
         description: Опис
       doctype:
-        title: Тип
+        title: Назва типу
     errors:
       template:
         header:
@@ -431,6 +431,7 @@ uk:
     move: Перемістити
     delete: Видалити
     select_users: Виберіть користувачів
+    select_types: Виберіть типи
 
     found_users: Знайдені користувачі
 

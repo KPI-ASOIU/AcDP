@@ -56,7 +56,7 @@ en:
         speciality: 'Speciality'
         speciality_code: 'Speciality code'
       doctype:
-        title: Type
+        title: Type name
     errors:
       template:
         header:
@@ -190,6 +190,7 @@ en:
     move: Move
     delete: Delete
     select_users: Select users
+    select_types: Select types
 
     found_users: Found users
 
