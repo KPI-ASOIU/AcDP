@@ -14,6 +14,7 @@
  *= require select2
  *= require select2-bootstrap
  *= require_tree .
+ *= require jscrollpane
  */
 
 @import "bootstrap";
@@ -50,14 +51,21 @@ body {
   margin-bottom: 5px;
 }
 
-.width85{
-  width: 85%;
-}
-
-.width100{
-  width: 100%;
-}
-
 .text-color-grey{
   color: grey;
+}
+
+/* JScrollPane settings */
+.jspVerticalBar {
+  width: 8px !important;
+  background: white !important;
+}
+.jspTrack {
+  width: 8px !important;
+  background: #ededed !important;
+}
+.jspDrag {
+  border-radius: 10px;
+  width: 8px !important;
+  background: #ccc !important;
 }

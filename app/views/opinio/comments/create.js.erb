@@ -1,0 +1,9 @@
+comment_box = $("#comments")
+comment_box.scrollTop(0);
+
+var comment = {
+	html: '<%= escape_javascript( render @comment ) %>',
+	id: '<%= @comment.id %>'
+}
+dispatcher.trigger('comments.broadcast_new', comment)
+

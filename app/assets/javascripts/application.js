@@ -19,6 +19,7 @@
 //= require locales/jquery.timeago.ru.js
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap3-editable/bootstrap-editable
 //= require moment/uk
 //= require locales/bootstrap-datetimepicker.uk.js
 //= require moment/ru
@@ -28,3 +29,7 @@
 //= require bootstrap3-editable/bootstrap-editable
 //= require select2
 //= require_tree .
+//= require jquery.jscrollpane
+//= require jquery.mousewheel
+//= require websocket_rails/main
+

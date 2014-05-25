@@ -15,6 +15,10 @@ a.text-white {
 	margin: 0;
 }
 
+.margin-btm10 {
+	margin-bottom: 10px
+}
+
 .no-paddings {
 	padding: 0;
 }
@@ -23,6 +27,14 @@ a.text-white {
 	background: transparent;
 	border: 0;
 	outline: none;
+}
+
+.no-outline-btn {
+	outline: none;
+}
+
+.no-resize {
+	resize: none;
 }
 
 .top-paddings-fix {
@@ -56,4 +68,60 @@ a.text-white {
 
 .col-10-percent {
 	width: 10%;
+}
+
+
+/* Comments */
+#comments .popover {
+	position: relative;
+	width: 50%;
+	display: block;
+	margin: 15px 15px 15px 80px;
+}
+
+#comments .popover time {
+	margin-top: -9px;
+}
+
+#comments img {
+	margin-top: 11px;
+}
+
+.clear-comment {
+	top: 10px;
+	right: 10px;
+	margin: 0;
+	height: 16px;
+}
+
+.clear-comment:hover {
+	color: #999;
+}
+
+.new-comment {
+	resize: none;
+}
+
+.comments-form {
+	height: 400px;
+	margin: 0 auto;
+	overflow: auto;
+	outline: 0;
+	width: 100%;
+}
+
+.task-info-area {
+	width: 49%;
+}
+
+.comments-area {
+	width: 49%;
+}
+
+.comments-title {
+	width: 89%;
+}
+
+.fix-in-border {
+	margin: 1% 0 0 3%;
 }

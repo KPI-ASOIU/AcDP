@@ -1,0 +1,8 @@
+<div class='panel panel-primary panel-narrow'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>
+      <%= t('util.new_event') %>
+    </h3>
+  </div>
+	<%= render partial: 'form', locals: { event: @event, val: t('util.create_event') } %>
+</div>

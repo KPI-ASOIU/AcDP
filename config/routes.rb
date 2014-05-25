@@ -1,4 +1,7 @@
 AcDP::Application.routes.draw do
+  opinio_model
+  get 'calendar', to: 'calendar'
+  get 'calendar', to: 'calendar'
   get 'documents', to: 'documents#index'
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
@@ -10,13 +13,6 @@ AcDP::Application.routes.draw do
   post 'documents/:id', to: 'documents#new', as: 'document_new'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
-  get 'calendar', to: 'calendar'
-  delete 'documents', to: 'documents#delete'
-  get 'calendar', to: 'calendar'
-  delete 'documents', to: 'documents#delete'
-  post 'documents/update', to: 'documents#update'
-  post 'documents/update_access', to: 'documents#update_access'
-  post 'documents/:id', to: 'documents#new'
 
   root "users#show_current"
 
@@ -29,6 +25,7 @@ AcDP::Application.routes.draw do
       end
     end
     resources :groups
+    resources :doctypes
   end
 
   resources :users, only: [:show] do
@@ -47,4 +44,6 @@ AcDP::Application.routes.draw do
   resources :contacts, only: [:index, :create, :destroy]
 
   resources :tasks
+
+  resources :events
 end
