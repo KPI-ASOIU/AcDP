@@ -45,8 +45,7 @@ $(document).ready(function(){
 			hover(this,"");
 		})
 		var now_month = (new Date()).getMonth()+1;
-		if (month == now_month)
-			$(".today").click();
+		if (month == now_month) $(".today").click();
 		else $('td:contains("1")').not(".notmonth").first().click();
 	}
 });
