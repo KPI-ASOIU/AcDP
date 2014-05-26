@@ -26,7 +26,6 @@
 //= require locales/bootstrap-datetimepicker.ru.js
 //= require chosen-jquery
 //= require jquery.nested-fields
-//= require bootstrap3-editable/bootstrap-editable
 //= require select2
 //= require_tree .
 //= require jquery.jscrollpane
