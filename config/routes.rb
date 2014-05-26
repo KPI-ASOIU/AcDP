@@ -1,5 +1,6 @@
 AcDP::Application.routes.draw do
   opinio_model
+  get 'calendar', to: 'calendar'
   get 'documents', to: 'documents#index'
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
