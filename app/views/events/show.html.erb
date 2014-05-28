@@ -48,12 +48,14 @@
   <div class="panel-footer">
     <div class="pull-left text-left">
       <%= form_tag event_path(@event), :method => 'get' do %>
-        <% if visit?(@event) %>
-          <%= hidden_field_tag :can_visit, 'false' %>
-          <%= submit_tag t('events.cannot_visit'), :class => "btn btn-success" %>
-        <% else %>
-          <%= hidden_field_tag :can_visit, 'true' %>
-          <%= submit_tag t('events.can_visit'), :class => "btn btn-success" %>
+        <% if !author?(@event) %>
+          <% if visit?(@event) %>
+            <%= hidden_field_tag :can_visit, 'false' %>
+            <%= submit_tag t('events.cannot_visit'), :class => "btn btn-danger" %>
+          <% else %>
+            <%= hidden_field_tag :can_visit, 'true' %>
+            <%= submit_tag t('events.can_visit'), :class => "btn btn-success" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>

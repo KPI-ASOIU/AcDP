@@ -1,3 +1,19 @@
-<div class='activity-list'>
+<div class='activity-filter'>
+	<ul class="nav nav-pills">
+	  <li class="active">
+	  	<%= link_to t('activity.feed'), notifications_path, remote: true %>
+	  </li>
+	  <li>
+	  	<%= link_to t('activity.tasks'), notifications_path(type: 'Task'), remote: true %>
+	  </li>
+	  <li>
+	  	<%= link_to t('activity.events'), notifications_path(type: 'Event'), remote: true %>
+	  </li>
+	  <li>
+	  	<%= link_to t('activity.documents'), notifications_path(type:'Document'), remote: true %>
+	  </li>
+	</ul>
+</div>
+<div class='activity-list-index'>
 	<%= render_activities(@activities) %>
 </div>
