@@ -1,0 +1,46 @@
+= render 'modal_delete'
+%h1= t('news.title')
+
+.text-center
+  .btn-group
+    = link_to t('news.all'), '', class: 'btn btn-default'
+    = link_to t('news.for_group'), '', class: 'btn btn-default'
+    = link_to t('news.for_group'), '', class: 'btn btn-default'
+  %br
+  %br
+  = link_to new_news_post_path, class: 'btn btn-success' do
+    %span{ class: 'glyphicon glyphicon-plus' }
+    = t('news.create_news')
+%br
+
+- @news_posts.each do |news_post|
+  .panel.panel-primary.panel-wide
+    .panel-body.news-index-info-wrapper
+      .news-index-info
+        .thumbnail
+          = image_tag news_post.icon.url('medium'), class: 'news-index-icon'
+        %br
+        = news_post.created_at.to_formatted_s :short
+        %br
+        = link_to news_post.creator.login, user_path(news_post.creator), target: :blank
+      .news-index-right
+        %h2= news_post.title
+        %b= t('activerecord.attributes.news_post.tags') + ':'
+        - news_post.tags.split(',').each do |tag|
+          = link_to tag, ''
+        %br
+        %p{ class: 'news-index-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
+        .news-index-buttons
+          = link_to news_post, :class => 'btn btn-primary' do
+            %span{ class: 'glyphicon glyphicon-zoom-in' }
+            = t('util.show')
+          - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
+            = link_to edit_news_post_path(news_post), :class => 'btn btn-warning' do
+              %span{ class: 'glyphicon glyphicon-pencil' }
+              = t('util.edit')
+            = link_to '', id: 'btn_remove_news_post', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger' do
+              %span{ class: 'glyphicon glyphicon-remove' }
+              = t('util.destroy')
+
+.text-center
+  = paginate @news_posts

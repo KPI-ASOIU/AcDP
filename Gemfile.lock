@@ -37,6 +37,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
+    bootstrap-wysihtml5-rails (0.3.1.24)
+      railties (>= 3.0)
     bootstrap-x-editable-rails (1.5.1.1)
       railties (>= 3.0)
     bootstrap3-datetimepicker-rails (3.0.0)
@@ -117,6 +119,8 @@ GEM
       railties (>= 4.0.1)
     hike (1.2.3)
     hiredis (0.5.2)
+    html_truncator (0.4.0)
+      nokogiri (~> 1.5)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -140,6 +144,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     momentjs-rails (2.5.1)
       railties (>= 3.1)
@@ -147,6 +152,8 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     opinio (0.3.0)
     orm_adapter (0.5.0)
     paperclip (4.1.1)
@@ -267,6 +274,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.1.0)
+  bootstrap-wysihtml5-rails
   bootstrap-x-editable-rails
   bootstrap3-datetimepicker-rails (~> 3.0.0)
   cancan
@@ -279,6 +287,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   foreman
   haml-rails
+  html_truncator (~> 0.4.0)
   jbuilder (~> 1.2)
   jquery-mousewheel-rails
   jquery-rails

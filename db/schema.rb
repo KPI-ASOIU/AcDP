@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517214822) do
+ActiveRecord::Schema.define(version: 20140525205547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 20140517214822) do
   end
 
   create_table "contacts", force: true do |t|
-    t.integer "user_id"
-    t.integer "contact_user_id"
+    t.integer  "user_id"
+    t.integer  "contact_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "conversations", force: true do |t|
@@ -96,6 +98,11 @@ ActiveRecord::Schema.define(version: 20140517214822) do
     t.datetime "file_updated_at"
   end
 
+  create_table "group_has_news_posts", force: true do |t|
+    t.integer "group_id", null: false
+    t.integer "post_id",  null: false
+  end
+
   create_table "groups", force: true do |t|
     t.string   "name"
     t.integer  "start_year"
@@ -114,6 +121,25 @@ ActiveRecord::Schema.define(version: 20140517214822) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "news_post_has_docs", force: true do |t|
+    t.integer "document_id", null: false
+    t.integer "post_id",     null: false
+  end
+
+  create_table "news_posts", force: true do |t|
+    t.string   "title",             null: false
+    t.text     "content",           null: false
+    t.string   "tags"
+    t.integer  "creator_id",        null: false
+    t.integer  "for_roles",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "student_infos", force: true do |t|
@@ -157,11 +183,6 @@ ActiveRecord::Schema.define(version: 20140517214822) do
     t.integer  "document_id", null: false
     t.integer  "access_type", null: false
     t.datetime "created_at",  null: false
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|

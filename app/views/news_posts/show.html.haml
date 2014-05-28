@@ -1,0 +1,33 @@
+= render 'modal_delete'
+=image_tag @news_post.icon.url('large'), class: 'news-show-icon'
+
+.post-block
+  %h1
+    %b= @news_post.title
+  %p
+    %b= t('documents.date_created') + ':'
+    = @news_post.created_at.to_formatted_s :long
+  %p
+    %b= t('documents.date_changed') + ':'
+    = @news_post.updated_at.to_formatted_s :long
+  %p
+    %b= t('activerecord.attributes.news_post.creator_id') + ':'
+    = link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
+  %p
+    %b= t('activerecord.attributes.news_post.for_roles') + ':'
+    =@news_post.for_roles
+  %p
+    %b= t('activerecord.attributes.news_post.tags') + ':'
+    - @news_post.tags.split(',').each do |tag|
+      =link_to tag, ''
+  %p{ class: 'post-content' }= raw @news_post.content
+
+.news-show-buttons
+  = link_to t('util.back'), news_posts_path, :class => 'btn btn-default'
+  - if current_user.id == @news_post.creator_id or current_user.has_role?('admin')
+    = link_to edit_news_post_path(@news_post), :class => 'btn btn-warning' do
+      %span{ class: 'glyphicon glyphicon-pencil' }
+      = t('util.edit')
+    = link_to '', id: 'btn_remove_news_post', data: { path: news_post_path(@news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger' do
+      %span{ class: 'glyphicon glyphicon-remove' }
+      = t('util.destroy')

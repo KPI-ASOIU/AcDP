@@ -1,4 +1,10 @@
 AcDP::Application.routes.draw do
+  resources :news_posts do
+    member do
+      delete 'icon'
+    end
+  end
+
   opinio_model
   get 'documents', to: 'documents#index'
   get 'documents/shared', to: 'documents#shared'

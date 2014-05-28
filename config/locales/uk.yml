@@ -262,6 +262,13 @@ uk:
         description: Опис
       doctype:
         title: Назва типу
+      news_post:
+        title: Заголовок
+        content: Текст
+        tags: Теги
+        creator_id: Автор
+        for_roles: Для ролей
+        icon: Іконка
     errors:
       template:
         header:
@@ -442,6 +449,32 @@ uk:
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити ?
     flash_removed_item: Елемент успішно видалено
+  doctypes:
+    manage: Типи документів
+    list: Перелік типів документів
+    new: Додати тип
+    add_panel: Додавання типів документів
+    placeholder: Тип
+    removing: Видалення типу
+  news:
+      title: Новини
+      publish: Опублікувати
+      creating_post: Створення новини
+      editing_post: Редагування новини
+      post_created: Новина успішно створена
+      post_updated: Новина успішно зредагована
+      create_news: Створити новину
+      all: Всі
+      global: Загальні
+      for_group: Для групи
+      group_chosen_no_result: Не знайдено груп з такою назвою
+
+      modal_removing_title: Видалення новини
+      modal_removing_message: Дійсно видалити новину ?
+
+      ph_title: Введіть заголовок...
+      ph_tags: Введіть теги...
+      ph_content: Введіть текст новини...
   contacts:
     count:
       zero: Ви маєте 0 контактів
@@ -493,10 +526,3 @@ uk:
     no_events: Найближчим часом немає жодних подій
     no_search_result: За вашим запитом не знайдено жодної події
     cannot_visit: Не зможу прийти
-  doctypes:
-    manage: Типи документів
-    list: Перелік типів документів
-    new: Додати тип
-    add_panel: Додавання типів документів
-    placeholder: Тип
-    removing: Видалення типу

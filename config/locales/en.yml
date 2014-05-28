@@ -57,6 +57,8 @@ en:
         speciality_code: 'Speciality code'
       doctype:
         title: Type name
+      news_post:
+        icon: Icon
     errors:
       template:
         header:
@@ -201,6 +203,33 @@ en:
     modal_confirm_remove_title: Removing item
     modal_confirm_remove_message: Really remove item
     flash_removed_item: Item removed
+  doctypes:
+    manage: Document types
+    list: Listing document types
+    new: Add type
+    add_panel: Adding types of documents
+    placeholder: Type
+    removing: Type removing
+  news:
+    title: News
+    creating_post: Creating news post
+    editing_post: Editing news post
+    post_created: News post was successfully created
+    post_updated: News post was successfully updated
+    category: Category
+    create_news: Create news
+    publish: Publish
+    global: Global
+    all: All
+    for_group: For group
+    group_chosen_no_result: No groups found with such name
+
+    modal_removing_title: Removing news
+    modal_removing_message: Really remove news ?
+
+    ph_title: Enter title...
+    ph_tags: Enter tags...
+    ph_content: Enter text...
   tasks:    
     author: Author
     task_info: Task info
@@ -217,10 +246,3 @@ en:
     no_tasks: You have not received any tasks yet
     progress: Progress
     creation_date: Creation date
-  doctypes:
-    manage: Document types
-    list: Listing document types
-    new: Add type
-    add_panel: Adding types of documents
-    placeholder: Type
-    removing: Type removing
