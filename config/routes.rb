@@ -1,16 +1,26 @@
 AcDP::Application.routes.draw do
+  opinio_model
+
   resources :news_posts do
     member do
       delete 'icon'
     end
+    collection do
+      get 'tags/:tag' => 'news_posts#index', as: 'tag'
+      get 'categories/:category' => 'news_posts#index', as: 'category'
+      get 'categories/group/:group_id' => 'news_posts#index', as: 'group'
+    end
   end
 
-  opinio_model
   get 'documents', to: 'documents#index'
+
+  get 'documents/tree/:type', to: 'documents#jstree'
+
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
   get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'
   get 'documents/:id', to: 'documents#index', as: 'document'
+
   post 'documents', to: 'documents#new'
   patch 'documents/update', to: 'documents#update'
   post 'documents/update_lists', to: 'documents#update_lists'

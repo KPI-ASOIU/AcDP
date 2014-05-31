@@ -31,8 +31,8 @@
 //= require select2_locale_uk
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-wysihtml5/locales/ua-UA
+//= require jstree
 //= require_tree .
 //= require jquery.jscrollpane
 //= require jquery.mousewheel
 //= require websocket_rails/main
-

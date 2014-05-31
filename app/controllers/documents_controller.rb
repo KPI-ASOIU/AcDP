@@ -32,6 +32,14 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def jstree
+    if params[:id] and params[:id] != '#'
+      @docs = Document.where(parent_directory: params[:id])
+    else
+      @docs = Document.where(parent_directory: nil)
+    end
+  end
+
   def new
     if params[:documents][:new_file].blank?
       if create_document(0).save

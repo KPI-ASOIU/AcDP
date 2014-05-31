@@ -3,9 +3,11 @@
 
 .text-center
   .btn-group
-    = link_to t('news.all'), '', class: 'btn btn-default'
-    = link_to t('news.for_group'), '', class: 'btn btn-default'
-    = link_to t('news.for_group'), '', class: 'btn btn-default'
+    = link_to t('news.all'), news_posts_path, class: 'btn btn-default'
+    - if !current_user.group.nil?
+      = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'btn btn-default'
+    - User::ROLES.each do |role|
+      = link_to t('news.for_category.' + role), category_news_posts_path(role), class: 'btn btn-default'
   %br
   %br
   = link_to new_news_post_path, class: 'btn btn-success' do
@@ -17,19 +19,18 @@
   .panel.panel-primary.panel-wide
     .panel-body.news-index-info-wrapper
       .news-index-info
-        .thumbnail
-          = image_tag news_post.icon.url('medium'), class: 'news-index-icon'
-        %br
-        = news_post.created_at.to_formatted_s :short
+        .thumbnail.news-index-icon
+          =image_tag news_post.icon.url('medium')
+        =l news_post.created_at, format: :short
         %br
         = link_to news_post.creator.login, user_path(news_post.creator), target: :blank
       .news-index-right
         %h2= news_post.title
         %b= t('activerecord.attributes.news_post.tags') + ':'
         - news_post.tags.split(',').each do |tag|
-          = link_to tag, ''
+          = link_to tag, tag_news_posts_path(tag)
         %br
-        %p{ class: 'news-index-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
+        %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
         .news-index-buttons
           = link_to news_post, :class => 'btn btn-primary' do
             %span{ class: 'glyphicon glyphicon-zoom-in' }
@@ -38,7 +39,7 @@
             = link_to edit_news_post_path(news_post), :class => 'btn btn-warning' do
               %span{ class: 'glyphicon glyphicon-pencil' }
               = t('util.edit')
-            = link_to '', id: 'btn_remove_news_post', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger' do
+            = link_to '', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
               %span{ class: 'glyphicon glyphicon-remove' }
               = t('util.destroy')
 

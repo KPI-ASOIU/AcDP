@@ -7,7 +7,7 @@ div.news-errors-block {
 }
 
 div.news-show-buttons {
-    margin: 20px 20px 60px 20px;
+    margin: 20px 20px 30px 20px;
     float: right;
 }
 
@@ -34,19 +34,33 @@ p.news-index-content {
     margin-top: 8px;
 }
 
-img.news-show-icon {
+div.news-show-icon {
     float: left;
     width: 215px;
-    margin: 20px;
+    margin: 0 20px 20px 0;
 }
 
-img.news-index-icon {
+h1.news-show-title {
+    margin-top: 0;
+}
+
+div.news-index-icon {
     width: 128px;
-    margin-bottom: 0px;
 }
 
-.post-block {
-    margin: 20px;
+.news-comments-block {
+    clear: both;
+    max-width: 90%;
+    margin: 0 auto 60px auto;
+}
+
+.news-comments-block #comments .popover {
+    max-width: 100%;
+    width: 80%;
+}
+
+.news-comments-block>.panel-narrow {
+    max-width: 100%;
 }
 
 .post-content {

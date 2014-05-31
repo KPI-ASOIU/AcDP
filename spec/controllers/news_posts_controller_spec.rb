@@ -23,138 +23,138 @@ describe NewsPostsController do
   # This should return the minimal set of attributes required to create a valid
   # NewsPost. As you add validations to NewsPost, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "title" => "MyString" } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # NewsPostsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET index" do
-    it "assigns all news_posts as @news_posts" do
-      news_post = NewsPost.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:news_posts).should eq([news_post])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested news_post as @news_post" do
-      news_post = NewsPost.create! valid_attributes
-      get :show, {:id => news_post.to_param}, valid_session
-      assigns(:news_post).should eq(news_post)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new news_post as @news_post" do
-      get :new, {}, valid_session
-      assigns(:news_post).should be_a_new(NewsPost)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested news_post as @news_post" do
-      news_post = NewsPost.create! valid_attributes
-      get :edit, {:id => news_post.to_param}, valid_session
-      assigns(:news_post).should eq(news_post)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new NewsPost" do
-        expect {
-          post :create, {:news_post => valid_attributes}, valid_session
-        }.to change(NewsPost, :count).by(1)
-      end
-
-      it "assigns a newly created news_post as @news_post" do
-        post :create, {:news_post => valid_attributes}, valid_session
-        assigns(:news_post).should be_a(NewsPost)
-        assigns(:news_post).should be_persisted
-      end
-
-      it "redirects to the created news_post" do
-        post :create, {:news_post => valid_attributes}, valid_session
-        response.should redirect_to(NewsPost.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved news_post as @news_post" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        NewsPost.any_instance.stub(:save).and_return(false)
-        post :create, {:news_post => { "title" => "invalid value" }}, valid_session
-        assigns(:news_post).should be_a_new(NewsPost)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        NewsPost.any_instance.stub(:save).and_return(false)
-        post :create, {:news_post => { "title" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested news_post" do
-        news_post = NewsPost.create! valid_attributes
-        # Assuming there are no other news_posts in the database, this
-        # specifies that the NewsPost created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        NewsPost.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:id => news_post.to_param, :news_post => { "title" => "MyString" }}, valid_session
-      end
-
-      it "assigns the requested news_post as @news_post" do
-        news_post = NewsPost.create! valid_attributes
-        put :update, {:id => news_post.to_param, :news_post => valid_attributes}, valid_session
-        assigns(:news_post).should eq(news_post)
-      end
-
-      it "redirects to the news_post" do
-        news_post = NewsPost.create! valid_attributes
-        put :update, {:id => news_post.to_param, :news_post => valid_attributes}, valid_session
-        response.should redirect_to(news_post)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the news_post as @news_post" do
-        news_post = NewsPost.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        NewsPost.any_instance.stub(:save).and_return(false)
-        put :update, {:id => news_post.to_param, :news_post => { "title" => "invalid value" }}, valid_session
-        assigns(:news_post).should eq(news_post)
-      end
-
-      it "re-renders the 'edit' template" do
-        news_post = NewsPost.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        NewsPost.any_instance.stub(:save).and_return(false)
-        put :update, {:id => news_post.to_param, :news_post => { "title" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested news_post" do
-      news_post = NewsPost.create! valid_attributes
-      expect {
-        delete :destroy, {:id => news_post.to_param}, valid_session
-      }.to change(NewsPost, :count).by(-1)
-    end
-
-    it "redirects to the news_posts list" do
-      news_post = NewsPost.create! valid_attributes
-      delete :destroy, {:id => news_post.to_param}, valid_session
-      response.should redirect_to(news_posts_url)
-    end
-  end
+  # let(:valid_attributes) { { "title" => "MyString" } }
+  #
+  # # This should return the minimal set of values that should be in the session
+  # # in order to pass any filters (e.g. authentication) defined in
+  # # NewsPostsController. Be sure to keep this updated too.
+  # let(:valid_session) { {} }
+  #
+  # describe "GET index" do
+  #   it "assigns all news_posts as @news_posts" do
+  #     news_post = NewsPost.create! valid_attributes
+  #     get :index, {}, valid_session
+  #     assigns(:news_posts).should eq([news_post])
+  #   end
+  # end
+  #
+  # describe "GET show" do
+  #   it "assigns the requested news_post as @news_post" do
+  #     news_post = NewsPost.create! valid_attributes
+  #     get :show, {:id => news_post.to_param}, valid_session
+  #     assigns(:news_post).should eq(news_post)
+  #   end
+  # end
+  #
+  # describe "GET new" do
+  #   it "assigns a new news_post as @news_post" do
+  #     get :new, {}, valid_session
+  #     assigns(:news_post).should be_a_new(NewsPost)
+  #   end
+  # end
+  #
+  # describe "GET edit" do
+  #   it "assigns the requested news_post as @news_post" do
+  #     news_post = NewsPost.create! valid_attributes
+  #     get :edit, {:id => news_post.to_param}, valid_session
+  #     assigns(:news_post).should eq(news_post)
+  #   end
+  # end
+  #
+  # describe "POST create" do
+  #   describe "with valid params" do
+  #     it "creates a new NewsPost" do
+  #       expect {
+  #         post :create, {:news_post => valid_attributes}, valid_session
+  #       }.to change(NewsPost, :count).by(1)
+  #     end
+  #
+  #     it "assigns a newly created news_post as @news_post" do
+  #       post :create, {:news_post => valid_attributes}, valid_session
+  #       assigns(:news_post).should be_a(NewsPost)
+  #       assigns(:news_post).should be_persisted
+  #     end
+  #
+  #     it "redirects to the created news_post" do
+  #       post :create, {:news_post => valid_attributes}, valid_session
+  #       response.should redirect_to(NewsPost.last)
+  #     end
+  #   end
+  #
+  #   describe "with invalid params" do
+  #     it "assigns a newly created but unsaved news_post as @news_post" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       NewsPost.any_instance.stub(:save).and_return(false)
+  #       post :create, {:news_post => { "title" => "invalid value" }}, valid_session
+  #       assigns(:news_post).should be_a_new(NewsPost)
+  #     end
+  #
+  #     it "re-renders the 'new' template" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       NewsPost.any_instance.stub(:save).and_return(false)
+  #       post :create, {:news_post => { "title" => "invalid value" }}, valid_session
+  #       response.should render_template("new")
+  #     end
+  #   end
+  # end
+  #
+  # describe "PUT update" do
+  #   describe "with valid params" do
+  #     it "updates the requested news_post" do
+  #       news_post = NewsPost.create! valid_attributes
+  #       # Assuming there are no other news_posts in the database, this
+  #       # specifies that the NewsPost created on the previous line
+  #       # receives the :update_attributes message with whatever params are
+  #       # submitted in the request.
+  #       NewsPost.any_instance.should_receive(:update).with({ "title" => "MyString" })
+  #       put :update, {:id => news_post.to_param, :news_post => { "title" => "MyString" }}, valid_session
+  #     end
+  #
+  #     it "assigns the requested news_post as @news_post" do
+  #       news_post = NewsPost.create! valid_attributes
+  #       put :update, {:id => news_post.to_param, :news_post => valid_attributes}, valid_session
+  #       assigns(:news_post).should eq(news_post)
+  #     end
+  #
+  #     it "redirects to the news_post" do
+  #       news_post = NewsPost.create! valid_attributes
+  #       put :update, {:id => news_post.to_param, :news_post => valid_attributes}, valid_session
+  #       response.should redirect_to(news_post)
+  #     end
+  #   end
+  #
+  #   describe "with invalid params" do
+  #     it "assigns the news_post as @news_post" do
+  #       news_post = NewsPost.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       NewsPost.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => news_post.to_param, :news_post => { "title" => "invalid value" }}, valid_session
+  #       assigns(:news_post).should eq(news_post)
+  #     end
+  #
+  #     it "re-renders the 'edit' template" do
+  #       news_post = NewsPost.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       NewsPost.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => news_post.to_param, :news_post => { "title" => "invalid value" }}, valid_session
+  #       response.should render_template("edit")
+  #     end
+  #   end
+  # end
+  #
+  # describe "DELETE destroy" do
+  #   it "destroys the requested news_post" do
+  #     news_post = NewsPost.create! valid_attributes
+  #     expect {
+  #       delete :destroy, {:id => news_post.to_param}, valid_session
+  #     }.to change(NewsPost, :count).by(-1)
+  #   end
+  #
+  #   it "redirects to the news_posts list" do
+  #     news_post = NewsPost.create! valid_attributes
+  #     delete :destroy, {:id => news_post.to_param}, valid_session
+  #     response.should redirect_to(news_posts_url)
+  #   end
+  # end
 
 end

@@ -27,4 +27,8 @@ class Document < ActiveRecord::Base
       return false
     end
   end
+
+  def as_json(options = {})
+    { id: id, text: title, children: doc_type == 0, icon: doc_type == 0 ? 'jstree-folder' : 'jstree-file' }
+  end
 end

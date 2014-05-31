@@ -1,33 +1,43 @@
 = render 'modal_delete'
-=image_tag @news_post.icon.url('large'), class: 'news-show-icon'
 
-.post-block
-  %h1
-    %b= @news_post.title
-  %p
-    %b= t('documents.date_created') + ':'
-    = @news_post.created_at.to_formatted_s :long
-  %p
-    %b= t('documents.date_changed') + ':'
-    = @news_post.updated_at.to_formatted_s :long
-  %p
-    %b= t('activerecord.attributes.news_post.creator_id') + ':'
-    = link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
-  %p
-    %b= t('activerecord.attributes.news_post.for_roles') + ':'
-    =@news_post.for_roles
-  %p
-    %b= t('activerecord.attributes.news_post.tags') + ':'
-    - @news_post.tags.split(',').each do |tag|
-      =link_to tag, ''
-  %p{ class: 'post-content' }= raw @news_post.content
+.panel.panel-primary
+  .panel-body
+    .thumbnail.news-show-icon
+      =image_tag @news_post.icon.url('large')
+    %div
+      %h1{ class: 'news-show-title' }
+        %b= @news_post.title
+      %p
+        %b= t('documents.date_created') + ':'
+        =l @news_post.created_at, format: :short
+      %p
+        %b= t('documents.date_changed') + ':'
+        =l @news_post.updated_at, format: :short
+      %p
+        %b= t('activerecord.attributes.news_post.creator_id') + ':'
+        =link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
+      %p
+        %b= t('activerecord.attributes.news_post.for_roles') + ':'
+        = @news_post.for_roles
+      %p
+        %b= t('activerecord.attributes.news_post.tags') + ':'
+        - @news_post.tags.split(',').each do |tag|
+          =link_to tag, tag_news_posts_path(tag)
+      %p
+        %b= t('news.attached_docs') + ':'
+        - @news_post.documents.each do |document|
+          =link_to document.title, documents_path(document)
+    %p{ class: 'post-content' }= raw @news_post.content
 
 .news-show-buttons
-  = link_to t('util.back'), news_posts_path, :class => 'btn btn-default'
+  =link_to t('util.back'), news_posts_path, :class => 'btn btn-default'
   - if current_user.id == @news_post.creator_id or current_user.has_role?('admin')
-    = link_to edit_news_post_path(@news_post), :class => 'btn btn-warning' do
+    =link_to edit_news_post_path(@news_post), :class => 'btn btn-warning' do
       %span{ class: 'glyphicon glyphicon-pencil' }
       = t('util.edit')
-    = link_to '', id: 'btn_remove_news_post', data: { path: news_post_path(@news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger' do
+    =link_to '', data: { path: news_post_path(@news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
       %span{ class: 'glyphicon glyphicon-remove' }
-      = t('util.destroy')
+      =t('util.destroy')
+
+.news-comments-block
+  =comments_for @news_post

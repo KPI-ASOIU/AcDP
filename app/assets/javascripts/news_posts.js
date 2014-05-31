@@ -11,7 +11,23 @@ $(document).ready(function(){
 
     $('#news_post_tags').select2({ tags: [] });
 
-    $(document).on("click", "#btn_remove_news_post", function () {
-        $("#news_post_remove_path").attr('href', $(this).data('path'));
+    $(document).on('click', '.btn_remove_news_post', function () {
+        $('#news_post_remove_path').attr('href', $(this).data('path'));
+    });
+
+    $('#docs-select-confirm').click(function() {
+      ulElement = $('#news-attached-docs');
+      ulElement.empty();
+      var newsForm = $('form');
+      $("input[name*='news_post[documents][]']").remove();
+
+      $('#modal-docs-list').jstree(true).get_top_selected(true).forEach(function(el){
+        ulElement.append('<li>' + el.text + '</li');
+        $('<input>').attr({
+          type: 'hidden',
+          name: 'news_post[documents][]',
+          value: el.id
+        }).appendTo(newsForm);
+      });
     });
 });

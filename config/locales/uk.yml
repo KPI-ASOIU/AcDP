@@ -267,7 +267,7 @@ uk:
         content: Текст
         tags: Теги
         creator_id: Автор
-        for_roles: Для ролей
+        for_roles: Категорія
         icon: Іконка
     errors:
       template:
@@ -323,6 +323,7 @@ uk:
     extended_search: Розширений пошук
     I: Я
     not_I: 'Всі, крім мене'
+    add: Додати
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -404,6 +405,8 @@ uk:
     by_title_and_tags: По назві та тегам
     open: Відкрити
     download: Скачати
+    select_doc: Виберіть документ
+    docs_list: Список документів
 
     information: Інформація
 
@@ -463,10 +466,22 @@ uk:
       editing_post: Редагування новини
       post_created: Новина успішно створена
       post_updated: Новина успішно зредагована
+      attached_docs: Прикріплені документи
+      add_doc: Додати документ
       create_news: Створити новину
       all: Всі
-      global: Загальні
-      for_group: Для групи
+
+      error_removing_icon: Помилка при видаленні іконки
+
+      category: Категорія
+      for_category:
+        global: Загальні
+        group: Для групи
+        worker: Для працівників
+        admin: Для адміністраторів
+        student: Для студентів
+        teacher: Для викладачів
+
       group_chosen_no_result: Не знайдено груп з такою назвою
 
       modal_removing_title: Видалення новини

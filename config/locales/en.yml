@@ -89,6 +89,7 @@ en:
     create_group: Create Group
     all: All
     save: Save
+    add: Add
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -158,6 +159,8 @@ en:
     by_title_and_tags: By title and tags
     open: Open
     download: Download
+    select_doc: Select document
+    docs_list: List of documents
 
     information: Information
 
@@ -216,12 +219,23 @@ en:
     editing_post: Editing news post
     post_created: News post was successfully created
     post_updated: News post was successfully updated
+    attached_docs: Attached documents
+    add_doc: Add document
+
+    error_removing_icon: Error removing icon
+
     category: Category
+    for_category:
+      global: Global
+      group: For group
+      worker: For workers
+      admin: For administrators
+      student: For students
+      teacher: For lecturers
+
     create_news: Create news
     publish: Publish
-    global: Global
     all: All
-    for_group: For group
     group_chosen_no_result: No groups found with such name
 
     modal_removing_title: Removing news

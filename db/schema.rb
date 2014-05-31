@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.integer  "original_doc_id"
   end
 
+  create_table "documents_news_posts", id: false, force: true do |t|
+    t.integer "document_id"
+    t.integer "news_post_id"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -98,11 +103,6 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.datetime "file_updated_at"
   end
 
-  create_table "group_has_news_posts", force: true do |t|
-    t.integer "group_id", null: false
-    t.integer "post_id",  null: false
-  end
-
   create_table "groups", force: true do |t|
     t.string   "name"
     t.integer  "start_year"
@@ -115,17 +115,17 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.datetime "updated_at"
   end
 
+  create_table "groups_news_posts", id: false, force: true do |t|
+    t.integer "group_id"
+    t.integer "news_post_id"
+  end
+
   create_table "messages", force: true do |t|
     t.integer  "conversation_id"
     t.integer  "author_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "news_post_has_docs", force: true do |t|
-    t.integer "document_id", null: false
-    t.integer "post_id",     null: false
   end
 
   create_table "news_posts", force: true do |t|

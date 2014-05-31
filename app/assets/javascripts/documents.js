@@ -90,4 +90,25 @@ $(document).ready(function(){
             if(response.status == 'error') return response.msg;
         }
     });
+
+    // document select tree
+    var docs_list = $('#modal-docs-list');
+    if(docs_list.length) {
+        docs_list.jstree({ core: {
+            data: {
+                url : function (node) {
+                    return '/documents/tree/owned.json';
+                },
+                data : function (node) {
+                    return { id: node.id };
+                }
+            }
+        },
+            plugins: ['wholerow', 'checkbox']
+        });
+
+        docs_list.on("loaded.jstree", function(event, data) {
+            $('#doc-select-jsPanel').jScrollPane({autoReinitialise: true});
+        });
+    }
 });

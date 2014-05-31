@@ -1,7 +1,7 @@
 class NewsPost < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
-  has_many :group_has_news_posts, foreign_key: :post_id, dependent: :destroy
-  has_many :news_post_has_docs, foreign_key: :post_id, dependent: :destroy
+  has_and_belongs_to_many :groups
+  has_and_belongs_to_many :documents
 
   has_attached_file :icon,
                     :styles => { :medium => '128x128#', :large => '256x256#'},
@@ -14,48 +14,28 @@ class NewsPost < ActiveRecord::Base
   validates_length_of :title, :within => 6..255
   validates_length_of :content, :minimum => 20
   validates_length_of :tags, :maximum => 255
+  validates_presence_of :for_roles
 
-  def custom_save(groups, docs)
-    need_save_groups = !(groups.nil? || groups.length < 1)
-    need_save_docs = !(docs.nil? || docs.length < 1)
+  scope :with_tag, ->(tag) { where('tags LIKE ?', "%#{tag}%") }
+  scope :with_category, ->(category) { where(for_roles: NewsPost.category_to_i(category)) }
 
-    if !need_save_docs and !need_save_groups
-      return self.save
+  CATEGORIES = %w[global group].concat User::ROLES
+
+  def category
+    if self.for_roles.nil?
+      nil
     else
-      begin
-        transaction do
-          self.save!
-          if need_save_groups
-            groups.each do |group|
-              GroupHasNewsPost.new(group_id: group, post_id: self.id).save!
-            end
-          end
-          if need_save_docs
-            docs.each do |doc|
-              NewsPostHasDoc.new(document_id: doc, post_id: self.id).save!
-            end
-          end
-          return true
-        end
-      rescue ActiveRecord::StatementInvalid
-        #error
-      rescue
-        return false
-      end
+      CATEGORIES[self.for_roles]
     end
   end
 
-  def custom_update(params, groups, docs)
-    need_save_groups = !(groups.nil? || groups.length < 1)
-    need_save_docs = !(docs.nil? || docs.length < 1)
-
-    begin
-      transaction do
-        GroupHasNewsPost.destroy_all(post_id: self.id)
-        NewsPostHasDoc.destroy_all(post_id: self.id)
-
-
-      end
-    end
+  def self.category_to_i(role)
+    CATEGORIES.index(role)
   end
+
+  def category=(role)
+    self.for_roles = CATEGORIES.index(role)
+  end
+
+  opinio_subjectum
 end

@@ -1,10 +1,19 @@
 class NewsPostsController < ApplicationController
-  before_action :set_news_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_news_post, only: [:show, :edit, :update, :destroy, :icon]
+  authorize_resource
 
   # GET /news_posts
   # GET /news_posts.json
   def index
-    @news_posts = NewsPost.all.page(params[:page])
+    if !params[:tag].blank?
+      @news_posts = NewsPost.with_tag(params[:tag]).page(params[:page])
+    elsif !params[:category].blank?
+      @news_posts = NewsPost.with_category(params[:category]).page(params[:page])
+    elsif !params[:group_id].blank?
+      @news_posts = NewsPost.includes(:groups).where(groups: { id: params[:group_id] }).page(params[:page])
+    else
+      @news_posts = NewsPost.all.page(params[:page])
+    end
   end
 
   # GET /news_posts/1
@@ -25,9 +34,10 @@ class NewsPostsController < ApplicationController
   # POST /news_posts.json
   def create
     @news_post = NewsPost.new(news_post_params)
+    @news_post.category = news_post_params[:for_roles]
 
     respond_to do |format|
-      if @news_post.custom_save(news_post_params[:for_roles] == 'group' ? params[:for_groups] : nil, nil)
+      if @news_post.save
         format.html { redirect_to @news_post, notice: t('news.post_created') }
         format.json { render action: 'show', status: :created, location: @news_post }
       else
@@ -41,13 +51,23 @@ class NewsPostsController < ApplicationController
   # PATCH/PUT /news_posts/1.json
   def update
     respond_to do |format|
-      if @news_post.update(news_post_params)
+      @news_post.category = news_post_params[:for_roles]
+      if @news_post.update(news_post_params.except(:for_roles))
         format.html { redirect_to @news_post, notice: t('news.post_updated') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @news_post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def icon
+    if @news_post.icon.destroy
+      @news_post.save
+      redirect_to edit_news_post_path(@news_post)
+    else
+      redirect_to edit_news_post_path(@news_post), :alert => t('activerecord.errors.models.avatar.delete')
     end
   end
 
@@ -69,6 +89,7 @@ class NewsPostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_post_params
-      params.require(:news_post).permit(:title, :content, :tags, :icon, :creator_id, :for_roles, :created_at, :updated_at)
+      params.require(:news_post).permit(:title, :content, :tags, :icon, :for_roles, :created_at, :updated_at, :documets).
+          merge({ groups: Group.where(id: params[:for_groups]), documents: Document.where(id: params[:news_post][:documents]), creator_id: current_user.id })
     end
 end

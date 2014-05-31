@@ -12,14 +12,14 @@ class CreateNewsPosts < ActiveRecord::Migration
 
     add_attachment :news_posts, :icon
 
-    create_table :group_has_news_posts do |t|
-      t.integer :group_id, null: false
-      t.integer :post_id, null: false
+    create_table :groups_news_posts, id: false do |t|
+      t.belongs_to :group
+      t.belongs_to :news_post
     end
 
-    create_table :news_post_has_docs do |t|
-      t.integer :document_id, null: false
-      t.integer :post_id, null: false
+    create_table :documents_news_posts, id: false do |t|
+      t.belongs_to :document
+      t.belongs_to :news_post
     end
   end
 end
