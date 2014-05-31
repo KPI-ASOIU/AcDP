@@ -12,6 +12,7 @@ AcDP::Application.routes.draw do
     end
   end
 
+  get 'calendar', to: 'calendar'
   get 'documents', to: 'documents#index'
 
   get 'documents/tree/:type', to: 'documents#jstree'

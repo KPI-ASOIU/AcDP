@@ -26,7 +26,6 @@
 //= require locales/bootstrap-datetimepicker.ru.js
 //= require chosen-jquery
 //= require jquery.nested-fields
-//= require bootstrap3-editable/bootstrap-editable
 //= require select2
 //= require select2_locale_uk
 //= require bootstrap-wysihtml5/b3
