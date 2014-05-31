@@ -1,7 +1,7 @@
-<div id="comment_<%= comment.id %>" class='fix-in-border'>
+<div id="comment_<%= comment.id %>" class='fix-in-border break-words'>
   <%= link_to image_tag((author = comment.owner).avatar.url("medium"), class: 'img-thumbnail c-user-medium-avatar pull-left', title: author.full_name), user_path(author.id) %>
   <div class="popover right">
-    <div class="arrow"></div>
+    <div class="arrow arrow-fix"></div>
     <h3 class="popover-title">
       <b><%= comment.owner.full_name %></b>
     </h3>

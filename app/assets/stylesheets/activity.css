@@ -1,3 +1,8 @@
+.activity-list, .panel-activity {
+  margin: 0 auto;
+  max-width: 520px;
+}
+
 .panel-activity {
   margin-left: 30px;
   overflow: auto;
@@ -5,13 +10,8 @@
 }
 
 .activity-list {
-  margin: 0 auto;
-  max-width: 520px;
-}
-
-.activity-list-index {
-  margin: 0 auto;
-  max-width: 410px
+  height: 500px;
+  overflow: auto;
 }
 
 .activity {
@@ -56,6 +56,6 @@
 
 .no-activity-found {
   margin: 15px 0;
-  max-width: 450px;
+  max-width: 520px;
 }
 

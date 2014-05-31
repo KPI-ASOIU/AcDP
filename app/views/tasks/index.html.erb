@@ -1,7 +1,8 @@
 <% if not @tasks.empty? %>
   <div class="panel panel-primary">
-    <div class="panel-heading">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="text-white">
+    <div id='extSearch' data-toggle="collapse" data-parent="#accordion" href="#collapseOne" 
+      class="panel-heading no-user-select">
+      <a class="text-white">
         <%= t('util.extended_search') %>
       </a>
       <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>

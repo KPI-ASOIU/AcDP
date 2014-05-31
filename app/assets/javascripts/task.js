@@ -1,5 +1,5 @@
 $(function() {
-  $('#datetimepicker1').datetimepicker({
+  $('#exec_start_date').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -7,7 +7,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#datetimepicker2').datetimepicker({
+  $('#exec_end_date').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -15,7 +15,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#datetimepicker3').datetimepicker({
+  $('#creation_start_date').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -23,7 +23,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#datetimepicker4').datetimepicker({
+  $('#creation_end_date').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -38,9 +38,13 @@ $(document).ready(function() {
   $('#searchBtn').on('click', function() { 
     $('#extendSearch').submit(); 
   });
-  
-  $('[href=#collapseOne]').on("click", function(){
-    $("#searchBtn").toggleClass('invisible')
+
+  $('#collapseOne').on('shown.bs.collapse', function() {
+    $('#searchBtn').removeClass('invisible')
+  });
+
+  $('#collapseOne').on('hide.bs.collapse', function() {
+    $('#searchBtn').addClass('invisible')
   });
 
   $('.comments-form').jScrollPane({autoReinitialise: true});

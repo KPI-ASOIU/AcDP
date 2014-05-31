@@ -42,15 +42,15 @@
       </span>
       <div>
         <%= text_field_tag :event_start_date, nil, class: "form-control date", id: "datetimepicker1" %>
-        <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
       </div>
       <span class="input-group-addon">
         <%= t('util.to') %>
       </span>
       <div>
         <%= text_field_tag :event_end_date, nil, class: "form-control date", id: "datetimepicker2" %>
-        <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
       </div>
+      <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
+      <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
     </div>
   </div>
   <div class="col-md-6">
@@ -61,15 +61,15 @@
       </span>
       <div>
         <%= text_field_tag :creation_start_date, nil, class: "form-control date", id: "datetimepicker3" %>
-        <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
       </div>
       <span class="input-group-addon">
         <%= t('util.to') %>
       </span>
       <div>
         <%= text_field_tag :creation_end_date, nil, class: "form-control date", id: "datetimepicker4" %>
-        <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
       </div>
+      <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
+      <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
     </div>
   </div>
 <% end %>
