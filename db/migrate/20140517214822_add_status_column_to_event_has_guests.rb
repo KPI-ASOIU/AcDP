@@ -1,5 +1,5 @@
 class AddStatusColumnToEventHasGuests < ActiveRecord::Migration
   def change
-  	add_column :event_has_guests, :status, :integer, default: 1
+  	add_column :events_has_guests, :status, :integer, default: 1
   end
 end

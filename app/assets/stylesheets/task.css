@@ -74,7 +74,8 @@ a.text-white {
 /* Comments */
 #comments .popover {
 	position: relative;
-	width: 50%;
+	max-width: 410px;
+	width: 100%;
 	display: block;
 	margin: 15px 15px 15px 80px;
 }
@@ -124,4 +125,21 @@ a.text-white {
 
 .fix-in-border {
 	margin: 1% 0 0 3%;
+}
+
+.arrow-fix {
+	top: 45px !important;
+}
+
+.no-user-select {
+	user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+#extSearch:hover {
+	cursor: pointer
 }

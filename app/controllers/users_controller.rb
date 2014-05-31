@@ -5,6 +5,19 @@ class UsersController < ApplicationController
 
   def show_current
     @user = current_user
+    @activities = PublicActivity::Activity.all.order('created_at DESC')
+      .select { |a| a[:parameters][:connected_to_users].include?(current_user.id)}
+
+    if !params[:type].nil?
+      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] || 
+        a.trackable[:commentable_type] == params[:type] if !a.trackable.nil? }
+    end
+    @activities = @activities[!params[:summand].nil? ? 0..(6+params[:summand].to_i) : 0..6]
+    
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def edit_current
