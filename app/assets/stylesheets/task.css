@@ -143,3 +143,8 @@ a.text-white {
 #extSearch:hover {
 	cursor: pointer
 }
+
+#searchBtn {
+	margin-right: 15px;
+	margin-top: -30px;
+}
