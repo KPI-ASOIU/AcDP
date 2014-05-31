@@ -1,6 +1,5 @@
 var api = $('.activity-list').data('jsp');
 api.getContentPane().empty();
-alert("<%= @activities.length %>")
 
 <% if @activities.any? %>
 	api.getContentPane().append("<%= escape_javascript(render_activities(@activities)) %>");

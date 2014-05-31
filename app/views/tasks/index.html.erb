@@ -5,10 +5,10 @@
       <a class="text-white">
         <%= t('util.extended_search') %>
       </a>
-      <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>
-        <span class='glyphicon glyphicon-search'></span>
-      <% end %>
     </div>
+    <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>
+      <span class='glyphicon glyphicon-search'></span>
+    <% end %>
     <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
           <%= render 'extended_search' %>        

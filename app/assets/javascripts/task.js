@@ -31,11 +31,27 @@ $(function() {
   	language: 'uk'
   });
 
+  $('#taskDate').datetimepicker({
+    // TODO
+    //  => make here default project language
+    useCurrent: false,
+    defultDate: '',
+    language: 'uk'
+  });
+
+  $('#eventDate').datetimepicker({
+    // TODO
+    //  => make here default project language
+    useCurrent: false,
+    defultDate: '',
+    language: 'uk'
+  });
+
   $('FORM').nestedFields();
 });
 
 $(document).ready(function() {
-  $('#searchBtn').on('click', function() { 
+  $('#searchBtn').on('click', function(e) { 
     $('#extendSearch').submit(); 
   });
 
