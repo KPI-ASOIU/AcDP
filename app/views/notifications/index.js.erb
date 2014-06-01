@@ -1,8 +1,0 @@
-$('.activity-list-index').empty()
-<% if @activities.any? %>
-	$('.activity-list-index').append(
-		"<%= escape_javascript(render_activities(@activities)) %>");
-<% else %>
-	$('.activity-list-index').append(
-		"<div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>");
-<% end %>

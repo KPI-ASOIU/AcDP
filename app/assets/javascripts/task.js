@@ -1,5 +1,5 @@
 $(function() {
-  $('#exec_start_date').datetimepicker({
+  $('#startDate').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -7,7 +7,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#exec_end_date').datetimepicker({
+  $('#endDate').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -15,7 +15,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#creation_start_date').datetimepicker({
+  $('#creationStartDate').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
@@ -23,7 +23,7 @@ $(function() {
   	language: 'uk'
   });
 
-  $('#creation_end_date').datetimepicker({
+  $('#creationEndDate').datetimepicker({
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
