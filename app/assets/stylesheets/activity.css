@@ -4,21 +4,23 @@
 }
 
 .panel-activity {
-  height: 500px;
   margin-left: 30px;
   overflow: auto;
   width: 100%;
 }
 
 .activity-list {
-  margin: 0 auto;
-  max-width: 520px;
   height: 500px;
   overflow: auto;
 }
 
 .activity {
-  margin-bottom: 20px;
+  margin: 5px 0 15px 0;
+  padding: 0 5px;
+}
+
+.activity time {
+  float: none;
 }
 
 .activity a {

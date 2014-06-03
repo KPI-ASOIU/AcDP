@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
 			through: :event_has_guests,
 			source: :guest
 
+  scope :connected_to_me, -> { joins(:executors).where("author_id = ? OR events_has_guests.guest_id = ?", User.current.id, User.current.id) }
 	scope :with_name, ->(name) { where("name LIKE ?", "%#{name}%") }
   scope :with_place, ->(place) { where("place LIKE ?", "%#{place}%") }
   scope :with_author, ->(authors) { where(author_id: authors) }

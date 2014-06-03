@@ -23,7 +23,7 @@
           <%= link_to image_tag((author = a.owner).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
             title: author.full_name), user_path(author.id) %>
         <% end %> 
-        <%= activity_information(a) %>
+        <span class='<%= status_class(activity_information(a)) %>'> <%= translate_status(activity_information(a)) %> </span>
       </div>
     </div>
     <%= timeago_tag a.created_at, :nojs => true, :limit => 2.hours.ago,

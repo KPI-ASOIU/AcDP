@@ -34,4 +34,12 @@ module EventsHelper
 	def visit?(event)
 		EventHasGuest.where(event_id: event.id, guest_id: current_user.id).pluck(:status).first != 0
 	end
+
+	def engaged?(event)
+		event.guests.include?(current_user)
+	end
+
+	def author?(event)
+		event.author == current_user
+	end
 end

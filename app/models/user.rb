@@ -91,4 +91,12 @@ class User < ActiveRecord::Base
   def unread_messages_count_sum
     self.subscriptions.sum("unread_messages_count")
   end
+
+  def self.current
+    Thread.current[:user]
+  end
+  
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

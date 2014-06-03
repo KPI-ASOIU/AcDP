@@ -40,11 +40,7 @@ module ActivityHelper
   end
 
   def activity_information(a)
-    if !a.trackable.nil?
-      a.trackable_type == 'Comment' ? a.trackable.body : a.trackable.name
-    else
-      a.parameters[:summary]
-    end
+    a.parameters[:summary]
   end
 
   def icon(a)
@@ -57,6 +53,10 @@ module ActivityHelper
       'refresh'
     when a.key.include?('destroy')
       'trash'
+    when a.key.include?('status_changed')
+      'bell'
+    when ['task.executors_changed', 'event.guests_changed'].include?(a.key)
+      'user'
     end
   end
 end

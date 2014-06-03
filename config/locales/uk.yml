@@ -260,6 +260,13 @@ uk:
         speciality_code: 'Шифр спецальності'
       document:
         description: Опис
+      task:
+        name: Назва
+        description: Опис
+        end_date: Кінцева дата
+        status: Статус
+        check_list: Задачі
+        executors: Виконавці
       doctype:
         title: Назва типу
       news_post:
@@ -378,7 +385,7 @@ uk:
     specialist: 'Спеціаліст'
     master: 'Магістр'
   views:
-    main_title: Корпоративний Портал Кафедри
+    main_title: Корпоративний Портал
     pagination:
       first: "&laquo; Перша"
       last: "Остання &raquo;"
@@ -538,6 +545,8 @@ uk:
       Frozen: Заморожено
       Undone: Не виконано
       Done: Виконано
+    errors:
+      not_engaged: "Ви не можете бачити деталі цього завдання, бо не є його учасником"
   comments:
     new_comment: Новий коментар
     send_comment: Коментувати
@@ -559,6 +568,17 @@ uk:
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
+    cancel: Скасувати
+    renew: Відновити
+  opinio:
+    no_comments_found: Ще немає жодного коментаря
+  activity:
+    all: Всі новини
+    tasks: Завдання
+    events: Події
+    documents: Документи
+    feed: Все
+    no_activity_found: Не знайдено жодних новин
     trackable:
       event: подію
       task: завдання
@@ -570,7 +590,16 @@ uk:
       create: створив нове
       update: оновив інформацію про
       destroy: видалив
+      status_changed: змінив статус
+      executors_changed: оновив виконавців
     event:
       create: сповістив про
       update: оновив інформацію про
       destroy: видалив
+  doctypes:
+    manage: Типи документів
+    list: Перелік типів документів
+    new: Додати тип
+    add_panel: Додавання типів документів
+    placeholder: Тип
+    removing: Видалення типу

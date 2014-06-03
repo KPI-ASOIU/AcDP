@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
   authorize_resource
+
+  before_action :set_current_user
+
   include PublicActivity::StoreController 
+  include TasksHelper
   
   def new
     @task = current_user.leading_tasks.new
@@ -8,7 +12,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save!
+    if @task.save
       render action: 'show', id: @task.id
     else
       redirect_to :back
@@ -18,6 +22,10 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    if @task.author != current_user and !@task.executors.include?(current_user)
+      redirect_to tasks_path
+      flash[:error] = t('tasks.errors.not_engaged')
+    end
   end
 
   def edit
@@ -26,8 +34,13 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id]) 
+    @old_status = @task.status
+    @old_execs = @task.executors.sort
     if @task.update_attributes(task_params)
+      puts "Hello"
+      puts task_params
+      track_specific_fields or create_activity('task.update', @task.name)
       redirect_to task_path(@task.id)
     else
       redirect_to :back
@@ -38,7 +51,8 @@ class TasksController < ApplicationController
   def index
     if params[:search].present?
       fix_params
-      @tasks = Task.with_name(params[:name])
+      @tasks = Task.connected_to_me
+                .with_name(params[:name])
                 .with_status(params[:status])
                 .with_author(params[:author].split(" "))
                 .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
@@ -76,7 +90,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    Task.find(params[:id]).destroy
+    (@task = Task.find(params[:id])).destroy
     redirect_to :back
   end
 
