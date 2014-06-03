@@ -1,3 +1,10 @@
+- if task.errors.any?
+  #error_explanation
+    %h2= t('activerecord.errors.template.header', count: @user.errors.count)
+    %ul
+      = task.errors.full_messages.each do |msg|
+        %li= msg
+
 = form_for(task, :html => { :class => "form-horizontal", role: "form" }) do |f|
   .panel-body
     .form-group
@@ -11,7 +18,7 @@
     .form-group
       = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
       .col-sm-8
-        = f.text_field :end_date, class: "form-control date", id: "datetimepicker1"
+        = f.text_field :end_date, :placeholder => t('tasks.end_date') + '...', class: "form-control date", id: "taskDate"
     .form-group
       = f.label t('tasks.status'), :class=>'col-sm-4 control-label'
       .col-sm-8

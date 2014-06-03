@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 $calendar_width: 50%;
 
 .calendar {
@@ -14,88 +12,21 @@ $calendar_width: 50%;
     padding: 6px;
     border: 1px solid #999;
     width: 14.285714286%;
-=======
-// Place all the styles related to the Calendar controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-$calendar_width: 50%;
-
-.calendar {
-  border-collapse: collapse;
-  display: inline-block;
-  -webkit-user-select: none;
-
-  td, th {
-    font-family: inherit;
-	  font-weight: 500;
-    font-size: 16px;
-    padding: 6px;
-    border: 1px solid #999;
-<<<<<<< HEAD
->>>>>>> Create calendar template
-=======
-    width: 14.285714286%;
->>>>>>> Create calendar
-=======
-// Place all the styles related to the Calendar controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.calendar {
-  border-collapse: collapse;
-  width: 70%;
-
-  td, th {
-    font-family: inherit;
-	font-weight: 500;
-    font-size: 16px;
-    padding: 6px;
-    border: 1px solid #999;
->>>>>>> Create calendar template
   }
 
   th {
     background: #428bca;
     color: #fff;
     text-align: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     height: 40px;    
   }
 
   td {
     background: inherit;
-=======
-    width: 14.2857142857143%;
-=======
->>>>>>> Create calendar
-    height: 40px;
-    
-  }
-
-  td {
-<<<<<<< HEAD
-    background: #FFF;
->>>>>>> Create calendar template
-=======
-    background: inherit;
->>>>>>> Create calendar
-=======
-    width: 14.2857142857143%;
-    height: 40px;
-  }
-
-  td {
-    background: #FFF;
->>>>>>> Create calendar template
     color: #777;
     height: 80px;
     vertical-align: top;
     font-size: 16px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     height: 80px;
   }
 
@@ -113,30 +44,6 @@ $calendar_width: 50%;
   .notmonth { background-color: rgb(245,245,245); }
   .today { background-color: #D7F2FF; }
   .past { color: #CCC; }
-=======
-=======
-
->>>>>>> Create calendar
-  }
-
-  li{
-    overflow: hidden;
-    width: 5em;
-  }
-
-  .notmonth { background-color: rgb(245,245,245); }
-  .today { background-color: #D7F2FF; }
-<<<<<<< HEAD
->>>>>>> Create calendar template
-=======
-  .past { color: #CCC; }
->>>>>>> Create calendar
-=======
-  }
-
-  .notmonth, .notmonth a { color: #CCC; }
-  .today { background-color: #D7F2FF; }
->>>>>>> Create calendar template
 }
 
  #month {
@@ -144,9 +51,6 @@ $calendar_width: 50%;
   padding-bottom: 10px;
   text-align: center;
   font-size: 22px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   width: 100%;
   a {
     text-decoration: none;
@@ -209,79 +113,3 @@ $calendar_width: 50%;
   float: left;
 }
 
-=======
-=======
-  width: 100%;
->>>>>>> Create calendar
-  a {
-    text-decoration: none;
-    padding: 0 10px;
-    color: #428bca;
-=======
-  a {
-    text-decoration: none;
-    padding: 0 10px;
-    color: #999;
->>>>>>> Create calendar template
-  }
-}
-
-.calendar ul {
-  font-size: 11px;
-  padding-left: 20px;
-<<<<<<< HEAD
-}
-<<<<<<< HEAD
->>>>>>> Create calendar template
-=======
-
-.task_list{
-  width: 35%;
-  display: inline-block;
-  border: 1px solid #428bca;
-  float: right;
-  height: 441px;
-  margin-top: 34px;
-}
-
-.header{
-  background: #428bca;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  text-align: center;
-  font-weight: 500;
-  font-size: 18px;
-  padding-top: 4px;
-}
-
-.list{
-  li{
-    list-style: none;
-    padding-left: 10px;
-    padding-top: 20px;
-    font-weight: 500;
-    font-size: 16px;
-  }
-
-  .name{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 60%;
-    float: left;
-  }
-}
-
-.selected{
-  background: #f89406 !important; 
-}
-
-.container1{
-  width: $calendar_width;
-  float: left;
-}
->>>>>>> Create calendar
-=======
-}
->>>>>>> Create calendar template

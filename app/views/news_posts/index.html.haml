@@ -7,7 +7,8 @@
     - if !current_user.group.nil?
       = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'btn btn-default'
     - User::ROLES.each do |role|
-      = link_to t('news.for_category.' + role), category_news_posts_path(role), class: 'btn btn-default'
+      = link_to t('news.for_category.' + role), category_news_posts_path(role), class: ['btn btn-default', ("selected" if @category == role)]
+      
   %br
   %br
   = link_to new_news_post_path, class: 'btn btn-success' do
@@ -30,18 +31,19 @@
         - news_post.tags.split(',').each do |tag|
           = link_to tag, tag_news_posts_path(tag)
         %br
+        %br
         %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
-        .news-index-buttons
-          = link_to news_post, :class => 'btn btn-primary' do
-            %span{ class: 'glyphicon glyphicon-zoom-in' }
-            = t('util.show')
-          - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
-            = link_to edit_news_post_path(news_post), :class => 'btn btn-warning' do
-              %span{ class: 'glyphicon glyphicon-pencil' }
-              = t('util.edit')
-            = link_to '', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
-              %span{ class: 'glyphicon glyphicon-remove' }
-              = t('util.destroy')
+      .news-index-buttons
+        = link_to news_post, :class => 'btn btn-primary' do
+          %span{ class: 'glyphicon glyphicon-zoom-in' }
+          = t('util.show')
+        - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
+          = link_to edit_news_post_path(news_post), :class => 'btn btn-warning' do
+            %span{ class: 'glyphicon glyphicon-pencil' }
+            = t('util.edit')
+          = link_to '', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
+            %span{ class: 'glyphicon glyphicon-remove' }
+            = t('util.destroy')
 
 .text-center
   = paginate @news_posts

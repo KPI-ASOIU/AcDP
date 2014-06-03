@@ -14,11 +14,15 @@ div.news-show-buttons {
 div.news-index-info {
     padding: 5px 20px 0px 5px;
     display: table-cell;
+    float: left;
 }
 
 div.news-index-buttons {
     float: right;
     margin: 5px 20px 0px 20px;
+    position: absolute;
+    bottom: 25px;
+    right: 0;
 }
 
 div.news-index-info-wrapper {
@@ -28,6 +32,7 @@ div.news-index-info-wrapper {
 div.news-index-right {
     padding: 0;
     display: table-cell;
+    float: right;
 }
 
 p.news-index-content {

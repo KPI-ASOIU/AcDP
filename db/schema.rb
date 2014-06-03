@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525205547) do
+ActiveRecord::Schema.define(version: 20140601230316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: true do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "checklists", force: true do |t|
     t.boolean  "done"
@@ -34,10 +51,8 @@ ActiveRecord::Schema.define(version: 20140525205547) do
   end
 
   create_table "contacts", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "contact_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "user_id"
+    t.integer "contact_user_id"
   end
 
   create_table "conversations", force: true do |t|
@@ -73,6 +88,12 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.integer "news_post_id"
   end
 
+  create_table "event_has_guests", force: true do |t|
+    t.integer "event_id"
+    t.integer "guest_id"
+    t.integer "status",   default: 1
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -82,12 +103,6 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
-  end
-
-  create_table "events_has_guests", force: true do |t|
-    t.integer "event_id"
-    t.integer "guest_id"
-    t.integer "status",   default: 1
   end
 
   create_table "executing_tasks_executors", force: true do |t|
@@ -157,17 +172,6 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.datetime "updated_at"
   end
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "task_has_tags", force: true do |t|
-    t.integer "task_id"
-    t.integer "tag_id"
-  end
-
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -183,6 +187,11 @@ ActiveRecord::Schema.define(version: 20140525205547) do
     t.integer  "document_id", null: false
     t.integer  "access_type", null: false
     t.datetime "created_at",  null: false
+  end
+
+  create_table "user_has_attachments", force: true do |t|
+    t.integer "user_id"
+    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|

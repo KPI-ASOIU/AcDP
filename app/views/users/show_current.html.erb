@@ -1,4 +1,27 @@
-<div class="panel panel-primary panel-narrow">
+<div class="pull-left panel panel-primary panel-narrow mr15">
   <%= render 'info' %>
   <%= render 'options'%>
+</div>
+
+<!-- FIX: not all, but only connected to current user -->
+<div class='panel-activity panel-primary'>
+	<div class='activity-filter'>
+		<ul class="nav nav-pills">
+		  <li class="active">
+		  	<%= link_to t('activity.feed'), current_user_users_path, remote: true %>
+		  </li>
+		  <li data-filter='Task'>
+		  	<%= link_to t('activity.tasks'), current_user_users_path(type: 'Task'), remote: true %>
+		  </li>
+		  <li data-filter='Event'>
+		  	<%= link_to t('activity.events'), current_user_users_path(type: 'Event'), remote: true %>
+		  </li>
+		  <li data-filter='Document'>
+		  	<%= link_to t('activity.documents'), current_user_users_path(type:'Document'), remote: true %>
+		  </li>
+		</ul>
+	</div>
+	<div class="activity-list">
+	  <%= render_activities(@activities) %>
+	</div>
 </div>

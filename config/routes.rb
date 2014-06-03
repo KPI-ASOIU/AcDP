@@ -1,6 +1,4 @@
 AcDP::Application.routes.draw do
-<<<<<<< HEAD
-<<<<<<< HEAD
   opinio_model
 
   resources :news_posts do
@@ -15,12 +13,6 @@ AcDP::Application.routes.draw do
   end
 
   get 'calendar', to: 'calendar'
-=======
-  get "calendar/index"
->>>>>>> Create calendar template
-=======
-  get "calendar/index"
->>>>>>> Create calendar template
   get 'documents', to: 'documents#index'
 
   get 'documents/tree/:type', to: 'documents#jstree'
@@ -31,21 +23,11 @@ AcDP::Application.routes.draw do
   get 'documents/:id', to: 'documents#index', as: 'document'
 
   post 'documents', to: 'documents#new'
-<<<<<<< HEAD
-<<<<<<< HEAD
   patch 'documents/update', to: 'documents#update'
   post 'documents/update_lists', to: 'documents#update_lists'
-=======
-  post 'documents/update', to: 'documents#update'
-  post 'documents/update_access', to: 'documents#update_access'
->>>>>>> Create calendar template
   post 'documents/:id', to: 'documents#new', as: 'document_new'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
-=======
-  get 'calendar', to: 'calendar'
-  delete 'documents', to: 'documents#delete'
->>>>>>> Create calendar template
 
   root "users#show_current"
 
@@ -79,4 +61,6 @@ AcDP::Application.routes.draw do
   resources :tasks
 
   resources :events
+
+  resources :notifications, only: [:index]
 end

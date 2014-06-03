@@ -21,4 +21,25 @@ module EventsHelper
 	def all_visitors
 		Event.all.map { |e| e.guests }.uniq.flatten.reject{ |u| u == current_user }.map { |v| [v.full_name, v.id] }
 	end
+
+	def can_all_visit?(event)
+		visiting_status = EventHasGuest.where(event_id: event.id).pluck(:status)
+		visiting_status.sum == visiting_status.length
+	end
+
+	def all_not_visiting(event)
+		User.where(id: EventHasGuest.where(event_id: event.id, status: 0).pluck(:guest_id))
+	end
+
+	def visit?(event)
+		EventHasGuest.where(event_id: event.id, guest_id: current_user.id).pluck(:status).first != 0
+	end
+
+	def engaged?(event)
+		event.guests.include?(current_user)
+	end
+
+	def author?(event)
+		event.author == current_user
+	end
 end
