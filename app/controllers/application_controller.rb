@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
 	def can_destroy_opinio?(comment)
 		comment.owner == current_user
 	end
+
+  # As current_user is inaccessible via models,
+  # solve that problem with before_action :set_current_user
+  # on all controllers you wish the corresponding models
+  # to treat current_user
+  def set_current_user
+    User.current = current_user
+  end
 end
