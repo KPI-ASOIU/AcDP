@@ -1,0 +1,8 @@
+$('#modal_search_user').modal('hide');
+$('#modal_search_type').modal('hide');
+
+<% if @access_type.nil? %>
+    $('#docs-types-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'types_list', :locals => { doc: @doc }) %>');
+<% else %>
+    $('#docs-<%= @access_type == '0' ? 'view' : 'edit' %>-access-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'access_list', :locals => { doc: @doc, access_type: @access_type }) %>');
+<% end %>

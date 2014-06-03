@@ -3,8 +3,8 @@
   <td><%= folder.title %></td>
   <td><%= %></td>
   <td><%= t('documents.folder') %></td>
-  <td><%= folder.date_created.strftime "%m.%d.%y %H:%M" %></td>
-  <td><%= folder.date_updated.strftime "%m.%d.%y %H:%M" %></td>
+  <td><%= folder.date_created.to_formatted_s :docs_time %></td>
+  <td><%= folder.date_updated.to_formatted_s :docs_time %></td>
   <td>
     <%= link_to @shared ? document_shared_path(folder.owner_id, folder.id) : document_path(folder), :class => 'btn btn-success  docs-navbar-tool' do %>
         <span class='glyphicon glyphicon-eye-open'></span>

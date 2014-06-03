@@ -1,3 +1,0 @@
-$('#modal_search_user').modal('hide');
-
-$('#docs-<%= @access_type == '0' ? 'view' : 'edit' %>-access-list-<%= @doc.id %>').html('<%= escape_javascript(render :partial => 'access_list', :locals => { doc: @doc, access_type: @access_type }) %>');

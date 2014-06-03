@@ -1,0 +1,43 @@
+span.editable-container.editable-inline{
+  width:60%;
+}
+
+div.doctype_edit {
+	border-bottom: none;
+}
+
+div div.editable-input{
+  width:80%;
+}
+div.control-group.form-group{
+  width: 100%;
+}
+input.form-control.inputdoctype{
+  width: 100%;
+}
+
+table.doctypes-table th:first-child {
+  width: 40px;
+}
+
+table.doctypes-table tr {
+  height: 55px;
+}
+
+.doctypes-add-group {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button.editable-submit {
+  width: 38px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+
+button.editable-cancel {
+  width: 38px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}

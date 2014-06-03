@@ -18,7 +18,7 @@
         <% end %>
         <% if @task.status.present? %>
 	        <dt><%= t('tasks.status') %></dt>
-	        <dd><%= @task.status %></dd>
+	        <dd><%= translate_status(@task.status) %></dd>
         <% end %>
         <% if @task.executors.any? %>
         	<dt><%= t('tasks.executors') %></dt>
@@ -55,9 +55,11 @@
   </div>
   <div class="panel-footer text-right">
     <%= link_to t('util.back'), tasks_path, :class => "btn btn-default" %>
-    <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
-        <span class='glyphicon glyphicon-pencil'></span>
-        <%= t('util.edit') %>
+    <% if @task.author == current_user %>
+      <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
+          <span class='glyphicon glyphicon-pencil'></span>
+          <%= t('util.edit') %>
+      <% end %>
     <% end %>
   </div>
 </div>

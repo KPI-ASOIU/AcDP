@@ -13,6 +13,8 @@
  *= require bootstrap3-editable/bootstrap-editable
  *= require select2
  *= require select2-bootstrap
+ *= require bootstrap-wysihtml5/b3
+ *= require jstree-themes/default/style
  *= require_tree .
  *= require jscrollpane
  */
@@ -49,6 +51,14 @@ body {
 
 .mb5 {
   margin-bottom: 5px;
+}
+
+.mr30 {
+  margin-right: 30px
+}
+
+.mr15 {
+  margin-right: 15px
 }
 
 .text-color-grey{

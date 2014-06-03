@@ -1,0 +1,10 @@
+var api = $('.activity-list').data('jsp');
+api.getContentPane().empty();
+
+<% if @activities.any? %>
+	api.getContentPane().append("<%= escape_javascript(render_activities(@activities)) %>");
+<% else %>
+	api.getContentPane().append("<div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>");
+<% end %>
+
+api.reinitialise();

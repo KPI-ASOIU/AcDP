@@ -19,16 +19,19 @@
 //= require locales/jquery.timeago.ru.js
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap3-editable/bootstrap-editable
 //= require moment/uk
 //= require locales/bootstrap-datetimepicker.uk.js
 //= require moment/ru
 //= require locales/bootstrap-datetimepicker.ru.js
 //= require chosen-jquery
 //= require jquery.nested-fields
-//= require bootstrap3-editable/bootstrap-editable
 //= require select2
+//= require select2_locale_uk
+//= require bootstrap-wysihtml5/b3
+//= require bootstrap-wysihtml5/locales/ua-UA
+//= require jstree
 //= require_tree .
 //= require jquery.jscrollpane
 //= require jquery.mousewheel
 //= require websocket_rails/main
-

@@ -43,5 +43,11 @@ $(function(){
     no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
     width: '100%'
   });
+
+  $('#for_groups.chosen-select').chosen({
+    placeholder_text_multiple: " ",
+    no_results_text: "<%= I18n.t('news.group_chosen_no_result') %>",
+    width: '100%'
+  });
 });
 

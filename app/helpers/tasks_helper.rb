@@ -14,6 +14,8 @@ module TasksHelper
 			"text-danger"
 		when "Frozen"
 			"text-muted"
+		else
+			""
 		end
 	end
 

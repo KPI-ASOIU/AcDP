@@ -1,0 +1,7 @@
+<% DocumentHasType.where(document_id: doc.id).each do |type| %>
+    <%= type.document_type.title %>
+    <%= link_to '/documents/update_lists', data: { method: :post, remote: true, params: { pk: doc.id, type_id: type.id }.to_param } do %>
+        <span class="glyphicon glyphicon-remove red"></span>
+    <% end %>
+    <br>
+<% end %>

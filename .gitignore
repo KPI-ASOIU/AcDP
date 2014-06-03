@@ -17,4 +17,6 @@
 /.idea
 /.DS_Store
 /public/system/file_infos
+/public/system/news_icons
+!/public/system/news_icons/default/missing.png
 /public/system/users/avatars

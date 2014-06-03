@@ -55,6 +55,10 @@ en:
         degree: 'Degree'
         speciality: 'Speciality'
         speciality_code: 'Speciality code'
+      doctype:
+        title: Type name
+      news_post:
+        icon: Icon
     errors:
       template:
         header:
@@ -85,6 +89,7 @@ en:
     create_group: Create Group
     all: All
     save: Save
+    add: Add
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -154,6 +159,8 @@ en:
     by_title_and_tags: By title and tags
     open: Open
     download: Download
+    select_doc: Select document
+    docs_list: List of documents
 
     information: Information
 
@@ -188,6 +195,7 @@ en:
     move: Move
     delete: Delete
     select_users: Select users
+    select_types: Select types
 
     found_users: Found users
 
@@ -198,6 +206,44 @@ en:
     modal_confirm_remove_title: Removing item
     modal_confirm_remove_message: Really remove item
     flash_removed_item: Item removed
+  doctypes:
+    manage: Document types
+    list: Listing document types
+    new: Add type
+    add_panel: Adding types of documents
+    placeholder: Type
+    removing: Type removing
+  news:
+    title: News
+    creating_post: Creating news post
+    editing_post: Editing news post
+    post_created: News post was successfully created
+    post_updated: News post was successfully updated
+    attached_docs: Attached documents
+    add_doc: Add document
+
+    error_removing_icon: Error removing icon
+
+    category: Category
+    for_category:
+      global: Global
+      group: For group
+      worker: For workers
+      admin: For administrators
+      student: For students
+      teacher: For lecturers
+
+    create_news: Create news
+    publish: Publish
+    all: All
+    group_chosen_no_result: No groups found with such name
+
+    modal_removing_title: Removing news
+    modal_removing_message: Really remove news ?
+
+    ph_title: Enter title...
+    ph_tags: Enter tags...
+    ph_content: Enter text...
   tasks:    
     author: Author
     task_info: Task info
