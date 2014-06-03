@@ -9,6 +9,7 @@ class NewsPostsController < ApplicationController
       @news_posts = NewsPost.with_tag(params[:tag]).page(params[:page])
     elsif !params[:category].blank?
       @news_posts = NewsPost.with_category(params[:category]).page(params[:page])
+      @category = params[:category]
     elsif !params[:group_id].blank?
       @news_posts = NewsPost.includes(:groups).where(groups: { id: params[:group_id] }).page(params[:page])
     else
