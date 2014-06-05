@@ -1,10 +1,11 @@
 = render 'modal_delete'
 
 .panel.panel-primary
-  .panel-body
-    .thumbnail.news-show-icon
-      =image_tag @news_post.icon.url('large')
-    %div
+  .panel-body.news-index-info-wrapper
+    .news-index-info
+      .thumbnail.news-show-icon
+        =image_tag @news_post.icon.url('large')
+    .news-index-right
       %h1{ class: 'news-show-title' }
         %b= @news_post.title
       %p
@@ -18,7 +19,7 @@
         =link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
       %p
         %b= t('activerecord.attributes.news_post.for_roles') + ':'
-        = @news_post.for_roles
+        = t('news.for_category.' + @news_post.category)
       %p
         %b= t('activerecord.attributes.news_post.tags') + ':'
         - @news_post.tags.split(',').each do |tag|
@@ -27,7 +28,7 @@
         %b= t('news.attached_docs') + ':'
         - @news_post.documents.each do |document|
           =link_to document.title, documents_path(document)
-    %p{ class: 'post-content' }= raw @news_post.content
+      %p{ class: 'post-content' }= raw @news_post.content
 
 .news-show-buttons
   =link_to t('util.back'), news_posts_path, :class => 'btn btn-default'

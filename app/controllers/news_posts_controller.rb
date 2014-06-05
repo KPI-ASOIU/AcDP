@@ -5,6 +5,7 @@ class NewsPostsController < ApplicationController
   # GET /news_posts
   # GET /news_posts.json
   def index
+    @category = params[:category]
     if !params[:tag].blank?
       @news_posts = NewsPost.with_tag(params[:tag]).page(params[:page])
     elsif !params[:category].blank?
