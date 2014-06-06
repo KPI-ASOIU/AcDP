@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.create(conversation_params)
     handle_errors
     params[:receiver_ids] ||= []
-    members_ids = params[:receiver_ids].push(params[:sender_id])
+    members_ids = params[:receiver_ids].push(current_user.id)
     members = User.where(id: members_ids)
     @conversation.participants = members
     @conversation.messages.build({ body: params[:message][:body], author: current_user })

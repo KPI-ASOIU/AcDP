@@ -5,7 +5,6 @@
 
 <%= render partial: "conversations/new_conversation_modal", locals: {
       conversation: Conversation.new,
-      sender_id: current_user.id,
       receiver_ids: receiver_ids,
       modal_title: local_assigns[:modal_title] || t('messages.new')
     } %>
