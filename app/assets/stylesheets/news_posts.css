@@ -17,26 +17,20 @@ div.news-index-info {
     float: left;
 }
 
-div.news-index-buttons {
-    float: right;
-    margin: -40px 5px 0px 20px;
-    /*position: absolute;
-    bottom: 25px;
-    right: 0;*/
-}
-
-div.news-index-info-wrapper {
-    display: table;
+div.news-index-right, div.news-show-right{
+    padding: 0;
+    display: inline-block;
 }
 
 div.news-index-right {
-    padding: 0;
-    display: table-cell;
-    float: right;
-    width: 600px;
+    width: 85%;
 }
 
-p.news-index-content {
+div.news-show-right {
+    width: 75%;
+}
+
+p.news-index-content, {
     margin-top: 8px;
 }
 
@@ -49,7 +43,7 @@ div.news-show-icon {
 h1.news-show-title {
     margin-top: 0;
     word-wrap: break-word;
-    width: 600px;
+    width: 100%;
 }
 
 div.news-index-icon {
@@ -84,5 +78,15 @@ div.btn-group btn.active, btn:active {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 600px;
+    width: 700px;
+}
+
+.news-tree-content, p.post-content{
+    word-wrap: break-word;
+}
+
+.news-index-buttons > .btn{
+    display: block;
+    margin-top: 10px;
+    width: 100%;
 }
