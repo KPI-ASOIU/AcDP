@@ -33,9 +33,9 @@ class Task < ActiveRecord::Base
           params: {
             summary: Proc.new { |controller, model| model.name.truncate(30) },   # by default save truncated summary of the post's body
             trackable_id: Proc.new {|controller, model| model.id },
-            connected_to_users: Proc.new { |controller, model| 
-              [model.author.id].concat(model.executors.map { |e| e.id }) 
-            }
+          },
+          connected_to_users: Proc.new { |controller, model| 
+            ' ' << [model.author.id].concat(model.executors.map { |e| e.id }) * (' ') << ' '
           }
 end
 

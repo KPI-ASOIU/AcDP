@@ -71,7 +71,11 @@ gem 'awesome_nested_fields'
 gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio'
+
+# Added for backward compatibility of Opinio gem
+# (attr_accessible support)
 gem 'protected_attributes'
+
 gem 'jscrollpane-rails'
 gem 'jquery-mousewheel-rails'
 gem 'websocket-rails'

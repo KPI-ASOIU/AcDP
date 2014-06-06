@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601230316) do
+ActiveRecord::Schema.define(version: 20140606193609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140601230316) do
     t.string   "recipient_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "connected_to_users"
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -51,8 +52,10 @@ ActiveRecord::Schema.define(version: 20140601230316) do
   end
 
   create_table "contacts", force: true do |t|
-    t.integer "user_id"
-    t.integer "contact_user_id"
+    t.integer  "user_id"
+    t.integer  "contact_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "conversations", force: true do |t|
@@ -187,11 +190,6 @@ ActiveRecord::Schema.define(version: 20140601230316) do
     t.integer  "document_id", null: false
     t.integer  "access_type", null: false
     t.datetime "created_at",  null: false
-  end
-
-  create_table "user_has_attachments", force: true do |t|
-    t.integer "user_id"
-    t.integer "attachment_id"
   end
 
   create_table "users", force: true do |t|
