@@ -14,11 +14,15 @@ div.news-show-buttons {
 div.news-index-info {
     padding: 5px 20px 0px 5px;
     display: table-cell;
+    float: left;
 }
 
 div.news-index-buttons {
     float: right;
-    margin: 5px 20px 0px 20px;
+    margin: -40px 5px 0px 20px;
+    /*position: absolute;
+    bottom: 25px;
+    right: 0;*/
 }
 
 div.news-index-info-wrapper {
@@ -28,6 +32,8 @@ div.news-index-info-wrapper {
 div.news-index-right {
     padding: 0;
     display: table-cell;
+    float: right;
+    width: 600px;
 }
 
 p.news-index-content {
@@ -42,6 +48,8 @@ div.news-show-icon {
 
 h1.news-show-title {
     margin-top: 0;
+    word-wrap: break-word;
+    width: 600px;
 }
 
 div.news-index-icon {
@@ -70,4 +78,11 @@ div.news-index-icon {
 
 div.btn-group btn.active, btn:active {
     background-color: #5bc0de;
+}
+
+.news-index-right > h2{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 600px;
 }
