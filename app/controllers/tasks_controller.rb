@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      render action: 'show', id: @task.id
+      redirect_to task_path(@task.id)
     else
       redirect_to :back
       flash[:error] = @task.errors.full_messages.join('. ')

@@ -19,9 +19,9 @@ class Event < ActiveRecord::Base
   tracked owner: Proc.new{ |controller, model| controller.current_user },
   		    params: {
             summary: Proc.new {|controller, model| model.name.truncate(30)},
-            trackable_id: Proc.new {|controller, model| model.id },
-            connected_to_users: Proc.new { |controller, model|
-              [model.author.id].concat(model.guests.map { |e| e.id }.uniq)
-            }
+            trackable_id: Proc.new {|controller, model| model.id }
+          },
+          connected_to_users: Proc.new { |controller, model|
+            ' ' << [model.author.id].concat(model.guests.map { |e| e.id }.uniq) * (' ') << ' '
           }
 end

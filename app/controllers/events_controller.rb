@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.save
       EventHasGuest.create({guest_id: params[:event][:guests], event_id: @event.id}) 
-      render action: 'show', id: @event.id
+      redirect_to event_path(@event.id)
     else
       redirect_to :back
       flash[:error] = @event.errors.full_messages.join('.\n ')
