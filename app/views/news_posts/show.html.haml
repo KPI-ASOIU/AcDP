@@ -28,7 +28,7 @@
         %b= t('news.attached_docs') + ':'
         - @news_post.documents.each do |document|
           =link_to document.title, documents_path(document)
-      %p{ class: 'post-content' }= raw @news_post.content
+    %p{ class: 'post-content' }= raw @news_post.content
 
 .news-show-buttons
   =link_to t('util.back'), news_posts_path, :class => 'btn btn-default'

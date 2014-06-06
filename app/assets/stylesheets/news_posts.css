@@ -75,9 +75,7 @@ div.btn-group btn.active, btn:active {
 }
 
 .news-index-right > h2{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
     width: 700px;
 }
 
