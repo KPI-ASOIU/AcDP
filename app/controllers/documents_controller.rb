@@ -42,6 +42,8 @@ class DocumentsController < ApplicationController
       @files = @docs.select { |doc| doc.doc_type == 1 }
       render 'index'
     end
+    @types=DocumentType.pluck(:title)
+    @formats=FileInfo.uniq.pluck(:file_content_type)
   end
 
   def jstree

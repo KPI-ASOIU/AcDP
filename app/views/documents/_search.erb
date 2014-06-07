@@ -93,7 +93,7 @@
       <div class="input-group">
         <div class="input-group-btn">
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-            <span class="j-admin-search-btn-text"><%= t('documents.by_' +params[:search_by]) %></span>
+            <span class="j-admin-search-btn-text"><%= t('documents.by_' + params[:search_by]) if params[:search_by] %></span>
             <span class="caret"></span>
           </button>
           <input class="j-admin-search-type-input" type="hidden" name="search_by" value="<%= params[:search_by] %>" />
