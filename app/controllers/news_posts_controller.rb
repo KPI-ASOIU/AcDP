@@ -1,6 +1,6 @@
 class NewsPostsController < ApplicationController
   before_action :set_news_post, only: [:show, :edit, :update, :destroy, :icon]
-  authorize_resource
+  include PublicActivity::StoreController
 
   # GET /news_posts
   # GET /news_posts.json
