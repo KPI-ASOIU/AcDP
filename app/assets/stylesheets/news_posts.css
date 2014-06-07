@@ -14,23 +14,23 @@ div.news-show-buttons {
 div.news-index-info {
     padding: 5px 20px 0px 5px;
     display: table-cell;
+    float: left;
 }
 
-div.news-index-buttons {
-    float: right;
-    margin: 5px 20px 0px 20px;
-}
-
-div.news-index-info-wrapper {
-    display: table;
+div.news-index-right, div.news-show-right{
+    padding: 0;
+    display: inline-block;
 }
 
 div.news-index-right {
-    padding: 0;
-    display: table-cell;
+    width: 85%;
 }
 
-p.news-index-content {
+div.news-show-right {
+    width: 75%;
+}
+
+p.news-index-content, {
     margin-top: 8px;
 }
 
@@ -42,6 +42,8 @@ div.news-show-icon {
 
 h1.news-show-title {
     margin-top: 0;
+    word-wrap: break-word;
+    width: 100%;
 }
 
 div.news-index-icon {
@@ -70,4 +72,19 @@ div.news-index-icon {
 
 div.btn-group btn.active, btn:active {
     background-color: #5bc0de;
+}
+
+.news-index-right > h2{
+    word-wrap: break-word;
+    width: 100%
+}
+
+.news-tree-content, p.post-content{
+    word-wrap: break-word;
+}
+
+.news-index-buttons > .btn{
+    display: block;
+    margin-top: 10px;
+    width: 100%;
 }

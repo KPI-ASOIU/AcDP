@@ -1,10 +1,11 @@
 = render 'modal_delete'
 
 .panel.panel-primary
-  .panel-body
-    .thumbnail.news-show-icon
-      =image_tag @news_post.icon.url('large')
-    %div
+  .panel-body.news-index-info-wrapper
+    .news-index-info
+      .thumbnail.news-show-icon
+        =image_tag @news_post.icon.url('large')
+    .news-show-right
       %h1{ class: 'news-show-title' }
         %b= @news_post.title
       %p
@@ -18,15 +19,17 @@
         =link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
       %p
         %b= t('activerecord.attributes.news_post.for_roles') + ':'
-        = @news_post.for_roles
-      %p
-        %b= t('activerecord.attributes.news_post.tags') + ':'
-        - @news_post.tags.split(',').each do |tag|
-          =link_to tag, tag_news_posts_path(tag)
-      %p
-        %b= t('news.attached_docs') + ':'
-        - @news_post.documents.each do |document|
-          =link_to document.title, documents_path(document)
+        = t('news.for_category.' + @news_post.category)
+      - if !@news_post.tags.empty?
+        %p
+          %b= t('activerecord.attributes.news_post.tags') + ':'
+          - @news_post.tags.split(',').each do |tag|
+            =link_to tag, tag_news_posts_path(tag)
+      - if !@news_post.documents.empty?
+        %p
+          %b= t('news.attached_docs') + ':'
+          - @news_post.documents.each do |document|
+            =link_to document.title, documents_path(document)
     %p{ class: 'post-content' }= raw @news_post.content
 
 .news-show-buttons
