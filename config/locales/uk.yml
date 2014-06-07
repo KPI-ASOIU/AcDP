@@ -343,6 +343,7 @@ uk:
     I: Я
     not_I: 'Всі, крім мене'
     add: Додати
+    all_of: 'Всі, '
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -422,7 +423,8 @@ uk:
     search_by_docs: Пошук по документам
     by_title: По назві
     by_tags: По тегам
-    by_title_and_tags: По назві та тегам
+    by_title tags: 'По назві та тегам'
+    by_description: По опису
     open: Відкрити
     download: Скачати
     select_doc: Виберіть документ

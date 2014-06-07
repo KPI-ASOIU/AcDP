@@ -13,6 +13,8 @@ class Document < ActiveRecord::Base
   validates :description, length: { maximum: 256 }
   validates :tags, length: { maximum: 256 }
 
+  scope :with_matched_field, ->(value, field) {fields=field.split(" "); where(Document.arel_table[fields[0]].matches('%' + value + '%')) || where(Document.arel_table[fields[1]].matches('%' + value + '%')) }
+
   def save_with_file(file)
     begin
       transaction do

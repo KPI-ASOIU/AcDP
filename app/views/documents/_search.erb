@@ -1,3 +1,4 @@
+<%= form_tag documents_path, :method => 'get' do %>
 <div class="panel  panel-primary">
   <div class="panel-heading docs-panel-heading">
     <h4 class="panel-title">
@@ -8,6 +9,110 @@
   </div>
   <div id="collapseSearch" class="panel-collapse collapse in">
     <div class="panel-body">
+      <div class="parameter-group">
+        <table>
+          <tr>
+            <td>
+             <label class="checkbox-inline">
+               <%= check_box_tag 'documents', 1, true %>
+               <%= h t("documents.documents") %>
+              </label>
+            </td>
+            <td>
+              <label class="checkbox-inline">
+                <%= check_box_tag 'owned', 1, true %>
+                <%= h t("documents.owned") %>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="checkbox-inline">
+                <%= check_box_tag 'files', 1, true %>
+                <%= h t("documents.files") %>
+              </label>
+            </td>
+            <td>
+              <label class="checkbox-inline">
+                <%= check_box_tag 'shared', 1, true %>
+                <%= h t("documents.shared") %>
+              </label>
+            </td>
+            <td>
+              <label class="checkbox-inline">
+                <%= check_box_tag 'new_shared', 1 %>
+                <%= h t("documents.new_shared") %>
+              </label>
+            </td>
+          </tr>
+        </table>
+
+        <div class="types">
+          <%= t("documents.types") %>
+          <div class="input-group">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              <span><%= t('util.all_of')+@types.first+"..." %></span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu j-admin-search-type-combo">
+              <% @types.each do |type| %>
+                <li>
+                  <label class="checkbox-inline">
+                    <%= check_box_tag 'type_ids[]', type -%>
+                    <%= h type -%>
+                  </label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="formats">
+          <%= t("documents.formats") %>
+          <div class="input-group">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              <span ><%= t('util.all_of')+@formats.first+"..." %></span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu j-admin-search-type-combo">
+              <% @formats.each do |format| %>
+                <li>
+                  <label class="checkbox-inline">
+                    <%= check_box_tag 'format_ids[]', format -%>
+                    <%= h format -%>
+                  </label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="input-group">
+        <div class="input-group-btn">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <span class="j-admin-search-btn-text"><%= t('documents.by_' +params[:search_by]) %></span>
+            <span class="caret"></span>
+          </button>
+          <input class="j-admin-search-type-input" type="hidden" name="search_by" value="<%= params[:search_by] %>" />
+          <ul class="dropdown-menu j-admin-search-type-combo">
+            <li><a href="#" data-search-type="title"><%= t('documents.by_title') %></a></li>
+            <li><a href="#" data-search-type="tags"><%= t('documents.by_tags') %></a></li>
+            <li><a href="#" data-search-type="title tags"><%= t('documents.by_title tags') %></a></li>
+            <li><a href="#" data-search-type="description"><%= t('documents.by_description') %></a></li>
+          </ul>
+        </div>
+        <input type="text" class="form-control" name="q" value="<%= params[:q] %>" />
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span>
+            <%= t('util.search') %>
+          </button>
+        </span>
+      </div>
     </div>
   </div>
 </div>
+<% end %>
