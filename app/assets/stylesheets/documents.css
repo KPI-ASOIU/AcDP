@@ -101,3 +101,35 @@ div.select-document-panel {
     height:500px;
     outline: 0;
 }
+
+.parameter-group  {
+    /*background-color: red;*/
+    display: inline-block;
+    width: 100%;
+}
+.parameter-group table {
+    /*background-color: yellow;*/
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.parameter-group table tr, .parameter-group table td {
+    width: 30%;
+    padding: 0 0 2% 0;
+}
+
+.types, .formats {
+    /*background-color: green;*/
+    width: 33%;
+    display: inline-block;
+    float: right;
+}
+/*
+.formats {
+    background-color: blue;
+    width: 33%;
+    display: inline-block;
+    float: right;
+
+}
+*/

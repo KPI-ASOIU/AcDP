@@ -157,6 +157,7 @@ en:
     by_title: By title
     by_tags: By tags
     by_title_and_tags: By title and tags
+    by_description: By description
     open: Open
     download: Download
     select_doc: Select document
