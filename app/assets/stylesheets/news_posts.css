@@ -76,7 +76,7 @@ div.btn-group btn.active, btn:active {
 
 .news-index-right > h2{
     word-wrap: break-word;
-    width: 700px;
+    width: 100%
 }
 
 .news-tree-content, p.post-content{
