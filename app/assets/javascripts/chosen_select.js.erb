@@ -38,6 +38,12 @@ $(function(){
     width: '100%'
   });
 
+  $('#invited.chosen-select').chosen({
+    placeholder_text_multiple: " ",
+    no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
+    width: '100%'
+  });
+
   $('#guests.chosen-select').chosen({
     placeholder_text_multiple: "<%= I18n.t('events.guests') %>...",
     no_results_text: "<%= I18n.t('status_chosen_no_result') %>",

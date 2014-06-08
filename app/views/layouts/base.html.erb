@@ -15,8 +15,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <%= render partial: "shared/header", flash: flash %>
     <div class="container">
-      <%= render partial: "shared/header", flash: flash %>
       <div class="row">
         <div class="col-xs-12">
           <%= render partial: "shared/flash_messages", flash: flash %>

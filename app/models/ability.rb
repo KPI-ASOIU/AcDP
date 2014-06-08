@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
 
-    alias_action :create, :read, :update, :destroy, :to => :crud
+    alias_action :create, :read, :update, :destroy, :update_checklist, :to => :crud
     #
     if user.has_role? :admin
       can :manage, :all

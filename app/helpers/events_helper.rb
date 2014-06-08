@@ -19,7 +19,7 @@ module EventsHelper
 	end
 
 	def all_visitors
-		Event.all.map { |e| e.guests }.uniq.flatten.reject{ |u| u == current_user }.map { |v| [v.full_name, v.id] }
+		Event.all.map { |e| e.guests }.flatten.reject{ |u| u == current_user }.map { |v| [v.full_name, v.id] }.uniq
 	end
 
 	def can_all_visit?(event)

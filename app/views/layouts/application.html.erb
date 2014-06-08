@@ -4,7 +4,6 @@
 
 <% content_for :navbar do %>
   <% if user_signed_in? %>
-    <li><%= link_to t('users.my_page'), current_user_users_path %></li>
     <li>
       <%= link_to conversations_path do %>
         <%= t('conversations.dialogs') %>
@@ -18,8 +17,8 @@
     <li><%= link_to t('contacts.nav_link'), contacts_path %></li>
     <% if can? :crud, Task %>
       <li><%= link_to t('activerecord.models.tasks'), tasks_path %></li>
-      <li><%= link_to t('activerecord.models.events'), events_path %></li>
     <% end %>
+    <li><%= link_to t('activerecord.models.events'), events_path %></li>
   <% end %>
   <% if can? :manage, @users %>
     <li><%= link_to t('admin_panel'), admin_users_path %></li>
