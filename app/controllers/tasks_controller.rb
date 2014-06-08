@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    if find_task_by_id @task.author != current_user
+    if find_task_by_id and @task.author != current_user
       redirect_to tasks_path, flash: { error: t('tasks.errors.no_edit') }
     else
       @task.end_date = local_time_format(@task.end_date) if !@task.end_date.nil?

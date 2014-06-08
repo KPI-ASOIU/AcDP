@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   scope :with_date, ->(date1, date2) { where(date: date1..date2) }
   scope :created_at, ->(date1, date2) { where(created_at: date1..date2) }
 
+  validates_presence_of :name
+
 	opinio_subjectum
 
  	include PublicActivity::Model
