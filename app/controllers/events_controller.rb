@@ -41,7 +41,8 @@ class EventsController < ApplicationController
   def index
   	if params[:search].present?    
       fix_params  
-      @events = Event.with_name(params[:name])
+      @events = Event.connected_to_me
+                .with_name(params[:name])
                 .with_place(params[:place])
                 .with_author(params[:author].split(" "))
                 .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
