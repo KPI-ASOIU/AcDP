@@ -13,7 +13,7 @@
   <div class="col-md-3">
     <%= t('events.guests') %>:
     <div>
-      <%= select_tag :guests, options_for_select(
+      <%= select_tag :invited, options_for_select(
         [[t('util.I'), current_user.id], 
         [t('util.not_I'), events_not_visited_by_me]].concat(all_visitors)),
         { class: "chosen-select", multiple: true, include_blank: true } %>

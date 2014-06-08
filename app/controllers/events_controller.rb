@@ -17,16 +17,19 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    if !params[:can_visit].nil?
+    if find_event_by_id and !params[:can_visit].present?
       @event_has_guest = EventHasGuest.where(event_id: @event.id)
       @event_has_guest.first.update_attributes(status: params[:can_visit] == "true" ? 1 : 0)
     end
   end
 
   def edit
-    @event = Event.find(params[:id])
-    @event.date = local_time_format(@event.date) if !@event.date.nil?
+    if find_event_by_id and @event.author != current_user
+      flash[:error] = I18n.t('events.errors.no_edit')
+      redirect_to events_path
+    else
+      @event.date = local_time_format(@event.date) if !@event.date.present?
+    end
   end
 
   def update
@@ -64,6 +67,14 @@ class EventsController < ApplicationController
   end
 
   private
+  def find_event_by_id
+    begin
+      @event = Event.find(params[:id])
+    rescue
+      redirect_to events_path, flash: { error: t('events.errors.not_found') } and false
+    end
+  end
+
   def event_params
     params.require(:event)
       .permit(:name, :description, :date, :place, :plan)
@@ -102,10 +113,8 @@ class EventsController < ApplicationController
   end
 
   def guests_check
-    if params[:guests].present?
-      # This is made, because params[:guest] can be [1, [2, 3]]
-      params[:guests] = params[:guests].join(" ")
-      @events = @events.with_guests(params[:guests].split(" ")).order("created_at DESC").uniq
+    if params[:invited].present?
+      @events = @events.with_guests(params[:invited].flatten).order("created_at DESC").uniq
     end
   end
 end

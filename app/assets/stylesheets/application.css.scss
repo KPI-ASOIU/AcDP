@@ -70,12 +70,19 @@ body {
   width: 8px !important;
   background: white !important;
 }
+
 .jspTrack {
   width: 8px !important;
   background: #ededed !important;
 }
+
 .jspDrag {
   border-radius: 10px;
   width: 8px !important;
   background: #ccc !important;
+}
+
+/* For bootstrap fixed-top panel to display content properly */
+body {
+  padding-top: 65px;
 }
