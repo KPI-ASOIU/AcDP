@@ -42,4 +42,8 @@ module EventsHelper
 	def author?(event)
 		event.author == current_user
 	end
+
+	def authored_any_event?(events)
+		events.any? { |e| e.author == current_user }
+	end
 end

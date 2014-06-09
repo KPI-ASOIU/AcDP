@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   include PublicActivity::StoreController 
+  include EventsHelper
   
 	def new
     @event = current_user.leading_events.new
@@ -17,8 +18,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    if find_event_by_id and !params[:can_visit].present?
-      @event_has_guest = EventHasGuest.where(event_id: @event.id)
+    if find_event_by_id and params[:can_visit].present?
+      @event_has_guest = EventHasGuest.where(event_id: @event.id, guest: current_user)
       @event_has_guest.first.update_attributes(status: params[:can_visit] == "true" ? 1 : 0)
     end
   end
@@ -28,7 +29,7 @@ class EventsController < ApplicationController
       flash[:error] = I18n.t('events.errors.no_edit')
       redirect_to events_path
     else
-      @event.date = local_time_format(@event.date) if !@event.date.present?
+      @event.date = local_time_format(@event.date) if @event.date.present?
     end
   end
 
@@ -60,6 +61,7 @@ class EventsController < ApplicationController
         .where('event_has_guests.guest_id = ? OR events.author_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
     end
+    @only_guest = !authored_any_event?(@events)
   end
 
   def destroy

@@ -26,14 +26,19 @@
         <%= t('tasks.no_end_date_given') %>
       <% end %>
     </td>
-    <% if task.author == current_user %>
+    
+    <% if !@only_executor %>
       <td class="text-center col-sm-1">
-        <%= link_to edit_task_path(task), :class => "btn btn-warning btn-xs" do %>
+        <% if task.author == current_user %>
+          <%= link_to edit_task_path(task), :class => "btn btn-warning btn-xs" do %>
             <span class='glyphicon glyphicon-pencil'></span>
-        <% end %>
-        <!-- TODO Ajax delete button??? -->
-        <%= button_to task_path(task), method: :delete, class: "btn btn-danger btn-xs no-outline-btn" do %>
-          <span class='glyphicon glyphicon-remove'></span>
+          <% end %>
+          <!-- TODO Ajax delete button??? -->
+          <%= button_to task_path(task), method: :delete, class: "btn btn-danger btn-xs no-outline-btn" do %>
+            <span class='glyphicon glyphicon-remove'></span>
+          <% end %>
+        <% else %>
+          &nbsp;
         <% end %>
       </td>
     <% end %>

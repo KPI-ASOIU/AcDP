@@ -267,6 +267,12 @@ uk:
         status: Статус
         check_list: Задачі
         executors: Виконавці
+      event:
+        name: Поле 'Назва'
+        date: Поле 'Дата проведення'
+        place: Поле 'Місце проведення'
+        plan: Поле 'План події'
+        guests: Поле 'Запрошені'
       doctype:
         title: Назва типу
       news_post:
@@ -276,13 +282,6 @@ uk:
         creator_id: Автор
         for_roles: Категорія
         icon: Іконка
-      task:
-        name: Назва
-        description: Опис
-        end_date: Кінцева дата
-        status: Статус
-        check_list: Задачі
-        executors: Виконавці
     errors:
       template:
         header:

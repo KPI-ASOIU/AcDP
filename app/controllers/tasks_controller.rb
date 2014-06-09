@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     if find_task_by_id and @task.author != current_user
       redirect_to tasks_path, flash: { error: t('tasks.errors.no_edit') }
     else
-      @task.end_date = local_time_format(@task.end_date) if !@task.end_date.nil?
+      @task.end_date = local_time_format(@task.end_date) if @task.end_date.present?
     end
   end
 
@@ -92,6 +92,7 @@ class TasksController < ApplicationController
         .where('executing_tasks_executors.executor_id = ? OR tasks.user_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
     end
+    @only_executor = !authored_any_task?(@tasks)
   end
 
   def destroy
