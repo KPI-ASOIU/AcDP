@@ -58,4 +58,8 @@ module TasksHelper
 	def belongs_to?(task)
 		task.executors.include?(current_user)
 	end
+
+	def authored_any_task?(tasks)
+		tasks.any? { |t| t.author == current_user }
+	end
 end
