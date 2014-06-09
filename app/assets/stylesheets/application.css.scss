@@ -70,12 +70,60 @@ body {
   width: 8px !important;
   background: white !important;
 }
+
 .jspTrack {
   width: 8px !important;
   background: #ededed !important;
 }
+
 .jspDrag {
   border-radius: 10px;
   width: 8px !important;
   background: #ccc !important;
+}
+
+/* For bootstrap fixed-top panel to display content properly */
+body {
+  margin-top: 60px;
+}
+
+@media (max-width: 1035px) {
+    .navbar-header {
+      float: none;
+    }
+    
+    .navbar-toggle {
+      display: block;
+    }
+    
+    .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .navbar-collapse.collapse {
+      display: none !important;
+    }
+    
+    .navbar-nav {
+      margin: 7.5px -15px;
+    }
+    
+    .navbar-nav>li:first-child {
+      padding-left: 20px;
+    }
+
+    .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+      display: block !important;
+    }
+    
+    .collapsing {
+      overflow: hidden !important;
+    }
 }

@@ -1,5 +1,5 @@
 <div class="panel panel-primary panel-narrow pull-left task-info-area">
-  <div class="panel-heading">
+  <div class="panel-heading no-user-select">
     <h3 class="panel-title"><%= t('tasks.task_info') %></h3>
   </div>
   <div class="panel-body">
@@ -30,36 +30,18 @@
         	</dd>
         <% end %>
       </dl> 
-      <dl class="dl-horizontal break-words">
-        <% if @task.checklists.reject { |c| c.empty? }.any? %>
-          <dt><%= t('tasks.check_list') %></dt>
-          <dd>
-            <% @task.checklists.each do |c| %>
-            <div>
-              <%= check_box_tag :done, 1, c.done, disabled: true  %>
-              <%= label_tag :name, c.name %>
-            </div>
-            <% end %>
-          </dd>
-          <dt>&nbsp;</dt>
-          <dd>
-            <div class="width100 progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
-                <%= checklist_percentage(@task) %>%
-              </div>
-            </div>
-          </dd>
-        <% end %>
-      </dl>
+      <%= render partial: 'sub_tasks' %>
     </div>
   </div>
-  <div class="panel-footer text-right">
+  <div class="panel-footer text-right no-user-select">
     <%= link_to t('util.back'), tasks_path, :class => "btn btn-default" %>
     <% if @task.author == current_user %>
       <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
           <span class='glyphicon glyphicon-pencil'></span>
           <%= t('util.edit') %>
       <% end %>
+    <% else %>
+      <%= button_tag t('util.confirm'), :class => "btn btn-success", :id => 'submitSubTasks' %>
     <% end %>
   </div>
 </div>

@@ -7,7 +7,7 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
   	language: 'uk'
   });
 
@@ -15,7 +15,7 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
   	language: 'uk'
   });
 
@@ -23,7 +23,7 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
   	language: 'uk'
   });
 
@@ -31,7 +31,7 @@ $(function() {
   	// TODO
   	// 	=> make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
   	language: 'uk'
   });
 
@@ -39,7 +39,7 @@ $(function() {
     // TODO
     //  => make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
     language: 'uk'
   });
 
@@ -47,7 +47,7 @@ $(function() {
     // TODO
     //  => make here default project language
     useCurrent: false,
-    defultDate: '',
+    defaultDate: '',
     language: 'uk'
   });
 

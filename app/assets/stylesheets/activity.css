@@ -62,7 +62,9 @@
 
 .activity-filter {
   margin: 0 auto;
-  max-width: 320px;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
 }
 
 .no-activity-found {

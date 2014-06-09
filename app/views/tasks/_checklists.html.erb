@@ -1,0 +1,10 @@
+<%= form_tag task_path, id: 'subTasks' do %>
+	<% @task.checklists.each_with_index do |c, i| %>
+	  <div>
+	    <%= check_box_tag 'done' << i.to_s, 1, c.done, 
+	    	{ disabled: dis, id: 'done' << i.to_s, class: 'regular-checkbox' } %>
+	    <%= label_tag 'done' << i.to_s, '', class: 'no-user-select' %>
+	    <%= label_tag :name, c.name %>
+	  </div>
+	<% end %>
+<% end %>

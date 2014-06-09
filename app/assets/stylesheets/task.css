@@ -70,6 +70,10 @@ a.text-white {
 	width: 10%;
 }
 
+.progress-bar-wrap dd {
+	width: 100%;
+	max-width: 345px;
+}
 
 /* Comments */
 #comments .popover {
