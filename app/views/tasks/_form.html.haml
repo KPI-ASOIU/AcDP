@@ -30,7 +30,7 @@
     .form-group
       = f.label t('tasks.executors'), :class=>'col-sm-4 control-label' 
       .col-sm-8    
-        = select_tag :executors, options_for_select(User.where.not(role: User.roles_to_int(['student'])).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
+        = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
   .panel-footer.text-right 
     = link_to t('util.back'), :back, :class => "btn btn-default"
     = f.submit :class => "btn btn-success", :value => val
