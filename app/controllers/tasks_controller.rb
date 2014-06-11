@@ -15,37 +15,44 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to task_path(@task.id)
     else
-      redirect_to :back
-      flash[:error] = @task.errors.full_messages.join('. ')
+      redirect_to :back, flash: { error: @task.errors.full_messages.join('. ') }
     end
   end
 
   def show
-    @task = Task.find(params[:id])
-    if @task.author != current_user and !@task.executors.include?(current_user)
-      redirect_to tasks_path
-      flash[:error] = t('tasks.errors.not_engaged')
+    if find_task_by_id and @task.author != current_user and !@task.executors.include?(current_user)
+      redirect_to tasks_path, flash: { error: t('tasks.errors.not_engaged') }
     end
   end
 
   def edit
-    @task = Task.find(params[:id])
-    @task.end_date = local_time_format(@task.end_date) if !@task.end_date.nil?
+    if find_task_by_id and @task.author != current_user
+      redirect_to tasks_path, flash: { error: t('tasks.errors.no_edit') }
+    else
+      @task.end_date = local_time_format(@task.end_date) if @task.end_date.present?
+    end
   end
 
   def update
-    @task = Task.find(params[:id]) 
+    @task = Task.find(params[:id])
     @old_status = @task.status
     @old_execs = @task.executors.sort
     if @task.update_attributes(task_params)
-      puts "Hello"
-      puts task_params
       track_specific_fields or create_activity('task.update', @task.name)
       redirect_to task_path(@task.id)
     else
-      redirect_to :back
-      flash[:error] = @task.errors.full_messages.join('. ')
-    end
+      redirect_to :back, flash: { error: @task.errors.full_messages.join('. ') }
+    end 
+  end
+
+  def update_checklist
+    @task = Task.find(params[:id])
+    checklist = @task.checklists
+    checklist.each_with_index { |c, i| 
+      c.done = params['done' << i.to_s] or false
+      c.save
+    }
+    redirect_to task_path(@task.id)
   end
 
   def index
@@ -73,9 +80,7 @@ class TasksController < ApplicationController
       end
 
       if params[:executor].present?
-        # This is made, because params[:executor] can be [1, [2, 3]]
-        params[:executor] = params[:executor].join(" ")
-        @tasks = @tasks.with_executors(params[:executor].split(" ")).order("created_at DESC").uniq
+        @tasks = @tasks.with_executors(params[:executor].flatten).order("created_at DESC").uniq
       end
 
       respond_to do |format|
@@ -87,6 +92,7 @@ class TasksController < ApplicationController
         .where('executing_tasks_executors.executor_id = ? OR tasks.user_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
     end
+    @only_executor = !authored_any_task?(@tasks)
   end
 
   def destroy
@@ -95,6 +101,14 @@ class TasksController < ApplicationController
   end
 
   private
+  def find_task_by_id
+    begin
+      @task = Task.find(params[:id])
+    rescue
+      redirect_to tasks_path, flash: { error: t('tasks.errors.not_found') } and false
+    end
+  end
+
   def task_params
     params.require(:task)
       .permit(:name, :description, :end_date, :status, :check_list, \
@@ -125,9 +139,9 @@ class TasksController < ApplicationController
     @task.create_activity(key: title, owner: current_user, 
       params: {
         summary: summary,
-        trackable_id: @task.id,
-        connected_to_users: [@task.author.id].concat(@task.executors.map { |e| e.id }) 
-      })
+        trackable_id: @task.id 
+      },
+      connected_to_users: ' ' << [@task.author.id].concat(@task.executors.map { |e| e.id }).join(' ') << ' ')
   end
 
   def track_specific_fields

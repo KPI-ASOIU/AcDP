@@ -44,7 +44,7 @@ module TasksHelper
 	end
 
 	def all_executors
-		Task.all.map { |t| t.executors }.uniq.flatten.reject{ |u| u == current_user }.map { |e| [e.full_name, e.id] }
+		Task.all.map { |t| t.executors }.flatten.reject{ |u| u == current_user }.map { |e| [e.full_name, e.id] }.uniq
 	end
 
 	def translate_statuses(statuses)
@@ -53,5 +53,13 @@ module TasksHelper
 
 	def translate_status(status)
 		t('tasks.statuses.' + status)
+	end
+
+	def belongs_to?(task)
+		task.executors.include?(current_user)
+	end
+
+	def authored_any_task?(tasks)
+		tasks.any? { |t| t.author == current_user }
 	end
 end

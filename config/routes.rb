@@ -59,6 +59,7 @@ AcDP::Application.routes.draw do
   resources :contacts, only: [:index, :create, :destroy]
 
   resources :tasks
+  post 'tasks/:id' => 'tasks#update_checklist', as: :update_checklist
 
   resources :events
 

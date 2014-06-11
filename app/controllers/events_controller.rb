@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   include PublicActivity::StoreController 
+  include EventsHelper
   
 	def new
     @event = current_user.leading_events.new
@@ -17,16 +18,19 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    if !params[:can_visit].nil?
-      @event_has_guest = EventHasGuest.where(event_id: @event.id)
+    if find_event_by_id and params[:can_visit].present?
+      @event_has_guest = EventHasGuest.where(event_id: @event.id, guest: current_user)
       @event_has_guest.first.update_attributes(status: params[:can_visit] == "true" ? 1 : 0)
     end
   end
 
   def edit
-    @event = Event.find(params[:id])
-    @event.date = local_time_format(@event.date) if !@event.date.nil?
+    if find_event_by_id and @event.author != current_user
+      flash[:error] = I18n.t('events.errors.no_edit')
+      redirect_to events_path
+    else
+      @event.date = local_time_format(@event.date) if @event.date.present?
+    end
   end
 
   def update
@@ -38,7 +42,8 @@ class EventsController < ApplicationController
   def index
   	if params[:search].present?    
       fix_params  
-      @events = Event.with_name(params[:name])
+      @events = Event.connected_to_me
+                .with_name(params[:name])
                 .with_place(params[:place])
                 .with_author(params[:author].split(" "))
                 .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
@@ -56,6 +61,7 @@ class EventsController < ApplicationController
         .where('event_has_guests.guest_id = ? OR events.author_id = ?', current_user.id, current_user.id)
         .uniq.order("created_at DESC")
     end
+    @only_guest = !authored_any_event?(@events)
   end
 
   def destroy
@@ -64,6 +70,14 @@ class EventsController < ApplicationController
   end
 
   private
+  def find_event_by_id
+    begin
+      @event = Event.find(params[:id])
+    rescue
+      redirect_to events_path, flash: { error: t('events.errors.not_found') } and false
+    end
+  end
+
   def event_params
     params.require(:event)
       .permit(:name, :description, :date, :place, :plan)
@@ -102,10 +116,8 @@ class EventsController < ApplicationController
   end
 
   def guests_check
-    if params[:guests].present?
-      # This is made, because params[:guest] can be [1, [2, 3]]
-      params[:guests] = params[:guests].join(" ")
-      @events = @events.with_guests(params[:guests].split(" ")).order("created_at DESC").uniq
+    if params[:invited].present?
+      @events = @events.with_guests(params[:invited].flatten).order("created_at DESC").uniq
     end
   end
 end

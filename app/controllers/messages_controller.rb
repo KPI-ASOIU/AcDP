@@ -6,7 +6,12 @@ class MessagesController < ApplicationController
 
 	def index
     @messages = @conversation.messages
-    (@conversation.subscriptions.find_by user: current_user).update_attribute(:unread_messages_count, 0)
+    begin
+      (@conversation.subscriptions.find_by user: current_user).update_attribute(:unread_messages_count, 0)
+    rescue
+      flash[:error] = I18n.t('util.access_denied')
+      redirect_to conversations_path
+    end
   end
 
   def create

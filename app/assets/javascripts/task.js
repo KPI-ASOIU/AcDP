@@ -12,13 +12,14 @@ $(document).ready(function() {
   });
 
   $('.comments-form').jScrollPane({autoReinitialise: true});
+
+  $('#submitSubTasks').on('click', function(e) { 
+    $('#subTasks').submit(); 
+  });
 });
 
 $(".searchclear").click(function(){
-    if((inp = $(this).siblings("input.form-control")).length != 0)
-      inp.val('');
-    else if((chosen = $(this).siblings(".chosen-container").find(".chosen-choices")).children().length > 1)
-      chosen.children(":first").remove()
+  !$(this).siblings('.chosen-select').val('').trigger('chosen:updated') || !$(this).siblings('input.form-control').val('');
 });
 
 $('.popover').popover('show');

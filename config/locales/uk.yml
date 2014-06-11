@@ -267,6 +267,12 @@ uk:
         status: Статус
         check_list: Задачі
         executors: Виконавці
+      event:
+        name: Поле 'Назва'
+        date: Поле 'Дата проведення'
+        place: Поле 'Місце проведення'
+        plan: Поле 'План події'
+        guests: Поле 'Запрошені'
       doctype:
         title: Назва типу
       news_post:
@@ -276,13 +282,6 @@ uk:
         creator_id: Автор
         for_roles: Категорія
         icon: Іконка
-      task:
-        name: Назва
-        description: Опис
-        end_date: Кінцева дата
-        status: Статус
-        check_list: Задачі
-        executors: Виконавці
     errors:
       template:
         header:
@@ -344,6 +343,7 @@ uk:
     not_I: 'Всі, крім мене'
     add: Додати
     all_of: 'Всі, '
+    confirm: Підтвердити
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -549,6 +549,8 @@ uk:
       Done: Виконано
     errors:
       not_engaged: "Ви не можете бачити деталі цього завдання, бо не є його учасником"
+      no_edit: Ви не можете редагувати дане завдання
+      not_found: За даним URL не знайдено жодного завдання
   comments:
     new_comment: Новий коментар
     send_comment: Коментувати
@@ -567,6 +569,9 @@ uk:
     cannot_visit: Не зможу прийти
     can_visit: Зможу прийти
     not_visiting: Не зможуть прийти
+    errors:
+      no_edit: Ви не можете редагувати дану подію
+      not_found: За даним URL не знайдено жодної події
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
