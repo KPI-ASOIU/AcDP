@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   authorize_resource
-
   before_action :set_current_user
 
   include PublicActivity::StoreController 

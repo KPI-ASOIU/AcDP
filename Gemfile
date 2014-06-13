@@ -83,3 +83,4 @@ gem 'bootstrap-wysihtml5-rails', :git => 'git://github.com/KPI-ASOIU/bootstrap-w
 gem 'html_truncator', '~> 0.4.0'
 gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
 gem 'public_activity'
+gem 'time_diff'

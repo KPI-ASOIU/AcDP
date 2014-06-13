@@ -23,6 +23,9 @@
   <% if can? :manage, @users %>
     <li><%= link_to t('admin_panel'), admin_users_path %></li>
   <% end %>
+  <%= button_tag '', class: 'no-styling-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: "#{render 'application/panel_activity'}" } do %>
+    <span class='glyphicon glyphicon-th-list'></span>
+  <% end %>
 <% end %>
 
 <%= render template: "layouts/base" %>

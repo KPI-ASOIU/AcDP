@@ -21,4 +21,20 @@ class ApplicationController < ActionController::Base
   def set_current_user
     User.current = current_user
   end
+
+  def panel_activity
+    @activities = PublicActivity::Activity.order('created_at DESC')
+      .where("connected_to_users LIKE '% #{current_user.id} %'")
+
+    if !params[:type].nil?
+      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] || 
+        a.trackable[:commentable_type] == params[:type] if !a.trackable.nil? }
+    end
+    @activities = @activities[!params[:summand].nil? ? 0..(6+params[:summand].to_i) : 0..6]
+    
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
 end
