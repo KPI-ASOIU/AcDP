@@ -3,11 +3,28 @@
   <%= render 'options'%>
 </div>
 
-<div class='panel-activity panel-primary'>
-	<% @reminder_tasks.each { |task| %>
-		<%= render partial: 'notifications/reminder', locals: { item: task } %>
-	<% } %>
-	<% @reminder_events.each { |event| %>
-		<%= render partial: 'notifications/reminder', locals: { item: event } %>
-	<% } %>
+<div class='activity-window'>
+	<div class='activity-container'>
+		<div class='panel-activity panel-primary'>
+	  	<div class='activity-filter'>
+	  		<ul class='nav nav-pills'>
+	  			<li class='active'><a class='hottest' href=''><%= t('activity.the_hottest') %></a></li>
+	  		</ul>
+	  	</div>
+	  	<%= button_tag '', class: 'no-styling-btn activity-toggle-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
+		  	<span class='glyphicon glyphicon-chevron-right'></span>
+			<% end %>
+			<% if @reminder_tasks.present? or @reminder_events.present? %>
+				<% @reminder_tasks.uniq.each { |task| %>
+					<%= render partial: 'notifications/reminder', locals: { item: task, link: 'task_path' } %>
+				<% } %>
+				<% @reminder_events.uniq.each { |event| %>
+					<%= render partial: 'notifications/reminder', locals: { item: event, link: 'event_path' } %>
+				<% } %>
+			<% else %>
+				<div class='text-center no-activity-found'><%= t('activity.no_reminders') %></div>
+			<% end %>
+		</div>
+		<%= render 'application/panel_activity' %>
+	</div>
 </div>

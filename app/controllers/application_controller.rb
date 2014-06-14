@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
     @activities = PublicActivity::Activity.order('created_at DESC')
       .where("connected_to_users LIKE '% #{current_user.id} %'")
 
-    if !params[:type].nil?
-      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] || 
-        a.trackable[:commentable_type] == params[:type] if !a.trackable.nil? }
+    if params[:type].present?
+      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] or 
+        a.trackable[:commentable_type] == params[:type] if a.trackable.present? }
     end
-    @activities = @activities[!params[:summand].nil? ? 0..(6+params[:summand].to_i) : 0..6]
+    @activities = @activities[params[:summand].present? ? 0..(6+params[:summand].to_i) : 0..6]
     
     respond_to do |format|
       format.js
