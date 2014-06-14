@@ -3,22 +3,26 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= t('documents.select_doc') %></h4>
+        <h4 class="modal-title"><%= t('documents.select_folder') %></h4>
       </div>
 
       <div class="modal-body">
-        <p><%= t('documents.docs_list') %></p>
+        <p><%= t('documents.folders_list') %></p>
         <div id="doc-select-jsPanel" class="select-document-panel">
             <div id="modal-docs-list">
-
             </div>
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
-        <button type="button" id="docs-select-confirm" class="btn btn-success" data-dismiss="modal"><%= t('util.add') %></button>
-      </div>
+      <%= form_tag '/documents/update', method: :patch do %>
+        <input type="hidden" name="pk" id="doc-select-pk" value="" />
+        <input type="hidden" name="target_pk" id="doc-select-target-pk" value="root" />
+        <input type="hidden" name="folder_id" value="<%= @current_folder.nil? ? '' : @current_folder.id %>" />
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
+          <%= submit_tag t('documents.move'), class: 'btn btn-success' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

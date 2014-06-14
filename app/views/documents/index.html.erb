@@ -1,5 +1,6 @@
 <h1><%= t('documents.documents') %></h1>
 
+<%= render 'documents/modals/document_select' %>
 <%= render 'documents/modals/new_file' %>
 <%= render 'documents/modals/new_folder' %>
 <%= render 'documents/modals/confirm_remove' %>
@@ -13,7 +14,7 @@
 <% if !@shared || @can_edit_current_folder %>
   <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_file' }, :class => 'btn btn-success' do %>
       <span class='glyphicon glyphicon-cloud-upload'></span>
-      <%= t('documents.add_file') %>
+      <%= t('documents.add_doc') %>
   <% end %>
 
   <%= link_to '', :data => { :toggle => 'modal', :target => '#modal_add_folder' }, :class => 'btn btn-success' do %>

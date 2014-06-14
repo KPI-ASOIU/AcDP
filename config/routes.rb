@@ -15,7 +15,7 @@ AcDP::Application.routes.draw do
   get 'calendar', to: 'calendar'
   get 'documents', to: 'documents#index'
 
-  get 'documents/tree/:type', to: 'documents#jstree'
+  get 'documents/tree/:docdir/:type', to: 'documents#jstree'
 
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'

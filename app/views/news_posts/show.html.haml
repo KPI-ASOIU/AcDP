@@ -29,7 +29,8 @@
         %p
           %b= t('news.attached_docs') + ':'
           - @news_post.documents.each do |document|
-            =link_to document.title, documents_path(document)
+            =link_to document.title, document.doc_type == 0 ?  document_path(document) : document.parent_directory.nil? ? documents_path : document_path(document.parent_directory)
+            | 
     %p{ class: 'post-content' }= raw @news_post.content
 
 .news-show-buttons

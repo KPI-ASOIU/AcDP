@@ -21,8 +21,8 @@ class DocumentsController < ApplicationController
     @folders = @docs.select { |doc| doc.doc_type == 0 }
     @files = @docs.select { |doc| doc.doc_type == 1 }
     @shared = false
-    @formats=FileInfo.uniq.pluck(:file_content_type)
-    @types=DocumentType.pluck(:title)
+    @formats = FileInfo.uniq.pluck(:file_content_type)
+    @types = DocumentType.pluck(:title)
   end
 
   def shared
@@ -37,6 +37,9 @@ class DocumentsController < ApplicationController
       @current_folder = Document.where(id: params[:id]).first
     end
 
+    @formats = FileInfo.uniq.pluck(:file_content_type)
+    @types = DocumentType.pluck(:title)
+
     unless @docs.nil?
       @folders = @docs.select { |doc| doc.doc_type == 0 }
       @files = @docs.select { |doc| doc.doc_type == 1 }
@@ -45,11 +48,8 @@ class DocumentsController < ApplicationController
   end
 
   def jstree
-    if params[:id] and params[:id] != '#'
-      @docs = Document.where(parent_directory: params[:id])
-    else
-      @docs = Document.where(parent_directory: nil)
-    end
+    @docs = Document.where(params[:docdir] == 'dir' ? { doc_type: 0 } : {}).
+                     where(parent_directory: (!params[:id].blank? && params[:id] != '#') ? params[:id] : nil)
   end
 
   def new
@@ -97,6 +97,8 @@ class DocumentsController < ApplicationController
         doc.description = params[:value]
       elsif params[:name] == 'title'
         doc.title = params[:value]
+      elsif !params[:target_pk].blank?
+        doc.parent_directory = params[:target_pk] == 'root' ? nil : params[:target_pk]
       end
 
       if doc.save
@@ -113,6 +115,8 @@ class DocumentsController < ApplicationController
           :msg => msg,
           :doc_id => doc.nil? ? -1 : doc.id
       }
+    else
+      redirect_to action: 'index', id: params[:folder_id]
     end
   end
 
