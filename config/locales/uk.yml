@@ -581,12 +581,14 @@ uk:
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
+    the_hottest: Найближчі
     all: Всі новини
     tasks: Завдання
     events: Події
     documents: Документи
     feed: Все
     no_activity_found: Не знайдено жодних новин
+    no_reminders: Найближчим часом нічого не заплановано
     trackable:
       event: подію
       task: завдання

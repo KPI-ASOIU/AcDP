@@ -2,7 +2,8 @@
 
 $('.activity-icon').popover({html: true})
 
-$('.activity-icon').on('shown.bs.popover', function () {
+// $('.activity-icon').on('shown.bs.popover', function () {
+$(document).ready(function() {
 	$('.activity-list').jScrollPane({
 		autoReinitialise: false,
 		hideFocus: true
@@ -32,5 +33,12 @@ $('.activity-icon').on('shown.bs.popover', function () {
 					}
 				}
 			)
+
+ 	$('.activity-toggle-btn').click(function() {
+ 		if($(this).hasClass('navbar-right'))
+ 			$('.activity-container').css('marginLeft', '-525px');
+ 		else
+ 			$('.activity-container').css('marginLeft', '0px');
+ 	});
 });
 

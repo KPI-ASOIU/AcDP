@@ -1,10 +1,11 @@
 .activity-list, .panel-activity {
   margin: 0 auto;
-  max-width: 520px;
+  max-width: 515px;
 }
 
 .panel-activity {
   display: block;
+  float: left;
   margin-left: 10px;
   overflow: auto;
   width: 100%;
@@ -83,4 +84,43 @@
 
 .activity .badge {
   float: right;
+}
+
+.glyphicon-fire {
+  color: #FF3300 !important;
+  opacity: 0.3 !important;
+}
+
+.activity-container {
+  display: inline-block;
+  width: 1200px;
+  -webkit-transition: 0.5s ease margin-left;
+          transition: 0.5s ease margin-left;
+}
+
+.activity-window {
+  overflow: hidden;
+  width: 525px;
+}
+
+.activity-toggle-btn {
+  margin-top: -30px;
+  position: relative;
+}
+
+.activity-toggle {
+  margin-left: 10px;
+  margin-top: 13px;
+}
+
+.activity-icon {
+  color: #777;
+}
+
+.activity-icon:hover {
+  color: #5E5E5E;
+}
+
+.hottest {
+  background-color: #FF3300 !important;
 }
