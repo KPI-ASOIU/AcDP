@@ -428,12 +428,14 @@ uk:
     open: Відкрити
     download: Скачати
     select_doc: Виберіть документ
+    select_folder: Виберіть папку
     docs_list: Список документів
+    folders_list: Список папок
 
     information: Інформація
 
-    add_file: Додати файл
-    adding_file: Додання файлу
+    add_doc: Додати документ
+    adding_doc: Додання документу
     enter_file_title: Введіть назву для документу. За замовчанням буде використана назва файлу.
     title: Назва
     file_add_success: Файл додано

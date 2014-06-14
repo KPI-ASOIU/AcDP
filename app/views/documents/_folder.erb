@@ -55,13 +55,13 @@
         </div>
 
         <% if !@shared %>
-            <br><div>
-        <%= link_to '', :id => 'btn_remove_document', :data => { :path => folder.parent_directory.nil? ? document_delete_root_path(folder) :
-                document_delete_path(id: folder.parent_directory, delete_id: folder.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => "btn btn-danger" do %>
+        <div class="doc-info-buttons">
+        <%= link_to '', :data => { :path => folder.parent_directory.nil? ? document_delete_root_path(folder) :
+                document_delete_path(id: folder.parent_directory, delete_id: folder.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => 'btn btn-danger btn_remove_document' do %>
             <span class='glyphicon glyphicon-remove'></span>
             <%= t('documents.delete') %>
         <% end %>
-      </div>
+        </div>
         <% end %>
       </div>
     </div>

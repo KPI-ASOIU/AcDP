@@ -74,10 +74,14 @@
 
         <% if !@shared %>
             <div class="doc-info-buttons">
-            <%= link_to '', :id => 'btn_remove_document', :data => { :path => file.parent_directory.nil? ? document_delete_root_path(file) :
-                      document_delete_path(id: file.parent_directory, delete_id: file.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => 'btn btn-danger' do %>
+            <%= link_to '', :data => { :path => file.parent_directory.nil? ? document_delete_root_path(file) :
+                      document_delete_path(id: file.parent_directory, delete_id: file.id), :toggle => 'modal', :target => '#modal_confirm_remove_document' }, :class => 'btn btn-danger btn_remove_document' do %>
               <span class='glyphicon glyphicon-remove'></span>
               <%= t('documents.delete') %>
+            <% end %>
+            <%= link_to '', data: { toggle: 'modal', target: '#modal_select_document', docpk: file.id }, class: 'btn btn-success docs-move-document-btn' do %>
+              <span class='glyphicon glyphicon-shopping-cart'></span>
+              <%= t('documents.move') %>
             <% end %>
             </div>
         <% end %>

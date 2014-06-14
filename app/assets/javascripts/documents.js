@@ -31,11 +31,11 @@ $(document).ready(function(){
         $(this).find('.docs-navbar-tool').hide();
     }).on('click', '.docs-navbar-tool', function(event){
         event.stopPropagation();
-    }).on('click', '#btn_remove_document', function(event) {
+    }).on('click', '.btn_remove_document', function(event) {
         $("#document_remove_path").attr('href', $(this).data('path'));
     });
 
-    $('#collapseInfo').on('click', '#btn_remove_document', function(event) {
+    $('#collapseInfo').on('click', '.btn_remove_document', function(event) {
         $("#document_remove_path").attr('href', $(this).data('path'));
     });
 
@@ -91,24 +91,43 @@ $(document).ready(function(){
         }
     });
 
-    // document select tree
-    var docs_list = $('#modal-docs-list');
-    if(docs_list.length) {
-        docs_list.jstree({ core: {
-            data: {
-                url : function (node) {
-                    return '/documents/tree/owned.json';
-                },
-                data : function (node) {
-                    return { id: node.id };
-                }
-            }
-        },
-            plugins: ['wholerow', 'checkbox']
-        });
+    if ($('.docs-move-document-btn').length > 0) {
+      initDocsTree('dir', 'owned', false);
 
-        docs_list.on("loaded.jstree", function(event, data) {
-            $('#doc-select-jsPanel').jScrollPane({autoReinitialise: true});
-        });
+      $(document).on('click', '.docs-move-document-btn', function() {
+        $('#doc-select-pk').val($(this).data('docpk'));
+      });
+
+      $('#modal-docs-list').on("select_node.jstree", function (node, selected, e) {
+        $('#doc-select-target-pk').val(selected.selected[0]);
+      });
+
+      $('#modal-docs-list').on("deselect_node.jstree", function (node, selected, e) {
+        if(selected.selected.length === 0)
+          $('#doc-select-target-pk').val('root');
+      });
     }
 });
+
+function initDocsTree(docdir, type, multiple) {
+  var docs_list = $('#modal-docs-list');
+  if(docs_list.length) {
+      docs_list.jstree({ core: {
+          multiple : multiple,
+          data: {
+              url : function (node) {
+                  return '/documents/tree/' + docdir + '/' + type + '.json';
+              },
+              data : function (node) {
+                  return { id: node.id };
+              }
+          }
+      },
+          plugins: multiple ? ['wholerow', 'checkbox'] : ['wholerow']
+      });
+
+      docs_list.on("loaded.jstree", function(event, data) {
+          $('#doc-select-jsPanel').jScrollPane({autoReinitialise: true});
+      });
+  }
+}
