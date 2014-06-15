@@ -1,0 +1,25 @@
+<% events.each do |event| %>
+  <tr data-link=<%= event_path(event.id) %>>
+    <td class="col-sm-1">
+      <%= link_to image_tag((author = event.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: author.full_name), user_path(author.id) %>
+    </td>
+    <td class="col-40-percent break-words">
+      <%= (name = event.name).length > 40 ? name[0..40] << "..." : name %>
+    </td>
+    <td class="col-sm-2">
+      <% if event.date.present? %>
+        <%= l(event.date, format: :only_time) %>
+      <% else %>
+        <%= t('util.undefined') %>
+      <% end %>
+    </td>
+    <td class="col-sm-2">
+      <% if event.place.present? %>
+        <%= event.place %>
+      <% else %>
+        <%= t('util.undefined') %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

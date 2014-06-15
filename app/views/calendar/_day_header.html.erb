@@ -1,0 +1,7 @@
+<%= link_to day_path(date: date.prev_day), remote: true do %>
+  <div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
+<% end %>
+<div class="label label-primary"><%= l(date, format: "%B %d")%></div>
+<%= link_to day_path(date: date.next_day), remote: true do %>
+  <div class="glyphicon glyphicon-circle-arrow-right" style="float: right"></div>
+<% end %>

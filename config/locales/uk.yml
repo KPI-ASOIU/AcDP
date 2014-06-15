@@ -227,6 +227,7 @@ uk:
       default: '%a, %d %b %Y, %H:%M:%S %z'
       long: '%d %B %Y, %H:%M'
       short: '%d.%m.%Y %H:%M'
+      only_time: '%H:%M'
     pm: по полудні
   activemodel:
     errors:
@@ -533,6 +534,7 @@ uk:
     name: Назва
     description: Опис
     end_date: Кінцева дата
+    end_time: Кінцевий час
     no_end_date_given: Без терміну
     status: Статус
     check_list: Задачі
@@ -562,6 +564,7 @@ uk:
     name: Назва
     description: Опис
     date: Дата проведення
+    time: Час проведення
     place: Місце проведення
     plan: План події
     info: Картка події
