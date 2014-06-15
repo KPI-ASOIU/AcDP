@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
       params[:search_by] = 'title' unless ['title', 'tags', 'title tags', 'description'].include?(params[:search_by])
       @docs = Document.where(owner_id: current_user.id).page(params[:page]).with_matched_field(params[:q], params[:search_by])
     else
+      params[:a_file]=params[:a_folder]=true
       if params[:id].blank?
         @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
       else
@@ -18,8 +19,8 @@ class DocumentsController < ApplicationController
     end
 
     params[:search_by] ||= 'title'
-    @folders = @docs.select { |doc| doc.doc_type == 0 }
-    @files = @docs.select { |doc| doc.doc_type == 1 }
+    @folders = @docs.select { |doc| doc.doc_type == 0 } if params[:a_folder]
+    @files = @docs.select { |doc| doc.doc_type == 1 } if params[:a_file]
     @shared = false
     @formats=FileInfo.uniq.pluck(:file_content_type)
     @types=DocumentType.pluck(:title)

@@ -145,6 +145,7 @@ en:
     files: Files
     file: file
     folder: Folder
+    folders: Folders
     owned: Owned
     shared: Shared
     shared_docs: Shared documents
