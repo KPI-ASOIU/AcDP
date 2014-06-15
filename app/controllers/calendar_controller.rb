@@ -11,5 +11,6 @@ class CalendarController < ApplicationController
     date_start = Time.parse(params[:date]) #midnight of date
     date_finish = date_start + 1.day
     @tasks = Task.connected_to_me.where{(end_date >= date_start) & (end_date <= date_finish)}
+    @events = Event.connected_to_me.where{(date >= date_start) & (date <= date_finish)}
   end
 end
