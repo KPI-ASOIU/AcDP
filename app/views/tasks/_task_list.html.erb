@@ -7,9 +7,9 @@
   </div>
   <% if not tasks.empty? %>
     <table class="tasks table table-hover table-verticle-centered">
-      <%= render partial: 'tasks/search_header', locals: { tasks: tasks } %>
+      <%= render partial: 'tasks/search_header_calendar', locals: { tasks: tasks } %>
       <tbody id="tasks">
-        <%= render partial: 'tasks/search_results', locals: { tasks: tasks } %>
+        <%= render partial: 'tasks/search_results_calendar', locals: { tasks: tasks } %>
       </tbody>
     </table>
   <% else %>

@@ -1,0 +1,21 @@
+<% tasks.each do |task| %>
+  <tr data-link=<%= task_path(task.id) %>>
+    <td class="col-sm-1">
+      <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: author.full_name), user_path(author.id) %>
+    </td>
+    <td class="col-40-percent break-words">
+      <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
+    </td>
+    <td class="col-30-percent no-margins">
+      <%= label_tag translate_status(task.status), nil, class: status_class(task.status) << ' no-margins' %>
+    </td>
+    <td class="col-20-percent">
+      <% if task.end_date.present? %>
+        <%= l(task.end_date, format: :only_time) %>
+      <% else %>
+        <%= t('tasks.no_end_date_given') %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

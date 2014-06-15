@@ -1,4 +1,4 @@
-<div class="calendar_container">
+<div class="calendar_container col-xs-6">
   <h2 id="month">
     <%= link_to date: @date.prev_month do%>
       <div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
@@ -12,20 +12,25 @@
     <%= link_to day_path(date: date), remote: true do %>
       <div class="cell">
         <%= date.day %>
-        <% if @tasks_by_date[date] %>
           <ul>
+            <% @tasks_by_date[date] ||= [] %>
             <% @tasks_by_date[date].each do |task| %>
               <li><div class="glyphicon glyphicon-tasks" style=
                 <%= task.user_id == current_user.id ? "color:green;" : "color:red;" %>
               ></div></li>
             <% end %>
+            <% @events_by_date[date] ||= [] %>
+            <% @events_by_date[date].each do |event| %>
+              <li><div class="glyphicon glyphicon-list-alt" style=
+                <%= event.author_id == current_user.id ? "color:green;" : "color:red;" %>
+              ></div></li>
+            <% end %>
           </ul>
-        <% end %>
       </div>
     <% end %>
   <% end %>
 </div>
-<div class="task_list">
-  <div class="header"> <%= t('task_list') %></div>
-  <div class="list"></div>
+<div class="col-xs-6">
+  <div class="task_list"></div>
+  <div class="event_list"></div>
 </div>

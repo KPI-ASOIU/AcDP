@@ -31,6 +31,9 @@ $calendar_width: 50%;
     .cell{
       width: 100%;
       height: 100%;
+      &.selected{
+        background: #f89406 !important; 
+      }
       ul {
         font-size: 11px;
         padding-left: 20px;
@@ -58,56 +61,11 @@ $calendar_width: 50%;
 }
 
 .task_list{
-  width: 35%;
-  display: inline-block;
+  //width: 35%;
+  //display: inline-block;
   border: 1px solid #428bca;
-  float: right;
-  height: 441px;
-  margin-top: 34px;
-}
-
-.header{
-  background: #428bca;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  text-align: center;
-  font-weight: 500;
-  font-size: 18px;
-  padding-top: 4px;
-}
-
-.list{
-  height: 401px;
-  li{
-    list-style: none;
-    padding-left: 10px;
-    padding-top: 20px;
-    font-weight: 500;
-    font-size: 16px;
-  }
-
-  ul{
-    width: 99%;
-    height: 99%;
-    overflow: auto;
-  }
-
-  .name{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 60%;
-    float: left;
-  }
-}
-
-.selected{
-  background: #f89406 !important; 
-}
-
-.calendar_container{
-  width: $calendar_width;
-  float: left;
+  //float: right;
+  //height: 441px;
+  //margin-top: 34px;
 }
 
