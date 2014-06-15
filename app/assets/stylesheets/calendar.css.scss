@@ -49,7 +49,7 @@ $calendar_width: 50%;
   }
 }
 
- #month {
+ #month, #day {
   margin: 0;
   padding-bottom: 10px;
   text-align: center;
@@ -60,14 +60,5 @@ $calendar_width: 50%;
     padding: 0 10px;
     color: #428bca;
   }
-}
-
-.task_list{
-  //width: 35%;
-  //display: inline-block;
-  border: 1px solid #428bca;
-  //float: right;
-  //height: 441px;
-  //margin-top: 34px;
 }
 

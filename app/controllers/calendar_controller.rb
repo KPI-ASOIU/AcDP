@@ -8,6 +8,7 @@ class CalendarController < ApplicationController
   end
 
   def day
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
     date_start = Time.parse(params[:date]) #midnight of date
     date_finish = date_start + 1.day
     @tasks = Task.connected_to_me.where{(end_date >= date_start) & (end_date <= date_finish)}

@@ -4,7 +4,7 @@
       <%= link_to image_tag((author = event.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
           title: author.full_name), user_path(author.id) %>
     </td>
-    <td class="col-12-percent break-words">
+    <td class="col-40-percent break-words">
       <%= (name = event.name).length > 40 ? name[0..40] << "..." : name %>
     </td>
     <td class="col-sm-2">
