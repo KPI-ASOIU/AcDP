@@ -20,6 +20,7 @@ class NewsPost < ActiveRecord::Base
   scope :with_category, ->(category) { where(for_roles: NewsPost.category_to_i(category)) }
 
   CATEGORIES = %w[global group].concat User::ROLES
+  CATEGORIES_STUDENT = %w[global group student]
 
   def category
     if self.for_roles.nil?

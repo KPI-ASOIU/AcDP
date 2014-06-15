@@ -344,6 +344,7 @@ uk:
     add: Додати
     all_of: 'Всі, '
     confirm: Підтвердити
+    optional: Не обов’язково
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -438,7 +439,7 @@ uk:
     adding_doc: Додання документу
     enter_file_title: Введіть назву для документу. За замовчанням буде використана назва файлу.
     title: Назва
-    file_add_success: Файл додано
+    file_add_success: Документ додано
 
     add_folder: Додати папку
     adding_folder: Додання папки

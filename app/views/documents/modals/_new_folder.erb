@@ -8,6 +8,7 @@
       <%= form_for(:documents, :html => { :class => "form-vertical", role: "form" }) do |f| %>
           <div class="modal-body">
             <div id="role" class="form-group">
+              <%= f.hidden_field :doctype, value: 'test' %>
               <%= label_tag :new_doc_title, t('documents.enter_folder_title'), :class=>'col-sm-0 control-label' %>
               <%= f.text_field :new_doc_title, :placeholder => t('documents.title') + '...', :class => 'form-control' %>
             </div>

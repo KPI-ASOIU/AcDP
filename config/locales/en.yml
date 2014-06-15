@@ -90,6 +90,7 @@ en:
     all: All
     save: Save
     add: Add
+    optional: Optional
   users:
     users_panel: 'Search users'
     user_panel_desc: 'Here you can search users using different filters'
@@ -171,7 +172,7 @@ en:
     adding_doc: Adding document
     enter_file_title: Enter title of document. By default file name will be used.
     title: title
-    file_add_success: File added
+    file_add_success: Document added
 
     add_folder: Add folder
     adding_folder: Adding folder

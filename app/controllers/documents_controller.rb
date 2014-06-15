@@ -28,7 +28,11 @@ class DocumentsController < ApplicationController
   def shared
     @shared = true
     if params[:user_id].blank?
-      @users = User.where.not(id: current_user.id).page(params[:page])
+      @users = User.joins('LEFT OUTER JOIN documents ON documents.owner_id = users.id LEFT OUTER JOIN user_has_accesses ON documents.id = user_has_accesses.document_id').
+               where("user_has_accesses.user_id = #{current_user.id}").
+               where.not(id: current_user.id).
+               uniq.
+               page(params[:page])
     elsif params[:id].blank?
       @docs = Document.includes('user_has_accesses').where(parent_directory: nil, owner_id: params[:user_id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
     else
@@ -53,9 +57,13 @@ class DocumentsController < ApplicationController
   end
 
   def new
-    if params[:documents][:new_file].blank?
+    if params[:documents][:doctype] == 'folder'
       if create_document(0).save
         flash[:notice] = t('documents.folder_creation_success')
+      end
+    elsif params[:documents][:new_file].blank?
+      if create_document(1).save
+        flash[:notice] = t('documents.file_add_success')
       end
     else
       if save_file create_document 1
@@ -100,6 +108,8 @@ class DocumentsController < ApplicationController
       elsif !params[:target_pk].blank?
         doc.parent_directory = params[:target_pk] == 'root' ? nil : params[:target_pk]
       end
+
+      doc.date_updated = Time.now
 
       if doc.save
         stat = msg = 'ok'
@@ -163,6 +173,10 @@ class DocumentsController < ApplicationController
       end
     end
 
+    if stat != 'error'
+      @doc.update_attribute(:date_updated, Time.now)
+    end
+
     @access_type = params[:access_type]
     respond_to do |format|
       format.js   {}
@@ -179,5 +193,19 @@ class DocumentsController < ApplicationController
       flash[:notice] = t('documents.flash_removed_item')
     end
     redirect_to action: 'index'
+  end
+
+  def delete_file
+    doc = Document.find(params[:delete_id])
+    stat = 'error'
+    if doc
+      doc.file_info.destroy
+      stat = 'ok'
+    end
+
+    respond_to do |format|
+      format.js   {}
+      format.json { render json: { status: stat, doc: doc.id } }
+    end
   end
 end

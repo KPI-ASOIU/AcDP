@@ -21,8 +21,12 @@ $(document).ready(function(){
     });
 
     $("#documents_new_file").change(function (){
-        var fileName = $(this).val();
-        $("#documents_new_doc_title").val(fileName.split('\\').pop());
+        var fileName = $(this).val(),
+            docsAddTitle = $("#documents_new_doc_title");
+
+        if(docsAddTitle.val() == '') {
+          $("#documents_new_doc_title").val(fileName.split('\\').pop());
+        }
     });
 
     $('#documents-table').on('mouseover' ,'.docs-title', function(event) {
@@ -107,6 +111,10 @@ $(document).ready(function(){
           $('#doc-select-target-pk').val('root');
       });
     }
+
+    $('.attached-file').on('ajax:success', function(e, data, status, xhr) {
+      $('#attached-file-' + data.doc).empty();
+    });
 });
 
 function initDocsTree(docdir, type, multiple) {

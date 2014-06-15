@@ -26,6 +26,7 @@ AcDP::Application.routes.draw do
   patch 'documents/update', to: 'documents#update'
   post 'documents/update_lists', to: 'documents#update_lists'
   post 'documents/:id', to: 'documents#new', as: 'document_new'
+  delete 'documents/file/:delete_id', to: 'documents#delete_file', as: 'document_delete_file'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
 

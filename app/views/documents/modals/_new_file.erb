@@ -12,7 +12,8 @@
               <%= f.text_field :new_doc_title, :placeholder => t('documents.title') + '...', :class => 'form-control' %>
             </div>
             <div id="role" class="form-group">
-              <%= label_tag :new_file, t('documents.file'), :class=>'col-sm-0 control-label' %>
+              <%= f.hidden_field :doctype, value: 'test' %>
+              <%= label_tag :new_file, "#{t('documents.file')} (#{t('util.optional')})", :class=>'col-sm-0 control-label' %>
               <%= f.file_field :new_file %>
             </div>
           </div>
