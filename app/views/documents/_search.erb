@@ -14,8 +14,8 @@
           <tr>
             <td>
              <label class="checkbox-inline">
-               <%= check_box_tag 'documents', 1, true %>
-               <%= h t("documents.documents") %>
+               <%= check_box_tag 'a_folder', true, params[:a_folder] %>
+               <%= h t("documents.folders") %>
               </label>
             </td>
             <td>
@@ -28,7 +28,7 @@
           <tr>
             <td>
               <label class="checkbox-inline">
-                <%= check_box_tag 'files', 1, true %>
+                <%= check_box_tag 'a_file', true, params[:a_file] %>
                 <%= h t("documents.files") %>
               </label>
             </td>
@@ -57,9 +57,9 @@
             <ul class="dropdown-menu j-admin-search-type-combo">
               <% @types.each do |type| %>
                 <li>
-                  <label class="checkbox-inline">
+                  <label class="checkbox-inline"  >
                     <%= check_box_tag 'type_ids[]', type -%>
-                    <%= h type -%>
+                    <%= type -%>
                   </label>
                 </li>
               <% end %>
@@ -80,7 +80,7 @@
                 <li>
                   <label class="checkbox-inline">
                     <%= check_box_tag 'format_ids[]', format -%>
-                    <%= h format -%>
+                    <%= format -%>
                   </label>
                 </li>
               <% end %>
