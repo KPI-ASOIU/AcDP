@@ -2,7 +2,7 @@ class DocumentsController < ApplicationController
   def index
     if !params[:q].blank?
       params[:search_by] = 'title' unless ['title', 'tags', 'title tags', 'description'].include?(params[:search_by])
-      @docs = Document.page(params[:page]).with_matched_field(params[:q], params[:search_by]).are_owned(params[:are_owned],current_user.id).before_date(params[:before_date]).after_date(params[:after_date])
+      @docs = Document.page(params[:page]).with_matched_field(params[:q], params[:search_by]).are_owned(params[:are_owned],current_user.id).before_date(params[:before_date]).after_date(params[:after_date]).with_types(params[:type_ids])
     else
       params[:a_file]=params[:a_folder]=params[:are_owned]=params[:are_shared]=true
       if params[:id].blank?
@@ -23,7 +23,7 @@ class DocumentsController < ApplicationController
     @files = @docs.select { |doc| doc.doc_type == 1 } if params[:a_file]
     @shared = false
     @formats=Document.select { |doc| doc.doc_type == 1 }
-    @types=DocumentType.pluck(:title)
+    @types=DocumentType.all
   end
 
   def shared

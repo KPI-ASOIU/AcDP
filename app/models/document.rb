@@ -16,7 +16,7 @@ class Document < ActiveRecord::Base
   scope :with_matched_field, ->(value, field) {fields=field.split(" "); where(Document.arel_table[fields[0]].matches('%' + value + '%')) || where(Document.arel_table[fields[1]].matches('%' + value + '%')) }
   scope :before_date, ->(date) {where('date_created <= ?',date.to_date) if !date.blank?}
   scope :after_date, ->(date) {where('date_created >= ?',date.to_date) if !date.blank?}
-
+  scope :with_types, ->(type_ids) {Document.joins(:document_has_types).where('document_has_types.document_type_id' => type_ids) if !type_ids.blank? }
   def self.are_owned(owned, user_id)
     if owned
       where owner_id: user_id
