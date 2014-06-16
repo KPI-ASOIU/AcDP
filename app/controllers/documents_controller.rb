@@ -2,13 +2,13 @@ class DocumentsController < ApplicationController
   def index
     if !params[:q].blank?
       params[:search_by] = 'title' unless ['title', 'tags', 'title tags', 'description'].include?(params[:search_by])
-      @docs = Document.where(owner_id: current_user.id).page(params[:page]).with_matched_field(params[:q], params[:search_by])
+      @docs = Document.page(params[:page]).with_matched_field(params[:q], params[:search_by]).are_owned(params[:are_owned],current_user.id).before_date(params[:before_date]).after_date(params[:after_date])
     else
-      params[:a_file]=params[:a_folder]=true
+      params[:a_file]=params[:a_folder]=params[:are_owned]=params[:are_shared]=true
       if params[:id].blank?
         @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
       else
-        @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id).page(params[:page])
+        @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id)
       end
     end
 
@@ -22,7 +22,7 @@ class DocumentsController < ApplicationController
     @folders = @docs.select { |doc| doc.doc_type == 0 } if params[:a_folder]
     @files = @docs.select { |doc| doc.doc_type == 1 } if params[:a_file]
     @shared = false
-    @formats=FileInfo.uniq.pluck(:file_content_type)
+    @formats=Document.select { |doc| doc.doc_type == 1 }
     @types=DocumentType.pluck(:title)
   end
 

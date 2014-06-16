@@ -163,7 +163,9 @@ en:
     download: Download
     select_doc: Select document
     docs_list: List of documents
-
+    yyyymmdd: yyyy-mm-dd
+    not_earlier: Not earlier
+    not_later: Not later
     information: Information
 
     add_file: Add file

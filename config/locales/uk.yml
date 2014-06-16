@@ -430,7 +430,9 @@ uk:
     download: Скачати
     select_doc: Виберіть документ
     docs_list: Список документів
-
+    yyyymmdd: рррр-мм-дд
+    not_earlier: Не раніше 
+    not_later: Не пізніше
     information: Інформація
 
     add_file: Додати файл

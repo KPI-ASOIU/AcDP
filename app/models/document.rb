@@ -14,6 +14,16 @@ class Document < ActiveRecord::Base
   validates :tags, length: { maximum: 256 }
 
   scope :with_matched_field, ->(value, field) {fields=field.split(" "); where(Document.arel_table[fields[0]].matches('%' + value + '%')) || where(Document.arel_table[fields[1]].matches('%' + value + '%')) }
+  scope :before_date, ->(date) {where('date_created <= ?',date.to_date) if !date.blank?}
+  scope :after_date, ->(date) {where('date_created >= ?',date.to_date) if !date.blank?}
+
+  def self.are_owned(owned, user_id)
+    if owned
+      where owner_id: user_id
+    else
+      Document.joins(:user_has_accesses).where('user_has_accesses.user_id' => user_id, 'user_has_accesses.access_type' => 0)
+    end
+  end
 
   def save_with_file(file)
     begin

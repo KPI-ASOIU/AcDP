@@ -103,12 +103,10 @@ div.select-document-panel {
 }
 
 .parameter-group  {
-    /*background-color: red;*/
     display: inline-block;
     width: 100%;
 }
 .parameter-group table {
-    /*background-color: yellow;*/
     display: inline-block;
     margin-bottom: 20px;
 }
@@ -118,18 +116,12 @@ div.select-document-panel {
     padding: 0 0 2% 0;
 }
 
-.types, .formats {
-    /*background-color: green;*/
-    width: 33%;
+.types, .formats, .dates {
+    width: 22%;
     display: inline-block;
     float: right;
 }
-/*
-.formats {
-    background-color: blue;
-    width: 33%;
-    display: inline-block;
-    float: right;
 
+.dates table {
+    width: 75%;
 }
-*/

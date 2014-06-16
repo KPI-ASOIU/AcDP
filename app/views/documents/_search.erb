@@ -20,7 +20,7 @@
             </td>
             <td>
               <label class="checkbox-inline">
-                <%= check_box_tag 'owned', 1, true %>
+                <%= check_box_tag 'are_owned', true, params[:are_owned] %>
                 <%= h t("documents.owned") %>
               </label>
             </td>
@@ -34,7 +34,7 @@
             </td>
             <td>
               <label class="checkbox-inline">
-                <%= check_box_tag 'shared', 1, true %>
+                <%= check_box_tag 'are_shared', true, params[:are_shared] %>
                 <%= h t("documents.shared") %>
               </label>
             </td>
@@ -46,6 +46,19 @@
             </td>
           </tr>
         </table>
+
+        <div class="dates">
+          <table>
+            <tr>
+              <td><%=t("documents.not_earlier")%></td>
+              <td><input type="text" placeholder=<%=t("documents.yyyymmdd")%> class="form-control input-sm" name="after_date" value="<%= params[:after_date] %>" /></td>
+            </tr>
+            <tr>
+              <td><%=t("documents.not_later")%></td>
+              <td><input type="text" placeholder=<%=t("documents.yyyymmdd")%> class="form-control input-sm" name="before_date" value="<%= params[:before_date] %>" /></td>
+            </tr>
+          </table>
+        </div>
 
         <div class="types">
           <%= t("documents.types") %>
@@ -72,15 +85,15 @@
           <%= t("documents.formats") %>
           <div class="input-group">
             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-              <span ><%= t('util.all_of')+@formats.first+"..." %></span>
+              <span ><%= t('util.all_of')+(File.extname @formats.first.file_info.file.path)+"..." %></span>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu j-admin-search-type-combo">
               <% @formats.each do |format| %>
                 <li>
                   <label class="checkbox-inline">
-                    <%= check_box_tag 'format_ids[]', format -%>
-                    <%= format -%>
+                    <%= check_box_tag 'format_ids[]', (File.extname format.file_info.file.path) -%>
+                    <%= File.extname format.file_info.file.path -%>
                   </label>
                 </li>
               <% end %>
