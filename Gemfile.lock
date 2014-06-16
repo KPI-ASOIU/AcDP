@@ -139,6 +139,7 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
+    jquery-countdown-rails (2.0.0)
     jquery-mousewheel-rails (0.0.8)
       railties (>= 3.1)
     jquery-rails (3.1.0)
@@ -316,6 +317,7 @@ DEPENDENCIES
   haml-rails
   html_truncator (~> 0.4.0)
   jbuilder (~> 1.2)
+  jquery-countdown-rails
   jquery-mousewheel-rails
   jquery-rails
   jscrollpane-rails

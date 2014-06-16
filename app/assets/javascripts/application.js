@@ -35,3 +35,5 @@
 //= require jquery.jscrollpane
 //= require jquery.mousewheel
 //= require websocket_rails/main
+//= require jquery.countdown.js 
+//= require jquery.countdown-uk.js 

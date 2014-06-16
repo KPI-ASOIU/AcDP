@@ -52,6 +52,11 @@ uk:
     - :day
     - :month
     - :year
+    compact:
+      day: д
+      week: н
+      month: м
+      year: г
   datetime:
     distance_in_words:
       about_x_hours:
@@ -345,7 +350,8 @@ uk:
     add: Додати
     all_of: 'Всі, '
     confirm: Підтвердити
-    expiration_time: Залишилось
+    task_expiration_time: Дедлайн через
+    event_expiration_time: До початку події
     to_activity: До активності
   users:
     users_panel: 'Пошук по користувачам'
@@ -587,7 +593,7 @@ uk:
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
-    the_hottest: Найближчі
+    the_hottest: Термінові
     all: Всі новини
     tasks: Завдання
     events: Події

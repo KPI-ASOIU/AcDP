@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show_current
     @user = current_user
     @reminder_tasks = Task.order('end_date DESC').connected_to_me.with_end_date(Time.now, Time.now + 3.days)
+      .with_status('Active')
     @reminder_events = Event.order('date DESC').connected_to_me.with_date(Time.now, Time.now + 3.days)
     @activities = PublicActivity::Activity.order('created_at DESC')
       .where("connected_to_users LIKE '% #{current_user.id} %'")[0..6]
