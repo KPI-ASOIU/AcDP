@@ -346,6 +346,7 @@ uk:
     all_of: 'Всі, '
     confirm: Підтвердити
     expiration_time: Залишилось
+    to_activity: До активності
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
