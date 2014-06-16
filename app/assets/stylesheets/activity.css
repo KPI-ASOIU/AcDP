@@ -64,7 +64,7 @@
   -moz-transform-origin: 0% 0%;
 }
 
-.activity-filter {
+.activity-filter, .reminder-filter {
   margin: 0 auto;
   width: -moz-fit-content;
   width: -webkit-fit-content;
@@ -122,5 +122,15 @@
 }
 
 .hottest {
-  background-color: #FF3300 !important;
+  background-color: #FF6633 !important;
+  color: white;
+}
+
+.hottest:hover {
+  color: white;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
