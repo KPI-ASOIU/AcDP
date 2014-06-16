@@ -1,21 +1,17 @@
-<% time_diff = Time.diff(Time.now, Time.parse(local_time_format(
-  begin 
-    item.end_date 
-  rescue 
-    item.date
-  end
-  )), '%d - %h:%m:%s') %>
 <div class="activity">
   <div class="glyphicon glyphicon-fire" style='opacity: <%= 1 - (time_diff[:day]*24 + time_diff[:hour]) / 72.0 %> !important'></div>
   <div class="body">
     <div class="title">
       <%= link_to item.name, eval(link << '(item.id)') %>
     </div>
-    <time><%= t('util.' << link.split('_')[0] << '_expiration_time') %>: <span class='countdown' data-time='<%= 
+    <time>
+      <%= t('util.' << link.split('_')[0] << '_expiration_time') %>: <span class='countdown' data-time='<%= 
         begin 
           item.end_date.to_s[0..-5] 
         rescue
           item.date.to_s[0..-5] 
-        end %>'></span></time>
+        end %>'>
+      </span>
+    </time>
   </div>
 </div>
