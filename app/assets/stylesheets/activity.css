@@ -4,7 +4,8 @@
 }
 
 .panel-activity {
-  margin-left: 30px;
+  display: block;
+  margin-left: 10px;
   overflow: auto;
   width: 100%;
 }
@@ -17,6 +18,9 @@
 .activity {
   margin: 5px 0 15px 0;
   padding: 0 5px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .activity time {
@@ -50,7 +54,6 @@
   background-size: 32px auto;
   background-repeat: no-repeat;
   color: #BBB;
-  height: 40px;
   float: left;
   padding: 3px;
   width: 25px;
@@ -72,3 +75,12 @@
   max-width: 520px;
 }
 
+.popover{
+  height: -webkit-fit-content;
+  width: 500px;
+  max-width: 500px;
+}
+
+.activity .badge {
+  float: right;
+}

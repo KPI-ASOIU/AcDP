@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_current_user
+  
   include PublicActivity::StoreController 
   include EventsHelper
   

@@ -1,0 +1,16 @@
+<% time_diff = Time.diff(Time.now, Time.parse(local_time_format(
+  begin 
+    item.end_date 
+  rescue 
+    item.date
+  end
+  )), '%M, %w, %d %h:%m:%s') %>
+<div class="activity">
+  <div class="glyphicon glyphicon-fire"></div>
+  <div class="body">
+    <div class="title">
+      <%= link_to item.name, task_path(item.id) %>
+    </div>
+    <time><%= t('util.expiration_time') %>: <%= t(time_diff[:diff]) %></time>
+  </div>
+</div>

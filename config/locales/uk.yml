@@ -345,6 +345,7 @@ uk:
     add: Додати
     all_of: 'Всі, '
     confirm: Підтвердити
+    expiration_time: Залишилось
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -615,3 +616,14 @@ uk:
     add_panel: Додавання типів документів
     placeholder: Тип
     removing: Видалення типу
+  day: день
+  days: дні
+  week: тиждень
+  weeks: тижні
+  year: рік
+  hour: година
+  hours: години
+  minute: хвилина
+  minutes: хвилини
+  second: секунда
+  seconds: секунди

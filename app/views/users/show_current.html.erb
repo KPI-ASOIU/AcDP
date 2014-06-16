@@ -4,29 +4,10 @@
 </div>
 
 <div class='panel-activity panel-primary'>
-	<div class='activity-filter'>
-		<ul class="nav nav-pills">
-		  <li class="active">
-		  	<%= link_to t('activity.feed'), current_user_users_path, remote: true %>
-		  </li>
-		  <% if can? :crud, Task %>
-			  <li data-filter='Task'>
-			  	<%= link_to t('activity.tasks'), current_user_users_path(type: 'Task'), remote: true %>
-			  </li>
-		  <% end %>
-		  <li data-filter='Event'>
-		  	<%= link_to t('activity.events'), current_user_users_path(type: 'Event'), remote: true %>
-		  </li>
-		  <li data-filter='Document'>
-		  	<%= link_to t('activity.documents'), current_user_users_path(type:'Document'), remote: true %>
-		  </li>
-		</ul>
-	</div>
-	<div class="activity-list">
-    <% if @activities.present? %>
-      <%= render_activities(@activities) %>
-    <% else %>
-      <div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>
-    <% end %>
-	</div>
+	<% @reminder_tasks.each { |task| %>
+		<%= render partial: 'notifications/reminder', locals: { item: task } %>
+	<% } %>
+	<% @reminder_events.each { |event| %>
+		<%= render partial: 'notifications/reminder', locals: { item: event } %>
+	<% } %>
 </div>

@@ -1,6 +1,8 @@
 <% url = AcDP::Application.routes.url_helpers %>
 
-$(document).ready(function() {
+$('.activity-icon').popover({html: true})
+
+$('.activity-icon').on('shown.bs.popover', function () {
 	$('.activity-list').jScrollPane({
 		autoReinitialise: false,
 		hideFocus: true
@@ -21,13 +23,14 @@ $(document).ready(function() {
 						$.ajax({
 							type: "GET",
 						  url: filterType !== undefined ? 
-						  	"<%= url.current_user_users_path(type: 'hold', summand: 'shld') %>"
+						  	"<%= url.activity_popover_path(type: 'hold', summand: 'shld') %>"
 						  		.replace("hold", filterType)
 						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4) : 
-						  	"<%= url.current_user_users_path(summand: 'shld') %>"
+						  	"<%= url.activity_popover_path(summand: 'shld') %>"
 						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4)
 						});
 					}
 				}
 			)
 });
+

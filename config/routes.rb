@@ -64,5 +64,5 @@ AcDP::Application.routes.draw do
 
   resources :events
 
-  resources :notifications, only: [:index]
+  get 'activity' => 'application#panel_activity', as: :activity_popover
 end

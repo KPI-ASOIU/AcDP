@@ -1,23 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  before_action :set_current_user, only: [:show_current]
+
   def show
   end
 
   def show_current
     @user = current_user
-    @activities = PublicActivity::Activity.order('created_at DESC')
-      .where("connected_to_users LIKE '% #{current_user.id} %'")
-
-    if !params[:type].nil?
-      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] || 
-        a.trackable[:commentable_type] == params[:type] if !a.trackable.nil? }
-    end
-    @activities = @activities[!params[:summand].nil? ? 0..(6+params[:summand].to_i) : 0..6]
-    
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    @reminder_tasks = Task.order('end_date DESC').connected_to_me.with_end_date(Time.now, Time.now + 3.days)
+    @reminder_events = Event.order('date DESC').connected_to_me.with_date(Time.now, Time.now + 3.days)
   end
 
   def edit_current
