@@ -196,16 +196,32 @@ class DocumentsController < ApplicationController
   end
 
   def delete_file
-    doc = Document.find(params[:delete_id])
     stat = 'error'
-    if doc
-      doc.file_info.destroy
-      stat = 'ok'
+
+    if !params[:delete_id].blank?
+      doc = Document.find(params[:delete_id])
+      stat = 'ok' if doc.file_info.destroy
     end
 
     respond_to do |format|
-      format.js   {}
-      format.json { render json: { status: stat, doc: doc.id } }
+      format.json { render json: { status: stat, doc: doc ? doc.id : 0 } }
+    end
+  end
+
+  def change_file
+    stat = 'error'
+    if !params[:document][:doc_id].blank? and !params[:document][:new_file].blank?
+      doc = Document.find(params[:document][:doc_id])
+      if doc.file_info
+        doc.file_info.file = params[:document][:new_file]
+      else
+        doc.file_info = FileInfo.new(document_id: params[:document][:doc_id], file: params[:document][:new_file])
+      end
+      stat = 'ok' if doc.file_info.save
+    end
+
+    respond_to do |format|
+      format.json { render json: { status: stat, doc: doc ? doc.id : 0, title: doc.file_info.file_file_name, url: doc.file_info.file.url(:original, false) } }
     end
   end
 end

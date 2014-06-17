@@ -1,5 +1,6 @@
 <% file_info = file.file_info %>
-<tr data-toggle="collapse" data-target="#doc-info<%= file.id %>" class="accordion-toggle docs-title">
+<% can_edit = file.edit_accesses.pluck(:user_id).include?(current_user.id) %>
+<tr data-toggle="collapse" data-target="#doc-info<%= file.id %>" class="accordion-toggle docs-title" data-visible="<%= !file_info.nil? %>">
   <td><span class="glyphicon glyphicon-file"></span></td>
   <td id="doc-title-<%= file.id %>"><%= file.title %></td>
   <td><%= file.document_types.pluck(:title).join ', ' %></td>
@@ -7,33 +8,55 @@
   <td><%= file.date_created.to_formatted_s :docs_time %></td>
   <td><%= file.date_updated.to_formatted_s :docs_time %></td>
   <td>
-    <% if file_info %>
-      <%= link_to file_info.file.url(:original, false), :target => :blank, :class => 'btn btn-success docs-navbar-tool' do %>
+      <%= link_to file_info ? file_info.file.url(:original, false) : '', target: :blank, class: 'btn btn-success docs-navbar-tool' do %>
           <span class='glyphicon glyphicon-cloud-download'></span>
           <%= t('documents.download') %>
       <% end %>
-    <% end %>
   </td>
 </tr>
 <tr>
   <td colspan="7" class="hiddenRow">
     <div class="accordian-body collapse doc-info" id="doc-info<%= file.id %>">
       <div class="docs-info-collapse">
-        <b><%= t('documents.title') %>: </b><a href="#" data-type="text" data-url="/documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= file.id %>" data-title="Enter title" class="doc-title"><%= file.title %></a><br>
+        <b><%= t('documents.title') %>: </b>
+          <% if !@shared or can_edit %>
+            <a href="#" data-type="text" data-url="/documents/update" data-name="title" data-placeholder="<%= t('documents.enter_file_title') %>" data-pk="<%= file.id %>" data-title="Enter title" class="doc-title"><%= file.title %></a><br>
+          <% else %>
+            <%= file.title %><br>
+          <% end %>
         <b><%= t('documents.owner') %>: </b><%= link_to file.owner.login, user_path(file.owner_id), :target => :blank %><br>
-        <b><%= t('documents.tags') %>: </b><a href="#" data-type="select2" data-pk="<%= file.id %>" data-name="tags" data-url="/documents/update" data-title="Enter tags" class="doc-tags"><%= file.tags %></a><br>
-        <b><%= t('documents.description') %>: </b><a href="#" data-type="textarea" data-url="/documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= file.id %>" data-title="Enter description" class="doc-description"><%= file.description %></a><br>
+        <b><%= t('documents.tags') %>: </b>
+          <% if !@shared or can_edit %>
+              <a href="#" data-type="select2" data-pk="<%= file.id %>" data-name="tags" data-url="/documents/update" data-title="Enter tags" class="doc-tags"><%= file.tags %></a><br>
+          <% else %>
+            <%= file.tags %><br>
+          <% end %>
+        <b><%= t('documents.description') %>: </b>
+          <% if !@shared or can_edit %>
+            <a href="#" data-type="textarea" data-url="/documents/update" data-name="desc" data-placeholder="<%= t('documents.enter_description') %>" data-pk="<%= file.id %>" data-title="Enter description" class="doc-description"><%= file.description %></a><br>
+          <% else %>
+            <%= file.description %><br>
+          <% end %>
 
         <b><%= t('documents.file') %>:</b>
-          <% if file_info %>
-            <span id="attached-file-<%= file.id %>">
+        <% if !@shared or can_edit %>
+        <span>
+          <span id="attached-file-<%= file.id %>">
+            <% if file_info %>
               <%= file_info.file_file_name %>
               <%= link_to document_delete_file_path(file, format: :json), method: :delete, remote: true, :class => 'btn btn-danger btn-xs attached-file' do %>
-                <span class='glyphicon glyphicon-remove'></span>
+                <span class="glyphicon glyphicon-remove"></span>
               <% end %>
-            </span>
+            <% end %>
+          </span>
+          <%= form_for file, url: { action: 'change_file', format: :json }, html: { class: 'form-change-file' }, data: { type: 'json' }, method: :post, remote: true do |f| %>
+            <%= f.hidden_field :doc_id, value: file.id %>
+            <%= f.file_field :new_file %>
+            <%= f.submit t('util.save'), :class => 'btn btn-success btn-upload' %>
           <% end %>
-        <br><br>
+        </span>
+        <% end %>
+        <br>
 
         <div>
             <div class="doc-info-list">

@@ -124,6 +124,10 @@ div.select-document-panel {
     display: inline-block;
     float: right;
 }
+
+.btn-upload {
+  margin-top: 6px;
+}
 /*
 .formats {
     background-color: blue;

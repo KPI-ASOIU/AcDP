@@ -210,6 +210,7 @@ GEM
     redis (3.0.7)
     redis-objects (0.9.1)
       redis (>= 3.0.2)
+    remotipart (1.2.1)
     rspec-collection_matchers (0.0.4)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (2.99.0)
@@ -321,6 +322,7 @@ DEPENDENCIES
   public_activity
   rails (= 4.0.2)
   rails-timeago (~> 2.0)
+  remotipart
   rspec-rails (~> 2.14)
   sass-rails (~> 4.0.0)
   sdoc

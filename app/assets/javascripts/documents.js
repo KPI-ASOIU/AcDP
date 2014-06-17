@@ -30,7 +30,10 @@ $(document).ready(function(){
     });
 
     $('#documents-table').on('mouseover' ,'.docs-title', function(event) {
+      $this = $(this);
+      if($this.data('visible')) {
         $(this).find('.docs-navbar-tool').show();
+      }
     }).on('mouseout', '.docs-title', function(event) {
         $(this).find('.docs-navbar-tool').hide();
     }).on('click', '.docs-navbar-tool', function(event){
@@ -44,7 +47,10 @@ $(document).ready(function(){
     });
 
     $('#documents-users-table').on('mouseover' ,'.docs-title', function(event) {
-        $(this).find('.docs-navbar-tool').show();
+      $this = $(this);
+      if($this.data('visible')) {
+        $this.find('.docs-navbar-tool').show();
+      }
     }).on('mouseout', '.docs-title', function(event) {
         $(this).find('.docs-navbar-tool').hide();
     });
@@ -112,8 +118,21 @@ $(document).ready(function(){
       });
     }
 
-    $('.attached-file').on('ajax:success', function(e, data, status, xhr) {
-      $('#attached-file-' + data.doc).empty();
+    $(document).on('ajax:success', '.attached-file', function(e, data, status, xhr) {
+      if(data.status == 'ok') {
+        var $fileSpan = $('#attached-file-' + data.doc);
+        $fileSpan.closest('tr').prev().data('visible', false);
+        $fileSpan.empty();
+      }
+    });
+
+    $(document).on('ajax:success', '.form-change-file', function(e, data, status, xhr) {
+      if(data.status == 'ok') {
+        var $row = $(this).closest('tr').prev();
+        $row.data('visible', true);
+        $row.find('.docs-navbar-tool').attr('href', data.url);
+        $('#attached-file-' + data.doc).html(data.title + ' <a class="btn btn-danger btn-xs attached-file" data-method="delete" data-remote="true" href="/documents/file/' + data.doc + '.json" rel="nofollow"><span class="glyphicon glyphicon-remove"></span></a>');
+      }
     });
 });
 
