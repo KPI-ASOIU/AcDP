@@ -5,3 +5,7 @@ $("#day").html("<%= escape_javascript render partial: 'calendar/day_header', loc
 $(".event_list").html("<%= escape_javascript render partial: 'events/event_list', locals: {events: @events} %>");
 $(".selected").removeClass("selected");
 $("#<%= @date %>").addClass("selected");
+$("tr[data-link]").on("click", function(e) {
+  e.stopPropagation();
+  window.location = this.getAttribute("data-link");
+});

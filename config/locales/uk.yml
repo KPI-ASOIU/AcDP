@@ -553,6 +553,7 @@ uk:
     author_chosen_no_result: Не знайдено автора з таким ім’ям
     executor_chosen_no_result: Не знайдено виконавців з таким ім’ям
     no_tasks: У вас поки що немає жодного завдання
+    no_tasks_calendar: У вас немає жодного завдання на цей день
     progress: Прогрес
     creation_date: Дата створення
     statuses:
@@ -579,6 +580,7 @@ uk:
     info: Картка події
     guests: Запрошені
     no_events: Найближчим часом немає жодних подій
+    no_events_calendar: У цей день у вас немає жодних подій
     no_search_result: За вашим запитом не знайдено жодної події
     cannot_visit: Не зможу прийти
     can_visit: Зможу прийти
