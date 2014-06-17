@@ -13,11 +13,13 @@
       <div class="cell" id="<%= date%>">
         <%= date.day %>
           <ul>
-            <% @tasks_by_date[date] ||= [] %>
-            <% @tasks_by_date[date].each do |task| %>
-              <li><div class="glyphicon glyphicon-tasks" style=
-                <%= task.user_id == current_user.id ? "color:green;" : "color:red;" %>
-              ></div></li>
+            <% if can? :crud, Task %>
+              <% @tasks_by_date[date] ||= [] %>
+              <% @tasks_by_date[date].each do |task| %>
+                <li><div class="glyphicon glyphicon-tasks" style=
+                  <%= task.user_id == current_user.id ? "color:green;" : "color:red;" %>
+                ></div></li>
+              <% end %>
             <% end %>
             <% @events_by_date[date] ||= [] %>
             <% @events_by_date[date].each do |event| %>
@@ -34,7 +36,9 @@
   <div id="day">
     <%= render partial: 'calendar/day_header', locals: {date: @date} %>
   </div>
-  <div class="task_list"></div>
+  <% if can? :crud, Task %>
+    <div class="task_list"></div>
+  <% end %>
   <div class="event_list"></div>
 </div>
 <% content_for :javascript do %>
