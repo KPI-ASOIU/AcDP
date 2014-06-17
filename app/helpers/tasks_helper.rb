@@ -1,7 +1,7 @@
 module TasksHelper
 	def checklist_percentage(task)
 		checklist = task.checklists
-		(checklist.map { |c| c.done ? 1 : 0}).sum * 100 / checklist.length
+		((checklist.map { |c| c.done ? 1 : 0}).sum * 100 / checklist.length.to_f).round(2)
 	end
 
 	def status_class(status)

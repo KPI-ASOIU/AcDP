@@ -3,30 +3,30 @@
   <%= render 'options'%>
 </div>
 
-<div class='panel-activity panel-primary'>
-	<div class='activity-filter'>
-		<ul class="nav nav-pills">
-		  <li class="active">
-		  	<%= link_to t('activity.feed'), current_user_users_path, remote: true %>
-		  </li>
-		  <% if can? :crud, Task %>
-			  <li data-filter='Task'>
-			  	<%= link_to t('activity.tasks'), current_user_users_path(type: 'Task'), remote: true %>
-			  </li>
-		  <% end %>
-		  <li data-filter='Event'>
-		  	<%= link_to t('activity.events'), current_user_users_path(type: 'Event'), remote: true %>
-		  </li>
-		  <li data-filter='Document'>
-		  	<%= link_to t('activity.documents'), current_user_users_path(type:'Document'), remote: true %>
-		  </li>
-		</ul>
-	</div>
-	<div class="activity-list">
-    <% if @activities.present? %>
-      <%= render_activities(@activities) %>
-    <% else %>
-      <div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>
-    <% end %>
+<div class='activity-window'>
+	<div class='activity-container'>
+		<div class='panel-activity panel-primary'>
+	  	<div class='reminder-filter'>
+	  		<ul class='nav nav-pills'>
+	  			<li><a class='hottest'><%= t('activity.the_hottest') %></a></li>
+	  		</ul>
+	  	</div>
+	  	<div class='pull-right'>
+		  	<%= button_tag '', class: 'no-styling-btn activity-toggle-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
+			  	<%= t('util.to_activity') %> <span class='glyphicon glyphicon-chevron-right'></span>
+				<% end %>
+			</div>
+			<% if @reminder_tasks.present? or @reminder_events.present? %>
+				<% @reminder_tasks.uniq.each { |task| %>
+					<%= render partial: 'notifications/reminder', locals: { item: task, link: 'task_path' } %>
+				<% } %>
+				<% @reminder_events.uniq.each { |event| %>
+					<%= render partial: 'notifications/reminder', locals: { item: event, link: 'event_path' } %>
+				<% } %>
+			<% else %>
+				<div class='text-center no-activity-found'><%= t('activity.no_reminders') %></div>
+			<% end %>
+		</div>
+		<%= render 'application/panel_activity' %>
 	</div>
 </div>

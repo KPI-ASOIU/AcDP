@@ -1,10 +1,12 @@
 .activity-list, .panel-activity {
   margin: 0 auto;
-  max-width: 520px;
+  max-width: 515px;
 }
 
 .panel-activity {
-  margin-left: 30px;
+  display: block;
+  float: left;
+  margin-left: 10px;
   overflow: auto;
   width: 100%;
 }
@@ -17,6 +19,9 @@
 .activity {
   margin: 5px 0 15px 0;
   padding: 0 5px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .activity time {
@@ -50,7 +55,6 @@
   background-size: 32px auto;
   background-repeat: no-repeat;
   color: #BBB;
-  height: 40px;
   float: left;
   padding: 3px;
   width: 25px;
@@ -60,7 +64,7 @@
   -moz-transform-origin: 0% 0%;
 }
 
-.activity-filter {
+.activity-filter, .reminder-filter {
   margin: 0 auto;
   width: -moz-fit-content;
   width: -webkit-fit-content;
@@ -72,3 +76,61 @@
   max-width: 520px;
 }
 
+.popover{
+  height: -webkit-fit-content;
+  width: 500px;
+  max-width: 500px;
+}
+
+.activity .badge {
+  float: right;
+}
+
+.glyphicon-fire {
+  color: #FF3300 !important;
+  opacity: 0.3 !important;
+}
+
+.activity-container {
+  display: inline-block;
+  width: 1200px;
+  -webkit-transition: 0.5s ease margin-left;
+          transition: 0.5s ease margin-left;
+}
+
+.activity-window {
+  overflow: hidden;
+  width: 525px;
+}
+
+.activity-toggle-btn {
+  margin-top: -30px;
+  position: relative;
+}
+
+.activity-toggle {
+  margin-left: 10px;
+  margin-top: 13px;
+}
+
+.activity-icon {
+  color: #777;
+}
+
+.activity-icon:hover {
+  color: #5E5E5E;
+}
+
+.hottest {
+  background-color: #FF6633 !important;
+  color: white;
+}
+
+.hottest:hover {
+  color: white;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}

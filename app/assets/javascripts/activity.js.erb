@@ -1,5 +1,8 @@
 <% url = AcDP::Application.routes.url_helpers %>
 
+$('.activity-icon').popover({html: true})
+
+// $('.activity-icon').on('shown.bs.popover', function () {
 $(document).ready(function() {
 	$('.activity-list').jScrollPane({
 		autoReinitialise: false,
@@ -21,13 +24,32 @@ $(document).ready(function() {
 						$.ajax({
 							type: "GET",
 						  url: filterType !== undefined ? 
-						  	"<%= url.current_user_users_path(type: 'hold', summand: 'shld') %>"
+						  	"<%= url.activity_popover_path(type: 'hold', summand: 'shld') %>"
 						  		.replace("hold", filterType)
 						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4) : 
-						  	"<%= url.current_user_users_path(summand: 'shld') %>"
+						  	"<%= url.activity_popover_path(summand: 'shld') %>"
 						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4)
 						});
 					}
 				}
 			)
+
+ 	$('.activity-toggle-btn').click(function() {
+ 		if($(this).hasClass('navbar-right'))
+ 			$('.activity-container').css('marginLeft', '-525px');
+ 		else
+ 			$('.activity-container').css('marginLeft', '0px');
+ 	});
+ 
+ 	$.each($('.countdown'), function() {
+ 		$(this).countdown({
+	 		until: new Date($(this).attr('data-time')),
+	 		compactLabels: ["<%= I18n.t('date.compact.year') %>", "<%= I18n.t('date.compact.month') %>", 
+	 			"<%= I18n.t('date.compact.week') %>", "<%= I18n.t('date.compact.day') %>"],
+	 		format: 'yowdHMS',
+	 		padZeroes: true,
+	 		compact: true
+	 	});
+ 	});
 });
+

@@ -84,3 +84,5 @@ gem 'html_truncator', '~> 0.4.0'
 gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
 gem 'public_activity'
 gem "squeel"
+gem 'time_diff'
+gem 'jquery-countdown-rails'
