@@ -13,6 +13,7 @@ AcDP::Application.routes.draw do
   end
 
   get 'calendar', to: 'calendar'
+  get 'calendar/day/:date', to: 'calendar#day', as: 'day'
   get 'documents', to: 'documents#index'
 
   get 'documents/tree/:docdir/:type', to: 'documents#jstree'
@@ -65,5 +66,5 @@ AcDP::Application.routes.draw do
 
   resources :events
 
-  resources :notifications, only: [:index]
+  get 'activity' => 'application#panel_activity', as: :activity_popover
 end

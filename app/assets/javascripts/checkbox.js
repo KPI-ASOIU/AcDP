@@ -6,7 +6,7 @@
     $.each(checkboxes, function(index, value) {
       checked += value.checked;
     });
-    $('.progress-bar').css('width', checked*100/total + '%')
-    $('.progress-bar').text(checked*100/total + '%')
+    $('.progress-bar').css('width', (checked*100/total).toFixed(2) + '%')
+    $('.progress-bar').text((checked*100/total).toFixed(2) + '%')
   });
 })();

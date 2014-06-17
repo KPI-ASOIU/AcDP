@@ -52,6 +52,11 @@ uk:
     - :day
     - :month
     - :year
+    compact:
+      day: д
+      week: н
+      month: м
+      year: г
   datetime:
     distance_in_words:
       about_x_hours:
@@ -227,6 +232,7 @@ uk:
       default: '%a, %d %b %Y, %H:%M:%S %z'
       long: '%d %B %Y, %H:%M'
       short: '%d.%m.%Y %H:%M'
+      only_time: '%H:%M'
     pm: по полудні
   activemodel:
     errors:
@@ -345,6 +351,9 @@ uk:
     all_of: 'Всі, '
     confirm: Підтвердити
     optional: Не обов’язково
+    task_expiration_time: Дедлайн через
+    event_expiration_time: До початку події
+    to_activity: До активності
   users:
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
@@ -534,6 +543,7 @@ uk:
     name: Назва
     description: Опис
     end_date: Кінцева дата
+    end_time: Кінцевий час
     no_end_date_given: Без терміну
     status: Статус
     check_list: Задачі
@@ -563,6 +573,7 @@ uk:
     name: Назва
     description: Опис
     date: Дата проведення
+    time: Час проведення
     place: Місце проведення
     plan: План події
     info: Картка події
@@ -583,12 +594,14 @@ uk:
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
+    the_hottest: Термінові
     all: Всі новини
     tasks: Завдання
     events: Події
     documents: Документи
     feed: Все
     no_activity_found: Не знайдено жодних новин
+    no_reminders: Найближчим часом нічого не заплановано
     trackable:
       event: подію
       task: завдання
@@ -613,3 +626,14 @@ uk:
     add_panel: Додавання типів документів
     placeholder: Тип
     removing: Видалення типу
+  day: день
+  days: дні
+  week: тиждень
+  weeks: тижні
+  year: рік
+  hour: година
+  hours: години
+  minute: хвилина
+  minutes: хвилини
+  second: секунда
+  seconds: секунди
