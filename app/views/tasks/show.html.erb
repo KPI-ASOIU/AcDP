@@ -18,7 +18,7 @@
         <% end %>
         <% if @task.status.present? %>
 	        <dt><%= t('tasks.status') %></dt>
-	        <dd><%= translate_status(@task.status) %></dd>
+	        <dd class='<%= status_class(@task.status) %>'><%= translate_status(@task.status) %></dd>
         <% end %>
         <% if @task.executors.any? %>
         	<dt><%= t('tasks.executors') %></dt>
