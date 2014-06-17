@@ -17,9 +17,13 @@ class Document < ActiveRecord::Base
   scope :before_date, ->(date) {where('date_created <= ?',date.to_date) if !date.blank?}
   scope :after_date, ->(date) {where('date_created >= ?',date.to_date) if !date.blank?}
   scope :with_types, ->(type_ids) {Document.joins(:document_has_types).where('document_has_types.document_type_id' => type_ids) if !type_ids.blank? }
-  def self.are_owned(owned, user_id)
-    if owned
+  def self.are_owned_or_shared(owned, shared, user_id)
+    if owned&&shared
+      Document.joins(:user_has_accesses).where('documents.owner_id=? or (user_has_accesses.user_id=? and user_has_accesses.access_type=?)',user_id,user_id,1).uniq
+    elsif  owned&&!shared
       where owner_id: user_id
+    elsif !owned&&shared 
+      Document.joins(:user_has_accesses).where('user_has_accesses.user_id' => user_id, 'user_has_accesses.access_type' => 1)
     else
       Document.joins(:user_has_accesses).where('user_has_accesses.user_id' => user_id, 'user_has_accesses.access_type' => 0)
     end
