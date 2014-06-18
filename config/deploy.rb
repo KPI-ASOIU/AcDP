@@ -2,7 +2,7 @@ set :repo_url, 'https://github.com/KPI-ASOIU/AcDP.git'
 set :application, 'acdp'
 application = 'acdp'
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.0'
+set :rvm_ruby_version, '2.1.1'
 set :deploy_to, '/var/www/apps/acdp'
 
 namespace :foreman do

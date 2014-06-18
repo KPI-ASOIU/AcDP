@@ -338,7 +338,6 @@ DEPENDENCIES
   select2-rails
   shoulda-callback-matchers (>= 0.3.0)
   shoulda-matchers
-  sprockets-rails
   squeel
   time_diff
   uglifier (>= 1.3.0)
