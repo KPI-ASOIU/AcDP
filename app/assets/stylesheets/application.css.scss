@@ -1,26 +1,25 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require chosen
- *= require bootstrap3-editable/bootstrap-editable
- *= require select2
- *= require select2-bootstrap
- *= require bootstrap-wysihtml5/b3
- *= require jstree-themes/default/style
- *= require_tree .
- *= require jscrollpane
- */
-
 @import "bootstrap";
-@import 'bootstrap-datetimepicker';
+@import "bootstrap-datetimepicker";
+@import "chosen";
+@import "bootstrap3-editable/bootstrap-editable";
+@import "select2";
+@import "select2-bootstrap";
+@import "jstree-themes/default/style";
+@import "jscrollpane";
+@import "activity";
+@import "calendar";
+@import "checkbox";
+@import "chosen_changes";
+@import "contacts";
+@import "documents";
+@import "events";
+@import "home";
+@import "message";
+@import "news_posts";
+@import "task";
+@import "users";
+@import "admin/doctypes";
+@import "admin/groups";
 
 body {
   padding-top: 10px;
@@ -91,24 +90,24 @@ body {
   .navbar-header {
     float: none;
   }
-  
+
   .navbar-toggle {
     display: block;
   }
-  
+
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
   }
-  
+
   .navbar-collapse.collapse {
     display: none !important;
   }
-  
+
   .navbar-nav {
     margin: 7.5px -15px;
   }
-  
+
   .navbar-nav>li:first-child {
     padding-left: 20px;
   }
@@ -117,12 +116,12 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-  
+
   /* since 3.1.0 */
-  .navbar-collapse.collapse.in { 
+  .navbar-collapse.collapse.in {
     display: block !important;
   }
-  
+
   .collapsing {
     overflow: hidden !important;
   }
