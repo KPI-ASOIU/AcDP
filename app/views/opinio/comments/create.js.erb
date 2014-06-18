@@ -5,5 +5,9 @@ var comment = {
 	html: '<%= escape_javascript( render @comment ) %>',
 	id: '<%= @comment.id %>'
 }
-dispatcher.trigger('comments.broadcast_new', comment)
 
+$('#no_comments').fadeOut()
+$('#comments .jspPane').prepend(comment.html)
+$("time[data-time-ago]").timeago()
+$('#comment_' + comment.id).hide().fadeIn('slow')
+$('.new-comment').val('')
