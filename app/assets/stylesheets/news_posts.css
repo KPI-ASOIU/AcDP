@@ -88,3 +88,7 @@ div.btn-group btn.active, btn:active {
     margin-top: 10px;
     width: 100%;
 }
+
+.selected_post {
+  background-color: orange;
+}
