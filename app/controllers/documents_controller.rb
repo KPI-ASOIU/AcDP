@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
       if params[:id].blank?
         @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
       else
-        @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id)
+        @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id).page(params[:page])
       end
     end
 
