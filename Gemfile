@@ -73,8 +73,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 gem 'awesome_nested_fields'
 gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
-# gem 'opinio'
-gem 'opinio', :path => '~/opinio4'
+gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
 
 # # Added for backward compatibility of Opinio gem
 # # (attr_accessible support)
@@ -97,5 +96,3 @@ gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1" # squ
 
 gem 'time_diff'
 gem 'jquery-countdown-rails'
-
-gem "kaminari"
