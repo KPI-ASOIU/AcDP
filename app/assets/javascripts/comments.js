@@ -7,7 +7,7 @@ function newComment(comment) {
 }
 
 $(document).ready(function(){
-  window.dispatcher = new WebSocketRails(window.location.host + ':3001/websocket');
+  window.dispatcher = new WebSocketRails(window.location.host + '/websocket');
   (function(){
     dispatcher.bind('comments.new_comment', newComment);
   })();

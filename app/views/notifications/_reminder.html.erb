@@ -13,12 +13,12 @@
     </div>
     <time>
       <%= t('util.' << link.split('_')[0] << '_expiration_time') %>: 
-      <span class='countdown' data-time='<%= 
+      <span class='countdown' data-time="<%= 
         begin 
-          item.end_date.to_s[0..-5] 
+          item.end_date.to_s[0..-5]
         rescue
-          item.date.to_s[0..-5] 
-        end %>'>
+          item.date.to_s[0..-5]
+        end %>">
       </span>
     </time>
   </div>
