@@ -1,6 +1,6 @@
 <% flash.reject{ |t, m| m =~ /(.*)[c, C]omment(.*)/ }.each do |type, message| %>
-  <div class="alert <%= bootstrap_class_for(type) %> fade in">
-    <button class="close" data-dismiss="alert">×</button>
+  <div class="<%= semantic_class_for(type) %> closable">
+    <i class="icon close"></i>
     <%= message %>
   </div>
 <% end %>

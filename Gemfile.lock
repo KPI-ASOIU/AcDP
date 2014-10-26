@@ -49,6 +49,13 @@ GIT
       kaminari
       rails (~> 4)
 
+GIT
+  remote: git://github.com/doabit/semantic-ui-sass.git
+  revision: a97239f974fe279aea422f1984c0ad7d08815560
+  specs:
+    semantic-ui-sass (0.19.3.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -372,6 +379,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   select2-rails
+  semantic-ui-sass!
   shoulda-callback-matchers (>= 0.3.0)
   shoulda-matchers
   sprockets (= 2.11.0)

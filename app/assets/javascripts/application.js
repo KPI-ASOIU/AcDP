@@ -13,7 +13,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require rails-timeago
 //= require locales/jquery.timeago.uk.js
 //= require locales/jquery.timeago.ru.js
@@ -38,3 +37,4 @@
 //= require websocket_rails/main
 //= require jquery.countdown.js 
 //= require jquery.countdown-uk.js 
+//= require semantic-ui

@@ -4,11 +4,11 @@
 
 <% content_for :navbar do %>
   <% if can? :manage, @users %>
-    <li><%= link_to t('util.users_manage'), admin_users_path %></li>
-    <li><%= link_to t('util.groups_manage'), admin_groups_path %></li>
-    <li><%= link_to t('doctypes.manage'), admin_doctypes_path %></li>
+    <%= link_to t('util.users_manage'), admin_users_path, class: "item" %>
+    <%= link_to t('util.groups_manage'), admin_groups_path, class: "item" %>
+    <%= link_to t('doctypes.manage'), admin_doctypes_path, class: "item" %>
   <% end %>
-  <li><%= link_to t('client_part'), current_user_users_path %></li>
+  <li><%= link_to t('client_part'), current_user_users_path, class: "item" %></li>
 <% end %>
 
 <%= render template: "layouts/base" %>

@@ -1,11 +1,6 @@
-@import "bootstrap";
-@import "bootstrap-datetimepicker";
 @import "chosen";
-@import "bootstrap3-editable/bootstrap-editable";
 @import "select2";
-@import "select2-bootstrap";
 @import "jstree-themes/default/style";
-@import "bootstrap-wysihtml5/core-b3";
 @import "jscrollpane";
 @import "activity";
 @import "calendar";
@@ -21,9 +16,11 @@
 @import "users";
 @import "admin/doctypes";
 @import "admin/groups";
+@import "semantic-ui";
+
 
 body {
-  padding-top: 10px;
+  font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 .sign-in-form {
@@ -80,11 +77,6 @@ body {
   border-radius: 10px;
   width: 8px !important;
   background: #ccc !important;
-}
-
-/* For bootstrap fixed-top panel to display content properly */
-body {
-  margin-top: 60px;
 }
 
 @media (max-width: 1035px) {

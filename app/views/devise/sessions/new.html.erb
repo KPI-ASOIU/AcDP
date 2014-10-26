@@ -1,17 +1,20 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "sign-in-form panel panel-primary"}) do |f| %>
-  <div class="panel-heading">
-    <h3 class="panel-title">Авторизація</h3>
-  </div>
-  <div class="panel-body">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "sign-in-form ui form segment"}) do |f| %>
+  <h3 class="ui header">Авторизація</h3>
+  <div class="field">
     <%= f.label :login %>
-    <%= f.text_field :login, :autofocus => true, :class => "form-control" %>
-
+    <div class="ui left labeled icon input">
+      <%= f.text_field :login, :autofocus => true, :class => "form-control" %>
+      <i class="user icon"></i>
+    </div>
+  </div>
+  <div class="field">
     <%= f.label :password %>
-    <%= f.password_field :password, :class => "form-control" %>
+    <div class="ui left labeled icon input">
+      <%= f.password_field :password, :class => "form-control" %>
+      <i class="lock icon"></i>
+    </div>
   </div>
-  <div class="panel-footer clearfix">
-    <%= f.submit "Вхід в систему" , :class => "btn btn-primary pull-right" %>
-  </div>
+  <%= f.submit "Вхід в систему" , :class => "ui blue submit button" %>
 <% end %>
 
 <div class="">
