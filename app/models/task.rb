@@ -10,7 +10,7 @@ class Task < ActiveRecord::Base
   has_many :checklists, -> { order 'created_at' }
   accepts_nested_attributes_for :checklists, allow_destroy: true
 
-  STATUS = ["Active".freeze, "Frozen".freeze, "Done".freeze, "Undone".freeze]
+  STATUS = ['Active'.freeze, 'Frozen'.freeze, 'Done'.freeze, 'Undone'.freeze]
 
   serialize :check_list, Array
 

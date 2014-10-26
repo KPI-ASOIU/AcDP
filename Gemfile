@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
@@ -96,3 +96,5 @@ gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1" # squ
 
 gem 'time_diff'
 gem 'jquery-countdown-rails'
+
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'

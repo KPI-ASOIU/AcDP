@@ -4,24 +4,22 @@
 
 <% content_for :navbar do %>
   <% if user_signed_in? %>
-    <li>
-      <%= link_to conversations_path do %>
-        <%= t('conversations.dialogs') %>
-        <% if (umc = current_user.unread_messages_count_sum) != 0 %>
-          <span class="badge"><%= umc %></span>
-        <% end %>
+    <%= link_to conversations_path, class: "item" do %>
+      <%= t('conversations.dialogs') %>
+      <% if (umc = current_user.unread_messages_count_sum) != 0 %>
+        <span class="badge"><%= umc %></span>
       <% end %>
-    </li>
-    <li><%= link_to t('documents.documents'), documents_path %></li>
-    <li><%= link_to t('news.title'), news_posts_path %></li>
-    <li><%= link_to t('contacts.nav_link'), contacts_path %></li>
-    <% if can? :crud, Task %>
-      <li><%= link_to t('activerecord.models.tasks'), tasks_path %></li>
     <% end %>
-    <li><%= link_to t('activerecord.models.events'), events_path %></li>
+    <%= link_to t('documents.documents'), documents_path, class: "item" %>
+    <%= link_to t('news.title'), news_posts_path, class: "item" %>
+    <%= link_to t('contacts.nav_link'), contacts_path, class: "item" %>
+    <% if can? :crud, Task %>
+      <%= link_to t('activerecord.models.tasks'), tasks_path, class: "item" %>
+    <% end %>
+    <%= link_to t('activerecord.models.events'), events_path, class: "item" %>
   <% end %>
   <% if can? :manage, @users %>
-    <li><%= link_to t('admin_panel'), admin_users_path %></li>
+    <%= link_to t('admin_panel'), admin_users_path, class: "item" %>
   <% end %>
   <!-- <%= button_tag '', class: 'no-styling-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: "#{render 'application/panel_activity'}" } do %> -->
     <!-- <span class='glyphicon glyphicon-th-list'></span> -->
