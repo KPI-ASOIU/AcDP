@@ -8,7 +8,7 @@
     <%= link_to t('util.groups_manage'), admin_groups_path, class: "item" %>
     <%= link_to t('doctypes.manage'), admin_doctypes_path, class: "item" %>
   <% end %>
-  <li><%= link_to t('client_part'), current_user_users_path, class: "item" %></li>
+  <%= link_to t('client_part'), current_user_users_path, class: "item" %>
 <% end %>
 
 <%= render template: "layouts/base" %>

@@ -17,6 +17,8 @@
       <%= link_to t('activerecord.models.tasks'), tasks_path, class: "item" %>
     <% end %>
     <%= link_to t('activerecord.models.events'), events_path, class: "item" %>
+  <% else %>
+    <h1 class="item"><%= t('page-header.portal') %></h1>
   <% end %>
   <% if can? :manage, @users %>
     <%= link_to t('admin_panel'), admin_users_path, class: "item" %>
