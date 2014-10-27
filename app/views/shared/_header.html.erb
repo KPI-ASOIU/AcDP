@@ -2,7 +2,11 @@
   <%= yield :navbar %>
   <div class="right menu">
     <% if user_signed_in? %>
-      <p class="ui item"><%= current_user.login + ' (' %><%= link_to t('util.logout'), destroy_user_session_path, :method => :delete %>)</p>
+      <p class="ui item">
+        <%= current_user.login + ' (' %>
+        <%= link_to t('util.logout'), destroy_user_session_path, :method => :delete %>
+        )
+      </p>
     <% end %>
   <div>
 </nav>
