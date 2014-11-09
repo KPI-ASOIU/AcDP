@@ -1,0 +1,39 @@
+<% guest = @event_has_guest.first().guest %>
+var cannotVisit = document.querySelector('#eventCard #cannotVisit');
+
+<% if @event_has_guest.first().status == 0 %>
+  var guest = document.createElement('a'),
+      img = document.createElement('img');
+  guest.href = "<%= user_path(guest) %>";
+  img.setAttribute('class', 'ui avatar');
+  img.setAttribute('title', "<%= guest.full_name %>");
+  img.setAttribute('src', "<%= guest.avatar.url('small') %>");
+  img.setAttribute('alt', "<%= guest.full_name %>");
+  guest.appendChild(img)
+  
+  if (cannotVisit) {
+    cannotVisit.appendChild(guest);
+  } else {
+    var label = document.createElement('dt'),
+        cannotVisit = document.createElement('div'),
+        visitButton = $('#canVisit');
+    label.setAttribute('class', 'ui purple ribbon label');
+    label.innerHTML = "<%= I18n.t('events.not_visiting') %>";
+    cannotVisit.setAttribute('class', 'ui mini images card-avatars');
+    cannotVisit.setAttribute('id', 'cannotVisit');
+    cannotVisit.appendChild(guest)
+    visitButton.before(label);
+    visitButton.before(cannotVisit);
+  }
+<% else %>
+  if (cannotVisit) {
+    var guest = cannotVisit.querySelector('a[href="<%= user_path(guest) %>"]');
+    cannotVisit.removeChild(guest);
+    if (cannotVisit.children.length == 0) {
+      parent = cannotVisit.parentNode;
+      label = cannotVisit.previousElementSibling;
+      parent.removeChild(label);
+      parent.removeChild(cannotVisit);
+    }
+  }
+<% end %>

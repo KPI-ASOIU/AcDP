@@ -1,61 +1,52 @@
-<%= form_for(event, :html => { :class => "form-horizontal", role: "form" }) do |f| %>
-  <div class="panel-body">
-    <% if event.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= t('activerecord.errors.template.header', count: event.errors.count) %></h2>
-        <ul>
-        <% event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="form-group">
-      <%= f.label t('events.name'), :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-        <%= f.text_field :name, :placeholder => t('events.name') + '...', :class => 'form-control' %>
-      </div>
+<%= form_for(event, :html => { :class => "ui error green form segment", role: "form" }) do |f| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.template.header', count: event.errors.count) %></h2>
+      <ul>
+      <% event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="form-group">
-      <%= f.label t('events.description'), :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-        <%= f.text_area :description, :placeholder => t('events.description') + '...', :class => 'form-control no-resize' %>
-      </div>
-    </div>
+  <h2 class="ui header">
+    <%= header %>
+  </h2>
 
-    <div class="form-group">
-      <%= f.label t('events.date'), :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-          <%= f.text_field :date, :placeholder => t('events.date') + '...', :class => 'form-control date', id: 'eventDate' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label t('events.place'), :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-          <%= f.text_field :place, :placeholder => t('events.place') + '...', :class => 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label t('events.plan'), :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-        <%= f.text_area :plan, :placeholder => t('events.plan') + '...', :class => 'form-control no-resize' %>
-      </div>
-    </div>
-
-    <div class='form-group'>
-      <%= f.label t('events.guests'), :class=>'col-sm-4 control-label' %>
-      <div class='col-sm-8'>
-        <%= select_tag :guests, options_for_select(User.all.map { |u| [u.full_name, u.id] }, event.guests.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true } %>
-      </div>
-    </div>
+  <div class="field">
+    <%= f.label t('events.name') %>
+    <%= f.text_field :name, :placeholder => t('events.name') + '...' %>
   </div>
 
-  <div class="panel-footer text-right">
-    <%= link_to t('util.back'), :back, :class => "btn btn-default" %>
-    <%= f.submit val, :class => "btn btn-success" %>
+  <div class="field">
+    <%= f.label t('events.description') %>
+    <%= f.text_area :description, :placeholder => t('events.description') + '...', :class => 'no-resize' %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('events.date') %>
+    <%= f.text_field :date, :placeholder => t('events.date') + '...', :class => 'date', id: 'eventDate' %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('events.place') %>
+    <%= f.text_field :place, :placeholder => t('events.place') + '...', :class => 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('events.plan') %>
+    <%= f.text_area :plan, :placeholder => t('events.plan') + '...', :class => 'form-control no-resize' %>
+  </div>
+
+  <div class='field'>
+    <%= f.label t('events.guests') %>
+    <%= select_tag :guests, options_for_select(User.all.map { |u| [u.full_name, u.id] }, event.guests.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true } %>
+  </div>
+
+  <div class="inline-field ui buttons">
+    <%= link_to t('util.back'), :back, :class => "ui button" %>
+    <div class="or"></div>
+    <%= f.submit val, :class => "ui positive submit button" %>
   </div>
 <% end %>

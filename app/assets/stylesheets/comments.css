@@ -1,0 +1,17 @@
+.comment a {
+  color: #009fda !important;
+}
+
+.ui.reply.form > .new-comment {
+  height: 3em !important;
+  resize: none; 
+}
+
+.comments-form {
+  height: 245px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  overflow: auto;
+  outline: 0;
+  width: 100%;
+}

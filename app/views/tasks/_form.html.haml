@@ -1,36 +1,32 @@
-- if task.errors.any?
-  #error_explanation
-    %h2= t('activerecord.errors.template.header', count: @user.errors.count)
-    %ul
-      = task.errors.full_messages.each do |msg|
-        %li= msg
-
-= form_for(task, :html => { :class => "form-horizontal", role: "form" }) do |f|
-  .panel-body
-    .form-group
-      = f.label t('tasks.name'), :class=>'col-sm-4 control-label'
-      .col-sm-8
-        = f.text_field :name, :placeholder => t('tasks.name') + '...', :class => 'form-control'
-    .form-group
-      = f.label t('tasks.description'), :class=>'col-sm-4 control-label'
-      .col-sm-8
-        = f.text_area :description, :placeholder => t('tasks.description') + '...', :class => 'form-control no-resize'
-    .form-group
-      = f.label t('tasks.end_date'), :class=>'col-sm-4 control-label'
-      .col-sm-8
-        = f.text_field :end_date, :placeholder => t('tasks.end_date') + '...', class: "form-control date", id: "taskDate"
-    .form-group
-      = f.label t('tasks.status'), :class=>'col-sm-4 control-label'
-      .col-sm-8
-        = f.select :status, options_for_select(Task::STATUS.map { |t| [translate_status(t), t]}), {}, { class: "form-control" }
-    .form-group
-      = f.label t('tasks.check_list'), :class=>'col-sm-4 control-label' 
-      .col-sm-8
-        = render partial: 'form_checklist', locals: { f: f } 
-    .form-group
-      = f.label t('tasks.executors'), :class=>'col-sm-4 control-label' 
-      .col-sm-8    
-        = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
-  .panel-footer.text-right 
-    = link_to t('util.back'), :back, :class => "btn btn-default"
-    = f.submit :class => "btn btn-success", :value => val
+= form_for(task, :html => { :class => "ui error blue form segment", id: "taskActions" }) do |f|
+  - if task.errors.any?
+    #error_explanation
+      %h2= t('activerecord.errors.template.header', count: @user.errors.count)
+      %ul.error.message
+        = task.errors.full_messages.each do |msg|
+          %li= msg
+  
+  %h2.ui.header
+    = header
+  .field
+    = f.label t('tasks.name')
+    = f.text_field :name, :placeholder => t('tasks.name') + '...'
+  .field
+    = f.label t('tasks.description')
+    = f.text_area :description, :placeholder => t('tasks.description') + '...', :class => 'no-resize'
+  .ui.date.field
+    = f.label t('tasks.end_date')
+    = f.text_field :end_date, :placeholder => t('tasks.end_date') + '...', class: "date", id: "taskDate"
+  .field
+    = f.label t('tasks.status')
+    = f.select :status, options_for_select(Task::STATUS.map { |t| [translate_status(t), t]}), {}, { class: "chosen-select" }
+  .field
+    = f.label t('tasks.check_list')
+    = render partial: 'form_checklist', locals: { f: f } 
+  .field
+    = f.label t('tasks.executors')
+    = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
+  .inline.field.ui.buttons
+    = link_to t('util.back'), :back, :class => "ui button"
+    .or
+    = f.submit :class => "ui positive submit button", :value => val

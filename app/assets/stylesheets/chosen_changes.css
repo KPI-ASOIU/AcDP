@@ -1,0 +1,47 @@
+/* changes for standart chosen.css
+   chosen-container chosen-container-multi */
+.chosen-container {
+  display: inline-flex !important;
+  font-size: 14px !important;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  height: 100% !important;
+  margin: 0;
+  line-height: 0 !important;
+  padding: 7px 12px !important;
+}
+
+.chosen-choices {
+  border: 1px solid #cccccc !important;
+  border-radius: 4px;
+  padding: 0.5em 0.5em !important;
+}
+
+.chosen-choices .search-choice {
+  margin-left: 3px !important;
+}
+
+.chosen-container-active .chosen-choices {
+  border: 1px solid #66afe9z !important;
+  border-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-top-left-radius: 0;
+          border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -webkit-box-shadow: 0.3em 0 0 0 rgba(0, 0, 0, 0.2) inset;
+          box-shadow: 0.3em 0 0 0 rgba(0, 0, 0, 0.2) inset;
+  border-radius: 0 4px 0 0;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.chosen-container .chosen-results {
+  margin: 0 4px 4px 0;
+  padding: 0 0 0 4px;
+}
+
+.chosen-single {
+  width: 100%;
+}

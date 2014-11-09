@@ -59,7 +59,6 @@ end
 
 gem 'factory_girl_rails', '~> 4.0'
 gem 'devise'
-gem 'bootstrap-sass', '~> 3.1.0'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'cancan'
@@ -68,12 +67,12 @@ gem 'paperclip'
 gem 'foreman'
 gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
-gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
 gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # # Added for backward compatibility of Opinio gem
 # # (attr_accessible support)

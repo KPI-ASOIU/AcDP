@@ -57,26 +57,15 @@ class TasksController < ApplicationController
   def index
     if params[:search].present?
       fix_params
+      puts params[:exec_start_date]
+      puts params[:exec_end_date]
       @tasks = Task.connected_to_me
                 .with_name(params[:name])
                 .with_status(params[:status])
                 .with_author(params[:author].split(" "))
-                .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
+                .created_at(params[:creation_start_date], params[:creation_end_date])
+                .with_end_date(params[:exec_start_date], params[:exec_end_date])
                 .order("created_at DESC").uniq
-
-      if params[:exec_start_date].present? || params[:exec_end_date].present?
-        @tasks = (
-          begin
-            @tasks.with_end_date(local_time_convert(params[:exec_start_date]), local_time_convert(params[:exec_end_date]))
-          rescue
-            begin
-              @tasks.with_end_date(local_time_format(Time.now - 1000.years), local_time_convert(params[:exec_end_date]))
-            rescue
-              @tasks.with_end_date(local_time_convert(params[:exec_start_date]), local_time_format(Time.now + 1000.years))
-            end
-          end
-        )
-      end
 
       if params[:executor].present?
         @tasks = @tasks.with_executors(params[:executor].flatten).order("created_at DESC").uniq
@@ -114,24 +103,30 @@ class TasksController < ApplicationController
               checklists_attributes: [:id, :done, :name, :_destroy])
       .merge({ executors: User.where(id: params[:executors]), user_id: current_user.id })
   end
-  
-  def local_time_convert(time)
-    DateTime.strptime(time, I18n.t('time.formats.short'))
+
+  def to_datetime(date_string)
+    Time.parse(date_string, '%d.%m.%Y')
   end
 
   def local_time_format(time)
     I18n.l(time, format: :short)
   end
   
-  def validate_date_strings(date_string)
+  def date_invalid?(date_string)
     date_string.nil? || date_string.empty?
   end
 
   def fix_params
     params[:status] ||= Task::STATUS
-    params[:author] ||= User.all.pluck(:id).join(" ")      
-    params[:creation_start_date] = local_time_format(Time.now - 1000.years) if validate_date_strings(params[:creation_start_date])
-    params[:creation_end_date] = local_time_format(Time.now + 1000.years) if validate_date_strings(params[:creation_end_date])
+    params[:author] ||= User.all.pluck(:id).join(" ")
+    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years : 
+                                                            to_datetime(params[:creation_start_date])
+    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years : 
+                                                          to_datetime(params[:creation_end_date])
+    params[:exec_start_date] = date_invalid?(params[:exec_start_date]) ? Time.now - 1000.years : 
+                                                        to_datetime(params[:exec_start_date])
+    params[:exec_end_date] = date_invalid?(params[:exec_end_date]) ? Time.now + 1000.years : 
+                                                      to_datetime(params[:exec_end_date])
   end
 
   def create_activity(title, summary)
