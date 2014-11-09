@@ -1,75 +1,59 @@
-<div class="panel panel-primary panel-narrow pull-left task-info-area">
-  <div class="panel-heading no-user-select">
-    <h3 class="panel-title"><%= t('events.info') %></h3>
-  </div>
-  <div class="panel-body">
-    <div class="pull-left">
+<div id="eventCard" class="ui two column grid event">
+  <div class="column">
+    <div class="ui blue segment">
       <% if @event.name.present? %>
-        <h3 class="text-center break-words"><%= @event.name %></h3>
+        <h2 class="ui header"><%= @event.name %></h2>
       <% end %>
-      <dl class="dl-horizontal break-words">
-      	<% if @event.description.present? %>
-	        <dt><%= t('events.description') %></dt>
-	        <dd><%= @event.description %></dd>
-        <% end %>
-        <% if @event.date.present? %>
-	        <dt><%= t('events.date') %></dt>
-	        <dd><%= l(@event.date, format: :short) %></dd>
-        <% end %>
-        <% if @event.place.present? %>
-	        <dt><%= t('events.place') %></dt>
-	        <dd><%= @event.place %></dd>
-        <% end %>
-        <% if @event.plan.present? %>
-        	<dt><%= t('events.plan') %></dt>
-        	<dd><%= @event.plan %></dd>
-        <% end %>
-        <% if @event.guests.any? %>
-          <dt><%= t('events.guests') %></dt>
-          <dd>
-            <% @event.guests.each do |guest| %>
-              <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
-                      title: guest.full_name), user_path(guest.id) %>
-            <% end %>
-          </dd>
-        <% end %>
-        <% if !can_all_visit?(@event) %>
-          <dt><%= t('events.not_visiting') %></dt>
-          <dd>
-            <% all_not_visiting(@event).each do |guest| %>
-              <%= link_to image_tag(guest.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
-                      title: guest.full_name), user_path(guest.id) %>
-            <% end %>
-          </dd>
-        <% end %>
-      </dl> 
-    </div>
-  </div>
-  <div class="panel-footer no-user-select">
-    <div class="pull-left text-left">
-      <% if engaged?(@event) and !author?(@event) %>
-        <%= form_tag event_path(@event), :method => 'get' do %>
-          <% if visit?(@event) %>
-            <%= hidden_field_tag :can_visit, 'false' %>
-            <%= submit_tag t('events.cannot_visit'), :class => "btn btn-danger" %>
-          <% else %>
-            <%= hidden_field_tag :can_visit, 'true' %>
-            <%= submit_tag t('events.can_visit'), :class => "btn btn-success" %>
+      <% if @event.description.present? %>
+        <dt class="ui purple ribbon label"><%= t('events.description') %></dt>
+        <p><%= @event.description %></p>
+      <% end %>
+      <% if @event.date.present? %>
+        <dt class="ui purple ribbon label"><%= t('events.date') %></dt>
+        <p><%= l(@event.date, format: :short) %></p>
+      <% end %>
+      <% if @event.place.present? %>
+        <dt class="ui purple ribbon label"><%= t('events.place') %></dt>
+        <p><%= @event.place %></p>
+      <% end %>
+      <% if @event.plan.present? %>
+        <dt class="ui purple ribbon label"><%= t('events.plan') %></dt>
+        <p><%= @event.plan %></p>
+      <% end %>
+      <% if @event.guests.any? %>
+        <dt class="ui purple ribbon label"><%= t('events.guests') %></dt>
+        <div class="ui mini images card-avatars">
+          <% @event.guests.each do |guest| %>
+            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui image', 
+              title: guest.full_name), user_path(guest.id) %>
           <% end %>
-        <% end %>
+        </div>
       <% end %>
-    </div>
-    <div class="text-right">
-      <%= link_to t('util.back'), events_path, :class => "btn btn-default" %>
-      <% if @event.author == current_user %>
-        <%= link_to edit_event_path(@event), :class => "btn btn-warning" do %>
-          <span class='glyphicon glyphicon-pencil'></span>
-          <%= t('util.edit') %>
-        <% end %>
+      <% if !can_all_visit?(@event) %>
+        <dt class="ui purple ribbon label"><%= t('events.not_visiting') %></dt>
+        <div id="cannotVisit" class="ui mini images card-avatars">
+          <% all_not_visiting(@event).each do |guest| %>
+            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui avatar', 
+                    title: guest.full_name, alt: guest.full_name), user_path(guest.id) %>
+          <% end %>
+        </div>
       <% end %>
+      <% if engaged?(@event) and !author?(@event) %>
+        <%= button_tag visit?(@event) ? t('events.cannot_visit') : t('events.can_visit'), id: 'canVisit', :class => "ui toggle red button hover", data: { event: @event.id, visit: !visit?(@event) } %>
+      <% end %>  
+      <div class="ui <%= 'right floated' if @event.author != current_user %> buttons">
+        <%= link_to t('util.back'), events_path, :class => "ui button" %>
+        <% if @event.author == current_user %>
+          <div class="or"></div>
+          <%= link_to edit_event_path(@event), :class => "ui positive button" do %>
+            <span class=' glyphicon-pencil'></span>
+            <%= t('util.edit') %>
+          <% end %>
+        <% end %>  
+      </div>
     </div>
   </div>
-</div>
-<div class='pull-right comments-area'>
-  <%= comments_for @event %>
+  <div class='column'>
+    <%= comments_for @event %>
+  </div>
 </div>

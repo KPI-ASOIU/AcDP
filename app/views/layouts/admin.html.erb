@@ -4,9 +4,9 @@
 
 <% content_for :navbar do %>
   <% if can? :manage, @users %>
-    <%= link_to t('util.users_manage'), admin_users_path, class: "item" %>
-    <%= link_to t('util.groups_manage'), admin_groups_path, class: "item" %>
-    <%= link_to t('doctypes.manage'), admin_doctypes_path, class: "item" %>
+    <%= link_to t('util.users_manage'), admin_users_path, id: 'users', class: "item" %>
+    <%= link_to t('util.groups_manage'), admin_groups_path, id: 'groups', class: "item" %>
+    <%= link_to t('doctypes.manage'), admin_doctypes_path, id: 'doctypes', class: "item" %>
   <% end %>
   <%= link_to t('client_part'), current_user_users_path, class: "item" %>
 <% end %>

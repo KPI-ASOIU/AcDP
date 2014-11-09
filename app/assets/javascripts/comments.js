@@ -1,9 +1,9 @@
 function newComment(comment) {
-  jQuery('#no_comments').fadeOut()
-  jQuery('#comments .jspPane').prepend(comment.html)
+  $('#no_comments').fadeOut()
+  $('#comments').prepend(comment.html)
   $("time[data-time-ago]").timeago()
   $('#comment_' + comment.id).hide().fadeIn('slow')
-  $('.new-comment').val('')
+  $('#new-comment').val('')
 }
 
 $(document).ready(function(){

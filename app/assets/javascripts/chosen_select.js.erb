@@ -1,52 +1,14 @@
 //enable chosen.js
-$(function(){
+$(document).ready(function(){
   $('#role .chosen-select').chosen({
     placeholder_text_multiple: "<%= I18n.t('users.choose_role') %>",
     no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
     width: '100%'
   });
 
-  $('.new-conversation-modal .chosen-select').chosen({
-    placeholder_text_multiple: "<%= I18n.t('messages.receivers') %>",
+  $('#conversationOpen #content .chosen-select').chosen({
+    placeholder_text_multiple: " ",
     no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('div#conversation-open .search-field input').css("width", "101px");
-
-  $('#executors.chosen-select').chosen({
-    placeholder_text_multiple: "<%= I18n.t('tasks.executors') %>",
-    no_results_text: "<%= I18n.t('users.chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('#author.chosen-select').chosen({
-    placeholder_text_multiple: " ",
-    no_results_text: "<%= I18n.t('author_chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('#executor.chosen-select').chosen({
-    placeholder_text_multiple: " ",
-    no_results_text: "<%= I18n.t('executor_chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('#status.chosen-select').chosen({
-    placeholder_text_multiple: " ",
-    no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('#invited.chosen-select').chosen({
-    placeholder_text_multiple: " ",
-    no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
-    width: '100%'
-  });
-
-  $('#guests.chosen-select').chosen({
-    placeholder_text_multiple: "<%= I18n.t('events.guests') %>...",
-    no_results_text: "<%= I18n.t('status_chosen_no_result') %>",
     width: '100%'
   });
 
@@ -55,5 +17,10 @@ $(function(){
     no_results_text: "<%= I18n.t('news.group_chosen_no_result') %>",
     width: '100%'
   });
-});
+
+  $('.chosen-select').chosen({
+    disable_search: true,
+    width: "100%"
+  });
+}());
 

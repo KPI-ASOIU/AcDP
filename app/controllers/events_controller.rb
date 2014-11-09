@@ -23,6 +23,10 @@ class EventsController < ApplicationController
     if find_event_by_id and params[:can_visit].present?
       @event_has_guest = EventHasGuest.where(event_id: @event.id, guest: current_user)
       @event_has_guest.first.update_attributes(status: params[:can_visit] == "true" ? 1 : 0)
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 
@@ -48,10 +52,10 @@ class EventsController < ApplicationController
                 .with_name(params[:name])
                 .with_place(params[:place])
                 .with_author(params[:author].split(" "))
-                .created_at(local_time_convert(params[:creation_start_date]), local_time_convert(params[:creation_end_date]))   
+                .created_at(params[:creation_start_date], params[:creation_end_date])
+                .with_date(params[:event_start_date], params[:event_end_date])
                 .order("created_at DESC").uniq
 
-      date_range_check
       guests_check
 
       respond_to do |format|
@@ -86,35 +90,30 @@ class EventsController < ApplicationController
       .merge({ guests: User.where(id: params[:guests]), author_id: current_user.id })
   end
 
-  def local_time_convert(time)
-    DateTime.strptime(time, I18n.t('time.formats.short'))
+  def to_datetime(date_string)
+    Time.parse(date_string, '%d.%m.%Y')
   end
 
   def local_time_format(time)
     I18n.l(time, format: :short)
   end
+  
+  def date_invalid?(date_string)
+    date_string.nil? || date_string.empty?
+  end
 
   def fix_params
     params[:place] ||= ''
     params[:author] ||= User.all.pluck(:id).join(" ")      
-    params[:creation_start_date] = local_time_format(Time.now - 1000.years) if !params[:creation_start_date].present?
-    params[:creation_end_date] = local_time_format(Time.now + 1000.years) if !params[:creation_end_date].present?
-  end
-
-  def date_range_check
-    if params[:event_start_date].present? || params[:event_end_date].present?
-      @events = (
-        begin
-          @events.with_date(local_time_convert(params[:event_start_date]), local_time_convert(params[:event_end_date]))
-        rescue
-          begin
-            @events.with_date(local_time_format(Time.now - 1000.years), local_time_convert(params[:event_end_date]))
-          rescue
-            @events.with_date(local_time_convert(params[:event_start_date]), local_time_format(Time.now + 1000.years))           
-          end
-        end
-      )
-    end
+    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years : 
+                                                            to_datetime(params[:creation_start_date])
+    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years : 
+                                                          to_datetime(params[:creation_end_date])
+    puts params[:event_start_date]
+    params[:event_start_date] = date_invalid?(params[:event_start_date]) ? Time.now - 1000.years : 
+                                                        to_datetime(params[:event_start_date])
+    params[:event_end_date] = date_invalid?(params[:event_end_date]) ? Time.now + 1000.years : 
+                                                      to_datetime(params[:event_end_date])
   end
 
   def guests_check

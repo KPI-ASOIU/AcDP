@@ -1,40 +1,25 @@
 <% if not @events.empty? %>
-  <div class="panel panel-primary">
-    <div id='extSearch' data-toggle="collapse" data-parent="#accordion" href="#collapseOne" 
-      class="panel-heading no-user-select">
-      <a class="text-white">
-        <%= t('util.extended_search') %>
-      </a>
+  <div id="eventSearch" class="ui fluid accordion no-user-select">
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <%= t('util.extended_search') %>
     </div>
-    <%= button_tag id: "searchBtn", class: "pull-right text-white invisible no-styling-btn no-paddings", title: I18n.t('util.search') do %>
-      <span class='glyphicon glyphicon-search'></span>
-    <% end %>
-    <div id="collapseOne" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= render 'extended_search' %>        
+    <div class="content">
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= render 'extended_search' %>        
+        </div>
       </div>
     </div>
   </div>
 <% end %>
 
-
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= t('activerecord.models.events') %>
-    <%= link_to new_event_path, class: "pull-right text-white", title: I18n.t('util.add_new_event') do %>
-      <span class='glyphicon glyphicon-plus'></span>
-    <% end %>
-  </div>
-  <% if not @events.empty? %>
-    <table class="tasks table table-hover table-verticle-centered">
-      <%= render partial: 'search_header', locals: { events: @events } %>
-      <tbody id="tasks">
-        <%= render partial: 'search_results', locals: { events: @events } %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-center text-muted no-conversations"><%= t('events.no_events') %></p>
-  <% end %>
-</div>
-
-
+<% if not @events.empty? %>
+  <table id="events" class="ui table segment">
+    <%= render partial: 'search_header', locals: { events: @events } %>
+    <%= render partial: 'search_results', locals: { events: @events } %>
+  </table>
+<% else %>
+  <p class="ui message info no-conversations"><%= t('events.no_events') %></p>
+  <%= link_to t('events.create_event'), new_event_path, class: 'ui positive button' %>
+<% end %>

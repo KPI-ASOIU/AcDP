@@ -1,6 +1,6 @@
 $(function() {
   function matchDateRegex(date) {
-    return /[0-9]{2}\.[0-9]{2}\.[0-9]{4} [0-9]{2}\:[0-9]{2}/.test(date)
+    return /[0-9]{2}\.[0-9]{2}\.[0-9]{4}/.test(date)
   }
 
   $('#startDate').datetimepicker({
@@ -8,6 +8,7 @@ $(function() {
   	// 	=> make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
   	language: 'uk'
   });
 
@@ -16,6 +17,7 @@ $(function() {
   	// 	=> make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
   	language: 'uk'
   });
 
@@ -24,6 +26,7 @@ $(function() {
   	// 	=> make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
   	language: 'uk'
   });
 
@@ -32,6 +35,7 @@ $(function() {
   	// 	=> make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
   	language: 'uk'
   });
 
@@ -40,6 +44,7 @@ $(function() {
     //  => make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
     language: 'uk'
   });
 
@@ -48,10 +53,9 @@ $(function() {
     //  => make here default project language
     useCurrent: false,
     defaultDate: '',
+    pickTime: false,
     language: 'uk'
   });
-
-  $('FORM').nestedFields();
 
   $('#taskDate').change(function() {
     if(!matchDateRegex($(this).val()))

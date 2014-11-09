@@ -16,11 +16,17 @@
 @import "users";
 @import "admin/doctypes";
 @import "admin/groups";
+@import "datetimepicker";
 @import "semantic-ui";
+@import "comments";
 
 
 body {
-  font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 .sign-in-form {
@@ -118,4 +124,9 @@ body {
   .collapsing {
     overflow: hidden !important;
   }
+}
+
+/* Semantic UI fixes */
+.ui.buttons .or:before {
+  content: "чи" !important;
 }

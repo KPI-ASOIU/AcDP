@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   $(document).on("click", "#btn_remove_user", function () {
     $("#user_remove_path").attr('href', $(this).data('path'));
   });
@@ -15,7 +14,9 @@ $(document).ready(function(){
   });
 
   $("tr[data-link]").on("click", function(e) {
-    e.stopPropagation();
+    e.preventDefault();
     window.location = this.getAttribute("data-link");
   });
-});
+
+  $('.ui.accordion').accordion();
+}());
