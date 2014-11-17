@@ -11,8 +11,10 @@ $(document).ready(function(){
 
   $('#news_post_tags').select2({ tags: [] });
 
-  $(document).on('click', '.btn_remove_news_post', function () {
-      $('#news_post_remove_path').attr('href', $(this).data('path'));
+  $(document).on('click', '#remove_news_post', function (e) {
+    e.preventDefault();
+    $('.confirm_news_post_removal').modal('show');
+    $('#news_post_remove_path').attr('href', $(this).data('path'));
   });
 
   if ($('#news-add-document-btn').length > 0) {

@@ -7,7 +7,9 @@ $(document).ready(function() {
     };
     $.fn.editable.defaults.emptytext = 'Не зазначено';
 
-    $(document).on("click", "#btn_remove_doctype", function() {
+    $(document).on("click", "#remove_doctype", function(e) {
+        e.preventDefault();
+        $('.confirm_doctype_removal').modal('show');
         $("#doctype_remove_path").attr('href', $(this).data('path'));
     });
 

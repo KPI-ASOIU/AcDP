@@ -4,7 +4,7 @@ $(document).ready(function(){
     dialog_box.scrollTop(dialog_box[0].scrollHeight);
   }
 
-  $('#modalSend').click(function(e){
+  $('.modalSend').click(function(e){
     e.preventDefault();
     $("#conversationOpen").modal('show')
   });

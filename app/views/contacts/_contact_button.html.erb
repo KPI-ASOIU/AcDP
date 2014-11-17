@@ -1,15 +1,15 @@
 <% if current_user.contacts.exists?(id: user_id) %>
   <%= form_tag contact_path(user_id), method: :delete do |f| %>
-    <button class="btn mb5 btn-block btn-danger">
-      <span class="glyphicon glyphicon-list-alt"></span>
+    <button class="ui negative labeled icon button">
+      <i class="remove icon"></i>
       <%= t('contacts.remove') %>
     </button>
   <% end %>
 <% else %>
   <%= form_tag contacts_path, method: :post do |f| %>
     <%= hidden_field_tag :id, user_id %>
-    <button class="btn mb5 btn-block btn-success">
-      <span class="glyphicon glyphicon-list-alt"></span>
+    <button class="ui positive labeled icon button">
+      <i class="add icon"></i>
       <%= t('contacts.add') %>
     </button>
   <% end %>
