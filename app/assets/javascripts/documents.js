@@ -5,8 +5,10 @@ $(document).ready(function(){
     $.fn.editable.defaults.ajaxOptions = {type: "PATCH"};
     $.fn.editable.defaults.emptytext = 'Не зазначено';
 
-    $(document).on("click", "#btn_remove_doctype", function () {
-        $("#doctype_remove_path").attr('href', $(this).data('path'));
+    $(document).on("click", "#remove_doctype", function (e) {
+      e.preventDefault();
+      $('.confirm_doctype_removal').modal('show');
+      $("#doctype_remove_path").attr('href', $(this).data('path'));
     });
 
     $('.doctype_edit').editable({
