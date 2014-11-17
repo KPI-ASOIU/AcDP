@@ -39,7 +39,7 @@
         </div>
       <% end %>
       <% if engaged?(@event) and !author?(@event) %>
-        <%= button_tag visit?(@event) ? t('events.cannot_visit') : t('events.can_visit'), id: 'canVisit', :class => "ui toggle red button hover", data: { event: @event.id, visit: !visit?(@event) } %>
+        <%= button_tag visit?(@event) ? t('events.cannot_visit') : t('events.can_visit'), id: 'canVisit', :class => "ui toggle red button hover", data: { event: @event.id, visit: !visit?(@event), url: event_path(@event, format: :js) } %>
       <% end %>  
       <div class="ui <%= 'right floated' if @event.author != current_user %> buttons">
         <%= link_to t('util.back'), events_path, :class => "ui button" %>

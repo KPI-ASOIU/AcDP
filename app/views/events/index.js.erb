@@ -13,6 +13,6 @@ $("table#events").empty()
 <% end %>
 
 $("tr[data-link]").on("click", function(e) {
-	e.stopPropagation();
+	e.preventDefault();
 	window.location = this.getAttribute("data-link");
 });

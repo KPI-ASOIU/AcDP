@@ -419,6 +419,11 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    yours: Сховище
+    shared: Спільні документи
+    by_type: За типом
+    recently_used: Недавні
+    from_pc: Завантажити з ПК
     documents: Документи
     document: Документ
     files: Файли
@@ -432,31 +437,28 @@ uk:
     formats: Формати
     types: Типи
     search: Пошук
-    search_by_docs: Пошук по документам
+    search_by_docs: Шукати документ
     by_title: По назві
     by_tags: По тегам
     by_title tags: 'По назві та тегам'
     by_description: По опису
     open: Відкрити
     download: Скачати
+    upload: Завантажити
     select_doc: Виберіть документ
     select_folder: Виберіть папку
     docs_list: Список документів
     folders_list: Список папок
-
     information: Інформація
-
     add_doc: Додати документ
     adding_doc: Додання документу
     enter_file_title: Введіть назву для документу. За замовчанням буде використана назва файлу.
     title: Назва
     file_add_success: Документ додано
-
     add_folder: Додати папку
     adding_folder: Додання папки
     enter_folder_title: Введіть назву папки.
     folder_creation_success: Папка успішно створена
-
     docs_in_cur_dir: Документи та папки в поточній папці
     up_folder: Верхня папка
     title: Назва
@@ -464,7 +466,6 @@ uk:
     type: Тип
     date_created: Створено
     date_changed: Змінено
-
     owner: Власник
     elements_count: Кількість елементів
     private: Приватна
@@ -478,13 +479,10 @@ uk:
     delete: Видалити
     select_users: Виберіть користувачів
     select_types: Виберіть типи
-
     found_users: Знайдені користувачі
-
     error_not_recognized: Дія не розпізнана
     error_cannot_update: Помилка при оновленні запису
     error_document_not_found: Документ не знайдено
-
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити ?
     flash_removed_item: Елемент успішно видалено
@@ -540,6 +538,7 @@ uk:
       add_success: Користувач був успішно доданий в список контактів
       remove_success: Користувач був успішно видалений з списку контактів
   tasks:
+    documents: Прикріплені документи
     create_task: Створити завдання
     author: Автор
     task_info: Картка завдання

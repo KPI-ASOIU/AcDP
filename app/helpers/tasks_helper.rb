@@ -19,6 +19,21 @@ module TasksHelper
 		end
 	end
 
+	def status_row_class(status)
+		case status
+		when "Done"
+			"positive"
+		when "Active"
+			"active"
+		when "Undone"
+			"negative"
+		when "Frozen"
+			"warning"
+		else
+			""
+		end
+	end
+
 	def status_class(status)
 		case status
 		when "Done"
