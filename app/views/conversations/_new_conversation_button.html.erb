@@ -1,7 +1,7 @@
-<button class="ui positive icon labeled button" id="modalSend">
+<div class="ui positive icon labeled button modalSend">
   <i class="mail icon"></i>
   <%= local_assigns[:button_text] || t('messages.send') %>
-</button>
+</div>
 
 <%= render partial: "conversations/new_conversation_modal", locals: {
       conversation: Conversation.new,

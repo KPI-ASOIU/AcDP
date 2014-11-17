@@ -1,47 +1,48 @@
 = render 'modal_delete'
 
-.panel.panel-primary
-  .panel-body.news-index-info-wrapper
-    .news-index-info
-      .thumbnail.news-show-icon
+.ui.segment
+  .ui.grid
+    .three.wide.column
+      .ui.left.floated.image
         =image_tag @news_post.icon.url('large')
-    .news-show-right
-      %h1{ class: 'news-show-title' }
-        %b= @news_post.title
-      %p
-        %b= t('documents.date_created') + ':'
-        =l @news_post.created_at, format: :short
-      %p
-        %b= t('documents.date_changed') + ':'
-        =l @news_post.updated_at, format: :short
-      %p
-        %b= t('activerecord.attributes.news_post.creator_id') + ':'
-        =link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
-      %p
-        %b= t('activerecord.attributes.news_post.for_roles') + ':'
-        = t('news.for_category.' + @news_post.category)
-      - if !@news_post.tags.empty?
-        %p
-          %b= t('activerecord.attributes.news_post.tags') + ':'
-          - @news_post.tags.split(',').each do |tag|
-            =link_to tag, tag_news_posts_path(tag)
-      - if !@news_post.documents.empty?
-        %p
-          %b= t('news.attached_docs') + ':'
-          - @news_post.documents.each do |document|
-            =link_to document.title, document.doc_type == 0 ?  document_path(document) : document.parent_directory.nil? ? documents_path : document_path(document.parent_directory)
-            | 
-    %p{ class: 'post-content' }= raw @news_post.content
+    .ten.wide.column
+      %h1.ui.header
+        = @news_post.title
+      .ui.list
+        .item
+          %b= t('documents.date_created') + ':'
+          =l @news_post.created_at, format: :short
+        .item
+          %b= t('documents.date_changed') + ':'
+          =l @news_post.updated_at, format: :short
+        .item
+          %b= t('activerecord.attributes.news_post.creator_id') + ':'
+          =link_to @news_post.creator.login, user_path(@news_post.creator), target: :blank
+        .item
+          %b= t('activerecord.attributes.news_post.for_roles') + ':'
+          = t('news.for_category.' + @news_post.category)
+        - if !@news_post.tags.empty?
+          .item
+            %b= t('activerecord.attributes.news_post.tags') + ':'
+            - @news_post.tags.split(',').each do |tag|
+              =link_to tag, tag_news_posts_path(tag)
+        - if !@news_post.documents.empty?
+          .item
+            %b= t('news.attached_docs') + ':'
+            - @news_post.documents.each do |document|
+              =link_to document.title, document.doc_type == 0 ?  document_path(document) : document.parent_directory.nil? ? documents_path : document_path(document.parent_directory)
+              | 
+  .content{ class: 'post-content' }= raw @news_post.content
 
-.news-show-buttons
-  =link_to t('util.back'), news_posts_path, :class => 'btn btn-default'
-  - if current_user.id == @news_post.creator_id or current_user.has_role?('admin')
-    =link_to edit_news_post_path(@news_post), :class => 'btn btn-warning' do
-      %span{ class: 'glyphicon glyphicon-pencil' }
-      = t('util.edit')
-    =link_to '', data: { path: news_post_path(@news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
-      %span{ class: 'glyphicon glyphicon-remove' }
-      =t('util.destroy')
+  .ui.right.floated.small.buttons
+    =link_to t('util.back'), news_posts_path, :class => 'ui button'
+    - if current_user.id == @news_post.creator_id or current_user.has_role?('admin')
+      =link_to edit_news_post_path(@news_post), :class => 'ui orange icon button' do
+        %i{ class: 'edit icon' }
+        = t('util.edit')
+      =link_to '', data: { path: news_post_path(@news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'ui negative icon button btn_remove_news_post' do
+        %i{ class: 'remove icon' }
+        =t('util.destroy')
 
 .news-comments-block
   =comments_for @news_post

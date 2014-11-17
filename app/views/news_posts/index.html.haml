@@ -1,48 +1,50 @@
 = render 'modal_delete'
-%h1= t('news.title')
+.ui.top.attached.inverted.segment
+  =t('news.title')
 
-.text-center
-  .btn-group
-    = link_to t('news.all'), news_posts_path, class: ['btn btn-default', ('selected_post' if @category == nil)]
-    - if !current_user.group.nil?
-      = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'btn btn-default'
-    - User::ROLES.each do |role|
-      = link_to t('news.for_category.' + role), category_news_posts_path(role), class: ['btn btn-default', ("selected_post" if @category == role)]
-  %br
-  %br
-  = link_to new_news_post_path, class: 'btn btn-success' do
-    %span{ class: 'glyphicon glyphicon-plus' }
-    = t('news.create_news')
-%br
+.ui.attached.segment
+  .ui.center.aligned.grid
+    .row
+      .ui.buttons
+        = link_to t('news.all'), news_posts_path, class: ['ui button', ('teal' if @category == nil)]
+        - if !current_user.group.nil?
+          = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'ui button'
+        - User::ROLES.each do |role|
+          = link_to t('news.for_category.' + role), category_news_posts_path(role), class: ['ui button', ("teal" if @category == role)]
+    .row
+      = link_to new_news_post_path, class: 'ui positive button' do
+        %i{ class: 'add icon' }
+        = t('news.create_news')
+  .ui.stackable.grid
+    - @news_posts.each do |news_post|
+      .ui.divider
+      .row
+        .three.wide.column
+          .row
+            .ui.image
+              =image_tag news_post.icon.url('medium')
+          .row  
+            =l news_post.created_at, format: :short
+          .row  
+            = link_to news_post.creator.login, user_path(news_post.creator), target: :blank
+          .row
+            .ui.vertical.buttons
+              = link_to news_post, :class => 'ui mini teal labeled icon button' do
+                %i{ class: 'search icon' }
+                = t('util.show')
+              - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
+                = link_to edit_news_post_path(news_post), :class => 'ui mini orange labeled icon button' do
+                  %i{ class: 'edit icon' }
+                  = t('util.edit')
+                = link_to '', data: { :path => news_post_path(news_post), toggle: 'modal', target: 'confirm_news_post_removal' }, :id => 'remove_news_post', :class => 'ui mini negative labeled icon button' do
+                  %i{ class: 'remove icon' }
+                  = t('util.destroy')
+        .twelve.wide.column
+          .ui.huge.header= news_post.title
+          %b= t('activerecord.attributes.news_post.tags') + ':'
+          - news_post.tags.split(',').each do |tag|
+            = link_to tag, tag_news_posts_path(tag)
+          %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
 
-- @news_posts.each do |news_post|
-  .panel.panel-primary.panel-wide
-    .panel-body.news-index-info-wrapper
-      .news-index-info
-        .thumbnail.news-index-icon
-          =image_tag news_post.icon.url('medium')
-        =l news_post.created_at, format: :short
-        %br
-        = link_to news_post.creator.login, user_path(news_post.creator), target: :blank
-        .news-index-buttons
-          = link_to news_post, :class => 'btn btn-primary' do
-            %span{ class: 'glyphicon glyphicon-zoom-in' }
-            = t('util.show')
-          - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
-            = link_to edit_news_post_path(news_post), :class => 'btn btn-warning' do
-              %span{ class: 'glyphicon glyphicon-pencil' }
-              = t('util.edit')
-            = link_to '', data: { path: news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'btn btn-danger btn_remove_news_post' do
-              %span{ class: 'glyphicon glyphicon-remove' }
-              = t('util.destroy')
-      .news-index-right
-        %h2= news_post.title
-        %b= t('activerecord.attributes.news_post.tags') + ':'
-        - news_post.tags.split(',').each do |tag|
-          = link_to tag, tag_news_posts_path(tag)
-        %br
-        %br
-        %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
-
-.text-center
+.ui.bottom.attached.segment
   = paginate @news_posts
