@@ -400,11 +400,12 @@ uk:
   views:
     main_title: Корпоративний Портал
     pagination:
-      first: "&laquo; Перша"
-      last: "Остання &raquo;"
-      previous: "&lsaquo; Попередня"
-      next: "Наступна &rsaquo;"
+      first: "Перша"
+      last: "Остання"
+      previous: "Попередня"
+      next: "Наступна"
       truncate: "..."
+      current: "Поточна"
   conversations:
     active: Активний діалог
     new: Новий діалог
