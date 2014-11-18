@@ -92,3 +92,8 @@ div.btn-group btn.active, btn:active {
 .selected_post {
   background-color: orange;
 }
+
+.news-show-block {
+    max-width: 90%;
+    margin: 0 auto 50px auto;
+}

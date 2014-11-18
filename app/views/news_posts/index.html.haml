@@ -1,8 +1,5 @@
 = render 'modal_delete'
-.ui.top.attached.inverted.segment
-  =t('news.title')
-
-.ui.attached.segment
+.ui.blue.segment
   .ui.center.aligned.grid
     .row
       .ui.buttons
@@ -19,24 +16,27 @@
     - @news_posts.each do |news_post|
       .ui.divider
       .row
-        .three.wide.column
-          .row
+        .three.wide.column.list
+          .item
             .ui.image
               =image_tag news_post.icon.url('medium')
-          .row  
+          .item
             =l news_post.created_at, format: :short
-          .row  
+
+          .item 
             = link_to news_post.creator.login, user_path(news_post.creator), target: :blank
-          .row
-            .ui.vertical.buttons
-              = link_to news_post, :class => 'ui mini teal labeled icon button' do
+          .item
+            .ui
+              = link_to news_post, :class => 'ui mini teal labeled icon fluid button' do
                 %i{ class: 'search icon' }
                 = t('util.show')
               - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
-                = link_to edit_news_post_path(news_post), :class => 'ui mini orange labeled icon button' do
+                %br
+                = link_to edit_news_post_path(news_post), :class => 'ui mini orange labeled icon fluid button' do
                   %i{ class: 'edit icon' }
                   = t('util.edit')
-                = link_to '', data: { :path => news_post_path(news_post), toggle: 'modal', target: 'confirm_news_post_removal' }, :id => 'remove_news_post', :class => 'ui mini negative labeled icon button' do
+                %br
+                = link_to '', data: { :path => news_post_path(news_post), toggle: 'modal', target: 'confirm_news_post_removal' }, :id => 'remove_news_post', :class => 'ui mini negative labeled icon fluid button' do
                   %i{ class: 'remove icon' }
                   = t('util.destroy')
         .twelve.wide.column
@@ -45,6 +45,4 @@
           - news_post.tags.split(',').each do |tag|
             = link_to tag, tag_news_posts_path(tag)
           %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
-
-.ui.bottom.attached.segment
   = paginate @news_posts
