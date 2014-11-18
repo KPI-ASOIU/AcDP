@@ -1,17 +1,14 @@
-<div class="ui top attached inverted segment">
-  <%= t('contacts.list') %>
-</div>
-
-<div class="ui attached segment">
+<div class="ui blue segment">
     <strong>
       <%= t('contacts.count', count: current_user.contacts.size ) %>
     </strong>
-    <div class="ui divider"></div>
-    <div class="ui divided list">
+    <div class="ui list">
       <% @contacts.each do |user| %>
+        <div class="ui divider"></div>
         <div class="item">
-          <div class="ui right floated vertical buttons">
+          <div class="ui right floated">
             <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
+            <br>
             <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
           </div>
           <a href="<%=user_path(user)%>" class="ui small image">

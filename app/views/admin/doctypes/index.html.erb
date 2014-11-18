@@ -12,39 +12,33 @@
 </div>
 
 <%= render 'new' %>
-<br>
 
-<div class="ui top attached inverted segment">
-    <%= t('doctypes.list') %>
-</div>
 <div class="ui attached segment">
-    <table class="ui striped collapsed table">
-      <thead>
+  <table class="ui striped collapsed table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="left aligned"><%= t('activerecord.attributes.doctype.title') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @doctypes.each do |doctype| %>
         <tr>
-          <th></th>
-          <th class="left aligned"><%= t('activerecord.attributes.doctype.title') %></th>
+          <td>
+            <%= link_to '',:id => 'remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => 'confirm_doctype_removal' }, :class => "ui mini negative icon button" do %>
+            <i class="remove icon"></i>
+            <% end %>
+          </td>
+
+          <td class="left aligned">
+            <div class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
+              <%= doctype.title%>
+            </div>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @doctypes.each do |doctype| %>
-          <tr>
-            <td>
-              <%= link_to '',:id => 'remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => 'confirm_doctype_removal' }, :class => "ui mini negative icon button" do %>
-              <i class="remove icon"></i>
-              <% end %>
-            </td>
-
-            <td class="left aligned">
-              <div class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
-                <%= doctype.title%>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-</div>
-<div class="ui bottom attached segment">
-      <%= paginate @doctypes %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @doctypes %>
 </div>
