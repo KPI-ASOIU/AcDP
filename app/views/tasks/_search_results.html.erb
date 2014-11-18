@@ -9,16 +9,28 @@
         <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
       </td>
       <td>
-        <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
-      </td>
-      <td class="col-sm-3">
-        <% for ex in Array(task.executors) do %>
-          <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
-            title: ex.full_name), user_path(ex.id) %>
+        <% if task.description.present? %>
+          <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
+        <% else %>
+          -
         <% end %>
       </td>
-      <td class="col-10-percent no-margins">
-        <%= label_tag translate_status(task.status), nil, class: status_class(task.status) << ' no-margins' %>
+      <td class="col-sm-3">
+        <% if task.executors.any? %>
+          <% for ex in Array(task.executors) do %>
+            <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+              title: ex.full_name), user_path(ex.id) %>
+          <% end %>
+        <% else %>
+          -
+        <% end %>
+      </td>
+      <td class="col-10-percent no-margins <%= status_row_class(task.status) %>">
+        <% if task.status.present? %>
+          <%= label_tag translate_status(task.status), nil, class: 'no-margins' %>
+        <% else %>
+          -
+        <% end %>
       </td>
       <td class="col-12-percent">
         <% if task.end_date.present? %>

@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 			through: :event_has_guests,
 			source: :guest
 
+  has_and_belongs_to_many :documents, join_table: :events_documents
+
   scope :connected_to_me, -> { joins('LEFT JOIN event_has_guests ON events.id = event_has_guests.event_id')
     .where("author_id = ? OR event_has_guests.guest_id = ?", User.current.id, User.current.id) }
 	scope :with_name, ->(name) { where("name LIKE ?", "%#{name}%") }

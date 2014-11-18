@@ -15,7 +15,7 @@ $(document).ready(function() {
   $('#canVisit').click(function(e){
     $.ajax({
       type: 'GET',
-      url: "/events/1.js",
+      url: e.target.getAttribute('data-url'),
       data: { 'can_visit' : e.target.getAttribute('data-visit') == 'true' },
       success: function() {
         var canVisit = $('#canVisit'),

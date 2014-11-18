@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require rails-timeago
 //= require locales/jquery.timeago.uk.js
 //= require locales/jquery.timeago.ru.js
