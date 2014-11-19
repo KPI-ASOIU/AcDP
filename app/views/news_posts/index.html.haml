@@ -45,4 +45,5 @@
           - news_post.tags.split(',').each do |tag|
             = link_to tag, tag_news_posts_path(tag)
           %p{ class: 'news-tree-content' }= raw HTML_Truncator.truncate(news_post.content, 60)
-  = paginate @news_posts
+  .ui.basic.segment
+    = paginate @news_posts

@@ -1,0 +1,10 @@
+<% if page.current? %>
+  <a class="ui button active" href="<%= url %>">
+  	<%= t('views.pagination.current') %>
+  	<%= page %>
+  </a>
+<% else %>
+  <a class="ui basic button" href="<%= url %>">
+    <%= page %>
+  </a>
+<% end %>
