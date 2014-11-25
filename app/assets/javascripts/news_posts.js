@@ -1,9 +1,4 @@
 $(document).ready(function(){
-  $.fn.wysihtml5.defaultOptions.locale = 'ua-UA';
-  $.fn.wysihtml5.defaultOptions.color = true;
-
-  $('#news_post_content').wysihtml5();
-
   $('#for_groups').prop('disabled', $('#news_post_for_roles').val() !== 'group').trigger("chosen:updated");
   $('#news_post_for_roles').change(function(){
       $('#for_groups').prop('disabled', $(this).val() !== 'group').trigger("chosen:updated");
@@ -11,10 +6,15 @@ $(document).ready(function(){
 
   $('#news_post_tags').select2({ tags: [] });
 
-  $(document).on('click', '#remove_news_post', function (e) {
+  $(document).on('click', '.btn_remove_news_post', function (e) {
     e.preventDefault();
-    $('.confirm_news_post_removal').modal('show');
+    $('#modal_confirm_remove_news_post').modal('show');
     $('#news_post_remove_path').attr('href', $(this).data('path'));
+  });
+
+  $(document).on("click", "#news-add-document-btn", function(e) {
+    e.preventDefault();
+    $('#modal_select_document').modal('show');    
   });
 
   if ($('#news-add-document-btn').length > 0) {

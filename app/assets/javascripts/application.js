@@ -28,12 +28,11 @@
 //= require jquery.remotipart
 //= require select2
 //= require select2_locale_uk
-//= require bootstrap-wysihtml5/b3
-//= require bootstrap-wysihtml5/locales/ua-UA
 //= require jstree
 //= require jquery.jscrollpane
 //= require jquery.mousewheel
 //= require websocket_rails/main
 //= require jquery.countdown.js 
-//= require jquery.countdown-uk.js 
+//= require jquery.countdown-uk.js
+//= require ckeditor/init
 //= require_tree .
