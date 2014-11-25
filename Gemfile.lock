@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/KPI-ASOIU/bootstrap-wysihtml5-rails.git
-  revision: 4bdc3facadab16c4ebd95ea743d86ff252c66615
-  specs:
-    bootstrap-wysihtml5-rails (0.3.1.24)
-      railties (>= 3.0)
-
-GIT
   remote: git://github.com/KPI-ASOIU/jstree-rails.git
   revision: 1a0b37a7fea16a1f25f62e7932e0a32ec8a13d02
   specs:
@@ -120,6 +113,9 @@ GEM
       railties (>= 3.0)
       sass-rails (>= 3.2)
     chunky_png (1.3.1)
+    ckeditor (4.1.0)
+      mime-types
+      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -340,7 +336,6 @@ DEPENDENCIES
   awesome_nested_fields
   better_errors
   binding_of_caller
-  bootstrap-wysihtml5-rails!
   bootstrap-x-editable-rails
   bootstrap3-datetimepicker-rails (~> 3.1.3)
   cancan
@@ -349,6 +344,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   chosen-rails
+  ckeditor
   devise
   factory_girl_rails (~> 4.0)
   foreman
