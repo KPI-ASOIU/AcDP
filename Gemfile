@@ -69,7 +69,7 @@ gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
-gem 'bootstrap-x-editable-rails'
+gem 'bootstrap-x-editable-rails' 
 gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
@@ -81,7 +81,6 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'jscrollpane-rails'
 gem 'jquery-mousewheel-rails'
 gem 'websocket-rails'
-gem 'bootstrap-wysihtml5-rails', :git => 'git://github.com/KPI-ASOIU/bootstrap-wysihtml5-rails.git'
 gem 'html_truncator', '~> 0.4.0'
 gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
 gem 'remotipart'
@@ -92,7 +91,7 @@ gem 'public_activity'
 gem 'squeel', :git => "git://github.com/activerecord-hackery/squeel.git"
 gem "polyamorous", :github => "activerecord-hackery/polyamorous" # squeel deps
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1" # squeel deps
-
+gem 'ckeditor'
 gem 'time_diff'
 gem 'jquery-countdown-rails'
 

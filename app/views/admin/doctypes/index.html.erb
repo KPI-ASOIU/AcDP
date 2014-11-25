@@ -12,35 +12,22 @@
 </div>
 
 <%= render 'new' %>
-
 <div class="ui attached segment">
-  <table class="ui striped collapsed table">
-    <thead>
-      <tr>
-        <th></th>
-        <th class="left aligned"><%= t('activerecord.attributes.doctype.title') %></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @doctypes.each do |doctype| %>
-        <tr>
-          <td>
-            <%= link_to '',:id => 'remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => 'confirm_doctype_removal' }, :class => "ui mini negative icon button" do %>
+  <div class="ui grid">
+    <% @doctypes.each do |doctype| %>
+      <div class="four wide column">
+        <div class="ui segment">
+          <span class="ui center aligned tiny header doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
+            <%= doctype.title%>
+          </span>
+          <%= link_to '',:id => 'remove_doctype', :data => { :path => admin_doctype_path(doctype), :toggle => 'modal', :target => 'confirm_doctype_removal' }, :class => "ui mini negative right floated icon button" do %>
             <i class="remove icon"></i>
-            <% end %>
-          </td>
-
-          <td class="left aligned">
-            <div class="doctype_edit" data-type="text" data-url="/admin/doctypes/<%=doctype.id%>" data-name="title" data-pk=<%= doctype.id %> >
-              <%= doctype.title%>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="ui basic segment">
-    <%= paginate @doctypes %>
+          <% end %>
+        </div>  
+      </div>
+    <% end %>
   </div>
+</div>
+<div class="ui basic segment">
+  <%= paginate @doctypes %>
 </div>

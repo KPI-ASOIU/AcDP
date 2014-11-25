@@ -36,7 +36,7 @@
                   %i{ class: 'edit icon' }
                   = t('util.edit')
                 %br
-                = link_to '', data: { :path => news_post_path(news_post), toggle: 'modal', target: 'confirm_news_post_removal' }, :id => 'remove_news_post', :class => 'ui mini negative labeled icon fluid button' do
+                = link_to '', data: { :path => news_post_path(news_post), toggle: 'modal', target: '#modal_confirm_remove_news_post' }, class: 'ui mini negative labeled icon fluid button btn_remove_news_post' do
                   %i{ class: 'remove icon' }
                   = t('util.destroy')
         .twelve.wide.column
