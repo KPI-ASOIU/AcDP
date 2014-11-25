@@ -22,19 +22,19 @@
     = f.select :status, options_for_select(Task::STATUS.map { |t| [translate_status(t), t]}, task.status), {}, { class: "chosen-select" }
   .field
     = f.label t('tasks.check_list')
-    = render partial: 'form_checklist', locals: { f: f } 
+    = render partial: 'form_checklist', locals: { f: f }
   .field
     = f.label t('tasks.executors')
     = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
   .field
     = f.label t('tasks.documents')
-    .ui.action.input
-      = text_field_tag :document, nil, :placeholder => t('tasks.documents') + '...'
-      .ui.teal.icon.button{ id: 'addDocumentToTask', placeholder: t('documents.add_doc') }
-        %i.upload.icon
+    .ui.labeled.fluid.basic.icon.button{ id: 'addDocumentToTask', placeholder: t('documents.add_doc') }
+      %i.upload.icon
+      = t('documents.pin')
   .inline.field.ui.buttons
     = link_to t('util.back'), :back, :class => "ui button"
     .or
     = f.submit :class => "ui positive submit button", :value => val
 
+= render partial: 'doc_task_upload_choice_modal'
 = render partial: 'doc_task_modal', locals: { modal_title: t('documents.document') }

@@ -24,12 +24,17 @@ $(document).ready(function() {
         }
     });
 
-    $("#documents_new_file").change(function() {
+    /**
+     * In new doc modal:
+     * when choose a file it's title is added
+     * to the appropriate text field
+     */
+    $("#newDocFile").change(function() {
         var fileName = $(this).val(),
-            docsAddTitle = $("#documents_new_doc_title");
+            title = $("#newDocTitle");
 
-        if (docsAddTitle.val() == '') {
-            $("#documents_new_doc_title").val(fileName.split('\\').pop());
+        if (title.val() == '') {
+            title.val(fileName.split('\\').pop());
         }
     });
 
@@ -137,6 +142,16 @@ $(document).ready(function() {
             $row.find('.docs-navbar-tool').attr('href', data.url);
             $('#attached-file-' + data.doc).html(data.title + ' <a class="btn btn-danger btn-xs attached-file" data-method="delete" data-remote="true" href="/documents/file/' + data.doc + '.json" rel="nofollow"><span class="glyphicon glyphicon-remove"></span></a>');
         }
+    });
+
+    $('#addFolder').on('click', function(e) {
+        e.preventDefault();
+        $('#addFolderForm').modal('show')
+    });
+
+    $('#addDocument').on('click', function(e) {
+        e.preventDefault();
+        $('#addDocForm').modal('show')
     });
 });
 

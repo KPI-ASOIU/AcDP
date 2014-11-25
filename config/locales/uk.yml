@@ -420,11 +420,16 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    uploading: Додання документу
+    upload_from: Звідки ви хочете завантажити новий документ?
+    pin: Прикріпити документ
+    all: Всі документи
     yours: Сховище
     shared: Спільні документи
     by_type: За типом
     recently_used: Недавні
     from_pc: Завантажити з ПК
+    from_warehouse: Завантажити зі сховища
     documents: Документи
     document: Документ
     files: Файли
@@ -458,7 +463,7 @@ uk:
     file_add_success: Документ додано
     add_folder: Додати папку
     adding_folder: Додання папки
-    enter_folder_title: Введіть назву папки.
+    enter_folder_title: Введіть назву папки
     folder_creation_success: Папка успішно створена
     docs_in_cur_dir: Документи та папки в поточній папці
     up_folder: Верхня папка

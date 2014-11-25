@@ -28,7 +28,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: default;
 }
 
 .docs-navbar-tool {
@@ -39,8 +38,8 @@
     padding: 15px 15px 15px 15px;
 }
 
-.docs-up-folder-btn {
-    float: right;
+.doc-icon {
+    width: 1.25% !important;
 }
 
 .button_to,
@@ -137,3 +136,7 @@ div.select-document-panel {
 
 }
 */
+
+.docs_download:hover {
+    cursor: pointer;
+}

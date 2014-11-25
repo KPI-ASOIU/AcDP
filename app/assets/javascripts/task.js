@@ -18,10 +18,15 @@ $(document).ready(function() {
 
     $('#addDocumentToTask').on('click', function(e) {
         e.preventDefault();
-        $('#addDocModal').modal('show')
+        $('#docTaskUploadChoice').modal('show');
     });
 
-    $('#docFromPC').on('click', function(e) {
+    $('#pinDocFromWarehouse').on('click', function(e) {
+        e.preventDefault();
+        $('#addDocModal').modal('show');
+    });
+
+    $('#pinDocFromPC').on('click', function(e) {
         e.preventDefault();
         $('#docFromPCInput').trigger('click');
     });
@@ -29,8 +34,15 @@ $(document).ready(function() {
     $('#docFromPCInput').on('change', function(e) {
         e.preventDefault();
         var control = e.target,
-            title = document.querySelector('#taskDoc #title');
-        title.value = control.files[0].name
+            title = document.querySelector('#taskDoc #title'),
+            description = document.querySelector('#taskDoc #description'),
+            today = new Date();
+        title.value = control.files[0].name;
+        title.setAttribute('data-value', control.files[0].name)
+        description.setAttribute('data-value', 'Added ' +
+            today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear());
+        $('#taskDoc').submit()
+        $('#docTaskUploadChoice').modal('hide')
     })
 
     $("#extendSearch i.icon.remove").click(function() {
