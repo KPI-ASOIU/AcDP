@@ -12,8 +12,8 @@
       .two.wide.column
         = f.label :title
       .fourteen.wide.column
-        .ui.input
-          = f.text_field :title, :placeholder => t('news.ph_title'), :class => 'ui input'
+        .ui.form.field.input
+          = f.text_field :title, :placeholder => t('news.ph_title')
       .two.wide.column
         = f.label :content
       .fourteen.wide.column
@@ -21,8 +21,7 @@
       .two.wide.column
         = f.label :tags, :class=>'form-label'
       .fourteen.wide.column
-        .ui.input
-          = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'ui fluid input'
+        = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'ui fluid input tag-input'
       .two.wide.column
         = label_tag :icon, t('activerecord.attributes.news_post.icon'), :class=>''
       .fourteen.wide.column
@@ -33,12 +32,12 @@
       .two.wide.column
         = f.label :for_roles, :class=>''
       .fourteen.wide.column
-        .ui.dropdown
-          = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'ui selection dropdown' }
-      .two.wide.column
-        = f.label :for_groups
-      .fourteen.wide.column
-        = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
+        = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'ui selection dropdown' }
+      .row.for_groups
+        .two.wide.column
+          = f.label :for_groups
+        .fourteen.wide.column
+          = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
       .two.wide.column
         = label_tag :documents, t('news.attached_docs'), :class=>''
       .fourteen.wide.column
@@ -56,4 +55,3 @@
       %i{ class: 'bullhorn icon' }
       = t('news.publish')
     = link_to t('util.back'), news_posts_path, :class => 'ui negative right floated button'
-

@@ -97,3 +97,7 @@ div.btn-group btn.active, btn:active {
     max-width: 90%;
     margin: 0 auto 50px auto;
 }
+
+.tag-input {
+    min-width: 180px;
+}
