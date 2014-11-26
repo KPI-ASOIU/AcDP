@@ -1,10 +1,12 @@
 $(document).ready(function(){
-  $('#for_groups').prop('disabled', $('#news_post_for_roles').val() !== 'group').trigger("chosen:updated");
+  if($('#news_post_for_roles').val() !== 'group')
+    $('.for_groups').transition('slide down');
   $('#news_post_for_roles').change(function(){
-      $('#for_groups').prop('disabled', $(this).val() !== 'group').trigger("chosen:updated");
+    if($('#news_post_for_roles').val() == 'group' || $('.for_groups').transition('is visible'))
+      $('.for_groups').transition('slide down');   
   });
 
-  $('#news_post_tags').select2({ tags: [] });
+  $('.tag-input').select2({tags:[]});
 
   $(document).on('click', '.btn_remove_news_post', function (e) {
     e.preventDefault();
