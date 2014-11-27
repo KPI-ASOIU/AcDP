@@ -10,10 +10,6 @@ class Document < ActiveRecord::Base
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
   has_one :file_info, class_name: 'FileInfo', foreign_key: 'document_id', :dependent => :destroy
 
-  has_and_belongs_to_many :tasks, join_table: :tasks_documents
-  has_and_belongs_to_many :events, join_table: :events_documents
-  has_and_belongs_to_many :conversations, join_table: :conversations_documents
-
   validates :description, length: { maximum: 256 }
   validates :tags, length: { maximum: 256 }
 

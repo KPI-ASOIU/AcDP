@@ -1,27 +1,30 @@
-<div class="ui blue segment">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t('contacts.list') %>
+  </div>
+  <div class="panel-body">
     <strong>
       <%= t('contacts.count', count: current_user.contacts.size ) %>
     </strong>
-    <div class="ui list">
+    <hr>
+    <ul class="list-group contacts-list">
       <% @contacts.each do |user| %>
-        <div class="ui divider"></div>
-        <div class="item">
-          <div class="ui right floated">
-            <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
-            <br>
-            <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
+        <li class="list-group-item contacts-list-item">
+          <div class="media">
+            <%= link_to user_path(user), class: 'pull-left' do %>
+              <%= image_tag user.avatar.url("medium"), :class => "thumbnail media-object contact-avatar c-user-medium-avatar" %>
+            <% end %>
+            <div class="media-body">
+              <div class="pull-right" style="width: 250px">
+                <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
+                <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
+              </div>
+              <h4 class="media-heading contact-fullname"><%= user.full_name %></h4>
+            </div>
           </div>
-          <a href="<%=user_path(user)%>" class="ui small image">
-            <img src="<%=user.avatar.url("medium")%>">
-          </a>
-          
-          <div class="content">
-            <div class="header"> <%= user.full_name %></div>
-          </div>
-        </div>
+        </li>
       <% end %>
-    </div>
-    <div class="ui basic segment">
-      <%= paginate @contacts %>
-    </div>
+    </ul>
+    <%= paginate @contacts %>
+  </div>
 </div>

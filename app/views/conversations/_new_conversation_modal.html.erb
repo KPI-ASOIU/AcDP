@@ -1,21 +1,16 @@
-<div class="ui modal" id="conversationOpen">
-  <i class="close icon"></i>
-  <div class="header"><%= modal_title %></div>
-  <div id="content" class="content">
-    <%= form_for conversation, method: :post, html: { class: 'ui fluid form segment' } do |f| %>
-      <div class="field">
-        <%= f.label t('messages.subject') %>
-        <%= f.text_field :subject %>
-      </div>
-      <div class="field">
-        <%= f.label t('messages.receivers') %>
-        <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }, receiver_ids), { class: "chosen-select", multiple: true, include_blank: true } %>  
-      </div>
-      <div class="field">
-        <%= f.label t('messages.message') %>
-        <%= text_area "message", :body %>
-      </div>
-      <%= f.submit class: "ui positive button", value: t('messages.send') %>
-    <% end %>    
+<%= form_for conversation, method: :post do |f| %>
+  <div id="conversation-open-<%= receiver_ids.join('-') %>" class="modal in fade panel-primary common-modal conv-message-center new-conversation-modal">
+    <div class="panel-heading">
+      <h4 class="modal-title"><%= modal_title %></h4>
+    </div>
+    <div class="modal-body">
+      <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }, receiver_ids), { class: "chosen-select", multiple: true, include_blank: true } %>
+      <p><%= f.text_field :subject, placeholder: t('messages.subject'), class: 'form-control' %></p>
+      <p><%= text_area "message", :body, placeholder: t('messages.message'), class: 'form-control message-contents' %></p>
+    </div>
+    <div class="modal-footer common-modal-footer">
+      <a data-dismiss="modal" class="btn btn-default"><%= t('util.close') %></a>
+      <%= f.submit class: "btn btn-success", value: t('messages.send') %>
+    </div>
   </div>
-</div>
+<% end %>

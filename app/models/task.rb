@@ -8,9 +8,6 @@ class Task < ActiveRecord::Base
 	    association_foreign_key: :executor_id
 
   has_many :checklists, -> { order 'created_at' }
-  
-  has_and_belongs_to_many :documents, join_table: :tasks_documents
-
   accepts_nested_attributes_for :checklists, allow_destroy: true
 
   STATUS = ['Active'.freeze, 'Frozen'.freeze, 'Done'.freeze, 'Undone'.freeze]

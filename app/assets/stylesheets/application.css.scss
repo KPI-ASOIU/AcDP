@@ -16,17 +16,12 @@
 @import "users";
 @import "admin/doctypes";
 @import "admin/groups";
-@import "datetimepicker";
 @import "semantic-ui";
-@import "comments";
+@import "groups";
 
 
 body {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-
-a {
-  text-decoration: none;
+  font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 .sign-in-form {
@@ -66,10 +61,6 @@ a {
 
 .text-color-grey{
   color: grey;
-}
-
-.hidden {
-  display: none;
 }
 
 /* JScrollPane settings */
@@ -128,9 +119,4 @@ a {
   .collapsing {
     overflow: hidden !important;
   }
-}
-
-/* Semantic UI fixes */
-.ui.buttons .or:before {
-  content: "чи" !important;
 }

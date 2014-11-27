@@ -1,64 +1,75 @@
-<%= form_tag tasks_path, :method => 'get', remote: true, id: 'extendSearch', class: 'ui fluid form segment' do %>
+<%= form_tag tasks_path, :method => 'get', remote: true, id: 'extendSearch' do %>
   <%= hidden_field_tag :search, "true" %>
-  <div class="four fields">
-    <div class="field">
-      <%= t('tasks.author') %>:
+  <div class="col-md-3">
+    <%= t('tasks.author') %>:
+    <div>
       <%= select_tag :author, options_for_select(
         [[t('util.I'), current_user.id], 
         [t('util.not_I'), tasks_not_authored_by_me]].concat(all_authors_of_my_tasks)), 
         { class: "chosen-select", multiple: true, include_blank: true } %>
+      <span class="searchclear glyphicon glyphicon-remove"></span>
     </div>
-    <div class="field">
-      <%= t('tasks.executors') %>:
+  </div>
+  <div class="col-md-3">
+    <%= t('tasks.executors') %>:
+    <div>
       <%= select_tag :executor, options_for_select(
         [[t('util.I'), current_user.id], 
         [t('util.not_I'), tasks_not_executed_by_me]].concat(all_executors)),
         { class: "chosen-select", multiple: true, include_blank: true } %>
+      <span class="searchclear glyphicon glyphicon-remove"></span>
     </div>
-    <div class="field">
-      <%= t('tasks.name') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :name, nil, class: "form-control" %>
-        <i class="icon remove"></i>
-      </div>
+  </div>
+  <div class="col-md-3">
+    <%= t('tasks.name') %>:
+    <div>
+      <%= text_field_tag :name, nil, class: "form-control" %>
+      <span class="searchclear glyphicon glyphicon-remove clear-name"></span>
     </div>
-    <div class="field">
-      <%= t('tasks.status') %>:
+  </div>
+  <div class="col-md-3">
+    <%= t('tasks.status') %>:
+    <div>
       <%= select_tag :status, options_for_select(Task::STATUS.map { |s| [translate_status(s), s] }), { class: "chosen-select", multiple: true, include_blank: true } %>
+      <span class="searchclear glyphicon glyphicon-remove"></span>
     </div>
   </div>
-  <div class="four fields">
-    <div class="field">
-      <%= t('tasks.executed_from') %>:
-      <div class="ui small icon input">
+  <div class="col-md-6">
+    <%= t('tasks.end_date') %>:
+    <div class='input-group'>
+      <span class="input-group-addon">
+        <%= t('util.from') %>
+      </span>
+      <div>
         <%= text_field_tag :exec_start_date, nil, class: "form-control date", id: "startDate" %>
-        <i class="icon remove clear-date first"></i>
+        <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
       </div>
-    </div>
-    <div class="field">
-      <%= t('tasks.executed_to') %>:
-      <div class="ui icon input">
+      <span class="input-group-addon">
+        <%= t('util.to') %>
+      </span>
+      <div>
         <%= text_field_tag :exec_end_date, nil, class: "form-control date", id: "endDate" %>
-        <i class="icon remove clear-date"></i>
-      </div>        
-    </div>
-    <div class="field">
-      <%= t('tasks.created_from') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :creation_start_date, nil, class: "form-control date", id: "creationStartDate" %>
-        <i class="icon remove clear-date first"></i>
-      </div>        
-    </div>
-    <div class="field">
-      <%= t('tasks.created_to') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :creation_end_date, nil, class: "form-control date", id: "creationEndDate" %>
-        <i class="icon remove clear-date"></i>
+        <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
       </div>
     </div>
   </div>
-  <div id="searchBtn" class="ui blue labeled icon submit button">
-    <i class="search icon"></i>
-    <%= t('util.search') %>
+  <div class="col-md-6">
+    <%= t('tasks.creation_date') %>:
+    <div class='input-group'>
+      <span class="input-group-addon">
+        <%= t('util.from') %>
+      </span>
+      <div>
+        <%= text_field_tag :creation_start_date, nil, class: "form-control date", id: "creationStartDate" %>
+        <span class="searchclear glyphicon glyphicon-remove clear-date first"></span>
+      </div>
+      <span class="input-group-addon">
+        <%= t('util.to') %>
+      </span>
+      <div>
+        <%= text_field_tag :creation_end_date, nil, class: "form-control date", id: "creationEndDate" %>
+        <span class="searchclear glyphicon glyphicon-remove clear-date"></span>
+      </div>
+    </div>
   </div>
 <% end %>

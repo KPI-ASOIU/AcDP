@@ -1,18 +1,18 @@
-$("table#events").empty()
+$("table.tasks").empty()
 <% if @events.any? %>
-	$("table#events").append(
+	$("table.tasks").append(
 		"<%= escape_javascript(render partial: 'search_header', locals: { events: @events }) %> \
 		 <tbody> \
 			<%= escape_javascript(render partial: 'search_results', locals: { events: @events }) %> \
 		 </tbody>");
 <% else %>
-	$('table#events').append(
-		"<div class='ui info message'> \
+	$('table.tasks').append(
+		"<div class='text-center top-paddings-fix'> \
 			<%= t('events.no_search_result') %> \
 		 </div>")
 <% end %>
 
 $("tr[data-link]").on("click", function(e) {
-	e.preventDefault();
+	e.stopPropagation();
 	window.location = this.getAttribute("data-link");
 });

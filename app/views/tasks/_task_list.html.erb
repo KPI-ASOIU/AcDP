@@ -1,10 +1,4 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= t('activerecord.models.tasks') %>
-    <%= link_to new_task_path, class: "pull-right text-white", title: I18n.t('util.add_new_task') do %>
-      <span class='glyphicon glyphicon-plus'></span>
-    <% end %>
-  </div>
+
   <% if not tasks.empty? %>
     <table class="tasks table table-hover table-verticle-centered">
       <%= render partial: 'tasks/search_header_calendar', locals: { tasks: tasks } %>

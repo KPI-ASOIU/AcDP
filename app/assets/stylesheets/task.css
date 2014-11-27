@@ -42,24 +42,20 @@ a.text-white {
 }
 
 .searchclear {
-  position: absolute;
-  right: 22px;
-  top: 29px;
-  bottom: 0;
-  margin: auto;
-  font-size: 14px;
-  cursor: pointer;
-  color: #ccc;
+    position: absolute;
+    right: 22px;
+    top: 29px;
+    bottom: 0;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ccc;
 }
 
 .clear-date {
 	right: 7px;
 	top: 10px;
 	z-index: 10;
-}
-
-.task-info-area {
-  width: 49%;
 }
 
 .clear-date.first {
@@ -79,6 +75,58 @@ a.text-white {
 	max-width: 345px;
 }
 
+/* Comments */
+#comments .popover {
+	position: relative;
+	max-width: 410px;
+	width: 100%;
+	display: block;
+	margin: 15px 15px 15px 80px;
+}
+
+#comments .popover time {
+	margin-top: -9px;
+}
+
+#comments img {
+	margin-top: 11px;
+}
+
+.clear-comment {
+	top: 10px;
+	right: 10px;
+	margin: 0;
+	height: 16px;
+}
+
+.clear-comment:hover {
+	color: #999;
+}
+
+.new-comment {
+	resize: none;
+}
+
+.comments-form {
+	height: 400px;
+	margin: 0 auto;
+	overflow: auto;
+	outline: 0;
+	width: 100%;
+}
+
+.task-info-area {
+	width: 49%;
+}
+
+.comments-area {
+	width: 49%;
+}
+
+.comments-title {
+	width: 89%;
+}
+
 .fix-in-border {
 	margin: 1% 0 0 3%;
 }
@@ -96,43 +144,18 @@ a.text-white {
 	-webkit-user-select: none;
 }
 
+#extSearch:hover {
+	cursor: pointer
+}
+
+#searchBtn {
+	margin-right: 15px;
+	margin-top: -30px;
+}
+
 .input-group input.form-control {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-}
-
-.card-avatars, .card-subtasks {
-	margin-top: 15px !important;
-	margin-bottom: 15px !important;
-}
-
-div.subtask {
-	margin-bottom: 5px;
-}
-
-div.subtask input[type='checkbox'] {
-	cursor: pointer;
-}
-
-div.subtask .button {
-	text-align: center;
-	width: 2%;
-}
-
-div.ui.progress {
-	margin-bottom: 15px;
-}
-
-div.ui.progress .bar {
-	text-align: right;
-}
-
-tr[data-link] {
-	cursor: pointer;
-}
-
-.task-form, .event-form {
-	width: 50%;
 }

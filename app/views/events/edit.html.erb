@@ -1,3 +1,8 @@
-<div class="panel-narrow">
-  <%= render partial: 'form', locals: { event: @event, val: t('util.edit_event'), header: t('util.edit_event') } %>
+<div class='panel panel-primary panel-narrow'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>
+      <%= t('util.edit_event') %>
+    </h3>
+  </div>
+	<%= render partial: 'form', locals: { event: @event, val: t('util.edit_event') } %>
 </div>

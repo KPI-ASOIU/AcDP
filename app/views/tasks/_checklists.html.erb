@@ -1,4 +1,4 @@
-<%= form_tag task_path, id: 'subTasks', class: 'card-subtasks' do %>
+<%= form_tag task_path, id: 'subTasks' do %>
 	<% @task.checklists.each_with_index do |c, i| %>
 	  <div>
 	    <%= check_box_tag 'done' << i.to_s, 1, c.done, 

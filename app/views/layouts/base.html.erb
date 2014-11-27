@@ -16,8 +16,12 @@
   </head>
   <body>
     <%= render partial: "shared/header", flash: flash %>
-    <%= render partial: "shared/flash_messages", flash: flash %>
-    <%= yield %>
+    <div class="ui one column grid">
+      <div class="column">
+        <%= render partial: "shared/flash_messages", flash: flash %>
+        <%= yield %>
+      </div>
+    </div>
     <%= javascript_include_tag "application"%>
     <%= content_for :javascript %>
     <%= timeago_script_tag %>
