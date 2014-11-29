@@ -1,7 +1,3 @@
-.comment a.author {
-  color: #009fda !important;
-}
-
 .ui.reply.form > .new-comment {
   height: 3em !important;
   resize: none; 

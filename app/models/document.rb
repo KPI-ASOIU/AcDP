@@ -18,6 +18,11 @@ class Document < ActiveRecord::Base
   validates :tags, length: { maximum: 256 }
 
   scope :with_matched_field, ->(value, field) {fields=field.split(" "); where(Document.arel_table[fields[0]].matches('%' + value + '%')) || where(Document.arel_table[fields[1]].matches('%' + value + '%')) }
+  scope :match_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
+  scope :match_description, ->(desc) { where("description ILIKE ?", "%#{desc}%") }
+  scope :match_title_or_nil, ->(title) { where("title ILIKE ? OR title IS NULL", "%#{title}%") }
+  scope :match_description_or_nil, ->(desc) { where("description ILIKE ? OR description IS NULL", "%#{desc}%") }
+
 
   def save_with_file(file)
     begin
@@ -35,6 +40,18 @@ class Document < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    { id: id, text: title, children: doc_type == 0, icon: doc_type == 0 ? 'jstree-folder' : 'jstree-file' }
+    { id: id, text: title, description: description, children: doc_type == 0, type: doc_type == 0 ? 'folder' : 'file' }
+  end
+
+  def parent
+    Document.find_by(id: self.parent_directory)
+  end
+
+  def path_from_root
+    path, parent_folder = [self], self
+    until (parent_folder = parent_folder.parent).nil? do
+      path.insert(0, parent_folder)
+    end
+    path
   end
 end

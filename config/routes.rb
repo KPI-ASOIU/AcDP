@@ -18,6 +18,7 @@ AcDP::Application.routes.draw do
 
   get 'documents/tree/:docdir/:type', to: 'documents#jstree'
 
+  get 'documents/search' => 'documents#search', as: 'doc_search'
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
   get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'

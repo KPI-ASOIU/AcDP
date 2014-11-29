@@ -226,4 +226,14 @@ class DocumentsController < ApplicationController
       format.json { render json: { status: stat, doc: doc ? doc.id : 0, title: doc.file_info.file_file_name, url: doc.file_info.file.url(:original, false) } }
     end
   end
+
+  def search
+    title = params[:title]
+    description = params[:description]
+    # @docs = current_user.documents.match_title_or_nil(title)
+    #   .with_description(description).all
+    @docs = Document.match_title_or_nil(title)
+      .match_description_or_nil(description).all
+    puts @docs
+  end
 end

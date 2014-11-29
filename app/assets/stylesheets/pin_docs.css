@@ -1,0 +1,9 @@
+div#docSearchResults {
+  max-height: 200px !important;
+  overflow: auto !important;
+}
+
+div#docSearchResults div.item {
+  min-height: 150px;
+  max-width: 250px;
+}

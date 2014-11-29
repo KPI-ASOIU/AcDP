@@ -24,12 +24,17 @@ $(document).ready(function() {
         }
     });
 
-    $("#documents_new_file").change(function() {
+    /**
+     * In new doc modal:
+     * when choose a file it's title is added
+     * to the appropriate text field
+     */
+    $("#newDocFile").change(function() {
         var fileName = $(this).val(),
-            docsAddTitle = $("#documents_new_doc_title");
+            title = $("#newDocTitle");
 
-        if (docsAddTitle.val() == '') {
-            $("#documents_new_doc_title").val(fileName.split('\\').pop());
+        if (title.val() == '') {
+            title.val(fileName.split('\\').pop());
         }
     });
 
@@ -138,6 +143,16 @@ $(document).ready(function() {
             $('#attached-file-' + data.doc).html(data.title + ' <a class="btn btn-danger btn-xs attached-file" data-method="delete" data-remote="true" href="/documents/file/' + data.doc + '.json" rel="nofollow"><span class="glyphicon glyphicon-remove"></span></a>');
         }
     });
+
+    $('#addFolder').on('click', function(e) {
+        e.preventDefault();
+        $('#addFolderForm').modal('show')
+    });
+
+    $('#addDocument').on('click', function(e) {
+        e.preventDefault();
+        $('#addDocForm').modal('show')
+    });
 });
 
 function initDocsTree(docdir, type, multiple) {
@@ -145,6 +160,8 @@ function initDocsTree(docdir, type, multiple) {
     if (docs_list.length) {
         docs_list.jstree({
             core: {
+                animation: 0,
+                check_callback: true,
                 multiple: multiple,
                 data: {
                     url: function(node) {
@@ -157,7 +174,17 @@ function initDocsTree(docdir, type, multiple) {
                     }
                 }
             },
-            plugins: multiple ? ['wholerow', 'checkbox'] : ['wholerow']
+            "types": {
+                "folder": {
+                    "icon": "folder icon",
+                    "valid_children": ["folder", "file"]
+                },
+                "file": {
+                    "icon": "file icon",
+                    "valid_children": []
+                }
+            },
+            plugins: multiple ? ['wholerow', 'checkbox', 'types'] : ['wholerow', 'types']
         });
 
         docs_list.on("loaded.jstree", function(event, data) {

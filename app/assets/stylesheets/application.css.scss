@@ -1,6 +1,6 @@
 @import "chosen";
 @import "select2";
-@import "jstree-themes/default/style";
+// @import "jstree-themes/default/style";
 @import "jscrollpane";
 @import "activity";
 @import "calendar";
@@ -19,6 +19,7 @@
 @import "datetimepicker";
 @import "semantic-ui";
 @import "comments";
+@import "pin_docs";
 
 
 body {
@@ -26,6 +27,7 @@ body {
 }
 
 a {
+  color: #009fda;
   text-decoration: none;
 }
 
@@ -133,4 +135,11 @@ a {
 /* Semantic UI fixes */
 .ui.buttons .or:before {
   content: "чи" !important;
+}
+
+/* Animations */
+div {
+  -webkit-transition: all 0.6s; /* For Safari 3.1 to 6.0 */
+  -moz-transition: all 0.6s;
+  transition: all 0.6s; 
 }
