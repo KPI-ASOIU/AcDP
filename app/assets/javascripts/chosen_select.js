@@ -14,7 +14,7 @@ $(document).ready(function() {
 
     $('#for_groups.chosen-select').chosen({
         placeholder_text_multiple: " ",
-        no_results_text: I18n.news.group_chosen_no_result %> ,
+        no_results_text: I18n.news.group_chosen_no_result,
         width: '100%'
     });
 

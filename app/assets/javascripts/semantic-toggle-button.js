@@ -21,8 +21,8 @@ semantic.button.ready = function() {
     $toggle
         .state({
             text: {
-                inactive: I18n.t('events.cannot_visit'),
-                active: I18n.t('events.can_visit')
+                inactive: I18n.events.cannot_visit,
+                active: I18n.events.can_visit
             }
         });
 };

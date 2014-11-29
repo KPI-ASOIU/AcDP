@@ -23,6 +23,9 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                         description = document.createElement('p'),
                         desc = document.createTextNode(data[res].description === null ? I18n.documents.no_description : data[res].description),
                         type = document.createElement('i');
+                        selectLabel = document.createElement('a'),
+                        selectIcon = document.createElement('i');
+
                     item.setAttribute('class', 'item');
                     content.setAttribute('class', 'content');
                     name.setAttribute('class', 'name');
@@ -33,6 +36,10 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                     content.appendChild(type);
                     content.appendChild(name);
                     content.appendChild(description);
+                    selectLabel.setAttribute('class', 'star ui corner label');
+                    selectIcon.setAttribute('class', 'star icon');
+                    selectLabel.appendChild(selectIcon);
+                    item.appendChild(selectLabel);
                     item.appendChild(content);
                     results.appendChild(item);
                 }
