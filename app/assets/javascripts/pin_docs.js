@@ -23,8 +23,8 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                         description = document.createElement('p'),
                         desc = document.createTextNode(data[res].description === null ? I18n.documents.no_description : data[res].description),
                         type = document.createElement('i');
-                        selectLabel = document.createElement('a'),
-                        selectIcon = document.createElement('i');
+                    selectLabel = document.createElement('a'),
+                    selectIcon = document.createElement('i');
 
                     item.setAttribute('class', 'item');
                     content.setAttribute('class', 'content');
@@ -36,12 +36,25 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                     content.appendChild(type);
                     content.appendChild(name);
                     content.appendChild(description);
-                    selectLabel.setAttribute('class', 'star ui corner label');
-                    selectIcon.setAttribute('class', 'star icon');
+                    selectLabel.setAttribute('class', 'ui blue corner label');
+                    selectIcon.setAttribute('class', 'add icon');
                     selectLabel.appendChild(selectIcon);
                     item.appendChild(selectLabel);
                     item.appendChild(content);
                     results.appendChild(item);
+
+                    selectLabel.addEventListener('click', function(e) {
+                        var item = $(e.target).closest('div.item'),
+                            label = item.find('.label'),
+                            icon = label.find('.icon'),
+                            itemBgColor = item.css('background-color') == "rgb(255, 255, 255)" ? "#6ecff5" : "#ffffff",
+                            labelClass = (/red/.test(label.attr('class')) ? "blue" : "red") + " ui corner label",
+                            iconClass = (/add/.test(icon.attr('class')) ? "remove" : "add") + " icon";
+
+                        item.css('background-color', itemBgColor);
+                        label.attr('class', labelClass);
+                        icon.attr('class', iconClass);
+                    }, false);
                 }
                 $('#addDocModal').modal('refresh');
             },
