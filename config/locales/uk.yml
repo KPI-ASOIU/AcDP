@@ -422,6 +422,8 @@ uk:
   calendar: Календар
   documents:
     uploading: Додання документу
+    no_title: Немає назви
+    no_description: Немає опису
     upload_from: Звідки ви хочете завантажити новий документ?
     pin: Прикріпити документ
     all: Всі документи

@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/KPI-ASOIU/jstree-rails.git
-  revision: 1a0b37a7fea16a1f25f62e7932e0a32ec8a13d02
-  specs:
-    jstree-rails (1.0.0)
-      rails (>= 3.2)
-
-GIT
   remote: git://github.com/activerecord-hackery/polyamorous.git
   revision: d41fc35b4fc396307e2ff2e9b10f3b574fc5fbe4
   specs:
@@ -48,6 +41,12 @@ GIT
   specs:
     semantic-ui-sass (0.19.3.0)
       sass (~> 3.2)
+
+PATH
+  remote: /home/dmitriy/jstree-rails
+  specs:
+    jstree-rails (1.0.0)
+      rails (>= 3.2)
 
 GEM
   remote: https://rubygems.org/

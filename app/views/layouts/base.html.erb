@@ -21,5 +21,8 @@
     <%= javascript_include_tag "application"%>
     <%= content_for :javascript %>
     <%= timeago_script_tag %>
+    <script type="text/javascript">
+      window.I18n = <%= I18n.backend.send(:translations)[I18n.locale].to_json.html_safe %>
+    </script>
   </body>
 </html>

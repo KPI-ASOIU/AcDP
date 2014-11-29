@@ -1,0 +1,16 @@
+#addDocModal.ui.modal
+  %i.close.icon
+  .header
+    = modal_title
+  #content.content
+    = form_for :document, method: :get, remote: true, html: { class: 'ui fluid form segment', id: 'searchDocForm', data: { 'search-url' => doc_search_path(format: :json) } } do |f|
+      .field
+        = f.label t('documents.title')
+        = f.text_field :title, id: 'title', data: { id: 'docSearch' }
+      .field
+        = f.label t('documents.description')
+        = f.text_field :description, id: 'description', data: { id: 'docSearch' }
+      = f.submit class: "ui positive button", value: t('documents.pin')
+    #docSearchResults.ui.items
+      &nbsp;
+      

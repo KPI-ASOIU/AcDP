@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     $('#taskSearch .chosen-select').chosen({
         placeholder_text_multiple: " ",
-        no_results_text: "<%= I18n.t('util.chosen_no_result') %>",
+        no_results_text: I18n.util.chosen_no_result,
         width: '100%'
     });
 

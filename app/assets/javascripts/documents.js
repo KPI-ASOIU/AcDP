@@ -160,6 +160,8 @@ function initDocsTree(docdir, type, multiple) {
     if (docs_list.length) {
         docs_list.jstree({
             core: {
+                animation: 0,
+                check_callback: true,
                 multiple: multiple,
                 data: {
                     url: function(node) {
@@ -172,7 +174,17 @@ function initDocsTree(docdir, type, multiple) {
                     }
                 }
             },
-            plugins: multiple ? ['wholerow', 'checkbox'] : ['wholerow']
+            "types": {
+                "folder": {
+                    "icon": "folder icon",
+                    "valid_children": ["folder", "file"]
+                },
+                "file": {
+                    "icon": "file icon",
+                    "valid_children": []
+                }
+            },
+            plugins: multiple ? ['wholerow', 'checkbox', 'types'] : ['wholerow', 'types']
         });
 
         docs_list.on("loaded.jstree", function(event, data) {
