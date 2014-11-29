@@ -82,9 +82,9 @@ gem 'jscrollpane-rails'
 gem 'jquery-mousewheel-rails'
 gem 'websocket-rails'
 gem 'html_truncator', '~> 0.4.0'
-# gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
+gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
 # gem 'jstree-rails', :git => 'git://github.com/apricis/jstree-rails.git'
-gem 'jstree-rails', :path => "/home/dmitriy/jstree-rails"
+# gem 'jstree-rails', :path => "/home/dmitriy/jstree-rails"
 gem 'remotipart'
 gem 'public_activity'
 
