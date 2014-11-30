@@ -3,14 +3,13 @@
   .header
     = modal_title
   #content.content
-    = form_for :document, method: :get, remote: true, html: { class: 'ui fluid form segment', id: 'searchDocForm', data: { 'search-url' => doc_search_path(format: :json) } } do |f|
+    #searchDocForm.ui.fluid.form.segment{data: { 'search-url' => doc_search_path(format: :json) }}
       .field
-        = f.label t('documents.title')
-        = f.text_field :title, id: 'title', data: { id: 'docSearch' }
+        = label_tag t('documents.title')
+        = text_field_tag '', '', id: 'title', data: { id: 'docSearch' }
       .field
-        = f.label t('documents.description')
-        = f.text_field :description, id: 'description', data: { id: 'docSearch' }
-      = f.submit class: "ui positive button", value: t('documents.pin')
+        = label_tag t('documents.description')
+        = text_field_tag '', '', id: 'description', data: { id: 'docSearch' }
+      = button_tag t('documents.pin'), id: "pinDocs", class: "ui positive button"
     #docSearchResults.ui.items
-      &nbsp;
       

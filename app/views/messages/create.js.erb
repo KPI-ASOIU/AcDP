@@ -1,5 +1,8 @@
-$("<%= escape_javascript(render partial: @message) %>").appendTo("#conversation #messages");
-$("time[data-time-ago]").timeago();
 $("#dialogBox").val('');
-dialog_box = $("#conversation")
-dialog_box.scrollTop(dialog_box[0].scrollHeight);
+
+var message = {
+  html: '<%= escape_javascript(render partial: @message) %>',
+  id: '<%= @message.id %>'
+}
+console.log(dispatcher)
+dispatcher.trigger('messages.broadcast_new', message);
