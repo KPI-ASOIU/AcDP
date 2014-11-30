@@ -36,3 +36,7 @@
 //= require jquery.countdown-uk.js
 //= require ckeditor/init
 //= require_tree .
+
+(function() {
+    window.dispatcher = new WebSocketRails(window.location.host + '/websocket');
+}());

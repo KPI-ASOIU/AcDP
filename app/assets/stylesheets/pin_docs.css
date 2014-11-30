@@ -7,3 +7,12 @@ div#docSearchResults div.item {
   min-height: 150px;
   max-width: 250px;
 }
+
+#pinnedDocs {
+  margin-bottom: 10px;
+}
+
+#pinnedDocs .ui.label {
+  margin: 0;
+  margin-right: 0.25em;
+}

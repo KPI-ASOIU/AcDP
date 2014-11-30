@@ -1,6 +1,3 @@
-# TODO
-# => messages aren't really instant - we must fix it
-
 class MessagesController < ApplicationController
   before_action :load_conversation, only: [:index, :create]
 

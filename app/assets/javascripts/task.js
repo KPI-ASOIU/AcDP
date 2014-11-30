@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     $('#addDocumentToTask').on('click', function(e) {
         e.preventDefault();
-        $('#docTaskUploadChoice').modal('show');
+        $('#docUploadChoice').modal('show');
     });
 
     $('#pinDocFromWarehouse').on('click', function(e) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
         description.setAttribute('data-value', 'Added ' +
             today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear());
         $('#taskDoc').submit()
-        $('#docTaskUploadChoice').modal('hide')
+        $('#docUploadChoice').modal('hide')
     })
 
     $("#extendSearch i.icon.remove").click(function() {

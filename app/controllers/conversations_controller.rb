@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
     @conversation.messages.build({ body: params[:message][:body], author: current_user })
 
     if @conversation.save
-      redirect_to "/conversations", notice: t('messages.notice.send')
+      redirect_to conversations_path, notice: t('messages.notice.send')
     else
       handle_errors
       @conversation.destroy

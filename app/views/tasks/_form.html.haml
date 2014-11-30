@@ -28,7 +28,10 @@
     = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
   .field
     = f.label t('tasks.documents')
-    .ui.labeled.fluid.basic.icon.button{ id: 'addDocumentToTask', placeholder: t('documents.add_doc') }
+    #pinnedDocs
+      - if task.documents.any?
+        = task.documents.each {|doc| render partial: 'documents_pin/pinned_doc', locals: { title: doc.title}}
+    .ui.basic.fluid.labeled.icon.button{ id: 'addDocumentToTask', placeholder: t('documents.add_doc') }
       %i.upload.icon
       = t('documents.pin')
   .inline.field.ui.buttons
@@ -37,4 +40,4 @@
     = f.submit :class => "ui positive submit button", :value => val
 
 = render partial: 'documents_pin/pin_doc_upload_choice_modal'
-= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.select_doc') }
+= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs') }
