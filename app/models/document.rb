@@ -24,12 +24,14 @@ class Document < ActiveRecord::Base
   scope :match_description_or_nil, ->(desc) { where("description ILIKE ? OR description IS NULL", "%#{desc}%") }
 
 
-  def save_with_file(file)
+  def save_with_file(file,owner_access)
     begin
       transaction do
           self.save!
           file.document_id = self.id
           file.save!
+          owner_access.document_id=self.id
+          owner_access.save!
           return true
       end
     rescue ActiveRecord::StatementInvalid
