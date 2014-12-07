@@ -79,10 +79,7 @@ class DocumentsController < ApplicationController
     file = FileInfo.new
     file.document_id = doc.id
     file.file = params[:documents][:new_file]
-    owner_access=UserHasAccess.new
-    owner_access.user_id=current_user.id
-    owner_access.access_type=1
-    doc.save_with_file(file,owner_access)
+    doc.save_with_parameter(file)
   end
 
   def create_document(type)
@@ -93,6 +90,11 @@ class DocumentsController < ApplicationController
     doc.owner_id = current_user.id
     doc.date_created = Time.now
     doc.date_updated = Time.now
+
+    owner_access=UserHasAccess.new
+    owner_access.user_id=current_user.id
+    owner_access.access_type=1
+    doc.save_with_parameter(owner_access)
 
     doc
   end
