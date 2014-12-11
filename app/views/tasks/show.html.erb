@@ -1,43 +1,50 @@
-<div class="ui two column grid task">
-  <div class="column">
-    <div class="ui blue segment">
+<div class="panel panel-primary panel-narrow pull-left task-info-area">
+  <div class="panel-heading no-user-select">
+    <h3 class="panel-title"><%= t('tasks.task_info') %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="pull-left">
       <% if @task.name.present? %>
-        <h2 class="ui header"><%= @task.name %></h2>
+        <h3 class="text-center break-words"><%= @task.name %></h3>
       <% end %>
-      <% if @task.description.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.description') %></dt>
-        <p><%= @task.description %></p>
-      <% end %>
-      <% if @task.end_date.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.end_date') %></dt>
-        <p><%= l(@task.end_date, format: :short) %></p>
-      <% end %>
-      <% if @task.status.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.status') %></dt>
-        <p class='<%= status_class(@task.status) %>'><i class="<%= icon_status_class(@task.status) %>"></i><%= translate_status(@task.status) %></p>
-      <% end %>
-      <% if @task.executors.any? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.executors') %></dt>
-        <div class="ui mini images card-avatars">
-          <% @task.executors.each do |exec| %>
-            <%= link_to image_tag(exec.avatar.url("small"), class: 'ui image', 
-              title: exec.full_name), user_path(exec.id) %>
-          <% end %>
-        </div>
-      <% end %>
-      <%= render partial: 'sub_tasks' %>
-      <div class="ui buttons no-user-select">
-        <%= link_to t('util.back'), tasks_path, :class => "ui button" %>
-        <div class="or"></div>
-        <% if @task.author == current_user %>
-          <%= link_to t('util.edit'), edit_task_path(@task), :class => "ui teal button" %>
-        <% else %>
-          <%= button_tag t('util.confirm'), :class => "btn btn-success", :id => 'submitSubTasks' %>
+      <dl class="dl-horizontal break-words">
+      	<% if @task.description.present? %>
+	        <dt><%= t('tasks.description') %></dt>
+	        <dd><%= @task.description %></dd>
         <% end %>
-      </div>
+        <% if @task.end_date.present? %>
+	        <dt><%= t('tasks.end_date') %></dt>
+	        <dd><%= l(@task.end_date, format: :short) %></dd>
+        <% end %>
+        <% if @task.status.present? %>
+	        <dt><%= t('tasks.status') %></dt>
+	        <dd class='<%= status_class(@task.status) %>'><%= translate_status(@task.status) %></dd>
+        <% end %>
+        <% if @task.executors.any? %>
+        	<dt><%= t('tasks.executors') %></dt>
+        	<dd>
+	        	<% @task.executors.each do |exec| %>
+	    			<%= link_to image_tag(exec.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar', 
+	                    title: exec.full_name), user_path(exec.id) %>
+	        	<% end %>
+        	</dd>
+        <% end %>
+      </dl> 
+      <%= render partial: 'sub_tasks' %>
     </div>
   </div>
-  <div class='column'>
-    <%= comments_for @task %>
+  <div class="panel-footer text-right no-user-select">
+    <%= link_to t('util.back'), tasks_path, :class => "btn btn-default" %>
+    <% if @task.author == current_user %>
+      <%= link_to edit_task_path(@task), :class => "btn btn-warning" do %>
+          <span class='glyphicon glyphicon-pencil'></span>
+          <%= t('util.edit') %>
+      <% end %>
+    <% else %>
+      <%= button_tag t('util.confirm'), :class => "btn btn-success", :id => 'submitSubTasks' %>
+    <% end %>
   </div>
+</div>
+<div class='pull-right comments-area'>
+  <%= comments_for @task %>
 </div>

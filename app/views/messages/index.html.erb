@@ -1,11 +1,10 @@
-<div class="ui pilled blue segment">
-  <h2 class="ui header">
-    <i class="inverted circular blue chat icon"></i>
-    <%= t('conversations.active') %>
-  </h2>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('conversations.active') %></h3>
+  </div>
   <div class="panel-body">
-    <div id="conversation" class="conversation">
-      <div id="messages" class="ui comments">
+    <div class="conversation">
+      <div class="list-group">
         <% @messages.each do |message| %>
           <%= render partial: message %>
         <% end %>
@@ -13,10 +12,10 @@
     </div>
   </div>
 
-  <%= form_for(:message, remote: true, html: { class: "ui reply form message-send" }) do |f| %>
-    <%= f.text_area :body, placeholder: t('messages.message'), class: 'dialog-box field', id: 'dialogBox' %>
-    <%= content_tag :button, type: :submit, class: "ui positive labeled icon button" do %>
-       <i class="mail icon"></i> <%= t('messages.send') %>
+  <div class="panel-footer">
+    <%= form_for(:message, remote: true, html: { class: "message-send" }) do |f| %>
+      <%= f.text_area :body, placeholder: t('messages.message'), class: 'message-contents dialog-box' %>
+      <%= f.submit class: "btn btn-success", id: "message-send-btn", value: t('messages.send') %>
     <% end %>
-  <% end %>
+  </div>
 </div>

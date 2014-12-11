@@ -1,68 +1,46 @@
-<tbody>
-  <% tasks.each do |task| %>
-    <tr data-link=<%= task_path(task.id) %>>
-      <td class="col-sm-1">
-        <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
-            title: author.full_name), user_path(author.id) %>
-      </td>
-      <td class="col-12-percent break-words">
-        <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
-      </td>
-      <td>
-        <% if task.description.present? %>
-          <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
-        <% else %>
-          -
-        <% end %>
-      </td>
-      <td class="col-sm-3">
-        <% if task.executors.any? %>
-          <% for ex in Array(task.executors) do %>
-            <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
-              title: ex.full_name), user_path(ex.id) %>
+<% tasks.each do |task| %>
+  <tr data-link=<%= task_path(task.id) %>>
+    <td class="col-sm-1">
+      <%= link_to image_tag((author = task.author).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: author.full_name), user_path(author.id) %>
+    </td>
+    <td class="col-12-percent break-words">
+      <%= (name = task.name).length > 40 ? name[0..40] << "..." : name %>
+    </td>
+    <td>
+      <%= (desc = task.description).length > 50 ? desc[0..50] << "..." : desc %>
+    </td>
+    <td class="col-sm-3">
+      <% for ex in Array(task.executors) do %>
+        <%= link_to image_tag(ex.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
+          title: ex.full_name), user_path(ex.id) %>
+      <% end %>
+    </td>
+    <td class="col-10-percent no-margins">
+      <%= label_tag translate_status(task.status), nil, class: status_class(task.status) << ' no-margins' %>
+    </td>
+    <td class="col-12-percent">
+      <% if task.end_date.present? %>
+        <%= l(task.end_date, format: :short) %>
+      <% else %>
+        <%= t('tasks.no_end_date_given') %>
+      <% end %>
+    </td>
+    
+    <% if !@only_executor %>
+      <td class="text-center col-sm-1">
+        <% if task.author == current_user %>
+          <%= link_to edit_task_path(task), :class => "btn btn-warning btn-xs" do %>
+            <span class='glyphicon glyphicon-pencil'></span>
+          <% end %>
+          <!-- TODO Ajax delete button??? -->
+          <%= button_to task_path(task), method: :delete, class: "btn btn-danger btn-xs no-outline-btn" do %>
+            <span class='glyphicon glyphicon-remove'></span>
           <% end %>
         <% else %>
-          -
+          &nbsp;
         <% end %>
       </td>
-      <td class="col-10-percent no-margins <%= status_row_class(task.status) %>">
-        <% if task.status.present? %>
-          <%= label_tag translate_status(task.status), nil, class: 'no-margins' %>
-        <% else %>
-          -
-        <% end %>
-      </td>
-      <td class="col-12-percent">
-        <% if task.end_date.present? %>
-          <%= l(task.end_date, format: :short) %>
-        <% else %>
-          <%= t('tasks.no_end_date_given') %>
-        <% end %>
-      </td>
-      
-      <% if !@only_executor %>
-        <td class="ui icon buttons">
-          <% if task.author == current_user %>
-            <%= link_to edit_task_path(task), :class => "ui button", title: I18n.t('util.edit') do %>
-              <i class='icon edit'></i>
-            <% end %>
-            <%= link_to task_path(task), method: :delete, class: "ui button", title: I18n.t('util.destroy') do %>
-              <i class='icon remove'></i>
-            <% end %>
-          <% else %>
-            &nbsp;
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
-</tbody>
-<tfoot>
-  <tr>
-    <th colspan="7">
-      <%= link_to new_task_path, class: "ui blue labeled icon button" do %>
-        <i class='tasks icon'></i><%= t('util.add_new_task') %>
-      <% end %>
-    </th>
+    <% end %>
   </tr>
-</tfoot>
+<% end %>

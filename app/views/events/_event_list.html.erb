@@ -1,10 +1,4 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= t('activerecord.models.events') %>
-    <%= link_to new_event_path, class: "pull-right text-white", title: I18n.t('util.add_new_event') do %>
-      <span class='glyphicon glyphicon-plus'></span>
-    <% end %>
-  </div>
+
   <% if not @events.empty? %>
     <table class="tasks table table-hover table-verticle-centered">
       <%= render partial: 'events/search_header_calendar', locals: { events: events } %>

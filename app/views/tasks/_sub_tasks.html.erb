@@ -1,13 +1,22 @@
 <% if @task.checklists.reject { |c| c.empty? }.any? %>
-  <dt class="ui purple ribbon label"><%= t('tasks.check_list') %></dt>
-  <% if belongs_to?(@task) %>
-    <%= render partial: 'checklists', locals: { dis: false } %>
-  <% else %>
-    <%= render partial: 'checklists', locals: { dis: true } %>
-  <% end %>
-  <div class="ui blue active striped labeled progress">
-    <div class="bar" style="width: <%= checklist_percentage(@task) %>%;">
-      <span class="ui top right red label"><%= checklist_percentage(@task).round %>%</span>
-    </div>
-  </div>
+  <dl class="dl-horizontal break-words">
+    <dt><%= t('tasks.check_list') %></dt>
+    <dd>
+      <% if belongs_to?(@task) %>
+        <%= render partial: 'checklists', locals: { dis: false } %>
+      <% else %>
+        <%= render partial: 'checklists', locals: { dis: true } %>
+      <% end %>
+    </dd>
+  </dl>
+  <dl class="dl-horizontal progress-bar-wrap no-user-select">
+    <dt>&nbsp;</dt>
+    <dd>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= checklist_percentage(@task) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= checklist_percentage(@task) %>%;">
+          <%= checklist_percentage(@task) %>%
+        </div>
+      </div>
+    </dd>
+  </dl>
 <% end %>

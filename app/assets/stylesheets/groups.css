@@ -1,0 +1,16 @@
+.ui.action.input > .ui.selection.dropdown{
+	display: table-cell;
+	border-radius: 0.3125em 0 0 0.3125em !important;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	box-shadow: none !important;
+	border-right: 0;
+}
+
+.ui.action.input > .ui.selection.dropdown + input[type="text"]{
+	border-radius: 0 !important;
+	height: 44px;
+}
+
+th.c-admin-users-actions-column{
+	width: 14%;
+}

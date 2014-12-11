@@ -1,17 +1,12 @@
 <nav class="ui secondary pointing menu" role="navigation">
   <%= yield :navbar %>
-  <div class="ui dropdown item right">
+  <div class="right menu">
     <% if user_signed_in? %>
-      <%= current_user.login %> <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item">English</a>
-        <a class="item">Russian</a>
-        <a class="item">Ukrainian</a>
-        <%= link_to t('util.logout'), destroy_user_session_path, :method => :delete, class: 'item' %>
-      </div>
+      <p class="ui item">
+        <%= current_user.login + ' (' %>
+        <%= link_to t('util.logout'), destroy_user_session_path, :method => :delete %>
+        )
+      </p>
     <% end %>
-  </div>
-  <div class="">
-    
   <div>
 </nav>

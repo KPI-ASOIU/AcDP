@@ -287,7 +287,6 @@ uk:
         tags: Теги
         creator_id: Автор
         for_roles: Категорія
-        for_groups: Групи
         icon: Іконка
     errors:
       template:
@@ -310,8 +309,6 @@ uk:
             end_date:
               invalid: недійсна
   util:
-    chosen_no_result: 'Нічого не знайдено'
-    actions: Дії
     edit_password: 'залиште це поле пустим, якщо не бажаєте його змінювати'
     new_user: Новий Користувач
     new_group: Нова Група
@@ -336,12 +333,12 @@ uk:
     save: Зберегти
     new_task: Нове завдання
     edit_task: Редагувати завдання
-    add_new_task: Додати завдання
+    add_new_task: Додати нове завдання
     add_task: Додати задачу
     create_task: Створити завдання
     new_event: Нова подія
     edit_event: Редагувати подію
-    add_new_event: Додати подію
+    add_new_event: Додати нову подію
     add_event: Додати подію
     create_event: Створити подію
     undefined: Не визначено
@@ -363,7 +360,7 @@ uk:
     fill_fields: 'Заповніть поля'
     user_info: 'Інформація про користувача'
     removing_title: 'Видалення користувача'
-    removing_message: 'Ви впевнені ?'
+    removing_message: 'Ви дійсно хочете видалити користувача?'
     my_page: Моя сторінка
     choose_role: 'Виберіть роль, будь ласка'
     chosen_no_result: 'Немає результатів що відповідають '
@@ -372,6 +369,7 @@ uk:
       updated: 'Дані користувача успішно оновлені.'
   groups:
     removing_title: 'Видалення групи'
+    removing_message: 'Ви дійсно хочете видалити групу?'
     notice:
       created: 'Групу успішно створено.'
       updated: 'Дані групи успішно оновлені.'
@@ -401,12 +399,11 @@ uk:
   views:
     main_title: Корпоративний Портал
     pagination:
-      first: "Перша"
-      last: "Остання"
-      previous: "Попередня"
-      next: "Наступна"
+      first: "&laquo; Перша"
+      last: "Остання &raquo;"
+      previous: "&lsaquo; Попередня"
+      next: "Наступна &rsaquo;"
       truncate: "..."
-      current: "Поточна"
   conversations:
     active: Активний діалог
     new: Новий діалог
@@ -421,11 +418,6 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
-    yours: Сховище
-    shared: Спільні документи
-    by_type: За типом
-    recently_used: Недавні
-    from_pc: Завантажити з ПК
     documents: Документи
     document: Документ
     files: Файли
@@ -439,28 +431,31 @@ uk:
     formats: Формати
     types: Типи
     search: Пошук
-    search_by_docs: Шукати документ
+    search_by_docs: Пошук по документам
     by_title: По назві
     by_tags: По тегам
     by_title tags: 'По назві та тегам'
     by_description: По опису
     open: Відкрити
     download: Скачати
-    upload: Завантажити
     select_doc: Виберіть документ
     select_folder: Виберіть папку
     docs_list: Список документів
     folders_list: Список папок
+
     information: Інформація
+
     add_doc: Додати документ
     adding_doc: Додання документу
     enter_file_title: Введіть назву для документу. За замовчанням буде використана назва файлу.
     title: Назва
     file_add_success: Документ додано
+
     add_folder: Додати папку
     adding_folder: Додання папки
     enter_folder_title: Введіть назву папки.
     folder_creation_success: Папка успішно створена
+
     docs_in_cur_dir: Документи та папки в поточній папці
     up_folder: Верхня папка
     title: Назва
@@ -468,6 +463,7 @@ uk:
     type: Тип
     date_created: Створено
     date_changed: Змінено
+
     owner: Власник
     elements_count: Кількість елементів
     private: Приватна
@@ -481,10 +477,13 @@ uk:
     delete: Видалити
     select_users: Виберіть користувачів
     select_types: Виберіть типи
+
     found_users: Знайдені користувачі
+
     error_not_recognized: Дія не розпізнана
     error_cannot_update: Помилка при оновленні запису
     error_document_not_found: Документ не знайдено
+
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити ?
     flash_removed_item: Елемент успішно видалено
@@ -540,8 +539,6 @@ uk:
       add_success: Користувач був успішно доданий в список контактів
       remove_success: Користувач був успішно видалений з списку контактів
   tasks:
-    documents: Прикріплені документи
-    create_task: Створити завдання
     author: Автор
     task_info: Картка завдання
     name: Назва
@@ -560,10 +557,6 @@ uk:
     no_tasks_calendar: У вас немає жодного завдання на цей день
     progress: Прогрес
     creation_date: Дата створення
-    created_from: Створено з
-    created_to: Створено до
-    executed_from: Виконати з
-    executed_to: Виконати до
     statuses:
       Active: Активний
       Frozen: Заморожено
@@ -578,9 +571,6 @@ uk:
     send_comment: Коментувати
     discussion: Обговорення
   events:
-    hosted_from: Проводитиметься з
-    hosted_to: Проводитиметься до
-    create_event: Створити подію
     author: Автор
     name: Назва
     description: Опис
@@ -604,6 +594,9 @@ uk:
   activity:
     cancel: Скасувати
     renew: Відновити
+  opinio:
+    no_comments_found: Ще немає жодного коментаря
+  activity:
     the_hottest: Термінові
     all: Всі новини
     tasks: Завдання
@@ -649,5 +642,3 @@ uk:
   seconds: секунди
   page-header:
     portal: Корпоративний портал кафедри АСОІУ
-  prepositions:
-    or: Чи

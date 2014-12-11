@@ -1,4 +1,4 @@
-<%= form_for([:admin, @user], :html => { :class => "form-horizontal", role: "form" }) do |f| %>
+<%= form_for([:admin, @user], :html => { :class => "ui form", role: "form" }) do |f| %>
   <div class="panel-body">
     <% if @user.errors.any? %>
       <div id="error_explanation">
@@ -11,81 +11,67 @@
         </ul>
       </div>
     <% end %>
+  </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :login, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
-          <%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login') + '...', :class => 'form-control' %>
-
-      </div>
+      <%= f.text_field :login, :placeholder => t('activerecord.attributes.user.login') + '...' %>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :password, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.password_field :password, :placeholder => t('activerecord.attributes.user.password') + '...', :class => 'form-control' %>
           <% if params[:action] == "edit" %>
             <i>(<%= t('util.edit_password') %>)</i>
           <% end %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :password_confirmation, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.password_field :password_confirmation, :placeholder => t('activerecord.attributes.user.password_confirmation') + '...', :class => 'form-control' %>
-      </div>
     </div>
 
-    <div id="role" class="form-group">
+    <div id="role" class="field">
       <%= f.label :role, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
         <%= f.select :role, options_for_select(translate_roles(User::ROLES), @user.roles), {include_blank: true}, { :class => "chosen-select", :multiple => true } %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :full_name, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.text_field :full_name, :placeholder => t('activerecord.attributes.user.full_name') + '...', :class => 'form-control' %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :email, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.text_field :email, :placeholder => t('activerecord.attributes.user.email') + '...', :class => 'form-control' %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :position, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.text_field :position, :placeholder => t('activerecord.attributes.user.position') + '...', :class => 'form-control' %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :about_me, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.text_area :about_me, :placeholder => t('activerecord.attributes.user.about_me') + '...', :class => 'form-control' %>
-      </div>
     </div>
 
-    <div class="form-group">
+    <div class="field">
       <%= f.label :avatar, :class=>'col-sm-4 control-label' %>
-      <div class="col-sm-8">
           <%= f.file_field :avatar %>
           </br>
           <%= image_tag @user.avatar.url("medium"), class: 'c-user-medium-avatar' %>
           <% unless @user.new_record? %>
-          <%= link_to t('util.destroy'), avatar_admin_user_path(@user), :method => :delete, :class => "btn btn-danger" %>
+          <%= link_to avatar_admin_user_path(@user), :method => :delete, :class => "ui icon labeled red button" do %>
+            <i class='remove icon'></i>
+            <%= t('util.destroy') %>
           <% end %>
-      </div>
+          <% end %>
     </div>
 
-  <div class="panel-footer text-right">
-    <%= link_to t('util.back'), admin_users_path, :class => "btn btn-default" %>
-    <%= f.submit :class => "btn btn-success" %>
+  <div class="ui buttons">
+     <%= link_to t('util.back'), admin_users_path, :class => "ui button" %>
+    <div class="or"></div>
+    <%= f.submit :class => "ui positive button" %>
   </div>
 <% end %>

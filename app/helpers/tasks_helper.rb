@@ -4,48 +4,18 @@ module TasksHelper
 		((checklist.map { |c| c.done ? 1 : 0}).sum * 100 / checklist.length.to_f).round(2)
 	end
 
-	def icon_status_class(status)
-		case status
-		when "Done"
-			"ui checkmark sign icon"
-		when "Active"
-			"ui loading icon"
-		when "Undone"
-			"ui attention icon"
-		when "Frozen"
-			"ui warning icon"
-		else
-			""
-		end
-	end
-
-	def status_row_class(status)
-		case status
-		when "Done"
-			"positive"
-		when "Active"
-			"active"
-		when "Undone"
-			"negative"
-		when "Frozen"
-			"warning"
-		else
-			""
-		end
-	end
-
 	def status_class(status)
 		case status
 		when "Done"
-			"ui success message"
+			"text-success"
 		when "Active"
-			"ui info message"
+			"text-primary"
 		when "Undone"
-			"ui error message"
+			"text-danger"
 		when "Frozen"
-			"ui warning message"
+			"text-muted"
 		else
-			"ui message"
+			""
 		end
 	end
 

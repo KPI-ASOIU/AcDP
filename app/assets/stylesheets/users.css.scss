@@ -9,20 +9,17 @@
 .c-user-large-avatar {
   width: 215px;
   height: 215px;
-  vertical-align: middle;
 }
 
 .c-user-medium-avatar {
   width: 64px;
   height: 64px;
-  vertical-align: middle;
 }
 
 .c-user-small-avatar {
   width: 48px;
   height: 48px;
   margin-bottom: 0;
-  vertical-align: middle;
 }
 
 .c-admin-users-avatar-column {
@@ -35,4 +32,36 @@
 
 .c-user-info-block {
   width: 340px;
+}
+
+.checkbox{
+  margin-right: 20px;
+  label{
+    padding-left: 22px !important;
+  }
+}
+
+.item{
+  margin-bottom: 0;
+}
+
+.ui.action.input{
+  width: 100%;
+  .dropdown{
+    width: 173px;
+    .icon{
+      float: right;
+    }
+  }
+  #searchBtn{
+    width: 170px;
+    .icon{
+      margin-right: 15px;
+    }
+  }
+}
+
+.destroy{
+  color: white;
+  text-decoration: none;
 }

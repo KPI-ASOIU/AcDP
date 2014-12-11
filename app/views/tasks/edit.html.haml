@@ -1,2 +1,5 @@
-.panel-narrow
-  = render partial: 'form', locals: { task: @task, val: t('util.edit_task'), header: t('util.edit_task') }
+.panel.panel-primary.panel-narrow
+  .panel-heading
+    %h3.panel-title
+      = t('util.edit_task')
+  = render partial: 'form', locals: { task: @task, val: t('util.edit_task') }

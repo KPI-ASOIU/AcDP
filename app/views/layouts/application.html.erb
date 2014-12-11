@@ -4,19 +4,19 @@
 
 <% content_for :navbar do %>
   <% if user_signed_in? %>
-    <%= link_to conversations_path, id: 'conversations', class: "item" do %>
+    <%= link_to conversations_path, class: "item" do %>
       <%= t('conversations.dialogs') %>
       <% if (umc = current_user.unread_messages_count_sum) != 0 %>
-        <div class="ui teal label"><%= umc %></div>
+        <span class="badge"><%= umc %></span>
       <% end %>
     <% end %>
-    <%= link_to t('documents.documents'), documents_path, id: 'documents', class: "item" %>
-    <%= link_to t('news.title'), news_posts_path, id: 'news_posts', class: "item" %>
-    <%= link_to t('contacts.nav_link'), contacts_path, id: 'contacts', class: "item" %>
+    <%= link_to t('documents.documents'), documents_path, class: "item" %>
+    <%= link_to t('news.title'), news_posts_path, class: "item" %>
+    <%= link_to t('contacts.nav_link'), contacts_path, class: "item" %>
     <% if can? :crud, Task %>
-      <%= link_to t('activerecord.models.tasks'), tasks_path, id: 'tasks', class: "item" %>
+      <%= link_to t('activerecord.models.tasks'), tasks_path, class: "item" %>
     <% end %>
-    <%= link_to t('activerecord.models.events'), events_path, id: 'events', class: "item" %>
+    <%= link_to t('activerecord.models.events'), events_path, class: "item" %>
   <% else %>
     <h1 class="item"><%= t('page-header.portal') %></h1>
   <% end %>

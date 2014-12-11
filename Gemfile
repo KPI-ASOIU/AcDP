@@ -59,6 +59,7 @@ end
 
 gem 'factory_girl_rails', '~> 4.0'
 gem 'devise'
+gem 'bootstrap-sass', '~> 3.1.0'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'cancan'
@@ -67,12 +68,12 @@ gem 'paperclip'
 gem 'foreman'
 gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
-gem 'momentjs-rails', '>= 2.8.1'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 gem 'awesome_nested_fields'
-gem 'bootstrap-x-editable-rails' 
+gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # # Added for backward compatibility of Opinio gem
 # # (attr_accessible support)
@@ -81,6 +82,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'jscrollpane-rails'
 gem 'jquery-mousewheel-rails'
 gem 'websocket-rails'
+gem 'bootstrap-wysihtml5-rails', :git => 'git://github.com/KPI-ASOIU/bootstrap-wysihtml5-rails.git'
 gem 'html_truncator', '~> 0.4.0'
 gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
 gem 'remotipart'
@@ -91,7 +93,7 @@ gem 'public_activity'
 gem 'squeel', :git => "git://github.com/activerecord-hackery/squeel.git"
 gem "polyamorous", :github => "activerecord-hackery/polyamorous" # squeel deps
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1" # squeel deps
-gem 'ckeditor'
+
 gem 'time_diff'
 gem 'jquery-countdown-rails'
 
