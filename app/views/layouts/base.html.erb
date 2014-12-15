@@ -22,6 +22,10 @@
       window.I18n = <%= I18n.backend.send(:translations)[I18n.locale].to_json.html_safe %>
     </script>
     <%= javascript_include_tag "application"%>
+    <script type="text/javascript">
+      window.dispatcher = new WebSocketRails(window.location.host + '/websocket');
+      dispatcher.current_user = "<%= current_user.id %>"
+    </script>
     <%= content_for :javascript %>
     <%= timeago_script_tag %>
   </body>

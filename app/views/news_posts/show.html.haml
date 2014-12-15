@@ -25,7 +25,7 @@
             .item
               %b= t('activerecord.attributes.news_post.tags') + ':'
               - @news_post.tags.split(',').each do |tag|
-                =link_to tag, tag_news_posts_path(tag)
+                = link_to tag, tag_news_posts_path(tag)
           - if !@news_post.documents.empty?
             .item
               %b= t('news.attached_docs') + ':'
@@ -44,4 +44,12 @@
           =t('util.destroy')
 
 .news-comments-block
-  =comments_for @news_post
+  =comments_for @news_post, limit: 100000000
+
+:javascript
+  document.addEventListener('readystatechange', function(){
+    if (document.readyState == "interactive") {
+      var channel = dispatcher.subscribe("NewsPost#{@news_post.id}");
+      channel.bind('new_comment', addComment);
+    }
+  }, false)

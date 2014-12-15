@@ -16,6 +16,9 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        WebsocketRails["Conversation" << @conversation.id.to_s].trigger(:new_message, {
+          html: render_to_string(@message)
+        })
         format.html
         format.js
       else

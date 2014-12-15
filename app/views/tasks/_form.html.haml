@@ -27,17 +27,18 @@
     = f.label t('tasks.executors')
     = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
   .field
-    = f.label t('tasks.documents')
+    = f.label t('documents.attached')
     #pinnedDocs
       - if task.documents.any?
-        = task.documents.each {|doc| render partial: 'documents_pin/pinned_doc', locals: { title: doc.title}}
-    .ui.basic.fluid.labeled.icon.button{ id: 'addDocumentToTask', placeholder: t('documents.add_doc') }
+        - task.documents.each do |doc|
+          = render partial: 'documents_pin/pinned_doc', locals: { doc: doc, show: false }
+    .ui.basic.fluid.labeled.icon.button{ id: 'attachDocument' }
       %i.upload.icon
       = t('documents.pin')
-  .inline.field.ui.buttons
+  .ui.buttons
     = link_to t('util.back'), :back, :class => "ui button"
     .or
     = f.submit :class => "ui positive submit button", :value => val
 
 = render partial: 'documents_pin/pin_doc_upload_choice_modal'
-= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs') }
+= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs'), pinBtnId:'pinDocs' }

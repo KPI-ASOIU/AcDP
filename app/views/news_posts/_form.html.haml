@@ -39,7 +39,7 @@
         .fourteen.wide.column
           = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
       .two.wide.column
-        = label_tag :documents, t('news.attached_docs'), :class=>''
+        = label_tag :documents, t('documents.attached'), :class=>''
       .fourteen.wide.column
         = f.hidden_field :documents, { :multiple => true }
         .ui.list{ id: 'news-attached-docs' }

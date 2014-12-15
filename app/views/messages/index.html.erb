@@ -1,22 +1,63 @@
-<div class="ui pilled blue segment">
-  <h2 class="ui header">
-    <i class="inverted circular blue chat icon"></i>
-    <%= t('conversations.active') %>
-  </h2>
-  <div class="panel-body">
-    <div id="conversation" class="conversation">
-      <div id="messages" class="ui comments">
-        <% @messages.each do |message| %>
-          <%= render partial: message %>
+<div class="ui grid">
+  <div class="ten wide column no-margins">
+    <div class="ui pilled blue segment">
+      <h2 class="ui header">
+        <i class="inverted circular blue chat icon"></i>
+        <%= t('conversations.active') %>
+      </h2>
+      <div class="panel-body">
+        <div id="conversation" class="conversation">
+          <div id="messages" class="ui comments">
+            <% @messages.each do |message| %>
+              <%= render partial: message %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%= form_for(:message, remote: true, html: { class: "ui reply form message-send" }) do |f| %>
+        <%= f.text_area :body, placeholder: t('messages.message'), class: 'dialog-box field', id: 'dialogBox' %>
+        <%= content_tag :button, type: :submit, class: "ui positive labeled icon button" do %>
+           <i class="mail icon"></i> <%= t('messages.send') %>
         <% end %>
+        <%= content_tag :button, id: 'attachDocument', class: "ui teal labeled icon button" do %>
+           <i class="attachment icon"></i> <%= t('documents.pin') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="six wide column no-margins">
+    <div class="ui pilled blue segment">
+      <h2 class="ui header">
+        <i class="inverted circular blue attachment icon"></i>
+        <%= t('documents.attached') %>
+      </h2>
+      <div class="panel-body">
+        <div data-show="true" id="pinnedDocsExt" class="attached-docs-segment ui items" data-detach-doc-url="<%=conv_doc_detach_path(@conversation.id, 000) %>" data-attach-doc-url="<%=conv_doc_attach_path(@conversation.id, 000) %>">
+          <% @conversation = @messages.first.conversation %>
+          <% if @conversation.documents.any? %>
+            <% @conversation.documents.each do |doc| %>
+              <%= render partial: 'documents_pin/pinned_doc_ext', locals: {doc: doc} %>
+            <% end %>
+          <% else %>
+            <div id="noPinnedDocs">
+              <%= t('documents.absent') %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-
-  <%= form_for(:message, remote: true, html: { class: "ui reply form message-send" }) do |f| %>
-    <%= f.text_area :body, placeholder: t('messages.message'), class: 'dialog-box field', id: 'dialogBox' %>
-    <%= content_tag :button, type: :submit, class: "ui positive labeled icon button" do %>
-       <i class="mail icon"></i> <%= t('messages.send') %>
-    <% end %>
-  <% end %>
 </div>
+
+<%= render partial: 'documents_pin/pin_doc_upload_choice_modal' %>
+<%= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs'), pinBtnId:'pinDocsExt' } %>
+
+<script>
+  document.addEventListener('readystatechange', function(){
+    if (document.readyState == "interactive") {
+      var channel = dispatcher.subscribe("Conversation" + "<%= @messages.first.conversation.id %>");
+      channel.bind('new_message', addMessage)
+    }
+  }, false)
+</script>

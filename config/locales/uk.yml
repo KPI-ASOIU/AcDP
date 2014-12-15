@@ -358,6 +358,7 @@ uk:
     event_expiration_time: До початку події
     to_activity: До активності
   users:
+    my_profile: Мій профіль
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
     fill_fields: 'Заповніть поля'
@@ -421,6 +422,8 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    absent: Немає документів
+    attached: Прикріплені документи
     uploading: Додання документу
     no_title: Немає назви
     no_description: Немає опису
@@ -510,7 +513,6 @@ uk:
       editing_post: Редагування новини
       post_created: Новина успішно створена
       post_updated: Новина успішно зредагована
-      attached_docs: Прикріплені документи
       add_doc: Додати документ
       create_news: Створити новину
       all: Всі
@@ -548,7 +550,6 @@ uk:
       add_success: Користувач був успішно доданий в список контактів
       remove_success: Користувач був успішно видалений з списку контактів
   tasks:
-    documents: Прикріплені документи
     create_task: Створити завдання
     author: Автор
     task_info: Картка завдання

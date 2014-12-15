@@ -1,5 +1,5 @@
 <div class="ui two column grid task">
-  <div class="column">
+  <div class="column no-margins">
     <div class="ui blue segment">
       <% if @task.name.present? %>
         <h2 class="ui header"><%= @task.name %></h2>
@@ -26,6 +26,14 @@
         </div>
       <% end %>
       <%= render partial: 'sub_tasks' %>
+      <% if @task.documents.any? %>
+        <dt class="ui purple ribbon label"><%= t('documents.attached') %></dt>
+        <p>
+          <% @task.documents.each do |doc| %>
+            <%= render partial: 'documents_pin/pinned_doc', locals: {doc: doc, show: true} %>
+          <% end %>
+        </p>
+      <% end %>
       <div class="ui buttons no-user-select">
         <%= link_to t('util.back'), tasks_path, :class => "ui button" %>
         <div class="or"></div>
@@ -37,7 +45,17 @@
       </div>
     </div>
   </div>
-  <div class='column'>
-    <%= comments_for @task %>
+  <div class='one column no-margins'>
+    <%= comments_for @task, limit: 100000000 %>
   </div>
 </div>
+
+<script>
+  document.addEventListener('readystatechange', function(){
+    if (document.readyState == "interactive") {
+      var channel = dispatcher.subscribe("Task" + "<%= @task.id %>");
+      channel.bind('new_comment', addComment);
+      channel.bind('uncomment', removeComment);
+    }
+  }, false)
+</script>

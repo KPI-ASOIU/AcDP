@@ -7,10 +7,11 @@
       %i.cloud.upload.icon
     .right
       %p= t('documents.upload_from')
-  = form_for :document, method: :post, remote: true, html: { class: 'ui fluid form', id: 'taskDoc' } do |f|
-    = f.text_field :title, id: 'title', class: 'hidden'
+  = form_for(:documents, url: new_document_path, method: :post, remote: true, html: { class: 'ui fluid form', id: 'taskDoc', data: {url: get_file_doc_id_path}}) do |f|
+    = f.hidden_field :doc_type, value: 'file'
+    = f.text_field :new_doc_title, id: 'title', class: 'hidden'
     = f.text_field :description, id: 'description', class: 'hidden'
-    = file_field :document, :original_file, class: 'hidden', id: 'docFromPCInput'
+    = file_field :documents, :new_file, id: 'docFromPCInput', class: 'hidden'
     .two.fluid.ui.buttons
       #pinDocFromWarehouse.ui.positive.button
         = t('documents.from_warehouse')

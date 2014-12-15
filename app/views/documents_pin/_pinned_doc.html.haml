@@ -1,3 +1,13 @@
-.ui.label
-  = title
-  %i.delete.icon
+.ui.label{data: {document: 'attached'}}
+  %input{type: 'hidden', name: 'documents[]', value: doc.id}
+  = doc.title
+  - file_info = doc.file_info
+  -if show
+    -if file_info.present?
+      = link_to file_info.file.url(:original, false), target: :blank do
+        %i.download.disk.icon
+    -else
+      = link_to document_path(doc.parent_directory), target: :blank do
+        %i.info.icon
+  -else
+    %i.delete.icon

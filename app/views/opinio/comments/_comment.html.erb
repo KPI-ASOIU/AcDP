@@ -8,7 +8,7 @@
     </div>
     <div class='text'><%= comment.body %></div>
     <div class="actions">
-      <% if comment.owner == current_user %>
+      <% if comment.owner == current_commenter %>
         <%= link_to t('util.destroy'), comment_path(comment), :method => :delete, :remote => true, class: 'delete' %>
       <% end %>
     </div>

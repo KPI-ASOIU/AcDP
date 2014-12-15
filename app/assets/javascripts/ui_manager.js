@@ -13,11 +13,16 @@ $(document).ready(function() {
         $(".j-admin-search-type-input").val($target.data("search-type"));
     });
 
-    $("tr[data-link]").on("click", function(e) {
-        e.preventDefault();
-        window.location = this.getAttribute("data-link");
+    $(document).on("click", "[data-link]", function(e) {
+        if (e.target.tagName != 'A') {
+            e.preventDefault();
+            window.location = this.getAttribute("data-link");
+        }
     });
 
     $('.ui.accordion').accordion();
     $('.ui.dropdown').dropdown();
+
+    var comment_box = $('#comments')
+    comment_box.scrollTop(comment_box[0].scrollHeight);
 }());

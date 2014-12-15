@@ -1,8 +1,1 @@
 $("#dialogBox").val('');
-
-var message = {
-  html: '<%= escape_javascript(render partial: @message) %>',
-  id: '<%= @message.id %>'
-}
-console.log(dispatcher)
-dispatcher.trigger('messages.broadcast_new', message);

@@ -29,6 +29,28 @@ class ConversationsController < ApplicationController
     redirect_to :back
   end
 
+  def attach_doc
+    @conversation = Conversation.find(params[:id])
+    @document = Document.find(params[:doc_id])
+    if not @conversation.documents.include? @document
+      @conversation.documents << @document
+      render json: {message: 'Document was successfully attached', status: 200}
+    else
+      render json: {message: 'Document already attached', status: 204}
+    end
+  end
+
+  def detach_doc
+    @conversation = Conversation.find(params[:id])
+    @document = Document.find(params[:doc_id])
+    if @conversation.documents.include? @document
+      @conversation.documents.delete(@document)
+      render json: {message: 'Document was successfully detached'}, status: 204
+    else
+      render json: {message: 'Document is not attached'}, status: 404
+    end
+  end
+
   private
   def conversation_params
     params.require(:conversation).permit(:subject)

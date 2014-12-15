@@ -16,35 +16,6 @@ $(document).ready(function() {
         $('#subTasks').submit();
     });
 
-    $('#addDocumentToTask').on('click', function(e) {
-        e.preventDefault();
-        $('#docUploadChoice').modal('show');
-    });
-
-    $('#pinDocFromWarehouse').on('click', function(e) {
-        e.preventDefault();
-        $('#addDocModal').modal('show');
-    });
-
-    $('#pinDocFromPC').on('click', function(e) {
-        e.preventDefault();
-        $('#docFromPCInput').trigger('click');
-    });
-
-    $('#docFromPCInput').on('change', function(e) {
-        e.preventDefault();
-        var control = e.target,
-            title = document.querySelector('#taskDoc #title'),
-            description = document.querySelector('#taskDoc #description'),
-            today = new Date();
-        title.value = control.files[0].name;
-        title.setAttribute('data-value', control.files[0].name)
-        description.setAttribute('data-value', 'Added ' +
-            today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear());
-        $('#taskDoc').submit()
-        $('#docUploadChoice').modal('hide')
-    })
-
     $("#extendSearch i.icon.remove").click(function() {
         !$(this).siblings('.chosen-select').val('').trigger('chosen:updated') || !$(this).siblings('input.form-control').val('');
     });

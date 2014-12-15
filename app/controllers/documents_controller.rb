@@ -55,7 +55,7 @@ class DocumentsController < ApplicationController
 
   def jstree
     @docs = Document.where(params[:docdir] == 'dir' ? { doc_type: 0 } : {}).
-                     where(parent_directory: (!params[:id].blank? && params[:id] != '#') ? params[:id] : nil)
+      where(parent_directory: (!params[:id].blank? && params[:id] != '#') ? params[:id] : nil)
   end
 
   def new
@@ -68,11 +68,16 @@ class DocumentsController < ApplicationController
         flash[:notice] = t('documents.file_add_success')
       end
     else
-      if save_file create_document 1
+      doc = create_document(1)
+      if save_file(doc)
         flash[:notice] = t('documents.file_add_success')
       end
     end
-    redirect_to action: 'index'
+    if request.referer.split('/')[3] == 'conversations'
+      render json: {id: doc.id}
+    else
+      redirect_to action: 'index'
+    end
   end
 
   def save_file(doc)
@@ -85,15 +90,16 @@ class DocumentsController < ApplicationController
   def create_document(type)
     doc = Document.new
     doc.title = params[:documents][:new_doc_title]
+    doc.description = params[:documents][:description] if params[:documents][:description]
     doc.doc_type = type
     doc.parent_directory = params[:id]
     doc.owner_id = current_user.id
     doc.date_created = Time.now
     doc.date_updated = Time.now
 
-    owner_access=UserHasAccess.new
-    owner_access.user_id=current_user.id
-    owner_access.access_type=1
+    owner_access = UserHasAccess.new
+    owner_access.user_id = current_user.id
+    owner_access.access_type = 1
     doc.save_with_parameter(owner_access)
 
     doc
@@ -235,10 +241,14 @@ class DocumentsController < ApplicationController
   def search
     title = params[:title]
     description = params[:description]
-    # @docs = current_user.documents.match_title_or_nil(title)
-    #   .with_description(description).all
-    @docs = Document.match_title_or_nil(title)
+    @docs = current_user.documents.where(doc_type: 1).match_title_or_nil(title)
       .match_description_or_nil(description).all
-    puts @docs
+  end
+
+  def get_file_doc_id
+    @file = FileInfo.find_by(file_file_name: params[:file_name], file_file_size: params[:file_size])
+    respond_to do |format|
+      format.json { render json: { doc_id: @file.document_id } }
+    end
   end
 end
