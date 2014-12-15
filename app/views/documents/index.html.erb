@@ -1,4 +1,4 @@
-<section class="ui piled segment">
+<section class="ui segment no-margins">
   <section class="ui divided grid">
     <div class="four wide column">
       <div class="ui fluid vertical menu">
@@ -36,7 +36,7 @@
           <% path_from_root = @current_folder.path_from_root %>
           <% path_from_root.each do |folder| %>
             <% if folder != path_from_root.last %>
-              <%= link_to folder.title, document_path(folder), :class => "section" %>
+              <%= link_to folder.title, documents_path(folder), :class => "section" %>
             <% else %>
               <div class="active section">
                 <%= folder.title %>

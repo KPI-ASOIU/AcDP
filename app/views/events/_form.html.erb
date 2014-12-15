@@ -43,10 +43,25 @@
     <%= f.label t('events.guests') %>
     <%= select_tag :guests, options_for_select(User.all.map { |u| [u.full_name, u.id] }, event.guests.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true } %>
   </div>
-
+  <div class='field'>
+    <%= f.label t('documents.attached') %>
+    <div id='pinnedDocs'>
+      <% if event.documents.any? %>
+        <% event.documents.each do |doc| %>
+          <%= render partial: 'documents_pin/pinned_doc', locals: { doc: doc, show: false } %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class='ui basic fluid labeled icon button' id='attachDocument'>
+      <i class="upload icon"></i><%= t('documents.pin') %>
+    </div>
+  </div>
   <div class="inline-field ui buttons">
     <%= link_to t('util.back'), :back, :class => "ui button" %>
     <div class="or"></div>
     <%= f.submit val, :class => "ui positive submit button" %>
   </div>
 <% end %>
+
+<%= render partial: 'documents_pin/pin_doc_upload_choice_modal' %>
+<%= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs'), pinBtnId:'pinDocs' } %>

@@ -10,6 +10,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    if params[:documents].present?
+      @event.documents = Document.find(params[:documents])
+    end
     if @event.save
       EventHasGuest.create({guest_id: params[:event][:guests], event_id: @event.id}) 
       redirect_to event_path(@event.id)
@@ -41,6 +44,11 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    if params[:documents].present?
+      @event.documents = Document.find(params[:documents])
+    else
+      @event.documents.destroy_all
+    end
     @event.update_attributes(event_params)
     redirect_to event_path(@event.id)
   end

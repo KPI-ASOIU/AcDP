@@ -6,14 +6,15 @@ class NewsPostsController < ApplicationController
   # GET /news_posts.json
   def index
     @category = params[:category]
+    @news_posts = NewsPost.order(updated_at: :desc)
     if !params[:tag].blank?
-      @news_posts = NewsPost.with_tag(params[:tag]).page(params[:page])
+      @news_posts = @news_posts.with_tag(params[:tag]).page(params[:page])
     elsif !params[:category].blank?
-      @news_posts = NewsPost.with_category(params[:category]).page(params[:page])
+      @news_posts = @news_posts.with_category(params[:category]).page(params[:page])
     elsif !params[:group_id].blank?
-      @news_posts = NewsPost.includes(:groups).where(groups: { id: params[:group_id] }).page(params[:page])
+      @news_posts = @news_posts.includes(:groups).where(groups: { id: params[:group_id] }).page(params[:page])
     else
-      @news_posts = NewsPost.all.page(params[:page])
+      @news_posts = @news_posts.all.page(params[:page])
     end
   end
 

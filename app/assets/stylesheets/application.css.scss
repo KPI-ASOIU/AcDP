@@ -20,6 +20,9 @@
 @import "semantic-ui";
 @import "comments";
 @import "pin_docs";
+@import "semantic_fixes";
+@import 'masonry/basic';
+@import 'masonry/infinitescroll';
 
 
 body {
@@ -144,4 +147,16 @@ div {
   -o-transition: margin-top 0.6s;
   -ms-transition: margin-top 0.6s;
   transition: margin-top 0.6s;
+}
+
+.clearfix:after {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.no-margins {
+  margin: 0 !important
 }

@@ -12,14 +12,14 @@ Opinio.setup do |config|
   # config.accept_replies = true
   
   # Here you can change the method called to check who is the current user
-  # config.current_user_method = :current_user
+  config.current_user_method = :current_user
 
   # Strip html tags on save comment
   config.strip_html_tags_on_save = true
 
   # Comments sort order by created_at (DESC or ASC)
   # Note: you can override that easily within each opinio subjectum
-  config.sort_order = 'DESC'
+  config.sort_order = 'ASC'
 
   # Wether or not the default opinio controller should set the flash
   # when creating/removing comments

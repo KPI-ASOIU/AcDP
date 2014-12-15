@@ -8,6 +8,16 @@ div#docSearchResults div.item {
   max-width: 250px;
 }
 
+div.extended-doc {
+  min-height: 120px !important;
+  max-width: 415px !important;
+  width: 415px !important;
+}
+
+div.extended-doc .bottom.attached.label {
+  text-align: center;
+}
+
 #pinnedDocs {
   margin-bottom: 10px;
 }

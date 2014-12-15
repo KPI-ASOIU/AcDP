@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
@@ -35,8 +34,33 @@
 //= require jquery.countdown.js 
 //= require jquery.countdown-uk.js
 //= require ckeditor/init
+//= require masonry/jquery.masonry
+//= require masonry/jquery.infinitescroll.min
+//= require masonry/modernizr-transitions
 //= require_tree .
 
 (function() {
-    window.dispatcher = new WebSocketRails(window.location.host + '/websocket');
+    window.addComment = function(comment) {
+        comment_box = $("#comments")
+        $('#no_comments').fadeOut()
+        $comment = $(comment.html)
+        comment_box.append($comment.hide().fadeIn('slow'))
+        $("time[data-time-ago]").timeago()
+        console.log(dispatcher.current_user)
+        console.log(comment.owner)
+        if (dispatcher.current_user != comment.owner)
+            $comment.find('div.actions').remove()
+        $('#newComment').val('')
+        comment_box.scrollTop(comment_box[0].scrollHeight);
+    };
+    window.addMessage = function(message) {
+        var dialogBox = $("#conversation"),
+            messageBox = dialogBox.find('#messages');
+        messageBox.append($(message.html).hide().fadeIn('slow'));
+        messageBox.find('time[data-time-ago]').timeago();
+        dialogBox.scrollTop(dialogBox[0].scrollHeight);
+    };
+    window.removeComment = function(comment) {
+        $('#comment_' + comment.id).fadeOut()
+    }
 }());

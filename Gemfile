@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.1.8'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -71,7 +71,8 @@ gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
 gem 'bootstrap-x-editable-rails' 
 gem 'select2-rails'
-gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
+# gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
+gem 'opinio', :path => "/home/dmitriy/opinio4"
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # # Added for backward compatibility of Opinio gem
@@ -98,3 +99,4 @@ gem 'time_diff'
 gem 'jquery-countdown-rails'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'masonry-rails'

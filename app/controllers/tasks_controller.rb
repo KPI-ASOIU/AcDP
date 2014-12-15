@@ -11,6 +11,9 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    if params[:documents].present?
+      @task.documents = Document.find(params[:documents])
+    end
     if @task.save
       redirect_to task_path(@task.id)
     else
@@ -21,6 +24,10 @@ class TasksController < ApplicationController
   def show
     if find_task_by_id and @task.author != current_user and !@task.executors.include?(current_user)
       redirect_to tasks_path, flash: { error: t('tasks.errors.not_engaged') }
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -36,6 +43,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @old_status = @task.status
     @old_execs = @task.executors.sort
+    if params[:documents].present?
+      @task.documents = Document.find(params[:documents]).uniq
+    else
+      @task.documents.destroy_all
+    end
     if @task.update_attributes(task_params)
       track_specific_fields or create_activity('task.update', @task.name)
       redirect_to task_path(@task.id)

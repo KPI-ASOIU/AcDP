@@ -22,13 +22,14 @@ AcDP::Application.routes.draw do
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
   get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'
+  post 'documents', to: 'documents#new', as: 'new_document'
+  post 'documents/:id', to: 'documents#new', as: 'document_new'
+  get 'documents/get_file_info', to: 'documents#get_file_doc_id', as: 'get_file_doc_id'
   get 'documents/:id', to: 'documents#index', as: 'document'
 
-  post 'documents', to: 'documents#new'
   patch 'documents/update', to: 'documents#update'
   post 'documents/change_file', to: 'documents#change_file'
   post 'documents/update_lists', to: 'documents#update_lists'
-  post 'documents/:id', to: 'documents#new', as: 'document_new'
   delete 'documents/file/:delete_id', to: 'documents#delete_file', as: 'document_delete_file'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
@@ -59,6 +60,9 @@ AcDP::Application.routes.draw do
   resources :conversations, only: [:create, :index, :destroy] do
     resources :messages, only: [:index, :create]
   end
+
+  post 'conversations/:id/attach_doc/:doc_id' => 'conversations#attach_doc', as: :conv_doc_attach
+  post 'conversations/:id/detach_doc/:doc_id' => 'conversations#detach_doc', as: :conv_doc_detach
 
   resources :contacts, only: [:index, :create, :destroy]
 

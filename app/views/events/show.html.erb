@@ -1,5 +1,5 @@
 <div id="eventCard" class="ui two column grid event">
-  <div class="column">
+  <div class="column no-margins">
     <div class="ui blue segment">
       <% if @event.name.present? %>
         <h2 class="ui header"><%= @event.name %></h2>
@@ -40,20 +40,36 @@
       <% end %>
       <% if engaged?(@event) and !author?(@event) %>
         <%= button_tag visit?(@event) ? t('events.cannot_visit') : t('events.can_visit'), id: 'canVisit', :class => "ui toggle red button hover", data: { event: @event.id, visit: !visit?(@event), url: event_path(@event, format: :js) } %>
-      <% end %>  
+      <% end %>
+      <% if @event.documents.any? %>
+        <dt class="ui purple ribbon label"><%= t('documents.attached') %></dt>
+        <p>
+          <% @event.documents.each do |doc| %>
+            <%= render partial: 'documents_pin/pinned_doc', locals: {doc: doc, show: true} %>
+          <% end %>
+        </p>
+      <% end %>
       <div class="ui <%= 'right floated' if @event.author != current_user %> buttons">
         <%= link_to t('util.back'), events_path, :class => "ui button" %>
         <% if @event.author == current_user %>
-          <div class="or"></div>
+          <div class="or">&nbsp;</div>
           <%= link_to edit_event_path(@event), :class => "ui positive button" do %>
-            <span class=' glyphicon-pencil'></span>
             <%= t('util.edit') %>
           <% end %>
         <% end %>  
       </div>
     </div>
   </div>
-  <div class='column'>
-    <%= comments_for @event %>
+  <div class='column no-margins'>
+    <%= comments_for @event, limit: 100000000 %>
   </div>
 </div>
+
+<script>
+  document.addEventListener('readystatechange', function(){
+    if (document.readyState == "interactive") {
+      var channel = dispatcher.subscribe("Event" + "<%= @event.id %>");
+      channel.bind('new_comment', addComment);
+    }
+  }, false)
+</script>
