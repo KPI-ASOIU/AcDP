@@ -71,8 +71,8 @@ gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
 gem 'bootstrap-x-editable-rails' 
 gem 'select2-rails'
-# gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
-gem 'opinio', :path => "/home/dmitriy/opinio4"
+gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
+# gem 'opinio', :path => "/home/dmitriy/opinio4"
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # # Added for backward compatibility of Opinio gem
