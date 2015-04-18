@@ -1,15 +1,21 @@
-<%= form_tag admin_users_path, :method => 'get' do %>
+<%= form_tag admin_users_path, :id => 'searchForm',  :method => 'get' do %>
 
   <% @roles.each do |role| %>
-    <label class="checkbox-inline">
+
+    <div class="ui checkbox">
+      <%= check_box_tag 'role_ids[]', role, params[:role_ids].include?(role) -%>
+      <%=label_tag role, t("roles.plural.#{role}")%>
+    </div>
+
+    <!-- <label class="checkbox-inline">
         <%= check_box_tag 'role_ids[]', role, params[:role_ids].include?(role) -%>
         <%= h t("roles.plural.#{role}") -%>
-    </label>
+    </label> -->
   <% end %>
 
   <br><br>
 
-  <div class="input-group">
+<!--   <div class="input-group">
     <div class="input-group-btn">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
         <span class="j-admin-search-btn-text"><%= t('activerecord.attributes.user.' + params[:search_by]) %></span>
@@ -24,11 +30,21 @@
       </ul>
     </div>
     <input type="text" class="form-control" name="q" value="<%= params[:q] %>" />
-    <span class="input-group-btn">
-      <button type="submit" class="btn btn-primary">
-        <span class="glyphicon glyphicon-search"></span>
-        <%= t('util.search') %>
-      </button>
-    </span>
-  </div>
+  </div> -->
+  
+ <div class="ui action input">
+    <div class="ui selection dropdown">
+      <input type="hidden" name="gender">
+      <div class="default text"><%= t('activerecord.attributes.user.login') %></div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item" data-search-type="login"><%= t('activerecord.attributes.user.login') %></div>
+        <div class="item" data-search-type="email"><%= t('activerecord.attributes.user.email') %></div>
+        <div class="item" data-search-type="full_name"><%= t('activerecord.attributes.user.full_name') %></div>
+        <div class="item" data-search-type="3"><%= t('activerecord.attributes.user.position') %></div>
+      </div>
+    </div>
+  <input type="text" name="q" value="<%= params[:q] %>">
+  <div class="ui icon button" id="searchBtn"><i class="search icon"></i><%= t('util.search') %></div>
+</div>
 <% end %>

@@ -1,26 +1,36 @@
-<div id="modal_confirm_remove_group" class="modal fade bs-modal-sm">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= t('groups.removing_title') %></h4>
+<div class="ui basic modal">
+    <div class="header">
+        <%= t('groups.removing_title') %>
       </div>
-      <div class="modal-body">
-        <p><%= t('users.removing_message') %></p>
+    <div class="content">
+      <div class="left">
+        <i class="trash icon"></i>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
-        <%= link_to t('util.destroy'), '', :method => :delete, :id => 'group_remove_path', :class => "btn btn-primary" %>
+      <div class="right">
+        <p><%= t('groups.removing_message') %></p>
       </div>
     </div>
-  </div>
+    <div class="actions">
+      <div class="two fluid ui buttons">
+        <div class="ui negative labeled icon button">
+          <i class="remove icon"></i>
+          <%= t('util.cancel') %>
+        </div>
+        <div class="ui positive right labeled icon button">
+   <!--      <%= link_to t('util.destroy'), '', :method => :delete, :id => 'group_remove_path', :class => "ui positive right labeled icon button" %> -->
+   <%= t('util.destroy')%> 
+       <i class="checkmark icon"></i>
+       </div>
+      </div>
+    </div>
 </div>
 
-<div class="panel panel-primary">
+
+<!-- <div class="panel panel-primary">
   <div class="panel-heading">
     <%= t('util.group_list') %>
-  </div>
-    <table class="table table-striped table-verticle-centered">
+  </div> -->
+  <table class="ui table padded blue segment table-hover">
       <thead>
         <tr>
           <th><%= t('activerecord.attributes.group.name') %></th>
@@ -55,14 +65,14 @@
               <% end %>
             </td>
             <td>
-              <%= link_to admin_group_path(group), :class => "btn btn-info btn-xs" do %>
-                  <span class='glyphicon glyphicon-zoom-in'></span>
+              <%= link_to admin_group_path(group), :class => "ui icon blue button" do %>
+                  <i class='zoom in icon'></i>
               <% end %>
-              <%= link_to edit_admin_group_path(group), :class => "btn btn-warning btn-xs" do %>
-                  <span class='glyphicon glyphicon-pencil'></span>
+              <%= link_to edit_admin_group_path(group), :class => "ui icon orange button" do %>
+                  <i class='pencil icon'></i>
               <% end %>
-              <%= link_to '', :id => 'btn_remove_group', :data => { :path => admin_group_path(group), :toggle => 'modal', :target => '#modal_confirm_remove_group' }, :class => "btn btn-danger btn-xs" do %>
-                  <span class='glyphicon glyphicon-remove'></span>
+              <%= link_to '', :id => 'btn_remove_group', :data => { :path => admin_group_path(group), :toggle => 'modal', :target => '#modal_confirm_remove_group' }, :class => "ui icon red button" do %>
+                  <i class='remove icon'></i>
               <% end %>
             </td>
           </tr>
@@ -72,10 +82,9 @@
     <div class="panel-body text-center">
       <%= paginate @groups %>
     </div>
-    <div class="panel-footer text-center">
-    <%= link_to new_admin_group_path, :class => "btn btn-success" do %>
-          <span class='glyphicon glyphicon-plus'></span>
+    <%= link_to new_admin_group_path, :class => "ui labeled icon green button" do %>
+          <!-- <span class='glyphicon glyphicon-plus'></span> -->
+          <i class="plus icon"></i>
           <%= t('util.new_group') %>
     <% end %>
-  </div>
 </div>
