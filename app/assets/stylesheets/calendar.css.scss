@@ -8,33 +8,34 @@ $calendar_width: 50%;
 
   th{
     font-family: inherit;
-	  font-weight: 500;
-    font-size: 16px;
-    padding: 6px;
+	  font-weight: 800;
+    font-size: 10px;
+    text-transform:uppercase;
+    padding: 1px;
     border: 1px solid white;
-    width: 14.285714286%;
+    width: 5vw;
     background: #428bca;
     color: #fff;
     text-align: center;
-    height: 40px;  
+    height: 30px;  
   }
 
   td {
     background: inherit;
     color: #777;
-    height: 80px;
+    height: 2vh;
     vertical-align: top;
     font-size: 16px;
-    height: 80px;
     &.notmonth { background-color: rgb(245,245,245); }
     &.today { background-color: #D7F2FF; }
     &.past { color: #CCC; }
     .cell{
       width: 100%;
-      height: 100%;
-      padding: 1rem;
+      height: 40px;
+      text-align: center !important;
       &.selected{
-        background: #f89406 !important; 
+        background: #FFE57F !important;
+        width: 100%;
       }
       ul {
         font-size: 11px;
@@ -52,13 +53,24 @@ $calendar_width: 50%;
 #month, #day {
   margin: 0;
   padding-bottom: 10px;
-  text-align: center;
-  font-size: 22px;
   width: 100%;
   a {
     text-decoration: none;
     padding: 0 10px;
-    color: #428bca;
   }
 }
+
+.task_list{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #00C853;
+}
+
+.event_list{
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #0091EA;
+
+}
+
 

@@ -1,5 +1,5 @@
 <div class="calendar_container col-xs-6">
-  <h2 id="month">
+  <h2 class="ui purple header" id="month">
     <%= link_to date: @date.prev_month do%>
       <div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
     <% end %>
@@ -33,9 +33,9 @@
   <% end %>
 </div>
 <div class="col-xs-6">
-  <div id="day">
+  <h3 class="ui purple header" id="day">
     <%= render partial: 'calendar/day_header', locals: {date: @date} %>
-  </div>
+  </h3>
   <% if can? :crud, Task %>
     <div class="task_list"></div>
   <% end %>
