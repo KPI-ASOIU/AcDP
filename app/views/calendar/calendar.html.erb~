@@ -1,8 +1,6 @@
 <div class="calendar_container col-xs-6">
-  <h2 class="ui purple header" id="month">
-    <%= link_to date: @date.prev_month do%>
-      <div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
-    <% end %>
+  <h2 id="month">
+    
     <div class="label label-primary"><%= l(@date, format: "%B %Y")%></div>
     <%= link_to date: @date.next_month do%>
       <div class="glyphicon glyphicon-circle-arrow-right" style="float: right"></div>
@@ -33,9 +31,9 @@
   <% end %>
 </div>
 <div class="col-xs-6">
-  <h3 class="ui purple header" id="day">
+  <div id="day">
     <%= render partial: 'calendar/day_header', locals: {date: @date} %>
-  </h3>
+  </div>
   <% if can? :crud, Task %>
     <div class="task_list"></div>
   <% end %>
