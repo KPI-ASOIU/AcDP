@@ -46,7 +46,7 @@
         </div>
       </div>
     <input class = "searchInput column" type="text" name="q" value="<%= params[:q] %>">
-    <div class="ui icon button column" id="searchBtn"><i class="search icon"></i>&nbsp<%= t('util.search') %></div>
+    <div class="ui icon button column" id="searchBtn"><i class="search icon"></i><%= t('util.search') %></div>
     <div></div>
   </div>
 </div>
