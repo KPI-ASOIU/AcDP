@@ -1,11 +1,11 @@
 <div class='panel-activity panel-primary'>
-	<div class='pull-left activity-toggle'>
+	<div class=''>
 		<%= button_tag '', class: 'no-styling-btn activity-toggle-btn activity-icon', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
                 <i class='large chevron left icon'></i>
 		<% end %>
 	</div>
     
-        <div class="ui pointing menu">
+        <div class="ui pointing menu activity-filter">
                 <%= link_to t('activity.feed'), activity_popover_path, remote: true, class: 'active item' %>
           <% if can? :crud, Task %>
                         <%= link_to t('activity.tasks'), activity_popover_path(type: 'Task'), remote: true, class: 'item'  %>
@@ -13,7 +13,7 @@
                 <%= link_to t('activity.events'), activity_popover_path(type: 'Event'), remote: true, class: 'item'  %>
                 <%= link_to t('activity.documents'), activity_popover_path(type:'Document'), remote: true, class: 'item' %>
         </div>
-	<div class="ui large feed">
+	<div class="ui large feed activity-list">
     <% if @activities.present? %>
       <%= render_activities(@activities) %>
     <% else %>

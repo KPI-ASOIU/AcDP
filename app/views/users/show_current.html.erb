@@ -7,16 +7,17 @@
         </div>
       </div>
       <div class="column">
-        <div class="blue ui segment">
-                            <div class="ui huge orange ribbon label" style="left: -2.2rem;">
+        <div class="blue ui segment activity-window">
+            <div class="activity-container">
+                <div class="panel-activity">
+                            <div class="ui huge orange label">
                               <%= t('activity.the_hottest') %>
                             </div>
-                                <div class='pull-right'>
-			  	<%= button_tag '', class: 'no-styling-btn activity-toggle-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
+			  	<%= button_tag '', class: 'no-styling-btn ui right floated activity-toggle-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
 				  	<%= t('util.to_activity') %> <i class='ui large chevron right icon'></i>
                                 <% end %>
-                                </div>
-                                <div>
+                                
+                                <div class="ui segment">
 				<% if @reminder_tasks.present? or @reminder_events.present? %>
 					<% @reminder_tasks.uniq.each { |task| %>
 						<%= render partial: 'notifications/reminder', locals: { item: task, link: 'task_path' } %>
@@ -28,8 +29,11 @@
 					<div class='ui aligned center no-activity-found'><%= t('activity.no_reminders') %></div>
 				<% end %>
                                 </div>
-			<%= render 'application/panel_activity' %>
-        </div>
+                </div>
+            <%= render 'application/panel_activity' %>		
+            </div>
+            </div>
+          
       </div>
     </div>
 </div>

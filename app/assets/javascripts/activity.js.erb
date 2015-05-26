@@ -1,6 +1,6 @@
 <% url = AcDP::Application.routes.url_helpers %>
 
-$('.activity-icon').popover({html: true})
+//$('.activity-icon').popover({html: true})
 
 // $('.activity-icon').on('shown.bs.popover', function () {
 $(document).ready(function() {
@@ -36,9 +36,9 @@ $(document).ready(function() {
 
  	$('.activity-toggle-btn').click(function() {
  		if($(this).hasClass('navbar-right'))
- 			$('.activity-container').css('marginLeft', '-525px');
+ 			$('.activity-container').css('marginLeft', '-100%');
  		else
- 			$('.activity-container').css('marginLeft', '0px');
+ 			$('.activity-container').css('marginLeft', '0');
  	});
  
  	$.each($('.countdown'), function() {
