@@ -1,33 +1,52 @@
-<div class="panel-heading">
-  <h3 class="panel-title"><%= t('users.my_page') %></h3>
+<h2 class="ui header"><%= t('users.my_page') %></h2>
+<div class="ui grid">
+  <div class="two column row">
+  <div class="six wide column">  
+      <div class="ui image">
+        <%= image_tag @user.avatar.url("large"), class: 'ui image' %>
+      </div>
+  </div>
+  <div class="column">
+    <table class="ui floated left striped celled table">
+        <% if @user.full_name.present? %>
+        <thead>
+            <tr>
+                <th colspan="2"><h3 class="ui header"><%=  @user.full_name %></h3></th>
+            </tr>
+        </thead>
+        <% end %>
+        <tbody>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.login') %></td>
+                <td><%=  @user.login %></td>
+            </tr>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.role') %></td>
+                <td><%=  format_roles(@user.roles, ", ") %></td>
+            </tr>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.full_name') %></td>
+                <td><%=  @user.full_name %></td>
+            </tr>
+            <tr>
+                <td><%= t('activerecord.attributes.user.email')  %></td>
+                <td><%=  @user.email %></td>
+            </tr>
+            <tr>
+                <td><%= t('activerecord.attributes.user.position')  %></td>
+                <td><%=  @user.position %></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  </div>
 </div>
-<div class="panel-body">
-  <div class="pull-left">
-    <div class="thumbnail">
-      <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
-    </div>
-  </div>
-  <div class="pull-left break-words c-user-info-block">
-    <% if @user.full_name.present? %>
-      <h3 class="text-center"><%=  @user.full_name %></h3>
-    <% end %>
-    <dl class="dl-horizontal">
-      <dt><%=  t('activerecord.attributes.user.login') %></dt>
-      <dd><%=  @user.login %></dd>
-      <dt><%=  t('activerecord.attributes.user.role') %></dt>
-      <dd><%=  format_roles(@user.roles, ", ") %></dd>
-      <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
-      <dd><%=  @user.full_name %></dd>
-      <dt><%= t('activerecord.attributes.user.email')  %></dt>
-      <dd><%=  @user.email %></dd>
-      <dt><%= t('activerecord.attributes.user.position')  %></dt>
-      <dd><%=  @user.position %></dd>
-    </dl>
-  </div>
+<div class="ui clearing divider"></div>
   <div class="pull-left break-words">
     <dl class="dl-horizontal">
       <dt><%= t('activerecord.attributes.user.about_me')  %></dt>
       <dd><%=  @user.about_me %></dd>
     </dl>
   </div>
-</div>
+
+
