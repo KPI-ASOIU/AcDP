@@ -1,7 +1,7 @@
-/*.item {
+.item {
 	margin-bottom: 7px;
 }
-*/
+
 .text-white {
 	color: white;
 }

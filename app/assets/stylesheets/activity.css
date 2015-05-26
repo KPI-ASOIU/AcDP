@@ -7,7 +7,7 @@
   display: block;
   float: left;
   margin-left: 10px;
-  overflow: auto;
+  //overflow: auto;
   width: 100%;
 }
 
