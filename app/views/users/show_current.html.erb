@@ -13,7 +13,7 @@
                             <div class="ui huge orange label">
                               <%= t('activity.the_hottest') %>
                             </div>
-			  	<%= button_tag '', class: 'no-styling-btn ui right floated activity-toggle-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
+			  	<%= button_tag '', class: 'no-styling-btn ui right floated activity-toggle-btn activity-icon navbar-right', style:'cursor:pointer;', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
 				  	<%= t('util.to_activity') %> <i class='ui large chevron right icon'></i>
                                 <% end %>
                                 
