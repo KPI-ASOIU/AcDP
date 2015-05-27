@@ -1,6 +1,6 @@
 <% if current_user.contacts.exists?(id: user_id) %>
   <%= form_tag contact_path(user_id), method: :delete do |f| %>
-    <button class="ui negative labeled icon fluid button">
+    <button class="ui mini negative labeled icon fluid button">
       <i class="remove icon"></i>
       <%= t('contacts.remove') %>
     </button>
@@ -8,7 +8,7 @@
 <% else %>
   <%= form_tag contacts_path, method: :post do |f| %>
     <%= hidden_field_tag :id, user_id %>
-    <button class="ui positive labeled icon fluid button">
+    <button class="ui mini positive labeled icon fluid button">
       <i class="add icon"></i>
       <%= t('contacts.add') %>
     </button>

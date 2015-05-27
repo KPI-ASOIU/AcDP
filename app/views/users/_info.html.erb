@@ -42,11 +42,11 @@
   </div>
 </div>
 <div class="ui clearing divider"></div>
-  <div class="pull-left break-words">
-    <dl class="dl-horizontal">
-      <dt><%= t('activerecord.attributes.user.about_me')  %></dt>
-      <dd><%=  @user.about_me %></dd>
-    </dl>
-  </div>
+  <div class="ui segment">
+                        <h4 class="ui header"><%= t('activerecord.attributes.user.about_me')  %></h4>
+                        <div class="description">
+                          <%=  @user.about_me %>
+                        </div>
+                  </div>
 
 
