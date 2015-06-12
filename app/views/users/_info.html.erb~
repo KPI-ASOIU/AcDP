@@ -2,8 +2,8 @@
 <div class="ui grid">
   <div class="two column row">
   <div class="six wide column">  
-      <div class="ui image">
-        <%= image_tag @user.avatar.url("large"), class: 'ui large image' %>
+      <div class="ui large image">
+        <%= image_tag @user.avatar.url("large"), class: 'ui image' %>
       </div>
   </div>
   <div class="column">

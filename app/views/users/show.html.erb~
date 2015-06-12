@@ -5,7 +5,7 @@
               <div class="two column row">
               <div class="five wide column">  
                   <div class="ui image">
-                    <%= image_tag @user.avatar.url("large"), class: 'ui large image' %>
+                    <%= image_tag @user.avatar.url("large"), class: 'ui image' %>
                   </div>
                   <% if @user != current_user %>
                     <div class="ui buttons">
