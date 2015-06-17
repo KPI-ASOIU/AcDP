@@ -3,7 +3,7 @@
 
   <% @roles.each do |role| %>
 
-    <div class="ui checkbox">
+    <div class="ui toggle checkbox">
       <%= check_box_tag 'role_ids[]', role, params[:role_ids].include?(role) -%>
       <%= label_tag role, t("roles.plural.#{role}")%>
     </div>
@@ -27,7 +27,7 @@
       <div class="item" data-search-type="3"><%= t('activerecord.attributes.user.position') %></div>
     </div>
   </div>
-  <div class="ui left floated input" style="width:calc(100% - 220px);">
+  <div class="ui left floated input" id="searchinput">
   <input class = "searchInput" type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t('util.search') %>">
   </div>
   <button class="ui icon button" id="searchBtn">

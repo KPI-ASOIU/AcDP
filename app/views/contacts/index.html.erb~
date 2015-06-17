@@ -16,7 +16,7 @@
           </a>
           
           <div class="content">
-		<div class="header"> <a href="<%=user_path(user)%>"><%= user.full_name %></a></div>
+		<div class="header"> <a href="<%=user_path(user)%>" <%= user.full_name %></a></div>
           </div>
         </div>
       <% end %>

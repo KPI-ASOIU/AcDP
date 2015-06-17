@@ -34,7 +34,7 @@
  <!--  <h4 class="ui top attached header">
     <%= t('util.user_list') %>
   </h4> -->
-<div style="margin:10px 0;">  
+<div style="padding:10px 0;">  
 <%= link_to new_admin_user_path, :class => "ui labeled icon green button" do %>
           <!-- <span class='glyphicon glyphicon-plus'></span> -->
           <i class="plus icon"></i>
