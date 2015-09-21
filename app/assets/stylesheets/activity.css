@@ -1,14 +1,14 @@
-.activity-list, .panel-activity {
+/*.activity-list, .panel-activity {
   margin: 0 auto;
   max-width: 515px;
 }
-
+*/
 .panel-activity {
   display: block;
   float: left;
-  margin-left: 10px;
-  overflow: auto;
-  width: 100%;
+  position: relative;
+  margin: 0 1.5%;
+  width: 47%;
 }
 
 .activity-list {
@@ -24,7 +24,7 @@
           box-sizing: border-box;
 }
 
-.activity time {
+/*.activity time {
   float: none;
 }
 
@@ -62,14 +62,12 @@
   -ms-zoom: 2.2;
   -moz-transform: scale(2.2);
   -moz-transform-origin: 0% 0%;
-}
-
-.activity-filter, .reminder-filter {
+}.activity-filter, .reminder-filter {
   margin: 0 auto;
   width: -moz-fit-content;
   width: -webkit-fit-content;
   width: fit-content;
-}
+}*/
 
 .no-activity-found {
   margin: 15px 0;
@@ -93,20 +91,21 @@
 
 .activity-container {
   display: inline-block;
-  width: 1200px;
+  width: 200%;
   -webkit-transition: 0.5s ease margin-left;
           transition: 0.5s ease margin-left;
 }
 
 .activity-window {
   overflow: hidden;
-  width: 525px;
+  position:relative;
 }
 
-.activity-toggle-btn {
-  margin-top: -30px;
-  position: relative;
-}
+/*.activity-toggle-btn {
+  top:10px;
+  right:10px;
+  position: absolute;
+}*/
 
 .activity-toggle {
   margin-left: 10px;

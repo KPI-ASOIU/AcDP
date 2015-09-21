@@ -63,14 +63,16 @@
 
     <div class="field">
       <%= f.label :avatar, :class=>'col-sm-4 control-label' %>
-        <%= image_tag @user.avatar.url("medium"), class: 'ui left floated small image' %>
-	<% unless @user.new_record? %>
-        <%= link_to avatar_admin_user_path(@user), :method => :delete, :class => "ui icon labeled red tiny button", :style=> "margin-bottom:5px" do %>
+         
+          <%= image_tag @user.avatar.url("medium"), class: 'ui left floated small image' %>
+      
+<% unless @user.new_record? %>
+          <%= link_to avatar_admin_user_path(@user), :method => :delete, :class => "ui icon labeled red tiny button", :style=> "margin-bottom:5px" do %>
             <i class='remove icon'></i>
             <%= t('util.destroy') %>
-        <% end %>
-	</br>	
-	<%= f.file_field :avatar, :class=>'ui tiny button' %>     
+          <% end %>
+</br>	
+<%= f.file_field :avatar, :class=>'ui tiny button' %>     
 	<% end %>
     </div>
 

@@ -1,9 +1,9 @@
 <div class="ui buttons">
-  <%= link_to calendar_path, :class => "ui medium button" do %>  
+  <%= link_to calendar_path, :class => "ui button" do %>  
     <i class='calendar icon'></i>
     <%= t('calendar') %>
   <% end %>
-  <%= link_to current_user_edit_users_path, :class => "ui medium button" do %>
+  <%= link_to current_user_edit_users_path, :class => "ui button" do %>
     <i class='edit icon'></i>
     <%= t('util.edit') %>
   <% end %>

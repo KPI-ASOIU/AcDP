@@ -1,32 +1,40 @@
-<div class="activity">
-  <div class="glyphicon glyphicon-<%= icon(a) %>"></div>
-  <div class="body">
-    <div class="title">
-      <% if a.owner %>
-        <%= link_to a.owner.full_name, a.owner %>
-        <%= t('activity.' << a.key) %>
-        <% if !a.key.include?('destroy') %>
-          <!-- get rid of extra conditions after if -->
-          <% if (item = (a.trackable_type == 'Comment' ? trackable_commentable(a) : trackable(a))).nil? %>
-            <%= a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a) %>
-          <% else %>
-            <%= link_to a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a), item %>
-          <% end %>
-        <% else %>
-          <%= t('activity.trackable.' << a.trackable_type.downcase) %>
-        <% end %>
-      <% end %>
+<div class="event">
+    <div class="label">
+          <% if a.owner %>
+            <% #l=ink_to image_tag((author = a.owner).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',title: author.full_name), user_path(author.id) %>
+          <%= image_tag a.owner.avatar.url("small"), class: 'img-thumbnail c-user-small-avatar'%>
+          <% end %> 
+          
     </div>
-    <div class="details">
-      <div class="avatar">
+    <div class="content">
+      <i class="ui tiny icon <%= icon(a) %>" style="float:left;"></i>
+      <%= timeago_tag a.created_at, :nojs => true, :limit => 2.hours.ago,
+      title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" }, class:'date',style:'display:block;' %>
+      <div class="summary">
         <% if a.owner %>
-          <%= link_to image_tag((author = a.owner).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
-            title: author.full_name), user_path(author.id) %>
-        <% end %> 
-        <span class='<%= status_class(activity_information(a)) %>'> <%= translate_status(activity_information(a)) %> </span>
+          <%= link_to a.owner.full_name, a.owner %>
+          <%= t('activity.' << a.key) %>
+          <% if !a.key.include?('destroy') %>
+            <!-- get rid of extra conditions after if -->
+            <% if (item = (a.trackable_type == 'Comment' ? trackable_commentable(a) : trackable(a))).nil? %>
+              <%= a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a) %>
+            <% else %>
+              <%= link_to a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a), item %>
+            <% end %>
+          <% else %>
+            <%= t('activity.trackable.' << a.trackable_type.downcase) %>
+          <% end %>
+        <% end %>
       </div>
+      <div class="extra text">
+          <span class='<%= status_class(activity_information(a)) %>'> <%= translate_status(activity_information(a)) %> </span>
+      </div>
+      <!--div class="meta">
+        <a class="like">
+          <i class="like icon"></i> 1 Like
+        </a>
+      </div-->
     </div>
-    <%= timeago_tag a.created_at, :nojs => true, :limit => 2.hours.ago,
-      title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" } %>
-  </div>
 </div>
+
+
