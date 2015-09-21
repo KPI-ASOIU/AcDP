@@ -1,3 +1,29 @@
 .ui.buttons .or:after {
   content: none;
 }
+
+.ui.action.flex.input {
+	display: inline-flex
+}
+
+.ui.action.input>input {
+	padding: 0.7em 1em;
+}
+
+.ui.action.input>.ui.selection.dropdown {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-webkit-border-radius: 0 !important;
+	        border-radius: 0 !important;
+	box-shadow: none !important;
+	display: table-cell;
+}
+
+.ui.checkbox .box::after, 
+.ui.checkbox label::after {
+	height: 0.3em;
+	width: 0.6em;
+}
+
+.ui.inline.checkboxes>.ui.checkbox:not(:last-child) {
+	margin-right: 30px;
+}

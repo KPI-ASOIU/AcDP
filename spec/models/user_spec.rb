@@ -29,8 +29,8 @@ describe User do
 
     context 'if email_changed? is true' do
       before { subject.stub(:email_changed?) { true } }
-      it { should allow_value('user@mail.com', 'my_superuser@lol.com.ua', '').for(:email) }
-      it { should_not allow_value('user@mail', 'my_superuser@lol@com.ua').for(:email) }
+      it { should allow_value('user@mail.com', 'my_superuser@lol.com.ua').for(:email) }
+      it { should_not allow_value('user@mail', 'my_superuser@lol@com.ua', '').for(:email) }
     end
   end
 

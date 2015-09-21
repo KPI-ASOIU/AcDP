@@ -1,39 +1,15 @@
-<div class="ui left aligned grid">
-<div class="left aligned two column row">
-      <div class="column">
-        <div class="blue ui segment">
-        <%= render 'info' %>
-	<%= render 'options'%>
-        </div>
-      </div>
-      <div class="column">
-        <div class="blue ui segment activity-window">
-            <div class="activity-container">
-                <div class="panel-activity">
-                            <div class="ui huge orange label">
-                              <%= t('activity.the_hottest') %>
-                            </div>
-			  	<%= button_tag '', class: 'no-styling-btn ui right floated activity-toggle-btn activity-icon navbar-right', style:'cursor:pointer;', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
-				  	<%= t('util.to_activity') %> <i class='ui large chevron right icon'></i>
-                                <% end %>
-                                
-                                <div class="ui segment">
-				<% if @reminder_tasks.present? or @reminder_events.present? %>
-					<% @reminder_tasks.uniq.each { |task| %>
-						<%= render partial: 'notifications/reminder', locals: { item: task, link: 'task_path' } %>
-					<% } %>
-					<% @reminder_events.uniq.each { |event| %>
-						<%= render partial: 'notifications/reminder', locals: { item: event, link: 'event_path' } %>
-					<% } %>
-				<% else %>
-					<div class='ui aligned center no-activity-found'><%= t('activity.no_reminders') %></div>
-				<% end %>
-                                </div>
-                </div>
-            <%= render 'application/panel_activity' %>		
-            </div>
-            </div>
-          
-      </div>
-    </div>
+<div class="ui two column grid task">
+	<div class="column">
+	  <%= render 'info' %>
+	</div>
+
+	<div class='column'>
+		<% @reminder_tasks.uniq.each { |task| %>
+			<%= render partial: 'notifications/reminder', locals: { item: task, link: 'task_path' } %>
+		<% } %>
+		<% @reminder_events.uniq.each { |event| %>
+			<%= render partial: 'notifications/reminder', locals: { item: event, link: 'event_path' } %>
+		<% } %>
+		<%= render 'application/panel_activity' %>
+	</div>
 </div>

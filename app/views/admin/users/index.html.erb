@@ -64,15 +64,17 @@
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
             <td>
-              <%= link_to admin_user_path(user), :class => "ui icon blue button" do %>
+              <div class="ui buttons">
+                <%= link_to admin_user_path(user), :class => "ui icon button" do %>
                   <i class='zoom in icon'></i>
-              <% end %>
-              <%= link_to edit_admin_user_path(user), :class => "ui icon orange button" do %>
-                  <i class='pencil icon'></i>
-              <% end %>
-              <a href='<%= admin_user_path(user) %>' data-method='delete' id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon red button" >
-                <i class='remove icon'></i>
-              </a>
+                <% end %>
+                <%= link_to edit_admin_user_path(user), :class => "ui icon button" do %>
+                    <i class='pencil icon'></i>
+                <% end %>
+                <div id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon button" >
+                  <i class='remove icon'></i>
+                </div>
+              </div>
             </td>
           </tr>
         <% end %>

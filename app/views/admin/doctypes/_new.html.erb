@@ -1,11 +1,11 @@
 <%= form_for :document_type do |f| %>
-<div class="ui top attached blue segment">
-	<div class="ui input">
-  		<%= f.text_field :title, class: 'ui input', placeholder: t('doctypes.placeholder') %>
-  		</div>
-    	<%= button_tag(type: 'submit', class: "ui positive mini icon button") do %>
-      		<i class='plus icon'></i>
-      		<%= t('doctypes.new') %>
-    	<% end %>
+	<div class="ui top attached blue segment">
+		<div class="ui action flex input">
+	  	<%= f.text_field :title, placeholder: t('doctypes.placeholder') %>
+	    <%= button_tag(type: 'submit', class: "ui positive right labeled icon button") do %>
+	    	<i class='plus icon'></i>
+	    	<%= t('doctypes.new') %>
+	    <% end %>
+		</div>
 	</div>
-<%end%>
+<% end %>
