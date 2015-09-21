@@ -310,6 +310,7 @@ uk:
             end_date:
               invalid: недійсна
   util:
+    not_specified: Не вказано
     chosen_no_result: 'Нічого не знайдено'
     actions: Дії
     edit_password: 'залиште це поле пустим, якщо не бажаєте його змінювати'
@@ -611,6 +612,7 @@ uk:
   opinio:
     no_comments_found: Ще немає жодного коментаря
   activity:
+    recent: Останні новини
     cancel: Скасувати
     renew: Відновити
     the_hottest: Термінові

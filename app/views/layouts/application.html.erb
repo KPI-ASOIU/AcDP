@@ -18,7 +18,23 @@
     <% end %>
     <%= link_to t('activerecord.models.events'), events_path, id: 'events', class: "item" %>
   <% else %>
-    <h1 class="item"><%= t('page-header.portal') %></h1>
+    <div class="ui three column middle aligned stackable page grid container">
+      <div class="left aligned column">
+        <h1 class="ui huge header">
+          <div class="sub header">КАФЕДРА</div>
+          АСОІУ
+        </h1>
+      </div>
+      <div class="center aligned column">
+        <%= image_tag "kpi-logo.png", width: 120 %>
+      </div>
+      <div class="right aligned column">
+        <h1 class="ui header">
+          <div class="sub header">ФАКУЛЬТЕТ</div>
+          ІОТ
+        </h1>
+      </div>
+    </div>
   <% end %>
   <% if can? :manage, @users %>
     <%= link_to t('admin_panel'), admin_users_path, class: "item" %>

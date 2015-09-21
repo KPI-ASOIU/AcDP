@@ -1,7 +1,16 @@
-<div class="activity">
-  <div class="glyphicon glyphicon-<%= icon(a) %>"></div>
-  <div class="body">
-    <div class="title">
+<div class="event">
+  <div class="label">
+    <% if a.owner %>
+      <%= link_to image_tag((author = a.owner).avatar.url("small"), class: 'ui circular image',
+        title: author.full_name), user_path(author.id) %>
+    <% end %>
+  </div>
+  <div class="content">
+    <div class="date">
+      <%= timeago_tag a.created_at, :nojs => true, :limit => 2.hours.ago,
+    title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" } %>
+    </div>
+    <div class="summary">
       <% if a.owner %>
         <%= link_to a.owner.full_name, a.owner %>
         <%= t('activity.' << a.key) %>
@@ -17,16 +26,8 @@
         <% end %>
       <% end %>
     </div>
-    <div class="details">
-      <div class="avatar">
-        <% if a.owner %>
-          <%= link_to image_tag((author = a.owner).avatar.url("small"), class: 'img-thumbnail c-user-small-avatar',
-            title: author.full_name), user_path(author.id) %>
-        <% end %> 
-        <span class='<%= status_class(activity_information(a)) %>'> <%= translate_status(activity_information(a)) %> </span>
-      </div>
+    <div class="extra text">
+      <%= activity_information(a) %>
     </div>
-    <%= timeago_tag a.created_at, :nojs => true, :limit => 2.hours.ago,
-      title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" } %>
   </div>
 </div>

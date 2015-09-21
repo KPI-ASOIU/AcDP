@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of   :login
   validates_presence_of   :full_name
+  validates_presence_of   :email
   validates_uniqueness_of :login
 
   validates_format_of     :email, :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?

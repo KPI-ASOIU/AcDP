@@ -1,32 +1,10 @@
-<div class='panel-activity panel-primary'>
-	<div class='pull-left activity-toggle'>
-		<%= button_tag '', class: 'no-styling-btn activity-toggle-btn activity-icon', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: '' } do %>
-	  	<span class='glyphicon glyphicon-chevron-left'></span>
-		<% end %>
-	</div>
-	<div class='activity-filter'>
-		<ul class="nav nav-pills">
-		  <li class="active">
-		  	<%= link_to t('activity.feed'), activity_popover_path, remote: true %>
-		  </li>
-		  <% if can? :crud, Task %>
-			  <li data-filter='Task'>
-			  	<%= link_to t('activity.tasks'), activity_popover_path(type: 'Task'), remote: true %>
-			  </li>
-		  <% end %>
-		  <li data-filter='Event'>
-		  	<%= link_to t('activity.events'), activity_popover_path(type: 'Event'), remote: true %>
-		  </li>
-		  <li data-filter='Document'>
-		  	<%= link_to t('activity.documents'), activity_popover_path(type:'Document'), remote: true %>
-		  </li>
-		</ul>
-	</div>
-	<div class="activity-list">
-    <% if @activities.present? %>
-      <%= render_activities(@activities) %>
-    <% else %>
-      <div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>
-    <% end %>
-	</div>
+<div class="ui piled feed segment">
+  <h2 class="ui header">
+    <%= t('activity.recent') %>
+  </h2>
+	<% if @activities.present? %>
+    <%= render_activities(@activities) %>
+  <% else %>
+    <div class='text-center no-activity-found'><%= t('activity.no_activity_found') %></div>
+  <% end %>
 </div>

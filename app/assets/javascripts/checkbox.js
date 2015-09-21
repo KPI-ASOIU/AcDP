@@ -9,4 +9,6 @@
         $('div.ui.progress .bar').css('width', (checked * 100 / total).toFixed(2) + '%')
         $('div.ui.progress .bar .ui.label').text((checked * 100 / total).toFixed(0) + '%')
     });
+
+    $('.ui.checkbox').checkbox();
 })();
