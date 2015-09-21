@@ -1,0 +1,52 @@
+<h2 class="ui header"><%= t('users.my_page') %></h2>
+<div class="ui grid">
+  <div class="two column row">
+  <div class="six wide column">  
+      <div class="ui large image">
+        <%= image_tag @user.avatar.url("large"), class: 'ui image' %>
+      </div>
+  </div>
+  <div class="column">
+    <table class="ui floated left striped celled table">
+        <% if @user.full_name.present? %>
+        <thead>
+            <tr>
+                <th colspan="2"><h3 class="ui header"><%=  @user.full_name %></h3></th>
+            </tr>
+        </thead>
+        <% end %>
+        <tbody>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.login') %></td>
+                <td><%=  @user.login %></td>
+            </tr>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.role') %></td>
+                <td><%=  format_roles(@user.roles, ", ") %></td>
+            </tr>
+            <tr>
+                <td><%=  t('activerecord.attributes.user.full_name') %></td>
+                <td><%=  @user.full_name %></td>
+            </tr>
+            <tr>
+                <td><%= t('activerecord.attributes.user.email')  %></td>
+                <td><%=  @user.email %></td>
+            </tr>
+            <tr>
+                <td><%= t('activerecord.attributes.user.position')  %></td>
+                <td><%=  @user.position %></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+<div class="ui clearing divider"></div>
+  <div class="ui segment">
+                        <h4 class="ui header"><%= t('activerecord.attributes.user.about_me')  %></h4>
+                        <div class="description">
+                          <%=  @user.about_me %>
+                        </div>
+                  </div>
+
+

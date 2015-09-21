@@ -19,10 +19,8 @@
           <% if (item = (a.trackable_type == 'Comment' ? trackable_commentable(a) : trackable(a))).nil? %>
             <%= a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a) %>
           <% else %>
-            <%= link_to a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a), item %>
+            <%= t('activity.trackable.' << a.trackable_type.downcase) %>
           <% end %>
-        <% else %>
-          <%= t('activity.trackable.' << a.trackable_type.downcase) %>
         <% end %>
       <% end %>
     </div>
@@ -31,3 +29,5 @@
     </div>
   </div>
 </div>
+
+

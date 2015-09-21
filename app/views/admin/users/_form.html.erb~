@@ -3,10 +3,11 @@
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= t('activerecord.errors.template.header', count: @user.errors.count) %></h2>
+
         <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
         </ul>
       </div>
     <% end %>
@@ -62,14 +63,16 @@
 
     <div class="field">
       <%= f.label :avatar, :class=>'col-sm-4 control-label' %>
-        <%= image_tag @user.avatar.url("medium"), class: 'ui left floated small image' %>
-	<% unless @user.new_record? %>
-        <%= link_to avatar_admin_user_path(@user), :method => :delete, :class => "ui icon labeled red tiny button", :style=> "margin-bottom:5px" do %>
+         
+          <%= image_tag @user.avatar.url("medium"), class: 'ui left floated small image' %>
+      
+<% unless @user.new_record? %>
+          <%= link_to avatar_admin_user_path(@user), :method => :delete, :class => "ui icon labeled red tiny button", :style=> "margin-bottom:5px" do %>
             <i class='remove icon'></i>
             <%= t('util.destroy') %>
-        <% end %>
-	</br>	
-	<%= f.file_field :avatar, :class=>'ui tiny button' %>     
+          <% end %>
+</br>	
+<%= f.file_field :avatar, :class=>'ui tiny button' %>     
 	<% end %>
     </div>
 

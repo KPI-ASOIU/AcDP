@@ -1,7 +1,7 @@
-/*.item {
+.item {
 	margin-bottom: 7px;
 }
-*/
+
 .text-white {
 	color: white;
 }
@@ -9,6 +9,10 @@
 a.text-white {
 	cursor: pointer;
 	color: white;
+}
+
+.no-margins {
+	margin: 0;
 }
 
 .margin-btm10 {
