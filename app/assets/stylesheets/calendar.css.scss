@@ -1,6 +1,6 @@
 $calendar_width: 50%;
 
-table.calendar {
+.calendar {
   border: 1px solid #428bca;
   border-collapse: collapse;
   display: inline-block;
@@ -8,7 +8,7 @@ table.calendar {
 
   th{
     font-family: inherit;
-    font-weight: 800;
+	  font-weight: 800;
     font-size: 10px;
     text-transform:uppercase;
     padding: 1px;

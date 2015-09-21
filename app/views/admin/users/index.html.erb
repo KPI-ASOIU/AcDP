@@ -34,14 +34,7 @@
  <!--  <h4 class="ui top attached header">
     <%= t('util.user_list') %>
   </h4> -->
-<div style="margin:10px 0;">  
-<%= link_to new_admin_user_path, :class => "ui labeled icon green button" do %>
-          <!-- <span class='glyphicon glyphicon-plus'></span> -->
-          <i class="plus icon"></i>
-          <%= t('util.new_user') %>
-    <% end %>  
-</div>
-<table class="ui table padded blue segment table-hover">
+  <table class="ui table padded blue segment table-hover">
       <thead>
         <tr>
           <th class="c-admin-users-avatar-column"></th>
@@ -57,9 +50,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= image_tag user.avatar.url("small"), :class => "thumbnail c-user-small-avatar" %></td>
-            <td><%= link_to admin_user_path(user), :class => "" do %>
-                  <%= user.login %>
-              <% end %></td>
+            <td><%= user.login %></td>
             <td><%= format_roles(user.roles, ", ") %></td>
             <td><%= user.full_name %></td>
             <td><%= user.email %></td>
@@ -70,9 +61,9 @@
               <%= link_to edit_admin_user_path(user), :class => "ui icon orange button" do %>
                   <i class='pencil icon'></i>
               <% end %>
-              <a href='<%= admin_user_path(user) %>' data-method='delete' id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon red button" >
+              <div id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon red button" >
                 <i class='remove icon'></i>
-              </a>
+              </div>
             </td>
           </tr>
         <% end %>
@@ -83,4 +74,10 @@
     <%= paginate @users %>
   </div>
   <!-- <div class="panel-footer text-center"> -->
+          
+    <%= link_to new_admin_user_path, :class => "ui labeled icon green button" do %>
+          <!-- <span class='glyphicon glyphicon-plus'></span> -->
+          <i class="plus icon"></i>
+          <%= t('util.new_user') %>
+    <% end %>
 </div>

@@ -71,7 +71,7 @@
               <%= link_to edit_admin_group_path(group), :class => "ui icon orange button" do %>
                   <i class='pencil icon'></i>
               <% end %>
-              <%= link_to admin_group_path(group), :id => 'btn_remove_group', :data => { :path => admin_group_path(group), :toggle => 'modal', :target => '#modal_confirm_remove_group',:method => 'delete'}, :class => "ui icon red button" do %>
+              <%= link_to '', :id => 'btn_remove_group', :data => { :path => admin_group_path(group), :toggle => 'modal', :target => '#modal_confirm_remove_group' }, :class => "ui icon red button" do %>
                   <i class='remove icon'></i>
               <% end %>
             </td>

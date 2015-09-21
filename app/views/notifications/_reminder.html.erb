@@ -5,15 +5,14 @@
     item.date
   end
   )), '%d %h:%m:%s') %>
-<div class="ui red icon message" style=" font-size:11px;">
-  <i class="huge fire icon" style='opacity: <%= 1 - (time_diff[:day]*24 + time_diff[:hour]) / 72.0 %> !important'></i>
-  <div class="content">
-    <div class="red header">
+<div class="activity">
+  <div class="glyphicon glyphicon-fire" style='opacity: <%= 1 - (time_diff[:day]*24 + time_diff[:hour]) / 72.0 %> !important'></div>
+  <div class="body">
+    <div class="title">
       <%= link_to item.name, eval(link << '(item.id)') %>
     </div>
-    <p><%= t('util.' << link.split('_')[0] << '_expiration_time') %>: 
-    <time class="description">
-      
+    <time>
+      <%= t('util.' << link.split('_')[0] << '_expiration_time') %>: 
       <span class='countdown' data-time="<%= 
         begin 
           item.end_date.to_s[0..-5]
@@ -22,6 +21,5 @@
         end %>">
       </span>
     </time>
-    </p>
   </div>
 </div>

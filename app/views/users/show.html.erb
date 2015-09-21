@@ -1,59 +1,35 @@
-<div class="uprofile">
-        <div class="ui blue segment">
-            <h2 class="ui header"><%= t('users.user_info') %></h2>
-            <div class="ui grid">
-              <div class="two column row">
-              <div class="five wide column">  
-                  <div class="ui image">
-                    <%= image_tag @user.avatar.url("large"), class: 'ui large image' %>
-                  </div>
-                  <% if @user != current_user %>
-                    <div class="ui buttons">
-                    <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
-                    <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
-                    </div>
-                  <% end %>
-              </div>
-              <div class="ten wide column">
-                <table class="ui floated left striped celled table">
-                    <% if @user.full_name.present? %>
-                    <thead>
-                        <tr>
-                            <th colspan="2"><h3 class="ui header"><%=  @user.full_name %></h3></th>
-                        </tr>
-                    </thead>
-                    <% end %>
-                    <tbody>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.login') %></td>
-                            <td><%=  @user.login %></td>
-                        </tr>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.role') %></td>
-                            <td><%=  format_roles(@user.roles, ", ") %></td>
-                        </tr>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.full_name') %></td>
-                            <td><%=  @user.full_name %></td>
-                        </tr>
-                        <tr>
-                            <td><%= t('activerecord.attributes.user.email')  %></td>
-                            <td><%=  @user.email %></td>
-                        </tr>
-                        <tr>
-                            <td><%= t('activerecord.attributes.user.position')  %></td>
-                            <td><%=  @user.position %></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="ui segment">
-                        <h4 class="ui header"><%= t('activerecord.attributes.user.about_me')  %></h4>
-                        <div class="description">
-                          <%=  @user.about_me %>
-                        </div>
-                  </div>
-              </div>
-              </div>
-            </div>
-        </div>
+<div class="panel panel-primary panel-narrow">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t('users.user_info') %></h3>
   </div>
+  <div class="panel-body">
+    <div class="pull-left text-center">
+      <div class="thumbnail">
+        <%= image_tag @user.avatar.url("large"), class: 'c-user-large-avatar' %>
+      </div>
+      <% if @user != current_user %>
+        <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
+        <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
+      <% end %>
+    </div>
+    <div class="pull-left c-user-info-block">
+      <% if @user.full_name.present? %>
+        <h3 class="text-center"><%=  @user.full_name %></h3>
+      <% end %>
+      <dl class="dl-horizontal">
+        <dt><%=  t('activerecord.attributes.user.full_name') %></dt>
+        <dd><%=  @user.full_name %></dd>
+        <dt><%= t('activerecord.attributes.user.email')  %></dt>
+        <dd><%=  @user.email %></dd>
+        <dt><%= t('activerecord.attributes.user.position')  %></dt>
+        <dd><%=  @user.position %></dd>
+      </dl>
+    </div>
+    <div class="pull-left break-words">
+    <dl class="dl-horizontal">
+      <dt><%= t('activerecord.attributes.user.about_me')  %></dt>
+      <dd><%=  @user.about_me %></dd>
+    </dl>
+  </div>
+  </div>
+</div>

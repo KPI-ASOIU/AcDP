@@ -1,11 +1,10 @@
-<div class="ui form">
 <%= form_tag admin_users_path, :id => 'searchForm',  :method => 'get' do %>
 
   <% @roles.each do |role| %>
 
     <div class="ui checkbox">
       <%= check_box_tag 'role_ids[]', role, params[:role_ids].include?(role) -%>
-      <%= label_tag role, t("roles.plural.#{role}")%>
+      <%=label_tag role, t("roles.plural.#{role}")%>
     </div>
 
     <!-- <label class="checkbox-inline">
@@ -15,24 +14,40 @@
   <% end %>
 
   <br><br>
-<div class="searchRow">
-  <div class="ui left floated selection dropdown" >
-    <input type="hidden" name="gender">
-    <div class="default text"><%= t('activerecord.attributes.user.login') %></div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="item" data-search-type="login"><%= t('activerecord.attributes.user.login') %></div>
-      <div class="item" data-search-type="email"><%= t('activerecord.attributes.user.email') %></div>
-      <div class="item" data-search-type="full_name"><%= t('activerecord.attributes.user.full_name') %></div>
-      <div class="item" data-search-type="3"><%= t('activerecord.attributes.user.position') %></div>
+
+<!--   <div class="input-group">
+    <div class="input-group-btn">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="j-admin-search-btn-text"><%= t('activerecord.attributes.user.' + params[:search_by]) %></span>
+        <span class="caret"></span>
+      </button>
+      <input class="j-admin-search-type-input" type="hidden" name="search_by" value="<%= params[:search_by] %>" />
+      <ul class="dropdown-menu j-admin-search-type-combo">
+        <li><a href="#" data-search-type="login"><%= t('activerecord.attributes.user.login') %></a></li>
+        <li><a href="#" data-search-type="email"><%= t('activerecord.attributes.user.email') %></a></li>
+        <li><a href="#" data-search-type="full_name"><%= t('activerecord.attributes.user.full_name') %></a></li>
+        <li><a href="#" data-search-type="position"><%= t('activerecord.attributes.user.position') %></a></li>
+      </ul>
     </div>
+    <input type="text" class="form-control" name="q" value="<%= params[:q] %>" />
+  </div> -->
+  
+ <div class="ui five column relaxed grid>
+   <div class = "row">
+      <div class="ui selection dropdown column">
+        <input type="hidden" name="gender">
+        <div class="default text"><%= t('activerecord.attributes.user.login') %></div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" data-search-type="login"><%= t('activerecord.attributes.user.login') %></div>
+          <div class="item" data-search-type="email"><%= t('activerecord.attributes.user.email') %></div>
+          <div class="item" data-search-type="full_name"><%= t('activerecord.attributes.user.full_name') %></div>
+          <div class="item" data-search-type="3"><%= t('activerecord.attributes.user.position') %></div>
+        </div>
+      </div>
+    <input class = "searchInput column" type="text" name="q" value="<%= params[:q] %>">
+    <div class="ui icon button column" id="searchBtn"><i class="search icon"></i><%= t('util.search') %></div>
+    <div></div>
   </div>
-  <div class="ui left floated input" id="searchinput">
-  <input class = "searchInput" type="text" name="q" value="<%= params[:q] %>" placeholder="<%= t('util.search') %>">
-  </div>
-  <button class="ui icon button" id="searchBtn">
-    <i class="search icon"></i>
-    <%= t('util.search') %>
-  </button>
 </div>
 <% end %>
