@@ -359,7 +359,8 @@ uk:
     event_expiration_time: До початку події
     to_activity: До активності
   users:
-    my_profile: Мій профіль
+    pick_avatar: Вибрати фотографію
+    dashboard: Мій кабінет
     users_panel: 'Пошук по користувачам'
     user_panel_desc: 'Пошук у списку користувачів за вказаними критеріями'
     fill_fields: 'Заповніть поля'
@@ -373,6 +374,7 @@ uk:
       created: 'Користувача успішно зареєстровано.'
       updated: 'Дані користувача успішно оновлені.'
   groups:
+    create: Створити групу
     removing_title: 'Видалення групи'
     notice:
       created: 'Групу успішно створено.'

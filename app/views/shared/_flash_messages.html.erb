@@ -1,6 +1,8 @@
 <% flash.reject{ |t, m| m =~ /(.*)[c, C]omment(.*)/ }.each do |type, message| %>
-  <div class="<%= semantic_class_for(type) %> closable">
-    <i class="icon close"></i>
-    <%= message %>
-  </div>
+  <% if message.present? %>
+    <div class="<%= semantic_class_for(type) %> closable">
+      <i class="icon close"></i>
+      <%= message %>
+    </div>
+  <% end %>
 <% end %>

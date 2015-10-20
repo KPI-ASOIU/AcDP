@@ -127,16 +127,15 @@ div.select-document-panel {
 .btn-upload {
   margin-top: 6px;
 }
-/*
-.formats {
-    background-color: blue;
-    width: 33%;
-    display: inline-block;
-    float: right;
-
-}
-*/
 
 .docs_download:hover {
     cursor: pointer;
+}
+
+tr[data-id] {
+    cursor: pointer;
+}
+
+.documents.info.sidebar {
+    border-left: 1px solid black;
 }

@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
-  before_action :set_current_user, only: [:show_current]
+  before_action :set_current_user, only: [:dashboard]
 
   def show
   end
 
-  def show_current
+  def dashboard
     @user = current_user
     @reminder_tasks = Task.order('end_date DESC').connected_to_me.with_end_date(Time.now, Time.now + 3.days)
       .with_status('Active')
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update_current
     @user = current_user
     if @user.update(user_params)
-      redirect_to current_user_users_path, notice: t('users.notice.updated')
+      redirect_to dashboard_path, notice: t('users.notice.updated')
 
     else
       render action: 'edit_current'

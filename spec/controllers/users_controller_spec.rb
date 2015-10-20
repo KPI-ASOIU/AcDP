@@ -2,19 +2,19 @@ require 'spec_helper'
 
 describe UsersController do
 
-  describe "GET #show_current" do
+  describe "GET #dashboard" do
     before :each do
       @user = FactoryGirl.create(:user, email: "troilk@lol.com")
       sign_in @user
     end
 
     it "page contains info about current user" do
-      get :show_current
+      get :dashboard
       assigns(:user).should eq(@user)
     end
     it "shows page of current user" do
-      get :show_current
-      response.should render_template :show_current
+      get :dashboard
+      response.should render_template :dashboard
     end
   end
 

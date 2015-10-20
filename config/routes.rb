@@ -34,7 +34,7 @@ AcDP::Application.routes.draw do
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
 
-  root "users#show_current"
+  root "users#dashboard"
 
   devise_for :users
 
@@ -48,9 +48,10 @@ AcDP::Application.routes.draw do
     resources :doctypes
   end
 
+  get 'dashboard' => "users#dashboard", as: :dashboard
+
   resources :users, only: [:show] do
   	collection do
-    	get 'current' => "users#show_current", as: :current_user
       get 'current/edit' => "users#edit_current", as: :current_user_edit
       patch 'current' => "users#update_current", as: :current_user_update
       delete 'current' => "users#avatar", as: :current_user_avatar

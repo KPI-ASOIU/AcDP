@@ -28,7 +28,7 @@
     </div>
     <div class="twelve wide column">
       <% if !@current_folder.nil? %>
-        <div class="ui breadcrumb">
+        <div class="ui no-margins breadcrumb">
           <%= link_to documents_path, :class => 'section' do %>
             <%= t('documents.all') %>
           <% end %>
@@ -36,7 +36,7 @@
           <% path_from_root = @current_folder.path_from_root %>
           <% path_from_root.each do |folder| %>
             <% if folder != path_from_root.last %>
-              <%= link_to folder.title, documents_path(folder), :class => "section" %>
+              <%= link_to folder.title, document_path(folder), :class => "section" %>
             <% else %>
               <div class="active section">
                 <%= folder.title %>
@@ -57,6 +57,7 @@
             <th><%= t('documents.format') %></th>
             <th><%= t('documents.date_created') %></th>
             <th><%= t('documents.date_changed') %></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -65,10 +66,10 @@
         </tbody>
         <tfoot>
           <th colspan="6">
-            <%= link_to '', class: "ui teal labeled icon button", id: 'addFolder' do %>
+            <%= link_to '', class: "ui tiny teal labeled icon button", id: 'addFolder' do %>
               <i class='folder icon'></i><%= t('documents.add_folder') %>
             <% end %>
-            <%= link_to '', class: "ui green labeled icon button", id: 'addDocument' do %>
+            <%= link_to '', class: "ui tiny green labeled icon button", id: 'addDocument' do %>
               <i class='file icon'></i><%= t('news.add_doc') %>
             <% end %>
           </th>
@@ -84,3 +85,5 @@
 <div class="panel-body text-center">
   <%= paginate @docs %>
 </div>
+
+<div id="docInfo" class="ui styled right overlay documents info sidebar"></div>

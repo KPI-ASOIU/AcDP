@@ -19,7 +19,14 @@
     = f.text_field :end_date, :placeholder => t('tasks.end_date') + '...', class: "date", id: "taskDate"
   .field
     = f.label t('tasks.status')
-    = f.select :status, options_for_select(Task::STATUS.map { |t| [translate_status(t), t]}, task.status), {}, { class: "chosen-select" }
+    .ui.fluid.selection.dropdown
+      = f.hidden_field :status
+      .default.text
+        = t('tasks.status')
+      %i.dropdown.icon
+      .menu
+        - Task::STATUS.map { |t| [translate_status(t), t] }.each do |status, value|
+          .item{ data: { value: value }}= status
   .field
     = f.label t('tasks.check_list')
     = render partial: 'form_checklist', locals: { f: f }

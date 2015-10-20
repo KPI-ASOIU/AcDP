@@ -152,7 +152,7 @@
 <text text-anchor="start" x="70.1545" y="-1088.38" font-family="Times Roman,serif" font-size="14.00">edit_current</text>
 <text text-anchor="start" x="70.1545" y="-1070.38" font-family="Times Roman,serif" font-size="14.00">set_user</text>
 <text text-anchor="start" x="70.1545" y="-1052.38" font-family="Times Roman,serif" font-size="14.00">show</text>
-<text text-anchor="start" x="70.1545" y="-1034.38" font-family="Times Roman,serif" font-size="14.00">show_current</text>
+<text text-anchor="start" x="70.1545" y="-1034.38" font-family="Times Roman,serif" font-size="14.00">dashboard</text>
 <text text-anchor="start" x="70.1545" y="-1016.38" font-family="Times Roman,serif" font-size="14.00">update_current</text>
 <polyline fill="none" stroke="black" points="62.1545,-1006.98 186.154,-1006.98 "/>
 <polyline fill="none" stroke="black" points="62.1545,-982.982 186.154,-982.982 "/>

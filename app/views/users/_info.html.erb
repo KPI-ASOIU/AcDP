@@ -37,7 +37,7 @@
     </dl>
   </div>
   <div class="ui buttons no-user-select">
-    <%= link_to calendar_path, :class => "ui button", :style => "float: left;" do %>  
+    <%= link_to calendar_path, :class => "ui button", :style => "float: left;" do %>
       <%= t('calendar') %>
     <% end %>
     <div class="or"></div>
@@ -46,12 +46,5 @@
     <% end %>
   </div>
 </div>
-<div class="ui clearing divider"></div>
-  <div class="ui segment">
-                        <h4 class="ui header"><%= t('activerecord.attributes.user.about_me')  %></h4>
-                        <div class="description">
-                          <%=  @user.about_me %>
-                        </div>
-                  </div>
 
 

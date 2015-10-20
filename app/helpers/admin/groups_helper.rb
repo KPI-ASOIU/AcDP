@@ -4,7 +4,7 @@ module Admin::GroupsHelper
 	end
 
 	def translate_forms(forms)
-		forms.map { |e| [t('activerecord.attributes.group.' + e), Group::FORMS.index(e).zero?] }
+		forms.map { |e| [t('activerecord.attributes.group.' + e), Group::FORMS.index(e).zero? ? 1 : 0] }
 	end
 
 	def create_button (group, f)
