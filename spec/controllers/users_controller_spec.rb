@@ -80,7 +80,7 @@ describe UsersController do
       it "redirects to the updated user" do
         patch :update_current, id: @user, \
             user: FactoryGirl.attributes_for(:user)
-        response.should redirect_to current_user_users_path
+        response.should redirect_to dashboard_path
       end
     end
 
