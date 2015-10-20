@@ -61,7 +61,7 @@
           <%= f.text_area :about_me, :placeholder => t('activerecord.attributes.user.about_me') + '...', :class => 'form-control' %>
     </div>
 
-    
+
     <div class="field">
       <%= f.label :avatar, :class=>'col-sm-4 control-label' %>
         <%= image_tag @user.avatar.url("medium"), class: 'ui left floated small image' %>
@@ -70,8 +70,8 @@
             <i class='remove icon'></i>
             <%= t('util.destroy') %>
         <% end %>
-	</br>	
-	<%= f.file_field :avatar, :class=>'ui tiny button' %>     
+	</br>
+	<%= f.file_field :avatar, :class=>'ui tiny button' %>
 	<% end %>
     </div>
 
@@ -81,8 +81,8 @@
     <%= f.submit :class => "ui positive button" %>
   </div>
 <% end %>
-  
-    
+
+
   <!--<div class="panel-heading">
     <h3 class="panel-title"><%= t('util.edit_user') %></h3>
   </div>
@@ -157,7 +157,7 @@
         </div>
       </div>
       <div class="panel-footer text-right">
-        <%= link_to t('util.back'), current_user_users_path, :class => "btn btn-default" %>
+        <%= link_to t('util.back'), dashboard_path, :class => "btn btn-default" %>
         <%= f.submit :class => "btn btn-success" %>
       </div>
   <% end %>

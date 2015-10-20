@@ -1,88 +1,83 @@
 <div class="ui basic modal">
-    <div class="header">
-      <%= t('users.removing_title') %>
+  <div class="header">
+    <%= t('users.removing_title') %>
+  </div>
+  <div class="content">
+    <div class="left">
+      <i class="trash icon"></i>
     </div>
-    <div class="content">
-      <div class="left">
-        <i class="trash icon"></i>
-      </div>
-      <div class="right">
-        <p><%= t('users.removing_message') %></p>
-      </div>
+    <div class="right">
+      <p><%= t('users.removing_message') %></p>
     </div>
-    <div class="actions">
-      <div class="two fluid ui buttons">
-        <div class="ui negative labeled icon button">
-          <i class="remove icon"></i>
-          <%= t('util.cancel') %>
-        </div>
-        <!-- <div class="ui positive right labeled icon button"> -->
-          <%= link_to '', :method => :delete, :id => 'user_remove_path', :class => 'ui positive right labeled icon button destroy' do %>
-              <%= t('util.destroy') %>
-              <i class="checkmark icon"></i>
-            <% end %>
-        <!-- </div> -->
+  </div>
+  <div class="actions">
+    <div class="two fluid ui buttons">
+      <div class="ui negative labeled icon button">
+        <i class="remove icon"></i>
+        <%= t('util.cancel') %>
       </div>
+      <!-- <div class="ui positive right labeled icon button"> -->
+        <%= link_to '', :method => :delete, :id => 'user_remove_path', :class => 'ui positive right labeled icon button destroy' do %>
+            <%= t('util.destroy') %>
+            <i class="checkmark icon"></i>
+          <% end %>
+      <!-- </div> -->
     </div>
+  </div>
 </div>
 
 <div class="ui blue segment" >
-    <!-- <h4 class="ui header"><%= t('users.users_panel') %></h4> -->
-    <%= render 'search' %>
+  <!-- <h4 class="ui header"><%= t('users.users_panel') %></h4> -->
+  <%= render 'search' %>
 </div>
 
- <!--  <h4 class="ui top attached header">
-    <%= t('util.user_list') %>
-  </h4> -->
-<div style="margin:10px 0;">  
-<%= link_to new_admin_user_path, :class => "ui labeled icon green button" do %>
-          <!-- <span class='glyphicon glyphicon-plus'></span> -->
+<table class="ui table padded blue segment table-hover">
+  <thead>
+    <tr>
+      <th class="c-admin-users-avatar-column"></th>
+      <th><%= t('activerecord.attributes.user.login') %></th>
+      <th><%= t('activerecord.attributes.user.role') %></th>
+      <th><%= t('activerecord.attributes.user.full_name') %></th>
+      <th><%= t('activerecord.attributes.user.email') %></th>
+      <th class="c-admin-users-actions-column"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.avatar.url("small"), :class => "thumbnail c-user-small-avatar" %></td>
+        <td><%= link_to admin_user_path(user), :class => "" do %>
+              <%= user.login %>
+          <% end %></td>
+        <td><%= format_roles(user.roles, ", ") %></td>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <div class="ui buttons">
+            <%= link_to edit_admin_user_path(user), :class => "ui icon button" do %>
+                <i class='pencil icon'></i>
+            <% end %>
+            <div id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon button" >
+              <i class='remove icon'></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="6">
+        <%= link_to new_admin_user_path, :class => "ui labeled icon green button" do %>
           <i class="plus icon"></i>
           <%= t('util.new_user') %>
-    <% end %>  
-</div>
-<table class="ui table padded blue segment table-hover">
-      <thead>
-        <tr>
-          <th class="c-admin-users-avatar-column"></th>
-          <th><%= t('activerecord.attributes.user.login') %></th>
-          <th><%= t('activerecord.attributes.user.role') %></th>
-          <th><%= t('activerecord.attributes.user.full_name') %></th>
-          <th><%= t('activerecord.attributes.user.email') %></th>
-          <th class="c-admin-users-actions-column"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.avatar.url("small"), :class => "thumbnail c-user-small-avatar" %></td>
-            <td><%= link_to admin_user_path(user), :class => "" do %>
-                  <%= user.login %>
-              <% end %></td>
-            <td><%= format_roles(user.roles, ", ") %></td>
-            <td><%= user.full_name %></td>
-            <td><%= user.email %></td>
-            <td>
-              <div class="ui buttons">
-                <%= link_to admin_user_path(user), :class => "ui icon button" do %>
-                  <i class='zoom in icon'></i>
-                <% end %>
-                <%= link_to edit_admin_user_path(user), :class => "ui icon button" do %>
-                    <i class='pencil icon'></i>
-                <% end %>
-                <div id="btn_remove_user" data-path="<%= admin_user_path(user) %>" data-toggle='modal' data-target='#modal_confirm_remove_user' class="ui icon button" >
-                  <i class='remove icon'></i>
-                </div>
-              </div>
-            </td>
-          </tr>
         <% end %>
-      </tbody>
-    </table>
-  <!-- </div> -->
-  <div class="panel-body text-center">
-    <%= paginate @users %>
-  </div>
-  <!-- <div class="panel-footer text-center"> -->
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="panel-body text-center">
+  <%= paginate @users %>
 </div>
