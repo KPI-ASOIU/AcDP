@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id]) or not_found
   end
 
   def update_current
