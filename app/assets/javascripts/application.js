@@ -37,6 +37,8 @@
 //= require masonry/jquery.masonry
 //= require masonry/jquery.infinitescroll.min
 //= require masonry/modernizr-transitions
+//= require ./semantic-menu
+//= require ./semantic-toggle-button
 
 $(document).ready(function() {
     window.addComment = function(comment) {
