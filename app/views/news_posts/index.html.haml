@@ -12,7 +12,7 @@
       %i{ class: 'add icon' }
       = t('news.create_news')
 .ui.divider
-#masonryContainer.ui.items
+#masonryContainer.ui.cards
   - @news_posts.each do |news_post|
     = render partial: 'news_post', locals: { news_post: news_post }
 .ui.basic.segment

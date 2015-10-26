@@ -1,23 +1,26 @@
 <div class="ui blue segment">
-  <strong>
+  <strong class='ui basic segment'>
     <%= t('contacts.count', count: current_user.contacts.size ) %>
   </strong>
-  <div class="ui list">
+  <div class="ui basic cards segment">
     <% @contacts.each do |user| %>
-      <div class="ui divider"></div>
-      <div class="item">
-        <div class="ui right floated">
-          <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
-          <br>
-          <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
-        </div>
-        <a href="<%=user_path(user)%>" class="ui small image">
-          <img src="<%=user.avatar.url("medium")%>">
-        </a>
-
+      <div class="card">
         <div class="content">
+          <img class="right floated mini ui image" src="<%=user.avatar.url("small")%>">
           <div class="header">
             <a href="<%=user_path(user)%>"><%= user.full_name %></a>
+          </div>
+          <div class="meta">
+            <%= user.position %>
+          </div>
+          <div class="description">
+            <%= user.about_me.truncate(33) %>
+          </div>
+        </div>
+        <div class="center aligned extra content">
+          <div class="ui tiny buttons">
+            <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [user.id]} %>
+            <%= render partial: "contacts/contact_button", locals: {user_id: user.id} %>
           </div>
         </div>
       </div>

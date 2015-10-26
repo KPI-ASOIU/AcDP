@@ -18,7 +18,7 @@
     <% end %>
     <%= link_to t('activerecord.models.events'), events_path, id: 'events', class: "item" %>
   <% else %>
-    <div class="ui three column middle aligned stackable page grid container">
+    <div class="ui three column middle aligned relaxed page grid vertical margin5 container">
       <div class="left aligned column">
         <h1 class="ui huge header">
           <div class="sub header">КАФЕДРА</div>
@@ -39,9 +39,6 @@
   <% if can? :manage, @users %>
     <%= link_to t('admin_panel'), admin_users_path, class: "item" %>
   <% end %>
-  <!-- <%= button_tag '', class: 'no-styling-btn activity-icon navbar-right', data: { container: 'body', toggle: 'popover', placement: 'bottom', content: "#{render 'application/panel_activity'}" } do %> -->
-    <!-- <span class='glyphicon glyphicon-th-list'></span> -->
-  <!-- <% end %> -->
 <% end %>
 
 <%= render template: "layouts/base" %>

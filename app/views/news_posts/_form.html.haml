@@ -1,57 +1,50 @@
 = render 'document_select'
 
 .ui.attached.segment
-  = form_for(@news_post, :html => { :class => 'form-horizontal', role: 'form' }) do |f|
+  = form_for(@news_post, :html => { :class => 'ui form', role: 'form' }) do |f|
     - if @news_post.errors.any?
       .news-errors-block{ class: 'news-errors-block' }
         %h2= t('activerecord.errors.template.header', count: @news_post.errors.count)
         %ul
           - @news_post.errors.full_messages.each do |msg|
             %li= msg
-    .ui.grid
-      .two.wide.column
-        = f.label :title
-      .fourteen.wide.column
-        .ui.form.field.input
-          = f.text_field :title, :placeholder => t('news.ph_title')
-      .two.wide.column
-        = f.label :content
-      .fourteen.wide.column
-        = f.cktext_area :content, :placeholder => t('news.ph_content'), :ckeditor => {:language => 'uk', :toolbar => 'mini'}, :class => ''
-      .two.wide.column
-        = f.label :tags, :class=>'form-label'
-      .fourteen.wide.column
-        = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'ui fluid input tag-input'
-      .two.wide.column
-        = label_tag :icon, t('activerecord.attributes.news_post.icon'), :class=>''
-      .fourteen.wide.column
-        = f.file_field :icon
-        = image_tag @news_post.icon.url('medium'), class: 'ui small image'
-        - unless @news_post.new_record?
-          = link_to t('util.destroy'), icon_news_post_path(@news_post), :method => :delete, :class => 'ui mini negative button'
-      .two.wide.column
-        = f.label :for_roles, :class=>''
-      .fourteen.wide.column
-        = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'ui selection dropdown' }
-      .row.for_groups
-        .two.wide.column
-          = f.label :for_groups
-        .fourteen.wide.column
-          = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
-      .two.wide.column
-        = label_tag :documents, t('documents.attached'), :class=>''
-      .fourteen.wide.column
-        = f.hidden_field :documents, { :multiple => true }
-        .ui.list{ id: 'news-attached-docs' }
-          - unless @news_post.new_record?
-            - @news_post.documents.each do |document|
-              .item
-                = document.title
-        =link_to '', id:'news-add-document-btn', data: { toggle: 'modal', target: '#modal_select_document' }, class: 'ui teal icon mini button' do
-          %i{ class: 'attachment icon' }
-          = t('news.add_doc')
+    .ui.fluid.field
+      = f.label :title
+      = f.text_field :title, :placeholder => t('news.ph_title')
+    .ui.fluid.field
+      = f.label :content
+      = f.cktext_area :content, :placeholder => t('news.ph_content'), :ckeditor => {:language => 'uk', :toolbar => 'mini'}, :class => ''
+    .ui.fluid.field
+      = f.label :tags, :class=>'form-label'
+      = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'ui fluid input tag-input'
+    .ui.fluid.field
+      = label_tag :icon, t('activerecord.attributes.news_post.icon'), :class=>''
+      = f.file_field :icon
+      = image_tag @news_post.icon.url('medium'), class: 'ui small image'
+      - unless @news_post.new_record?
+        = link_to t('util.destroy'), icon_news_post_path(@news_post), :method => :delete, :class => 'ui mini negative button'
+    .ui.fluid.field
+      = f.label :for_roles, :class=>''
+      = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'ui fluid selection dropdown' }
+    .ui.fluid.field#for_groups
+      = f.label :for_groups
+      = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
+    .ui.fluid.field
+      = label_tag :documents, t('documents.attached'), :class=>''
+      = f.hidden_field :documents, { :multiple => true }
+      #pinnedDocs
+        - if @news_post.documents.any?
+          - @news_post.documents.each do |doc|
+            = render partial: 'documents_pin/pinned_doc', locals: { doc: doc, show: false }
+      .ui.basic.fluid.labeled.icon.button{ id: 'attachDocument' }
+        %i.upload.icon
+        = t('documents.pin')
+    .ui.buttons
+      = link_to t('util.back'), news_posts_path, :class => 'ui negative right floated button'
+      .or{data: {text:"чи"}}
+      = button_tag type: 'submit', :class => 'ui right floated positive right labeled icon button' do
+        %i{ class: 'bullhorn icon' }
+        = t('news.publish')
 
-    = button_tag type: 'submit', :class => 'ui right floated positive icon button' do
-      %i{ class: 'bullhorn icon' }
-      = t('news.publish')
-    = link_to t('util.back'), news_posts_path, :class => 'ui negative right floated button'
+= render partial: 'documents_pin/pin_doc_upload_choice_modal'
+= render partial: 'documents_pin/pin_doc_modal', locals: { modal_title: t('documents.choose_docs'), pinBtnId:'pinDocs' }

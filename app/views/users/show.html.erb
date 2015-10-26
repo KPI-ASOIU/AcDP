@@ -4,7 +4,7 @@
       <div class="two wide column">
         <%= image_tag @user.avatar.url("large"), class: 'ui small circular image' %>
       </div>
-      <div class="six wide column">
+      <div class="ten wide column">
         <h2 class="ui header">
           <%= @user.full_name %>
           <div class="sub header">
@@ -12,12 +12,11 @@
           </div>
         </h2>
       </div>
-      <div class="three wide column">
-        <% if @user != current_user
-        <div class="ui buttons">
+      <div class="one wide column">
+        <% if @user != current_user %>
           <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
           <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="break-words c-user-info-block">

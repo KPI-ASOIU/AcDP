@@ -1,9 +1,10 @@
 $(document).ready(function() {
     if ($('#news_post_for_roles').val() !== 'group')
-        $('.for_groups').transition('slide down');
+        $('#for_groups').transition('hide');
+
     $('#news_post_for_roles').change(function() {
-        if ($('#news_post_for_roles').val() == 'group' || $('.for_groups').transition('is visible'))
-            $('.for_groups').transition('slide down');
+        if ($('#news_post_for_roles').val() == 'group' || !$('#for_groups').transition('is hidden'))
+            $('#for_groups').transition('slide down');
     });
 
     $('.tag-input').select2({
@@ -43,7 +44,7 @@ $(document).ready(function() {
     }
 
     $('#masonryContainer').masonry({
-        itemSelector: '.item',
+        itemSelector: '.card',
         columnWidth: 10,
         isAnimated: true
     });

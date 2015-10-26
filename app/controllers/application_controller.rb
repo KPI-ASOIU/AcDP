@@ -26,22 +26,6 @@ class ApplicationController < ActionController::Base
     User.current = current_user
   end
 
-  def panel_activity
-    @activities = PublicActivity::Activity.order('created_at DESC')
-      .where("connected_to_users LIKE '% #{current_user.id} %'")
-
-    if params[:type].present?
-      @activities = @activities.select{ |a| a[:trackable_type] == params[:type] or
-        a.trackable[:commentable_type] == params[:type] if a.trackable.present? }
-    end
-    @activities = @activities[params[:summand].present? ? 0..(6+params[:summand].to_i) : 0..6]
-
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
-
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end

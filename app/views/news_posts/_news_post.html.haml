@@ -1,17 +1,23 @@
-.item{ data: { link: news_post_path(news_post) }}
-  .image
-    =image_tag news_post.icon.url('large')
+.card{ data: { link: news_post_path(news_post) }}
   .content
-    .name
+    .right.floated.meta
+      = timeago_tag news_post.created_at, :nojs => true, :limit => 10.hours.ago, title: proc { |time, options| I18n.l time, :format => "%H:%M:%S" }
+    .ui.avatar.image
+      = image_tag news_post.creator.avatar.url("small")
+    %span= news_post.creator.full_name
+  .image
+    = image_tag news_post.icon.url('large')
+  .content
+    .header
       = news_post.title
     - if news_post.tags.present?
       .tags
         %b= t('activerecord.attributes.news_post.tags') + ':'
         - news_post.tags.split(',').each do |tag|
           = link_to tag, tag_news_posts_path(tag)
-    %p.description
+    .description
       = raw HTML_Truncator.truncate(news_post.content, 16)
-    .actions
-      - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
-        = link_to t('util.edit'), edit_news_post_path(news_post), :class => 'delete'
-        = link_to t('util.destroy'), '', data: { :path => news_post_path(news_post) }, id: 'btn_remove_news_post', class: 'delete'
+  .extra.content
+    - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
+      = link_to t('util.edit'), edit_news_post_path(news_post), :class => 'delete'
+      = link_to t('util.destroy'), '', data: { :path => news_post_path(news_post) }, id: 'btn_remove_news_post', class: 'delete'

@@ -69,7 +69,7 @@ gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
-gem 'bootstrap-x-editable-rails' 
+gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
 # gem 'opinio', :path => "/home/dmitriy/opinio4"
@@ -91,9 +91,9 @@ gem 'public_activity'
 
 # for resolving of undefined method `graft' for class `ActiveRecord::Associations::JoinDependency'
 # which occured due to squeel gem
-gem 'squeel', :git => "git://github.com/activerecord-hackery/squeel.git"
-gem "polyamorous", :github => "activerecord-hackery/polyamorous" # squeel deps
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1" # squeel deps
+gem "polyamorous", '~> 1.1.0' # squeel deps
+gem "ransack", '~> 1.6.5' # squeel deps
+gem 'squeel', :github => "activerecord-hackery/squeel"
 gem 'ckeditor'
 gem 'time_diff'
 gem 'jquery-countdown-rails'
