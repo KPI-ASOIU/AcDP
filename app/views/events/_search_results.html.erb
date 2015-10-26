@@ -36,17 +36,19 @@
         <% end %>
       </td>
       <% if !@only_guest %>
-        <td class="ui icon buttons">
-          <% if event.author == current_user %>
-            <%= link_to edit_event_path(event), :class => "ui button", title: I18n.t('util.edit') do %>
-              <i class='icon edit'></i>
+        <td>
+          <div class="ui icon buttons">
+            <% if event.author == current_user %>
+              <%= link_to edit_event_path(event), :class => "ui button", title: I18n.t('util.edit') do %>
+                <i class='icon edit'></i>
+              <% end %>
+              <%= link_to event_path(event), method: :delete, class: "ui button", title: I18n.t('util.destroy') do %>
+                <i class='icon remove'></i>
+              <% end %>
+            <% else %>
+              &nbsp;
             <% end %>
-            <%= link_to event_path(event), method: :delete, class: "ui button", title: I18n.t('util.destroy') do %>
-              <i class='icon remove'></i>
-            <% end %>
-          <% else %>
-            &nbsp;
-          <% end %>
+          </div>
         </td>
       <% end %>
     </tr>

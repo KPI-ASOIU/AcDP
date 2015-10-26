@@ -4,14 +4,14 @@
     <div class="field">
       <%= t('events.author') %>:
       <%= select_tag :author, options_for_select(
-        [[t('util.I'), current_user.id], 
-        [t('util.not_I'), events_not_authored_by_me]].concat(all_authors_of_my_events)), 
+        [[t('util.I'), current_user.id],
+        [t('util.not_I'), events_not_authored_by_me]].concat(all_authors_of_my_events)),
         { class: "chosen-select", multiple: true, include_blank: true } %>
     </div>
     <div class="field">
       <%= t('events.guests') %>:
       <%= select_tag :invited, options_for_select(
-        [[t('util.I'), current_user.id], 
+        [[t('util.I'), current_user.id],
         [t('util.not_I'), events_not_visited_by_me]].concat(all_visitors)),
         { class: "chosen-select", multiple: true, include_blank: true } %>
     </div>
@@ -33,7 +33,7 @@
   <div class="four fields">
     <div class="field">
       <%= t('events.hosted_from') %>:
-      <div class="ui small icon input">
+      <div class="ui icon input">
         <%= text_field_tag :event_start_date, nil, class: "date", id: "startDate" %>
         <i class="icon remove clear-date first"></i>
       </div>
@@ -43,14 +43,14 @@
       <div class="ui icon input">
         <%= text_field_tag :event_end_date, nil, class: "date", id: "endDate" %>
         <i class="icon remove clear-date"></i>
-      </div>        
+      </div>
     </div>
     <div class="field">
       <%= t('tasks.created_from') %>:
       <div class="ui icon input">
         <%= text_field_tag :creation_start_date, nil, class: "date", id: "creationStartDate" %>
         <i class="icon remove clear-date first"></i>
-      </div>        
+      </div>
     </div>
     <div class="field">
       <%= t('tasks.created_from') %>:

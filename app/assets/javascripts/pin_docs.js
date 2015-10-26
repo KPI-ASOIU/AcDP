@@ -176,7 +176,7 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                         selectLabel = document.createElement('a'),
                         selectIcon = document.createElement('i'),
                         select = function(e) {
-                            var item = $(e.target).closest('div.item'),
+                            var item = $(e.target).closest('div.card'),
                                 label = item.find('.label'),
                                 icon = label.find('.icon'),
                                 itemBgColor = item.css('background-color') == "rgb(255, 255, 255)" ? "#6ecff5" : "#ffffff",
@@ -190,7 +190,7 @@ $('input[data-id="docSearch"]').on('keyup', function(event) {
                             icon.attr('class', iconClass);
                         };
 
-                    item.setAttribute('class', 'item');
+                    item.setAttribute('class', 'card');
                     item.setAttribute('data-pinned', false);
                     item.setAttribute('data-id', data[res]['id'])
                     content.setAttribute('class', 'content');

@@ -5,35 +5,35 @@
         <h2 class="ui header"><%= @event.name %></h2>
       <% end %>
       <% if @event.description.present? %>
-        <dt class="ui purple ribbon label"><%= t('events.description') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.description') %></dt>
         <p><%= @event.description %></p>
       <% end %>
       <% if @event.date.present? %>
-        <dt class="ui purple ribbon label"><%= t('events.date') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.date') %></dt>
         <p><%= l(@event.date, format: :short) %></p>
       <% end %>
       <% if @event.place.present? %>
-        <dt class="ui purple ribbon label"><%= t('events.place') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.place') %></dt>
         <p><%= @event.place %></p>
       <% end %>
       <% if @event.plan.present? %>
-        <dt class="ui purple ribbon label"><%= t('events.plan') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.plan') %></dt>
         <p><%= @event.plan %></p>
       <% end %>
       <% if @event.guests.any? %>
-        <dt class="ui purple ribbon label"><%= t('events.guests') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.guests') %></dt>
         <div class="ui mini images card-avatars">
           <% @event.guests.each do |guest| %>
-            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui image', 
+            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui image',
               title: guest.full_name), user_path(guest.id) %>
           <% end %>
         </div>
       <% end %>
       <% if !can_all_visit?(@event) %>
-        <dt class="ui purple ribbon label"><%= t('events.not_visiting') %></dt>
+        <dt class="ui blue ribbon label"><%= t('events.not_visiting') %></dt>
         <div id="cannotVisit" class="ui mini images card-avatars">
           <% all_not_visiting(@event).each do |guest| %>
-            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui avatar', 
+            <%= link_to image_tag(guest.avatar.url("small"), class: 'ui avatar',
                     title: guest.full_name, alt: guest.full_name), user_path(guest.id) %>
           <% end %>
         </div>
@@ -42,7 +42,7 @@
         <%= button_tag visit?(@event) ? t('events.cannot_visit') : t('events.can_visit'), id: 'canVisit', :class => "ui toggle red button hover", data: { event: @event.id, visit: !visit?(@event), url: event_path(@event, format: :js) } %>
       <% end %>
       <% if @event.documents.any? %>
-        <dt class="ui purple ribbon label"><%= t('documents.attached') %></dt>
+        <dt class="ui blue ribbon label"><%= t('documents.attached') %></dt>
         <p>
           <% @event.documents.each do |doc| %>
             <%= render partial: 'documents_pin/pinned_doc', locals: {doc: doc, show: true} %>
@@ -56,7 +56,7 @@
           <%= link_to edit_event_path(@event), :class => "ui positive button" do %>
             <%= t('util.edit') %>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
     </div>
   </div>

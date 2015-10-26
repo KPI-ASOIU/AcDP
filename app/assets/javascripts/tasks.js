@@ -1,3 +1,7 @@
+//= require ./checkbox
+//= require ./chosen_select
+//= require ./datetimepicker
+
 $(document).ready(function() {
     $('#taskSearch #searchBtn').on('click', function(e) {
         $('#extendSearch').submit();

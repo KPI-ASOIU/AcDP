@@ -31,26 +31,27 @@
 //= require jquery.jscrollpane
 //= require jquery.mousewheel
 //= require websocket_rails/main
-//= require jquery.countdown.js 
+//= require jquery.countdown.js
 //= require jquery.countdown-uk.js
 //= require ckeditor/init
 //= require masonry/jquery.masonry
 //= require masonry/jquery.infinitescroll.min
 //= require masonry/modernizr-transitions
-//= require_tree .
+//= require ./semantic-menu
+//= require ./semantic-toggle-button
 
-(function() {
+$(document).ready(function() {
     window.addComment = function(comment) {
         comment_box = $("#comments")
         $('#no_comments').fadeOut()
         $comment = $(comment.html)
         comment_box.append($comment.hide().fadeIn('slow'))
         $("time[data-time-ago]").timeago()
-        console.log(dispatcher.current_user)
-        console.log(comment.owner)
+        // console.log(dispatcher.current_user)
+        // console.log(comment.owner)
         if (dispatcher.current_user != comment.owner)
             $comment.find('div.actions').remove()
-        $('#newComment').val('')
+        $('#newComment').val('')-
         comment_box.scrollTop(comment_box[0].scrollHeight);
     };
     window.addMessage = function(message) {
@@ -63,4 +64,48 @@
     window.removeComment = function(comment) {
         $('#comment_' + comment.id).fadeOut()
     }
+
+    $(document).on("click", "#btn_remove_user", function() {
+        $("#user_remove_path").attr('href', $(this).data('path'));
+    });
+
+    $(document).on("click", "#btn_remove_group", function() {
+        $("#group_remove_path").attr('href', $(this).data('path'));
+    });
+
+    $(".j-admin-search-type-combo").on("click", "a", function(e) {
+        var $target = $(this);
+        $(".j-admin-search-btn-text").text($target.text());
+        $(".j-admin-search-type-input").val($target.data("search-type"));
+    });
+
+    $(document).on("click", "[data-link]", function(e) {
+        if (e.target.tagName != 'A') {
+            e.preventDefault();
+            window.location = this.getAttribute("data-link");
+        }
+    });
+
+    $('.ui.accordion').accordion();
+    $('.ui.dropdown').dropdown();
+
+    var comment_box = $('#comments')
+    if (comment_box.length > 0)
+        comment_box.scrollTop(comment_box[0].scrollHeight);
+
+    $('textarea').on('keydown', function(event) {
+        if ((event.keyCode || event.which) == 13 && !event.shiftKey) {
+            event.preventDefault();
+        }
+    })
+
+    $('textarea').keyup(function (event) {
+        if ((event.keyCode || event.which) == 13) {
+            if(event.shiftKey){
+                event.stopPropagation();
+            } else {
+                $('form').submit();
+            }
+        }
+    });
 }());

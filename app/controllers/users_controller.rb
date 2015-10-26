@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       .with_status('Active')
     @reminder_events = Event.order('date DESC').connected_to_me.with_date(Time.now, Time.now + 3.days)
     @activities = PublicActivity::Activity.order('created_at DESC')
-      .where("connected_to_users LIKE '% #{current_user.id} %'")[0..6]
+      .where("connected_to_users LIKE '% #{current_user.id} %'")[0..5]
   end
 
   def edit_current
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id]) or not_found
   end
 
   def update_current

@@ -39,19 +39,21 @@
           <%= t('tasks.no_end_date_given') %>
         <% end %>
       </td>
-      
+
       <% if !@only_executor %>
-        <td class="ui icon buttons">
-          <% if task.author == current_user %>
-            <%= link_to edit_task_path(task), :class => "ui button", title: I18n.t('util.edit') do %>
-              <i class='icon edit'></i>
+        <td>
+          <div class='ui icon buttons'>
+            <% if task.author == current_user %>
+              <%= link_to edit_task_path(task), :class => "ui button", title: I18n.t('util.edit') do %>
+                <i class='icon edit'></i>
+              <% end %>
+              <%= link_to task_path(task), method: :delete, class: "ui button", title: I18n.t('util.destroy') do %>
+                <i class='icon remove'></i>
+              <% end %>
+            <% else %>
+              &nbsp;
             <% end %>
-            <%= link_to task_path(task), method: :delete, class: "ui button", title: I18n.t('util.destroy') do %>
-              <i class='icon remove'></i>
-            <% end %>
-          <% else %>
-            &nbsp;
-          <% end %>
+          </div>
         </td>
       <% end %>
     </tr>

@@ -41,13 +41,19 @@
     </tbody>
   </table>
 <% else %>
-  <p class="ui info message no-conversations"><%= t('conversations.no_conversations') %></p>
-  <p class="text-center">
-    <%= render partial: "conversations/new_conversation_button", locals: {
-          receiver_ids: [],
-          modal_title: t('conversations.new'),
-          button_text: t('conversations.new_conversation')
-        } %>
-  </p>
+  <div class="ui grid container">
+    <div class="ui info message row">
+      <div class="column">
+        <%= t('conversations.no_conversations') %>
+      </div>
+    </div>
+    <div class="row">
+      <%= render partial: "conversations/new_conversation_button", locals: {
+            receiver_ids: [],
+            modal_title: t('conversations.new'),
+            button_text: t('conversations.new_conversation')
+          } %>
+    </div>
+  </div>
 <% end %>
 

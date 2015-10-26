@@ -2,19 +2,20 @@
   %i.close.icon
   .header
     = t('documents.uploading')
-  #content.content
-    .left
+  #content.image.content
+    .image
       %i.cloud.upload.icon
-    .right
+    .description
       %p= t('documents.upload_from')
-  = form_for(:documents, url: new_document_path, method: :post, remote: true, html: { class: 'ui fluid form', id: 'taskDoc', data: {url: get_file_doc_id_path}}) do |f|
-    = f.hidden_field :doc_type, value: 'file'
-    = f.text_field :new_doc_title, id: 'title', class: 'hidden'
-    = f.text_field :description, id: 'description', class: 'hidden'
-    = file_field :documents, :new_file, id: 'docFromPCInput', class: 'hidden'
-    .two.fluid.ui.buttons
-      #pinDocFromWarehouse.ui.positive.button
-        = t('documents.from_warehouse')
-      .or
-      #pinDocFromPC.ui.teal.button
-        = t('documents.from_pc')
+  .actions
+    = form_for(:documents, url: new_document_path, method: :post, remote: true, html: { class: 'ui fluid form', id: 'taskDoc', data: {url: get_file_doc_id_path}}) do |f|
+      = f.hidden_field :doc_type, value: 'file'
+      = f.text_field :new_doc_title, id: 'title', class: 'hidden'
+      = f.text_field :description, id: 'description', class: 'hidden'
+      = file_field :documents, :new_file, id: 'docFromPCInput', class: 'hidden'
+      .two.fluid.ui.buttons
+        #pinDocFromWarehouse.ui.positive.button
+          = t('documents.from_warehouse')
+        .or
+        #pinDocFromPC.ui.teal.button
+          = t('documents.from_pc')

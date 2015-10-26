@@ -1,6 +1,5 @@
 @import "chosen";
 @import "select2";
-// @import "jstree-themes/default/style";
 @import "jscrollpane";
 @import "activity";
 @import "calendar";
@@ -55,6 +54,10 @@ a {
 
 .break-words {
   word-break: break-all;
+}
+
+.vertical.margin5{
+  margin: 5px 0;
 }
 
 .mb5 {

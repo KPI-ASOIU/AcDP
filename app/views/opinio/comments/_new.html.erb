@@ -3,9 +3,7 @@
     <%= f.text_area :body, id: 'newComment', class: 'new-comment field', placeholder: t('comments.new_comment') << '...' %>
     <%= hidden_field_tag :commentable_id, commentable.id %>
     <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
-    <%= content_tag :button, type: :submit, class: 'ui fluid teal submit button' do %>
-      <%= t('comments.send_comment') %>
-    <% end %>
+    <%= submit_tag t('comments.send_comment'), class: 'ui fluid teal submit button' %>
   <% end %>
 <% else %>
   <p>

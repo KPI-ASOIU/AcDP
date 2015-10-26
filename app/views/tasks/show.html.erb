@@ -5,29 +5,29 @@
         <h2 class="ui header"><%= @task.name %></h2>
       <% end %>
       <% if @task.description.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.description') %></dt>
+        <dt class="ui blue ribbon label"><%= t('tasks.description') %></dt>
         <p><%= @task.description %></p>
       <% end %>
       <% if @task.end_date.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.end_date') %></dt>
+        <dt class="ui blue ribbon label"><%= t('tasks.end_date') %></dt>
         <p><%= l(@task.end_date, format: :short) %></p>
       <% end %>
       <% if @task.status.present? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.status') %></dt>
+        <dt class="ui blue ribbon label"><%= t('tasks.status') %></dt>
         <p class='<%= status_class(@task.status) %>'><i class="<%= icon_status_class(@task.status) %>"></i><%= translate_status(@task.status) %></p>
       <% end %>
       <% if @task.executors.any? %>
-        <dt class="ui purple ribbon label"><%= t('tasks.executors') %></dt>
+        <dt class="ui blue ribbon label"><%= t('tasks.executors') %></dt>
         <div class="ui mini images card-avatars">
           <% @task.executors.each do |exec| %>
-            <%= link_to image_tag(exec.avatar.url("small"), class: 'ui image', 
+            <%= link_to image_tag(exec.avatar.url("small"), class: 'ui image',
               title: exec.full_name), user_path(exec.id) %>
           <% end %>
         </div>
       <% end %>
       <%= render partial: 'sub_tasks' %>
       <% if @task.documents.any? %>
-        <dt class="ui purple ribbon label"><%= t('documents.attached') %></dt>
+        <dt class="ui blue ribbon label"><%= t('documents.attached') %></dt>
         <p>
           <% @task.documents.each do |doc| %>
             <%= render partial: 'documents_pin/pinned_doc', locals: {doc: doc, show: true} %>

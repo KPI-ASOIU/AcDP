@@ -1,59 +1,47 @@
 <div class="uprofile">
-        <div class="ui blue segment">
-            <h2 class="ui header"><%= t('users.user_info') %></h2>
-            <div class="ui grid">
-              <div class="two column row">
-              <div class="five wide column">  
-                  <div class="ui image">
-                    <%= image_tag @user.avatar.url("large"), class: 'ui large image' %>
-                  </div>
-                  <% if @user != current_user %>
-                    <div class="ui buttons">
-                    <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
-                    <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
-                    </div>
-                  <% end %>
-              </div>
-              <div class="ten wide column">
-                <table class="ui floated left striped celled table">
-                    <% if @user.full_name.present? %>
-                    <thead>
-                        <tr>
-                            <th colspan="2"><h3 class="ui header"><%=  @user.full_name %></h3></th>
-                        </tr>
-                    </thead>
-                    <% end %>
-                    <tbody>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.login') %></td>
-                            <td><%=  @user.login %></td>
-                        </tr>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.role') %></td>
-                            <td><%=  format_roles(@user.roles, ", ") %></td>
-                        </tr>
-                        <tr>
-                            <td><%=  t('activerecord.attributes.user.full_name') %></td>
-                            <td><%=  @user.full_name %></td>
-                        </tr>
-                        <tr>
-                            <td><%= t('activerecord.attributes.user.email')  %></td>
-                            <td><%=  @user.email %></td>
-                        </tr>
-                        <tr>
-                            <td><%= t('activerecord.attributes.user.position')  %></td>
-                            <td><%=  @user.position %></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="ui segment">
-                        <h4 class="ui header"><%= t('activerecord.attributes.user.about_me')  %></h4>
-                        <div class="description">
-                          <%=  @user.about_me %>
-                        </div>
-                  </div>
-              </div>
-              </div>
-            </div>
-        </div>
+  <div class="ui blue segment">
+    <div class="ui celled grid">
+      <div class="two wide column">
+        <%= image_tag @user.avatar.url("large"), class: 'ui small circular image' %>
+      </div>
+      <div class="ten wide column">
+        <h2 class="ui header">
+          <%= @user.full_name %>
+          <div class="sub header">
+            <%= format_roles(@user.roles, ", ") %>
+          </div>
+        </h2>
+      </div>
+      <div class="one wide column">
+        <% if @user != current_user %>
+          <%= render partial: "conversations/new_conversation_button", locals: {receiver_ids: [@user.id]} %>
+          <%= render partial: "contacts/contact_button", locals: {user_id: @user.id} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="break-words c-user-info-block">
+      <dl class="dl-horizontal">
+        <dt class="ui purple ribbon label">
+          <%= t('activerecord.attributes.user.login') %>
+        </dt>
+        <p><%= @user.login %></p>
+        <dt class="ui purple ribbon label">
+          <%= t('activerecord.attributes.user.email') %>
+        </dt>
+        <p><%= @user.email %></p>
+        <dt class="ui purple ribbon label">
+          <%= t('activerecord.attributes.user.position') %>
+        </dt>
+        <p><%= @user.position.present? ? @user.position : t('util.not_specified') %></p>
+      </dl>
+    </div>
+    <div class="pull-left break-words">
+      <dl class="dl-horizontal">
+        <dt class="ui purple ribbon label">
+          <%= t('activerecord.attributes.user.about_me') %>
+        </dt>
+        <p><%= @user.about_me.present? ? @user.about_me : t('util.not_specified') %></p>
+      </dl>
+    </div>
   </div>
+</div>

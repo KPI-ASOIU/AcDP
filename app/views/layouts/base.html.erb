@@ -14,14 +14,17 @@
     <![endif]-->
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="">
     <%= render partial: "shared/header", flash: flash %>
     <%= render partial: "shared/flash_messages", flash: flash %>
-    <%= yield %>
+    <div class="ui basic segment">
+      <%= yield %>
+    </div>
     <script type="text/javascript">
       window.I18n = <%= I18n.backend.send(:translations)[I18n.locale].to_json.html_safe %>
     </script>
     <%= javascript_include_tag "application"%>
+    <%= javascript_include_tag params[:controller] %>
     <% if current_user.present? %>
       <script type="text/javascript">
         window.dispatcher = new WebSocketRails(window.location.host + '/websocket');

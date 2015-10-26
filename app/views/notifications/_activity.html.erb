@@ -15,12 +15,9 @@
         <%= link_to a.owner.full_name, a.owner %>
         <%= t('activity.' << a.key) %>
         <% if !a.key.include?('destroy') %>
-          <!-- get rid of extra conditions after if -->
-          <% if (item = (a.trackable_type == 'Comment' ? trackable_commentable(a) : trackable(a))).nil? %>
-            <%= a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a) %>
-          <% else %>
-            <%= t('activity.trackable.' << a.trackable_type.downcase) %>
-          <% end %>
+          <% text = a.trackable_type == 'Comment' ? trackable_commentable_type(a) : trackable_type(a) %>
+          <% item = a.trackable_type == 'Comment' ? trackable_commentable(a) : trackable(a) %>
+          <%= link_to text, item %>
         <% end %>
       <% end %>
     </div>

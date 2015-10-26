@@ -7,7 +7,7 @@
   <td><%= File.extname(file_info.file.path) if file_info %></td>
   <td><%= file.date_created.to_formatted_s :docs_time %></td>
   <td><%= file.date_updated.to_formatted_s :docs_time %></td>
-  <td>
+  <td class='center aligned'>
     <%= link_to file_info ? file_info.file.url(:original, false) : '', target: :blank, class: 'ui tiny circular green icon button docs-navbar-tool docs-download' do %>
       <i class='download icon'></i>
     <% end %>
