@@ -14,10 +14,6 @@
     padding: 0 !important;
 }
 
-.docs-title {
-    height: 40px;
-}
-
 .docs-title td {
     white-space: nowrap;
     overflow: hidden;

@@ -1,0 +1,32 @@
+<div class="ui basic segment">
+  <h3 class="ui header"><%= doc.title %></h3>
+  <div class="ui form">
+    <div class="field">
+      <label><%= t('documents.owner') %></label>
+      <div class="ui icon input">
+        <i class="user icon"></i>
+        <input type="text" data-placeholder="Name" value="<%= doc.owner.full_name %>">
+      </div>
+    </div>
+    <div class="field">
+      <label><%= t('documents.for_roles') %></label>
+      <div class="ui input">
+        <input type="text" data-placeholder="Name" value="<%= User.int_to_roles(doc.for_roles).join ', ' %>">
+      </div>
+    </div>
+    <div class="field">
+      <label><%= t('documents.type') %></label>
+      <div class="ui input">
+        <input type="text" data-placeholder="Name" value="<%= doc.document_types.pluck(:title).join ', ' %>">
+      </div>
+    </div>
+    <div class="field">
+      <label><%= t('documents.description') %></label>
+      <textarea><%= doc.description %></textarea>
+    </div>
+    <%= link_to doc.file_info ? doc.file_info.file.url(:original, false) : '', target: :blank, class: 'ui green fluid labeled icon button' do %>
+      <i class='download icon'></i>
+      <%= t('documents.download') %>
+    <% end %>
+  </div>
+</div>

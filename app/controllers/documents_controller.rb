@@ -251,4 +251,11 @@ class DocumentsController < ApplicationController
       format.json { render json: { doc_id: @file.document_id } }
     end
   end
+
+  def sidebar_info
+    @doc = Document.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

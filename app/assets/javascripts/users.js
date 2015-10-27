@@ -2,7 +2,6 @@
 // All this logic will automatically be available in application.js.
 
 //= require ./activity
-//= require ./chosen_select
 
 $('#pickAvatar').on('click', function(e) {
     e.preventDefault();

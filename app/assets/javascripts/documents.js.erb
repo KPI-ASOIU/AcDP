@@ -1,0 +1,43 @@
+<% url = AcDP::Application.routes.url_helpers %>
+
+$(document).ready(function() {
+    $('#docs').tablesort();
+
+    $('#addFolder').on('click', function(e) {
+        e.preventDefault();
+        $('#addFolderForm').modal('show')
+    });
+
+    $('#addDocument').on('click', function(e) {
+        e.preventDefault();
+        $('#addDocForm').modal('show')
+    });
+
+    // $('#docs tr').on('click', function(e) {
+    //     $('.ui.sidebar')
+    //         .sidebar('setting', 'transition', 'overlay')
+    //         .sidebar('show');
+    // });
+
+    var docInfo = $('#docInfo').sidebar('setting', 'transition', 'overlay');
+
+    $('#docs tr[data-id="file"]').on("click", function() {
+        var doc_id = $(this).find("[id*='doc-title-']").attr('id').match(/[0-9]+/)[0]
+        console.log(doc_id)
+        $.ajax({
+            type: "GET",
+            url: "<%= url.documents_sidebar_info_path %>.js",
+            data: {
+                id: doc_id
+            },
+            dataType: "html",
+            success: function(data) {
+                docInfo.html(data);
+                docInfo.sidebar("show");
+            },
+            error: function() {
+                console.log("ERROR!")
+            }
+        })
+    });
+});

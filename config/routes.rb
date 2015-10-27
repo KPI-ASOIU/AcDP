@@ -14,6 +14,7 @@ AcDP::Application.routes.draw do
 
   get 'calendar', to: 'calendar'
   get 'calendar/day/:date', to: 'calendar#day', as: 'day'
+  get 'documents/sidebar_info' => 'documents#sidebar_info', as: 'documents_sidebar_info'
   get 'documents', to: 'documents#index'
 
   get 'documents/tree/:docdir/:type', to: 'documents#jstree'
