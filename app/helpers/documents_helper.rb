@@ -10,6 +10,8 @@ module DocumentsHelper
         'file orange powerpoint outline icon'
       when '.pdf'
         'file red pdf outline icon'
+      when '.png', '.jpg', '.jpeg', '.gif'
+        'file yellow image outline icon'
       else
         'file outline icon'
       end

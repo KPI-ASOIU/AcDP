@@ -19,7 +19,6 @@
 //= require locales/jquery.timeago.ru.js
 //= require moment
 //= require bootstrap-datetimepicker
-//= require bootstrap3-editable/bootstrap-editable
 //= require moment/uk
 //= require moment/ru
 //= require chosen-jquery

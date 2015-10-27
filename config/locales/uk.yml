@@ -502,6 +502,7 @@ uk:
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити ?
     flash_removed_item: Елемент успішно видалено
+    for_roles: Доступний користувачам з ролями
   doctypes:
     manage: Типи документів
     list: Перелік типів документів

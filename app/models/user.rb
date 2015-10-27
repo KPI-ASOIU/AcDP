@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
 
   validates_format_of     :email, :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
 
-  validates_length_of       :password, within: Devise.password_length, :if => :password_required?
-  validates_presence_of     :password, :if => :password_required?
+  validates_length_of   :password, within: Devise.password_length, :if => :password_required?
+  validates_presence_of :password, :if => :password_required?
   validates_presence_of :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
 
@@ -38,15 +38,15 @@ class User < ActiveRecord::Base
   has_many :documents, through: :user_has_accesses
   has_many :user_has_accesses, foreign_key: :user_id, :dependent => :destroy
 
-  has_and_belongs_to_many :executing_tasks,   
-    class_name: "Task", 
-    join_table: :executing_tasks_executors, 
+  has_and_belongs_to_many :executing_tasks,
+    class_name: "Task",
+    join_table: :executing_tasks_executors,
     foreign_key: :executor_id
 
   has_many :leading_tasks, class_name: "Task"
 
   has_many :event_has_guests, foreign_key: :guest_id
-  has_many :visiting_events,   
+  has_many :visiting_events,
     through: :event_has_guests,
     foreign_key: :guest_id,
     source: :event
@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
 
   def self.roles_to_int(roles)
     (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def self.int_to_roles(code)
+    mask = code.to_s(2).rjust(4, "0").chars.reverse
+    ROLES.reject{|r| mask[ROLES.index(r)] == "0"}
   end
 
   def roles=(roles)
@@ -96,7 +101,7 @@ class User < ActiveRecord::Base
   def self.current
     Thread.current[:user]
   end
-  
+
   def self.current=(user)
     Thread.current[:user] = user
   end

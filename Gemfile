@@ -69,7 +69,6 @@ gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
-gem 'bootstrap-x-editable-rails'
 gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
 # gem 'opinio', :path => "/home/dmitriy/opinio4"
