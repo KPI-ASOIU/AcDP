@@ -2,9 +2,9 @@ class TasksController < ApplicationController
   authorize_resource
   before_action :set_current_user
 
-  include PublicActivity::StoreController 
+  include PublicActivity::StoreController
   include TasksHelper
-  
+
   def new
     @task = current_user.leading_tasks.new
   end
@@ -44,22 +44,20 @@ class TasksController < ApplicationController
     @old_status = @task.status
     @old_execs = @task.executors.sort
     if params[:documents].present?
-      @task.documents = Document.find(params[:documents]).uniq
-    else
-      @task.documents.destroy_all
+      @task.documents = Document.where(id: params[:documents]).uniq
     end
     if @task.update_attributes(task_params)
       track_specific_fields or create_activity('task.update', @task.name)
       redirect_to task_path(@task.id)
     else
       redirect_to :back, flash: { error: @task.errors.full_messages.join('. ') }
-    end 
+    end
   end
 
   def update_checklist
     @task = Task.find(params[:id])
     checklist = @task.checklists
-    checklist.each_with_index { |c, i| 
+    checklist.each_with_index { |c, i|
       c.done = params['done' << i.to_s] or false
       c.save
     }
@@ -123,7 +121,7 @@ class TasksController < ApplicationController
   def local_time_format(time)
     I18n.l(time, format: :short)
   end
-  
+
   def date_invalid?(date_string)
     date_string.nil? || date_string.empty?
   end
@@ -131,21 +129,21 @@ class TasksController < ApplicationController
   def fix_params
     params[:status] ||= Task::STATUS
     params[:author] ||= User.all.pluck(:id).join(" ")
-    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years : 
+    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years :
                                                             to_datetime(params[:creation_start_date])
-    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years : 
+    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years :
                                                           to_datetime(params[:creation_end_date])
-    params[:exec_start_date] = date_invalid?(params[:exec_start_date]) ? Time.now - 1000.years : 
+    params[:exec_start_date] = date_invalid?(params[:exec_start_date]) ? Time.now - 1000.years :
                                                         to_datetime(params[:exec_start_date])
-    params[:exec_end_date] = date_invalid?(params[:exec_end_date]) ? Time.now + 1000.years : 
+    params[:exec_end_date] = date_invalid?(params[:exec_end_date]) ? Time.now + 1000.years :
                                                       to_datetime(params[:exec_end_date])
   end
 
   def create_activity(title, summary)
-    @task.create_activity(key: title, owner: current_user, 
+    @task.create_activity(key: title, owner: current_user,
       params: {
         summary: summary,
-        trackable_id: @task.id 
+        trackable_id: @task.id
       },
       connected_to_users: ' ' << [@task.author.id].concat(@task.executors.map { |e| e.id }).join(' ') << ' ')
   end

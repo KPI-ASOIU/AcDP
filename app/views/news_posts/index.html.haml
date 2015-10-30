@@ -1,17 +1,18 @@
 = render 'modal_delete'
-.ui.center.aligned.grid
-  .row
-    .ui.buttons
-      = link_to t('news.all'), news_posts_path, class: ['ui button', ('teal' if @category == nil)]
-      - if !current_user.group.nil?
-        = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'ui button'
-      - User::ROLES.each do |role|
-        = link_to t('news.for_category.' + role), category_news_posts_path(role), class: ['ui button', ("teal" if @category == role)]
-  .row
-    = link_to new_news_post_path, class: 'ui positive labeled icon button' do
-      %i{ class: 'add icon' }
-      = t('news.create_news')
-.ui.divider
+- if can? :crud, NewsPost
+  .ui.center.aligned.grid
+    .row
+      .ui.buttons
+        = link_to t('news.all'), news_posts_path, class: ['ui button', ('teal' if @category == nil)]
+        - if !current_user.group.nil?
+          = link_to t('news.for_category.group'), group_news_posts_path(current_user.group.id), class: 'ui button'
+        - User::ROLES.each do |role|
+          = link_to t('news.for_category.' + role), category_news_posts_path(role), class: ['ui button', ("teal" if @category == role)]
+    .row
+      = link_to new_news_post_path, class: 'ui positive labeled icon button' do
+        %i{ class: 'add icon' }
+        = t('news.create_news')
+  .ui.divider
 #masonryContainer.ui.cards
   - @news_posts.each do |news_post|
     = render partial: 'news_post', locals: { news_post: news_post }

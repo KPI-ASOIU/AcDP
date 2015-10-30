@@ -17,7 +17,8 @@
           = link_to tag, tag_news_posts_path(tag)
     .description
       = raw HTML_Truncator.truncate(news_post.content, 16)
-  .extra.content
-    - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
-      = link_to t('util.edit'), edit_news_post_path(news_post), :class => 'delete'
-      = link_to t('util.destroy'), '', data: { :path => news_post_path(news_post) }, id: 'btn_remove_news_post', class: 'delete'
+  - if can? :crud, NewsPost
+    .extra.content
+      - if current_user.id == news_post.creator_id or current_user.has_role?('admin')
+        = link_to t('util.edit'), edit_news_post_path(news_post), :class => 'delete'
+        = link_to t('util.destroy'), '', data: { :path => news_post_path(news_post) }, id: 'btn_remove_news_post', class: 'delete'

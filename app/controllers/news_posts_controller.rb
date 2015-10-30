@@ -1,4 +1,5 @@
 class NewsPostsController < ApplicationController
+  authorize_resource
   before_action :set_news_post, only: [:show, :edit, :update, :destroy, :icon]
   include PublicActivity::StoreController
 
@@ -54,6 +55,9 @@ class NewsPostsController < ApplicationController
   def update
     respond_to do |format|
       @news_post.category = news_post_params[:for_roles]
+      if params[:documents].present?
+        @news_post.documents = Document.where(id: params[:documents]).uniq
+      end
       if @news_post.update(news_post_params.except(:for_roles))
         format.html { redirect_to @news_post, notice: t('news.post_updated') }
         format.json { head :no_content }
@@ -92,6 +96,6 @@ class NewsPostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_post_params
       params.require(:news_post).permit(:title, :content, :tags, :icon, :for_roles, :created_at, :updated_at, :documets).
-          merge({ groups: Group.where(id: params[:for_groups]), documents: Document.where(id: params[:news_post][:documents]), creator_id: current_user.id })
+          merge({ groups: Group.where(id: params[:for_groups]), creator_id: current_user.id })
     end
 end

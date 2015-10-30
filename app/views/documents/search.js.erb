@@ -1,0 +1,5 @@
+$('table#docs tbody').empty()
+$("table#docs tbody").append(
+	"<%= escape_javascript(render(partial: 'file', collection: @files) || \
+	'<tr><td class="center aligned" colspan="7">'.html_safe << t('documents.not_found') << '</td></tr>'.html_safe) %>"
+)

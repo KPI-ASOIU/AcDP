@@ -383,12 +383,16 @@ uk:
     admin: 'Адміністратор'
     student: 'Студент'
     teacher: 'Викладач'
-    worker: 'Робітник'
+    worker: 'Співробітник'
+    associate: 'Аспірант'
+    others: 'Інші'
     plural:
       admin: 'Адміністратори'
       student: 'Студенти'
       teacher: 'Викладачі'
-      worker: 'Робітники'
+      worker: 'Співробітники'
+      associate: 'Аспіранти'
+      others: 'Інші'
   messages:
     send: 'Надіслати'
     receivers: 'Одержувачі'
@@ -498,11 +502,12 @@ uk:
     found_users: Знайдені користувачі
     error_not_recognized: Дія не розпізнана
     error_cannot_update: Помилка при оновленні запису
-    error_document_not_found: Документ не знайдено
+    not_found: За запитом не знайдено жодного документу
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити ?
     flash_removed_item: Елемент успішно видалено
     for_roles: Доступний користувачам з ролями
+    query: Пошуковий запит (дати не враховуються)
   doctypes:
     manage: Типи документів
     list: Перелік типів документів
@@ -520,18 +525,18 @@ uk:
       add_doc: Додати документ
       create_news: Створити новину
       all: Всі
-
       error_removing_icon: Помилка при видаленні іконки
-
+      attached_docs: Прикріплені документи
       category: Категорія
       for_category:
         global: Загальні
         group: Для групи
-        worker: Для працівників
+        worker: Для співробітників
         admin: Для адміністраторів
+        associate: Для аспірантів
         student: Для студентів
         teacher: Для викладачів
-
+        others: Для інших
       group_chosen_no_result: Не знайдено груп з такою назвою
 
       modal_removing_title: Видалення новини

@@ -1,3 +1,6 @@
+//= require ./chosen_select
+//= require ./pin_docs
+
 $(document).ready(function() {
     if ($('#news_post_for_roles').val() !== 'group')
         $('#for_groups').transition('hide');

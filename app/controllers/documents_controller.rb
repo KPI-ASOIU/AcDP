@@ -239,10 +239,14 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    title = params[:title]
-    description = params[:description]
-    @docs = current_user.documents.where(doc_type: 1).match_title_or_nil(title)
-      .match_description_or_nil(description).all
+    d = Document.__elasticsearch__
+    r = d.search(params[:query])
+    doc_ids = r.results.response.map {|r| r.id }
+    @files = Document.where(id: doc_ids)
+    respond_to do |format|
+      format.js
+      format.json { render json: @files.to_json.html_safe }
+    end
   end
 
   def get_file_doc_id
