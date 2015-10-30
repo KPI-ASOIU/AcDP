@@ -8,10 +8,16 @@ class Ability
     #
     if user.has_role? :admin
       can :manage, :all
+      can :crud, NewsPost
+    else
+      can :read, NewsPost
     end
 
     if !(user.roles & (User::ROLES-['student'])).empty?
       can :crud, Task
+      can :crud, Event
+    else
+      can :read, Event
     end
 
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities

@@ -99,3 +99,6 @@ gem 'jquery-countdown-rails'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'masonry-rails'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'

@@ -17,5 +17,7 @@
   </table>
 <% else %>
   <p class="ui message info no-conversations"><%= t('tasks.no_tasks') %></p>
-  <%= link_to t('tasks.create_task'), new_task_path, class: 'ui positive button' %>
+  <% if can? :create, Task %>
+    <%= link_to t('tasks.create_task'), new_task_path, class: 'ui positive button' %>
+  <% end %>
 <% end %>

@@ -32,10 +32,9 @@
               .item
                 %b= t('news.attached_docs') + ':'
                 - @news_post.documents.each do |document|
-                  =link_to document.title, document.doc_type == 0 ?  document_path(document) : document.parent_directory.nil? ? documents_path : document_path(document.parent_directory)
+                  = link_to document.title, document.file_info.file.url(:original, false), target: :blank
       %p.content.post-content
         = raw @news_post.content
-
       .ui.buttons
         =link_to t('util.back'), news_posts_path, :class => 'ui button'
         - if current_user.id == @news_post.creator_id or current_user.has_role?('admin')

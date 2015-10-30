@@ -5,11 +5,8 @@
   #content.content
     #searchDocForm.ui.fluid.form.segment{data: { 'search-url' => doc_search_path(format: :json) }}
       .field
-        = label_tag 'title', t('documents.title')
-        = text_field_tag '', '', id: 'title', data: { id: 'docSearch' }
-      .field
-        = label_tag 'description', t('documents.description')
-        = text_field_tag '', '', id: 'description', data: { id: 'docSearch' }
+        = label_tag 'query', t('documents.title')
+        = text_field_tag 'query', ''
       = button_tag t('documents.pin'), id: pinBtnId, class: "ui positive button"
     #docSearchResults.ui.cards
       

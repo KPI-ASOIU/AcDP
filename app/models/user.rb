@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
-  ROLES = %w[student worker teacher admin]
+  ROLES = %w[student worker teacher admin associate others]
 
   def self.get_roles_ids
     ROLES

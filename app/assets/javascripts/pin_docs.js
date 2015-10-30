@@ -148,28 +148,33 @@ $(document).on('change', '#docFromPCInput', function(e) {
     hideModals();
 })
 
-$('input[data-id="docSearch"]').on('keyup', function(event) {
-    var searchDocForm = document.querySelector('#searchDocForm'),
-        title = searchDocForm.querySelector('#title'),
-        description = searchDocForm.querySelector('#description');
+$('input[name="query"]').on('keyup', function(event) {
+    var $query = $('#searchDocForm input[name="query"]'),
+        $pinnedDocsIds = $('#pinnedDocs input[type="hidden"]').map(function() {
+            return parseInt($(this).val())
+        });
+
     // home $, end #
     if (/[a-zA-Z0-9-_.]/.test(String.fromCharCode(event.keyCode))) {
         $.ajax({
             type: "GET",
             url: searchDocForm.getAttribute('data-search-url'),
             data: {
-                title: title.value,
-                description: description.value
+                query: $query.val(),
             },
             dataType: "json",
             success: function(data) {
+                console.log(data)
                 var results = document.querySelector("#docSearchResults");
                 $(results).empty()
                 for (var res in data) {
+                    if ($.inArray(data[res].id, $pinnedDocsIds) != -1) {
+                        continue;
+                    }
                     var item = document.createElement('div'),
                         content = document.createElement('div'),
                         name = document.createElement('div'),
-                        title = document.createTextNode(data[res].text === null ? I18n.documents.no_title : data[res].text),
+                        title = document.createTextNode(data[res].title === null ? I18n.documents.no_title : data[res].title),
                         description = document.createElement('p'),
                         desc = document.createTextNode(data[res].description === null ? I18n.documents.no_description : data[res].description),
                         type = document.createElement('i'),

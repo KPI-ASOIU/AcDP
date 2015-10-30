@@ -13,17 +13,23 @@ $(document).ready(function() {
         $('#addDocForm').modal('show')
     });
 
-    // $('#docs tr').on('click', function(e) {
-    //     $('.ui.sidebar')
-    //         .sidebar('setting', 'transition', 'overlay')
-    //         .sidebar('show');
-    // });
+    $('[data-id="downloadFile"]').on('click', function(e) {
+        e.stopPropagation();
+    });
+
+    $("#newDocFile").change(function (){
+        var fileName = $(this).val(),
+            docsAddTitle = $("#newDocTitle");
+
+        if(docsAddTitle.val() == '') {
+          $("#newDocTitle").val(fileName.split('\\').pop());
+        }
+    });
 
     var docInfo = $('#docInfo').sidebar('setting', 'transition', 'overlay');
 
-    $('#docs tr[data-id="file"]').on("click", function() {
+    $(document).on("click", '#docs tr[data-id="file"]', function(e) {
         var doc_id = $(this).find("[id*='doc-title-']").attr('id').match(/[0-9]+/)[0]
-        console.log(doc_id)
         $.ajax({
             type: "GET",
             url: "<%= url.documents_sidebar_info_path %>.js",

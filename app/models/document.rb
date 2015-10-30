@@ -1,3 +1,5 @@
+require 'elasticsearch/model'
+
 class Document < ActiveRecord::Base
   has_many :user_has_accesses, foreign_key: :document_id, :dependent => :destroy
   has_many :view_accesses, -> { where(access_type: 0) }, class_name: 'UserHasAccess', foreign_key: :document_id
@@ -39,8 +41,14 @@ class Document < ActiveRecord::Base
     end
   end
 
-  def as_json(options = {})
-    { id: id, text: title, description: description, children: doc_type == 0, type: doc_type == 0 ? 'folder' : 'file' }
+  def to_json
+    {
+      id: id,
+      text: title,
+      description: description,
+      children: doc_type == 0,
+      type: doc_type == 0 ? 'folder' : 'file'
+   }
   end
 
   def parent
@@ -53,5 +61,48 @@ class Document < ActiveRecord::Base
       path.insert(0, parent_folder)
     end
     path
+  end
+
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings number_of_shards: 1,
+    analysis: {
+      filter: {
+        partial_match: {
+          type: "nGram",
+          min_gram: 3,
+          max_gram: 20
+        }
+      },
+      analyzer: {
+        partial_name: {
+          type: "custom",
+          tokenizer: "standard",
+          filter: [
+            "lowercase",
+            "partial_match"
+          ]
+        }
+      }
+    } do
+
+    mapping _source: { excludes: ['attachment'] } do
+      indexes :_all, analyzer: 'partial_name', search_analyzer: 'standard'
+      indexes :title, type: 'string'
+      indexes :description, type: 'string'
+      indexes :attachment, type: 'attachment'
+    end
+  end
+
+  def attachment
+    if self.doc_type == 1
+      path_to_attachment = self.file_info.file.path
+      Base64.encode64(open(path_to_attachment) { |file| file.read })
+    end
+  end
+
+  def as_indexed_json(options={})
+    self.as_json(methods: [:attachment])
   end
 end

@@ -19,10 +19,12 @@
           <div class="ui label">1</div>
         </a>
         <div class="item">
-          <div class="ui small icon input">
-            <input placeholder="<%= t('documents.search_by_docs') %>..." type="text">
-            <i class="search icon"></i>
-          </div>
+          <%= form_tag doc_search_path, :method => 'get', remote: true do %>
+            <div class="ui small fluid icon input">
+              <input name="query" placeholder="<%= t('documents.search_by_docs') %>..." type="text">
+              <i class="search icon"></i>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

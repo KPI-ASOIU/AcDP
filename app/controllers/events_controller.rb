@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
+  authorize_resource
   before_action :set_current_user
-  
-  include PublicActivity::StoreController 
+
+  include PublicActivity::StoreController
   include EventsHelper
-  
+
 	def new
     @event = current_user.leading_events.new
   end
@@ -11,10 +12,10 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if params[:documents].present?
-      @event.documents = Document.find(params[:documents])
+      @event.documents = Document.where(id: params[:documents])
     end
     if @event.save
-      EventHasGuest.create({guest_id: params[:event][:guests], event_id: @event.id}) 
+      EventHasGuest.create({guest_id: params[:event][:guests], event_id: @event.id})
       redirect_to event_path(@event.id)
     else
       redirect_to :back
@@ -54,8 +55,8 @@ class EventsController < ApplicationController
   end
 
   def index
-  	if params[:search].present?    
-      fix_params  
+  	if params[:search].present?
+      fix_params
       @events = Event.connected_to_me
                 .with_name(params[:name])
                 .with_place(params[:place])
@@ -105,22 +106,22 @@ class EventsController < ApplicationController
   def local_time_format(time)
     I18n.l(time, format: :short)
   end
-  
+
   def date_invalid?(date_string)
     date_string.nil? || date_string.empty?
   end
 
   def fix_params
     params[:place] ||= ''
-    params[:author] ||= User.all.pluck(:id).join(" ")      
-    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years : 
+    params[:author] ||= User.all.pluck(:id).join(" ")
+    params[:creation_start_date] = date_invalid?(params[:creation_start_date]) ? Time.now - 1000.years :
                                                             to_datetime(params[:creation_start_date])
-    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years : 
+    params[:creation_end_date] = date_invalid?(params[:creation_end_date]) ? Time.now + 1000.years :
                                                           to_datetime(params[:creation_end_date])
     puts params[:event_start_date]
-    params[:event_start_date] = date_invalid?(params[:event_start_date]) ? Time.now - 1000.years : 
+    params[:event_start_date] = date_invalid?(params[:event_start_date]) ? Time.now - 1000.years :
                                                         to_datetime(params[:event_start_date])
-    params[:event_end_date] = date_invalid?(params[:event_end_date]) ? Time.now + 1000.years : 
+    params[:event_end_date] = date_invalid?(params[:event_end_date]) ? Time.now + 1000.years :
                                                       to_datetime(params[:event_end_date])
   end
 

@@ -7,7 +7,7 @@
     <div class="content">
       <div id="collapseOne" class="panel-collapse collapse">
         <div class="panel-body">
-          <%= render 'extended_search' %>        
+          <%= render 'extended_search' %>
         </div>
       </div>
     </div>
@@ -21,5 +21,7 @@
   </table>
 <% else %>
   <p class="ui message info no-conversations"><%= t('events.no_events') %></p>
-  <%= link_to t('events.create_event'), new_event_path, class: 'ui positive button' %>
+  <% if can? :create, Event %>
+    <%= link_to t('events.create_event'), new_event_path, class: 'ui positive button' %>
+  <% end %>
 <% end %>

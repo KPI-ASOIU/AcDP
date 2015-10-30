@@ -1,6 +1,7 @@
 //= require ./checkbox
 //= require ./chosen_select
 //= require ./datetimepicker
+//= require ./pin_docs
 
 $(document).ready(function() {
     $('#taskSearch #searchBtn').on('click', function(e) {
