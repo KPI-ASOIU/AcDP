@@ -1,14 +1,14 @@
 class Task < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: :user_id
 
-  has_and_belongs_to_many :executors, 
-	  	class_name: "User", 
-	  	join_table: :executing_tasks_executors, 
-	    foreign_key: :task_id, 
+  has_and_belongs_to_many :executors,
+	  	class_name: "User",
+	  	join_table: :executing_tasks_executors,
+	    foreign_key: :task_id,
 	    association_foreign_key: :executor_id
 
   has_many :checklists, -> { order 'created_at' }
-  
+
   has_and_belongs_to_many :documents, join_table: :tasks_documents
 
   accepts_nested_attributes_for :checklists, allow_destroy: true
@@ -36,14 +36,22 @@ class Task < ActiveRecord::Base
 
   include PublicActivity::Model
 
-  tracked only: [:destroy, :create], 
+  tracked only: [:destroy, :create],
           owner: Proc.new{ |controller, model| controller.current_user },
           params: {
             summary: Proc.new { |controller, model| model.name.truncate(30) },   # by default save truncated summary of the post's body
             trackable_id: Proc.new {|controller, model| model.id },
           },
-          connected_to_users: Proc.new { |controller, model| 
+          connected_to_users: Proc.new { |controller, model|
             ' ' << [model.author.id].concat(model.executors.map { |e| e.id }) * (' ') << ' '
           }
+
+  def as_json(options={})
+    {
+      "title" => self.name,
+      "start" => self.created_at.to_time.iso8601,
+      "end"   => self.end_date.to_time.iso8601
+    }
+  end
 end
 

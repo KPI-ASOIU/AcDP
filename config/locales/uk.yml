@@ -1,5 +1,6 @@
 uk:
   date:
+    today: Cьогодні
     abbr_day_names:
     - нд.
     - пн.
@@ -111,6 +112,7 @@ uk:
       minute: Хвилина
       month: Місяць
       second: Секунда
+      week: Тиждень
       year: Рік
   errors: &errors
     format: '%{attribute} %{message}'

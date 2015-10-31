@@ -2,11 +2,10 @@ class CalendarController < ApplicationController
   before_action :set_current_user
 
   def calendar
-    @date = params[:date] ? Date.parse(params[:date]) : Date.today
     if can? :crud, Task
-      @tasks_by_date = Task.connected_to_me.uniq.group_by{ |item| item.end_date ? item.end_date.to_date : nil }
+      @my_tasks = Task.connected_to_me.uniq.all
     end
-    @events_by_date = Event.connected_to_me.uniq.group_by{ |item| item.date ? item.date.to_date : nil }
+    @my_events = Event.connected_to_me.uniq.all
   end
 
   def day

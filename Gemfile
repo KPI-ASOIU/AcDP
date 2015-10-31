@@ -60,7 +60,6 @@ end
 gem 'factory_girl_rails', '~> 4.0'
 gem 'devise'
 gem 'kaminari'
-gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'cancan'
 gem 'chosen-rails'
 gem 'paperclip'
@@ -69,22 +68,14 @@ gem 'rails-timeago', '~> 2.0'
 gem "haml-rails"
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'awesome_nested_fields'
-gem 'select2-rails'
 gem 'opinio', :git => 'git://github.com/apricis/opinio4.git'
-# gem 'opinio', :path => "/home/dmitriy/opinio4"
-gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # # Added for backward compatibility of Opinio gem
 # # (attr_accessible support)
 # gem 'protected_attributes'
 
-gem 'jscrollpane-rails'
-gem 'jquery-mousewheel-rails'
 gem 'websocket-rails'
 gem 'html_truncator', '~> 0.4.0'
-gem 'jstree-rails', :git => 'git://github.com/KPI-ASOIU/jstree-rails.git'
-# gem 'jstree-rails', :git => 'git://github.com/apricis/jstree-rails.git'
-# gem 'jstree-rails', :path => "/home/dmitriy/jstree-rails"
 gem 'remotipart'
 gem 'public_activity'
 
@@ -102,3 +93,4 @@ gem 'masonry-rails'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'fullcalendar-rails'

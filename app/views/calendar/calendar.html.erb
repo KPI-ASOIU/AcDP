@@ -1,50 +1,22 @@
-<div class="calendar_container col-xs-6">
-  <h2 class="ui purple header" id="month">
-    <%= link_to date: @date.prev_month do%>
-      <div class="glyphicon glyphicon-circle-arrow-left" style="float: left"></div>
-    <% end %>
-    <div class="label label-primary"><%= l(@date, format: "%B %Y")%></div>
-    <%= link_to date: @date.next_month do%>
-      <div class="glyphicon glyphicon-circle-arrow-right" style="float: right"></div>
-    <% end %>
-  </h2>
-  <%= calendar @date do |date| %>
-    <%= link_to day_path(date: date), remote: true do %>
-      <div class="cell" id="<%= date%>">
-        <%= date.day %>
-          <ul>
-            <% if can? :crud, Task %>
-              <% @tasks_by_date[date] ||= [] %>
-              <% @tasks_by_date[date].each do |task| %>
-                <li><div class="glyphicon glyphicon-tasks" style=
-                  <%= task.user_id == current_user.id ? "color:green;" : "color:red;" %>
-                ></div></li>
-              <% end %>
-            <% end %>
-            <% @events_by_date[date] ||= [] %>
-            <% @events_by_date[date].each do |event| %>
-              <li><div class="glyphicon glyphicon-list-alt" style=
-                <%= event.author_id == current_user.id ? "color:green;" : "color:red;" %>
-              ></div></li>
-            <% end %>
-          </ul>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-<div class="col-xs-6">
-  <h3 class="ui purple header" id="day">
-    <%= render partial: 'calendar/day_header', locals: {date: @date} %>
-  </h3>
-  <% if can? :crud, Task %>
-    <div class="task_list"></div>
-  <% end %>
-  <div class="event_list"></div>
-</div>
+<div id="calendar"></div>
+
 <% content_for :javascript do %>
   <% javascript_tag do %>
-    $().ready(function(){
-      $("#<%= @date %>").click();
-    });
+    $('#calendar').fullCalendar({
+      lang: 'uk',
+      header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+      },
+      buttonText: {
+          today: I18n.date.today,
+          month: I18n.datetime.prompts.month,
+          week: I18n.datetime.prompts.week,
+          day: I18n.datetime.prompts.day
+      },
+      events: <%= (@my_tasks + @my_events).to_json.html_safe %>,
+      axisFormat: 'h(:mm) a'
+  });
   <% end %>
 <% end %>
