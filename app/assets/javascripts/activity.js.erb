@@ -1,46 +1,6 @@
 <% url = AcDP::Application.routes.url_helpers %>
 
-//$('.activity-icon').popover({html: true})
-
-// $('.activity-icon').on('shown.bs.popover', function () {
-$(document).ready(function() {
-	$('.activity-list').jScrollPane({
-		autoReinitialise: false,
-		hideFocus: true
-	});
-  
-  $('.activity-filter a').click(function (e) {
-	  e.preventDefault()
-	  $('.activity-filter li').removeClass('active')
-	  $(this).closest('li').addClass('active');
-  });
-
-  $('.activity-list').bind(
-				'jsp-scroll-y',
-				function(event, scrollPositionY, isAtTop, isAtBottom)
-				{
-					var filterType = $('li.active').attr('data-filter')
-					if(isAtBottom) {
-						$.ajax({
-							type: "GET",
-						  url: filterType !== undefined ? 
-						  	"<%= url.activity_popover_path(type: 'hold', summand: 'shld') %>"
-						  		.replace("hold", filterType)
-						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4) : 
-						  	"<%= url.activity_popover_path(summand: 'shld') %>"
-						  		.replace("shld", Math.ceil($('.jspPane').height() / $('.activity-list').height()) * 4)
-						});
-					}
-				}
-			)
-
- 	$('.activity-toggle-btn').click(function() {
- 		if($(this).hasClass('navbar-right'))
- 			$('.activity-container').css('marginLeft', '-100%');
- 		else
- 			$('.activity-container').css('marginLeft', '0');
- 	});
- 
+$(document).ready(function() { 
  	$.each($('.countdown'), function() {
  		$(this).countdown({
 	 		until: new Date($(this).attr('data-time')),

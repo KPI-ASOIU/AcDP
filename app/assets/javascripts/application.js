@@ -16,19 +16,11 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require rails-timeago
 //= require locales/jquery.timeago.uk.js
-//= require locales/jquery.timeago.ru.js
 //= require moment
-//= require bootstrap-datetimepicker
 //= require moment/uk
-//= require moment/ru
 //= require chosen-jquery
 //= require jquery.nested-fields
 //= require jquery.remotipart
-//= require select2
-//= require select2_locale_uk
-//= require jstree
-//= require jquery.jscrollpane
-//= require jquery.mousewheel
 //= require websocket_rails/main
 //= require jquery.countdown.js
 //= require jquery.countdown-uk.js
@@ -38,6 +30,7 @@
 //= require masonry/modernizr-transitions
 //= require ./semantic-menu
 //= require ./semantic-toggle-button
+//= require fullcalendar
 
 $(document).ready(function() {
     window.addComment = function(comment) {

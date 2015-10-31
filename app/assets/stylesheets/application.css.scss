@@ -1,6 +1,4 @@
 @import "chosen";
-@import "select2";
-@import "jscrollpane";
 @import "activity";
 @import "calendar";
 @import "checkbox";
@@ -22,6 +20,7 @@
 @import "semantic_fixes";
 @import 'masonry/basic';
 @import 'masonry/infinitescroll';
+@import 'fullcalendar';
 
 
 body {

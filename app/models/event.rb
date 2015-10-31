@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 	belongs_to :author, class_name: "User"
 	has_many :event_has_guests
-	has_many :guests, 
+	has_many :guests,
 			through: :event_has_guests,
 			source: :guest
 
@@ -29,4 +29,11 @@ class Event < ActiveRecord::Base
           connected_to_users: Proc.new { |controller, model|
             ' ' << [model.author.id].concat(model.guests.map { |e| e.id }.uniq) * (' ') << ' '
           }
+
+  def as_json(options={})
+    {
+      "title" => self.name,
+      "start" => self.date.to_time.iso8601
+    }
+  end
 end
