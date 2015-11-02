@@ -1,28 +1,17 @@
 class DocumentsController < ApplicationController
   def index
-    if !params[:q].blank?
-      params[:search_by] = 'title' unless ['title', 'tags', 'title tags', 'description'].include?(params[:search_by])
-      @docs = Document.where(owner_id: current_user.id).page(params[:page]).with_matched_field(params[:q], params[:search_by])
-    else
-      if params[:id].blank?
-        @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
-      else
-        @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id).page(params[:page])
-      end
-    end
-
     if params[:id].blank?
+      @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
       @current_folder = nil
     else
-      @current_folder = Document.where(id: params[:id]).first
+      @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id).page(params[:page])
+      @current_folder = Document.find_by_id_and_doc_type(params[:id], 0)
+      not_found if @current_folder.nil?
     end
 
-    params[:search_by] ||= 'title'
     @folders = @docs.select { |doc| doc.doc_type == 0 }
     @files = @docs.select { |doc| doc.doc_type == 1 }
     @shared = false
-    @formats = FileInfo.uniq.pluck(:file_content_type)
-    @types = DocumentType.pluck(:title)
   end
 
   def shared
@@ -51,11 +40,6 @@ class DocumentsController < ApplicationController
     end
     @types=DocumentType.pluck(:title)
     @formats=FileInfo.uniq.pluck(:file_content_type)
-  end
-
-  def jstree
-    @docs = Document.where(params[:docdir] == 'dir' ? { doc_type: 0 } : {}).
-      where(parent_directory: (!params[:id].blank? && params[:id] != '#') ? params[:id] : nil)
   end
 
   def new
@@ -103,8 +87,6 @@ class DocumentsController < ApplicationController
     doc.doc_type = type
     doc.parent_directory = params[:id]
     doc.owner_id = current_user.id
-    doc.date_created = Time.now
-    doc.date_updated = Time.now
 
     owner_access = UserHasAccess.new
     owner_access.user_id = current_user.id
@@ -115,98 +97,28 @@ class DocumentsController < ApplicationController
   end
 
   def update
-    doc = Document.find(params[:pk])
+    @doc = Document.find(params[:id])
+    @doc.document_types = params[:document_types].map {|t| DocumentType.find_or_create_by(title: t) }
+    if params[:document][:for_roles]
+      params[:document][:for_roles] = User.roles_to_int(params[:document][:for_roles])
+    end
 
-    if doc.nil?
-      stat = 'error'
-      msg = t('documents.error_document_not_found')
+    if @doc.update_attributes(document_params)
+      redirect_to documents_path
     else
-      if params[:name] == 'tags'
-        doc.tags = params[:value].blank? ? '' : params[:value].join(',')
-      elsif params[:name] == 'desc'
-        doc.description = params[:value]
-      elsif params[:name] == 'title'
-        doc.title = params[:value]
-      elsif !params[:target_pk].blank?
-        doc.parent_directory = params[:target_pk] == 'root' ? nil : params[:target_pk]
-      end
-
-      doc.date_updated = Time.now
-
-      if doc.save
-        stat = msg = 'ok'
-      else
-        stat = 'error'
-        msg = doc.errors.full_messages.join(',')
-      end
-    end
-
-    if request.xhr?
-      render :json => {
-          :status => stat,
-          :msg => msg,
-          :doc_id => doc.nil? ? -1 : doc.id
-      }
-    else
-      redirect_to action: 'index', id: params[:folder_id]
-    end
-  end
-
-  def update_lists
-    stat = msg = 'ok'
-    @doc = nil
-
-    if params[:pk].blank?
-      stat = 'error'
-      msg = t('documents.error_not_recognized')
-    else
-      @doc = Document.find(params[:pk])
-
-      if @doc.nil?
-        stat = 'error'
-        msg = t('documents.error_document_not_found')
-      elsif !params[:access_type].blank? and !params[:receiver_ids].blank? and params[:receiver_ids].length > 0
-        params[:receiver_ids].each do |user|
-          access = UserHasAccess.new(document_id: @doc.id, user_id: user, access_type: params[:access_type])
-          unless access.save
-            stat = 'error'
-            msg = access.errors.full_messages.join(',')
-          end
-        end
-      elsif !params[:access_id].blank?
-        unless UserHasAccess.destroy(params[:access_id])
-          stat = 'error'
-          msg = t('documents.error_not_recognized')
-        end
-
-      elsif !params[:type_id].blank?
-        unless DocumentHasType.destroy(params[:type_id])
-          stat = 'error'
-          msg = t('documents.error_not_recognized')
-        end
-      elsif !params[:types_ids].blank? and params[:types_ids].length > 0
-        params[:types_ids].each do |type|
-          doc_type = DocumentHasType.new(document_id: @doc.id, document_type_id: type)
-          unless doc_type.save
-            stat = 'error'
-            msg = doc_type.errors.full_messages.join(',')
-          end
-        end
-      end
-    end
-
-    if stat != 'error'
-      @doc.update_attribute(:date_updated, Time.now)
-    end
-
-    @access_type = params[:access_type]
-    respond_to do |format|
-      format.js   {}
-      format.json { render json: { :status => stat,
-          :msg => msg
-        }
+      render json: {
+        :error => "Wrong params!"
       }
     end
+    # if request.xhr?
+    #   render :json => {
+    #       :status => stat,
+    #       :msg => msg,
+    #       :doc_id => doc.nil? ? -1 : doc.id
+    #   }
+    # else
+    #   redirect_to action: 'index', id: params[:folder_id]
+    # end
   end
 
   def delete
@@ -268,7 +180,13 @@ class DocumentsController < ApplicationController
   def sidebar_info
     @doc = Document.find(params[:id])
     respond_to do |format|
-      format.js
+      format.js {}
     end
+  end
+
+  private
+  def document_params
+    params.require(:document)
+      .permit(:title, :description, :for_roles)
   end
 end

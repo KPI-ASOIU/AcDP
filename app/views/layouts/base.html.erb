@@ -34,7 +34,7 @@
         dispatcher.current_user = "<%= current_user.id %>"
       </script>
     <% end %>
-    <%= content_for :javascript %>
+    <%= yield :javascript %>
     <%= timeago_script_tag %>
   </body>
 </html>
