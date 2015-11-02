@@ -18,7 +18,6 @@
 //= require locales/jquery.timeago.uk.js
 //= require moment
 //= require moment/uk
-//= require chosen-jquery
 //= require jquery.nested-fields
 //= require jquery.remotipart
 //= require websocket_rails/main

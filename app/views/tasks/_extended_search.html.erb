@@ -17,10 +17,7 @@
     </div>
     <div class="field">
       <%= t('tasks.name') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :name, nil, class: "form-control" %>
-        <i class="icon remove"></i>
-      </div>
+      <%= text_field_tag :name, nil, class: "form-control" %>
     </div>
     <div class="field">
       <%= t('tasks.status') %>:
@@ -30,31 +27,19 @@
   <div class="four fields">
     <div class="field">
       <%= t('tasks.executed_from') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :exec_start_date, nil, class: "form-control date", id: "startDate" %>
-        <i class="icon remove clear-date first"></i>
-      </div>
+      <%= text_field_tag :exec_start_date, nil, id: "startDate" %>
     </div>
     <div class="field">
       <%= t('tasks.executed_to') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :exec_end_date, nil, class: "form-control date", id: "endDate" %>
-        <i class="icon remove clear-date"></i>
-      </div>
+      <%= text_field_tag :exec_end_date, nil, id: "endDate" %>
     </div>
     <div class="field">
       <%= t('tasks.created_from') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :creation_start_date, nil, class: "form-control date", id: "creationStartDate" %>
-        <i class="icon remove clear-date first"></i>
-      </div>
+      <%= text_field_tag :creation_start_date, nil, id: "creationStartDate" %>
     </div>
     <div class="field">
       <%= t('tasks.created_to') %>:
-      <div class="ui icon input">
-        <%= text_field_tag :creation_end_date, nil, class: "form-control date", id: "creationEndDate" %>
-        <i class="icon remove clear-date"></i>
-      </div>
+      <%= text_field_tag :creation_end_date, nil, id: "creationEndDate" %>
     </div>
   </div>
   <div id="searchBtn" class="ui blue labeled icon submit button">

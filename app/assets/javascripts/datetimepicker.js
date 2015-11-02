@@ -2,13 +2,16 @@ $.fn.datetimepicker = function(config) {
     var $target = this,
         module;
 
+    if ($target.length == 0)
+        return;
+
     config = {
         format: 'DD.MM.YYYY HH:mm'
     }
 
     module = {
-        date: moment($target.val(), config.format),
-        focus: moment($target.val(), config.format),
+        date: $target.val() ? moment($target.val(), config.format) : moment(),
+        focus: $target.val() ? moment($target.val(), config.format) : moment(),
         initialize: function() {
             $target.wrap('<div class="ui icon date input"></div>');
             $target.after(function() {
@@ -138,7 +141,7 @@ $.fn.datetimepicker = function(config) {
             return day
         },
         activate: function(day) {
-            $('td.day').removeClass('active');
+            this.popup.find('td.day').removeClass('active');
             day.addClass('active');
         },
         refreshCalendar: function(pastDate, $day) {
@@ -154,22 +157,23 @@ $.fn.datetimepicker = function(config) {
                     return $(this).text() == module.date.date()
                 });
             }
-            module.activate($day);
+            this.activate($day);
         },
         previous: function() {
             var trice = moment(this.focus).subtract(1, 'month');
-            module.focus = trice;
+            this.focus = trice;
             this.popup.empty();
             this.initCalendar(trice);
         },
         next: function() {
             var trice = moment(this.focus).add(1, 'month');
-            module.focus = trice;
+            this.focus = trice;
             this.popup.empty();
             this.initCalendar(trice);
         },
         addEventListeners: function() {
-            $(document).on('click', 'td.day', function(e) {
+            console.log(this.target);
+            this.popup.on('click', 'td.day', function(e) {
                 e.stopPropagation();
 
                 var pastDate = module.date,
@@ -183,17 +187,17 @@ $.fn.datetimepicker = function(config) {
                 module.refreshCalendar(pastDate, $(this));
             });
 
-            $(document).on('click', 'th.prev', function(e) {
+            this.popup.on('click', 'th.prev', function(e) {
                 e.stopPropagation();
                 module.previous();
             });
 
-            $(document).on('click', 'th.next', function(e) {
+            this.popup.on('click', 'th.next', function(e) {
                 e.stopPropagation();
                 module.next();
             });
 
-            $(document).on('click', 'table.timepicker tbody th', function(e) {
+            this.popup.on('click', 'table.timepicker tbody th', function(e) {
                 e.stopPropagation();
 
                 var $timepicker = $(this).closest('table.timepicker'),
@@ -213,7 +217,7 @@ $.fn.datetimepicker = function(config) {
                 }
             });
 
-            $(document).on('click', 'th#switchToTime', function(e) {
+            this.popup.on('click', 'th#switchToTime', function(e) {
                 e.stopPropagation();
                 var $timepicker = module.popup.find('table.timepicker'),
                     $datepicker = module.popup.find('table:first');
@@ -221,7 +225,7 @@ $.fn.datetimepicker = function(config) {
                 $timepicker.transition('show');
             });
 
-            $(document).on('click', 'th#switchToDate', function(e) {
+            this.popup.on('click', 'th#switchToDate', function(e) {
                 e.stopPropagation();
                 var $timepicker = module.popup.find('table.timepicker'),
                     $datepicker = module.popup.find('table:first');
@@ -236,98 +240,45 @@ $.fn.datetimepicker = function(config) {
     return this
 }
 
+$('#startDate').datetimepicker();
+
+$('#endDate').datetimepicker();
+
+$('#creationStartDate').datetimepicker();
+
+$('#creationEndDate').datetimepicker();
+
+$('#taskDate').datetimepicker();
+
 $('#eventDate').datetimepicker();
 
 
-// $(function() {
-//     function matchDateRegex(date) {
-//         return /[0-9]{2}\.[0-9]{2}\.[0-9]{4}/.test(date)
-//     }
+$('#taskDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
 
-//     $('#startDate').datetimepicker({
-//         // TODO
-//         // 	=> make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         pickTime: false,
-//         language: 'uk'
-//     });
+$('#eventDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
 
-//     $('#endDate').datetimepicker({
-//         // TODO
-//         // 	=> make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         pickTime: false,
-//         language: 'uk'
-//     });
+$('#startDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
 
-//     $('#creationStartDate').datetimepicker({
-//         // TODO
-//         // 	=> make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         pickTime: false,
-//         language: 'uk'
-//     });
+$('#endDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
 
-//     $('#creationEndDate').datetimepicker({
-//         // TODO
-//         // 	=> make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         pickTime: false,
-//         language: 'uk'
-//     });
+$('#creationStartDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
 
-//     $('#taskDate').datetimepicker({
-//         // TODO
-//         //  => make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         language: 'uk',
-//         icons: {
-//             time: 'time icon',
-//             date: 'calendar icon'
-//         }
-//     });
-
-//     $('#eventDate').datetimepicker({
-//         // TODO
-//         //  => make here default project language
-//         useCurrent: false,
-//         defaultDate: '',
-//         pickTime: false,
-//         language: 'uk'
-//     });
-
-//     $('#taskDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-
-//     $('#eventDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-
-//     $('#startDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-
-//     $('#endDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-
-//     $('#creationStartDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-
-//     $('#creationEndDate').change(function() {
-//         if (!matchDateRegex($(this).val()))
-//             $(this).val('')
-//     });
-// });
+$('#creationEndDate').change(function() {
+    if (!matchDateRegex($(this).val()))
+        $(this).val('')
+});
