@@ -16,6 +16,7 @@ class Document < ActiveRecord::Base
   has_and_belongs_to_many :events, join_table: :events_documents
   has_and_belongs_to_many :conversations, join_table: :conversations_documents
 
+  validate :uniqueness_of_titles_per_user, on: :create
   validates :description, length: { maximum: 256 }
   validates :tags, length: { maximum: 256 }
 
@@ -25,6 +26,9 @@ class Document < ActiveRecord::Base
   scope :match_title_or_nil, ->(title) { where("title ILIKE ? OR title IS NULL", "%#{title}%") }
   scope :match_description_or_nil, ->(desc) { where("description ILIKE ? OR description IS NULL", "%#{desc}%") }
 
+  def uniqueness_of_titles_per_user
+    errors.add(:title, 'must be unique') if self.owner.documents.where(title: self.title).exists?
+  end
 
   def save_with_parameter(param)
     begin

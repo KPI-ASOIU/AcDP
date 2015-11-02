@@ -1,3 +1,5 @@
+//= require ./pin_docs
+
 function newMessage(message) {
     var dialogBox = $("#conversation"),
         messageBox = dialogBox.find('#messages');
@@ -11,11 +13,6 @@ $(document).ready(function() {
     if (dialog_box.length) {
         dialog_box.scrollTop(dialog_box[0].scrollHeight);
     }
-
-    $('.modalSend').click(function(e) {
-        e.preventDefault();
-        $("#conversationOpen").modal('show')
-    });
 
     window.dispatcher.bind('messages.new_message', newMessage);
 });

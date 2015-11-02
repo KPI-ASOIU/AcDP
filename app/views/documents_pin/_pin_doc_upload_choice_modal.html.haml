@@ -8,7 +8,7 @@
     .description
       %p= t('documents.upload_from')
   .actions
-    = form_for(:documents, url: new_document_path, method: :post, remote: true, html: { class: 'ui fluid form', id: 'taskDoc', data: {url: get_file_doc_id_path}}) do |f|
+    = form_for(:documents, url: new_document_path, method: :post, remote: true, html: { class: 'ui fluid form', id: 'docToPin', data: {url: get_file_doc_id_path}}) do |f|
       = f.hidden_field :doc_type, value: 'file'
       = f.text_field :new_doc_title, id: 'title', class: 'hidden'
       = f.text_field :description, id: 'description', class: 'hidden'

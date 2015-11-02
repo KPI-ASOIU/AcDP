@@ -32,7 +32,7 @@
     = render partial: 'form_checklist', locals: { f: f }
   .field
     = f.label t('tasks.executors')
-    = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true }
+    = select_tag :executors, options_for_select(User.where.not(role: [User.roles_to_int(['student']), '']).map { |u| [u.full_name, u.id] }, task.executors.pluck(:id)), { class: "ui fluid search dropdown", multiple: true }
   .field
     = f.label t('documents.attached')
     #pinnedDocs

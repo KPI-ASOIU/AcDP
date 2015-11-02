@@ -6,14 +6,14 @@
       <%= select_tag :author, options_for_select(
         [[t('util.I'), current_user.id],
         [t('util.not_I'), tasks_not_authored_by_me]].concat(all_authors_of_my_tasks)),
-        { class: "chosen-select", multiple: true, include_blank: true } %>
+        { class: "ui fluid search dropdown", multiple: true } %>
     </div>
     <div class="field">
       <%= t('tasks.executors') %>:
       <%= select_tag :executor, options_for_select(
         [[t('util.I'), current_user.id],
         [t('util.not_I'), tasks_not_executed_by_me]].concat(all_executors)),
-        { class: "chosen-select", multiple: true, include_blank: true } %>
+        { class: "ui fluid search dropdown", multiple: true } %>
     </div>
     <div class="field">
       <%= t('tasks.name') %>:
@@ -24,7 +24,7 @@
     </div>
     <div class="field">
       <%= t('tasks.status') %>:
-      <%= select_tag :status, options_for_select(Task::STATUS.map { |s| [translate_status(s), s] }), { class: "chosen-select", multiple: true, include_blank: true } %>
+      <%= select_tag :status, options_for_select(Task::STATUS.map { |s| [translate_status(s), s] }), { class: "ui fluid search dropdown", multiple: true } %>
     </div>
   </div>
   <div class="four fields">

@@ -31,6 +31,7 @@
 //= require ./semantic-menu
 //= require ./semantic-toggle-button
 //= require fullcalendar
+//= require ./flash_messages
 
 $(document).ready(function() {
     window.addComment = function(comment) {
@@ -100,4 +101,9 @@ $(document).ready(function() {
             }
         }
     });
+
+
+    String.prototype.trunc = String.prototype.trunc || function(n){
+        return this.length > n ? this.substr(0,n)+'...' : this;
+    };
 }());

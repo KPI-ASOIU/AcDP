@@ -10,7 +10,7 @@
             <div id="role" class="form-group">
               <%= label_tag :new_doc_title, t('documents.select_types'), :class=>'col-sm-0 control-label' %>
               <%= hidden_field_tag :pk, '', :id => 'docs-add-types' %>
-              <%= select_tag :types_ids, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.id] }), { class: "chosen-select", multiple: true, include_blank: true } %>
+              <%= select_tag :types_ids, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.id] }), { class: "ui fluid search dropdown", multiple: true } %>
             </div>
           </div>
           <div class="modal-footer">

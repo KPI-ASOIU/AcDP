@@ -6,16 +6,19 @@ var hideModals = function() {
     },
     detachDoc = function(e) {
         e.preventDefault();
-        console.log(e.target)
-        var item = $(e.target).closest('.ui.item'),
+        var item = $(e.target).closest('.card'),
             id = item.attr('data-id'),
-            detachDocUrl = $("#pinnedDocsExt").attr('data-detach-doc-url').replace('0', id);
+            $placeToPin = $("#pinnedDocsExt"),
+            detachDocUrl = $placeToPin.attr('data-detach-doc-url').replace('0', id),
+            $noPinnedDocsStub = $('#noPinnedDocs');
         $.ajax({
             type: "POST",
             url: detachDocUrl,
             dataType: "json",
             success: function() {
                 item.remove();
+                if ($placeToPin.length == 1)
+                    $noPinnedDocsStub.show();
             },
             error: function() {
                 alert("Server error! Document is not detached.")
@@ -23,7 +26,68 @@ var hideModals = function() {
         })
     },
     hideDoc = function(e) {
-        $(e.target).closest('.ui.item').remove();
+        var $noPinnedDocsStub = $('#noPinnedDocs'),
+            $placeToPin = $("#pinnedDocsExt");
+        $(e.target).closest('.card').remove();
+        if ($placeToPin.length == 1)
+            $noPinnedDocsStub.show();
+
+    },
+    createExtendedDoc = function(doc_id, title, description) {
+        var item = document.createElement('div'),
+            iconAction = document.createElement('i'),
+            iconRemove = document.createElement('i'),
+            content = document.createElement('div'),
+            name = document.createElement('div'),
+            desc = document.createElement('div'),
+            confirmLabel = document.createElement('div');
+        item.setAttribute('class', 'card extended-doc');
+        item.setAttribute('data-document', 'attached');
+        item.setAttribute('data-id', doc_id);
+        confirmLabel.setAttribute('id', 'confirm');
+        confirmLabel.setAttribute('class', 'ui bottom attached center aligned green button');
+        confirmLabel.appendChild(document.createTextNode(I18n.util.confirm))
+        iconAction.setAttribute('class', 'right floated download disk icon');
+        iconRemove.setAttribute('class', 'right floated delete icon')
+        iconRemove.setAttribute('data-aim', 'detach');
+        content.setAttribute('class', 'content');
+        name.setAttribute('class', 'header');
+        name.appendChild(title);
+        desc.setAttribute('class', 'description');
+        desc.appendChild(description);
+        content.appendChild(iconRemove);
+        content.appendChild(iconAction);
+        content.appendChild(name);
+        content.appendChild(desc);
+        item.appendChild(content);
+        item.appendChild(confirmLabel);
+
+        iconRemove.addEventListener('click', hideDoc, false)
+        confirmLabel.addEventListener('click', function(e) {
+            e.preventDefault();
+            var item = $(e.target).closest('.card'),
+                id = item.attr('data-id'),
+                attachDocUrl = $("#pinnedDocsExt").attr('data-attach-doc-url').replace('0', id);
+            $.ajax({
+                type: "POST",
+                url: attachDocUrl,
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == 200) {
+                        item.find('#confirm').remove();
+                        var iconRemove = item.find('[data-aim="detach"]')[0];
+                        iconRemove.removeEventListener('click', hideDoc);
+                        iconRemove.addEventListener('click', detachDoc, false);
+                    } else if (data.status == 204) {
+                        item.remove();
+                    }
+                },
+                error: function() {
+                    alert("Server error! Document is not attached.")
+                }
+            })
+        }, false)
+        return item;
     };
 
 $('#attachDocument').on('click', function(e) {
@@ -51,100 +115,49 @@ $(document).on('click', '[data-document="attached"] > i.delete', function(e) {
 
 $(document).on('change', '#docFromPCInput', function(e) {
     e.preventDefault();
-    var placeToPin = $('#pinnedDocs'),
+    var $placeToPin = $('#pinnedDocs'),
         control = e.target,
-        title = document.querySelector('#taskDoc #title'),
-        description = document.querySelector('#taskDoc #description'),
+        title = document.querySelector('#docToPin #title'),
+        description = document.querySelector('#docToPin #description'),
         today = new Date(),
-        descText = 'Added ' + today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear(),
-        form = $('#taskDoc');
+        descText = I18n.documents.absent,
+        $form = $('#docToPin'),
+        $noPinnedDocsStub = $('#noPinnedDocs');
     title.value = control.files[0].name;
     title.setAttribute('data-value', control.files[0].name)
     description.setAttribute('data-value', descText);
-    form.submit();
-    if (placeToPin.length > 0) {
-        var label = document.createElement('div'),
-            removeIcon = document.createElement('i');
-        label.setAttribute('class', 'ui label');
-        removeIcon.setAttribute('class', 'delete icon');
-        label.appendChild(document.createTextNode(title.value));
-        label.appendChild(removeIcon);
-        removeIcon.addEventListener('click', function(e) {
-            $(e.target).closest('.ui.label').remove();
-        }, false)
-        placeToPin.append(label);
-    } else {
-        placeToPin = $('#pinnedDocsExt')
-        $.ajax({
-            type: "GET",
-            url: form.attr('data-url'),
-            data: {
-                'file_name': control.files[0].name,
-                'file_size': control.files[0].size
-            },
-            dataType: "json",
-            success: function(data) {
-                var item = document.createElement('div'),
-                    label = document.createElement('div'),
-                    iconAction = document.createElement('i'),
-                    iconRemove = document.createElement('i'),
-                    content = document.createElement('div'),
-                    name = document.createElement('div'),
-                    desc = document.createElement('p'),
-                    confirmLabel = document.createElement('div');
-                item.setAttribute('class', 'ui item extended-doc');
-                item.setAttribute('data-document', 'attached');
-                item.setAttribute('data-id', data.doc_id);
-                label.setAttribute('class', 'ui top right attached label');
-                confirmLabel.setAttribute('id', 'confirm');
-                confirmLabel.setAttribute('class', 'ui bottom attached green label');
-                confirmLabel.appendChild(document.createTextNode(I18n.util.confirm))
-                iconAction.setAttribute('class', 'download disk icon');
-                iconRemove.setAttribute('class', 'delete icon')
-                iconRemove.setAttribute('data-aim', 'detach');
-                content.setAttribute('class', 'content');
-                name.setAttribute('class', 'name');
-                name.appendChild(document.createTextNode(control.files[0].name));
-                desc.setAttribute('class', 'description');
-                desc.appendChild(document.createTextNode(descText));
-                label.appendChild(iconAction);
-                label.appendChild(iconRemove);
-                item.appendChild(label);
-                content.appendChild(name);
-                content.appendChild(desc);
-                item.appendChild(content);
-                item.appendChild(confirmLabel);
-
-                iconRemove.addEventListener('click', hideDoc, false)
-                confirmLabel.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    var item = $(e.target).closest('.ui.item'),
-                        id = item.attr('data-id'),
-                        attachDocUrl = $("#pinnedDocsExt").attr('data-attach-doc-url').replace('0', id);
-                    $.ajax({
-                        type: "POST",
-                        url: attachDocUrl,
-                        dataType: "json",
-                        success: function(data) {
-                            if (data.status == 200) {
-                                item.find('#confirm').remove();
-                                var iconRemove = item.find('[data-aim="detach"]')[0];
-                                iconRemove.removeEventListener('click', hideDoc);
-                                iconRemove.addEventListener('click', detachDoc, false);
-                            } else if (data.status == 204) {
-                                alert("Document already pinned");
-                                item.remove();
-                            }
-                        },
-                        error: function() {
-                            alert("Server error! Document is not attached.")
-                        }
-                    })
-                }, false)
-                placeToPin.append(item);
-            }
-        })
-    }
+    $form.bind('ajax:complete', function() {
+        if ($placeToPin.length > 0) {
+            var label = document.createElement('div'),
+                removeIcon = document.createElement('i');
+            label.setAttribute('class', 'ui label');
+            removeIcon.setAttribute('class', 'delete icon');
+            label.appendChild(document.createTextNode(title.value));
+            label.appendChild(removeIcon);
+            removeIcon.addEventListener('click', function(e) {
+                $(e.target).closest('.ui.label').remove();
+            }, false)
+            $placeToPin.append(label);
+        } else {
+            $placeToPin = $('#pinnedDocsExt')
+            $.ajax({
+                type: "GET",
+                url: $form.attr('data-url'),
+                data: {
+                    'file_name': control.files[0].name,
+                    'file_size': control.files[0].size
+                },
+                dataType: "json",
+                success: function(data) {
+                    $noPinnedDocsStub.fadeOut();
+                    $placeToPin.append(createExtendedDoc(data.doc_id,
+                        document.createTextNode(control.files[0].name.trunc(17)),
+                        document.createTextNode(descText.trunc(30))));
+                }
+            })
+        }
+    });
+    $form.submit();
     hideModals();
 })
 
@@ -164,7 +177,6 @@ $('input[name="query"]').on('keyup', function(event) {
             },
             dataType: "json",
             success: function(data) {
-                console.log(data)
                 var results = document.querySelector("#docSearchResults");
                 $(results).empty()
                 for (var res in data) {
@@ -174,9 +186,11 @@ $('input[name="query"]').on('keyup', function(event) {
                     var item = document.createElement('div'),
                         content = document.createElement('div'),
                         name = document.createElement('div'),
-                        title = document.createTextNode(data[res].title === null ? I18n.documents.no_title : data[res].title),
+                        title = document.createTextNode((data[res].title ?
+                            data[res].title : I18n.documents.no_title).trunc(17)),
                         description = document.createElement('p'),
-                        desc = document.createTextNode(data[res].description === null ? I18n.documents.no_description : data[res].description),
+                        desc = document.createTextNode((data[res].description ?
+                            data[res].description : I18n.documents.no_description).trunc(30)),
                         type = document.createElement('i'),
                         selectLabel = document.createElement('a'),
                         selectIcon = document.createElement('i'),
@@ -254,7 +268,6 @@ $('button#pinDocs').on('click', function(event) {
         }, false)
         placeToPin.append(label);
     }
-    placeToPin.append()
 });
 
 $('[data-aim="detach"]').on('click', detachDoc)
@@ -262,70 +275,15 @@ $('[data-aim="detach"]').on('click', detachDoc)
 $('button#pinDocsExt').on('click', function(event) {
     event.preventDefault();
     var pinnedDocs = $('#docSearchResults div[data-pinned="true"]').get(),
-        placeToPin = $('#pinnedDocsExt'),
-        noPinnedDocsStub = $('#noPinnedDocs');
+        $placeToPin = $('#pinnedDocsExt'),
+        $noPinnedDocsStub = $('#noPinnedDocs');
     hideModals();
-    if (noPinnedDocsStub.length != 0)
-        noPinnedDocsStub.fadeOut();
+    if ($noPinnedDocsStub.length != 0)
+        $noPinnedDocsStub.fadeOut();
     for (var cur in pinnedDocs) {
-        var item = document.createElement('div'),
-            label = document.createElement('div'),
-            iconAction = document.createElement('i'),
-            iconRemove = document.createElement('i'),
-            content = document.createElement('div'),
-            name = document.createElement('div'),
-            desc = document.createElement('p'),
-            confirmLabel = document.createElement('div'),
-            jqDoc = $(pinnedDocs[cur]);
-        item.setAttribute('class', 'ui item extended-doc');
-        item.setAttribute('data-document', 'attached');
-        item.setAttribute('data-id', pinnedDocs[cur].getAttribute('data-id'));
-        label.setAttribute('class', 'ui top right attached label');
-        confirmLabel.setAttribute('id', 'confirm');
-        confirmLabel.setAttribute('class', 'ui bottom attached green label');
-        confirmLabel.appendChild(document.createTextNode(I18n.util.confirm))
-        iconAction.setAttribute('class', 'download disk icon');
-        iconRemove.setAttribute('class', 'delete icon')
-        iconRemove.setAttribute('data-aim', 'detach');
-        content.setAttribute('class', 'content');
-        name.setAttribute('class', 'name');
-        name.appendChild(document.createTextNode(jqDoc.find('div[data-attr="name"]').html()));
-        desc.setAttribute('class', 'description');
-        desc.appendChild(document.createTextNode(jqDoc.find('p[data-attr="desc"]').html()));
-        label.appendChild(iconAction);
-        label.appendChild(iconRemove);
-        item.appendChild(label);
-        content.appendChild(name);
-        content.appendChild(desc);
-        item.appendChild(content);
-        item.appendChild(confirmLabel);
-
-        iconRemove.addEventListener('click', hideDoc, false)
-        confirmLabel.addEventListener('click', function(e) {
-            e.preventDefault();
-            var item = $(e.target).closest('.ui.item'),
-                id = item.attr('data-id'),
-                attachDocUrl = $("#pinnedDocsExt").attr('data-attach-doc-url').replace('0', id);
-            $.ajax({
-                type: "POST",
-                url: attachDocUrl,
-                dataType: "json",
-                success: function(data) {
-                    if (data.status == 200) {
-                        item.find('#confirm').remove();
-                        var iconRemove = item.find('[data-aim="detach"]')[0];
-                        iconRemove.removeEventListener('click', hideDoc);
-                        iconRemove.addEventListener('click', detachDoc, false);
-                    } else if (data.status == 204) {
-                        alert("Document already pinned");
-                        item.remove();
-                    }
-                },
-                error: function() {
-                    alert("Server error! Document is not attached.")
-                }
-            })
-        }, false)
-        placeToPin.append(item);
+        var $doc = $(pinnedDocs[cur]);
+        $placeToPin.append(createExtendedDoc(pinnedDocs[cur].getAttribute('data-id'),
+            document.createTextNode($doc.find('div[data-attr="name"]').html()),
+            document.createTextNode($doc.find('p[data-attr="desc"]').html())));
     }
 });

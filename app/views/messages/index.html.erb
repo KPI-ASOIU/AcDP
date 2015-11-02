@@ -33,17 +33,14 @@
         <%= t('documents.attached') %>
       </h2>
       <div class="panel-body">
-        <div data-show="true" id="pinnedDocsExt" class="attached-docs-segment ui items" data-detach-doc-url="<%=conv_doc_detach_path(@conversation.id, 000) %>" data-attach-doc-url="<%=conv_doc_attach_path(@conversation.id, 000) %>">
+        <div data-show="true" id="pinnedDocsExt" class="ui cards" data-detach-doc-url="<%=conv_doc_detach_path(@conversation.id, 000) %>" data-attach-doc-url="<%=conv_doc_attach_path(@conversation.id, 000) %>">
           <% @conversation = @messages.first.conversation %>
-          <% if @conversation.documents.any? %>
-            <% @conversation.documents.each do |doc| %>
-              <%= render partial: 'documents_pin/pinned_doc_ext', locals: {doc: doc} %>
-            <% end %>
-          <% else %>
-            <div id="noPinnedDocs">
-              <%= t('documents.absent') %>
-            </div>
+          <% @conversation.documents.each do |doc| %>
+            <%= render partial: 'documents_pin/pinned_doc_ext', locals: {doc: doc} %>
           <% end %>
+          <div id="noPinnedDocs" class="ui basic segment <%= 'hidden' if @conversation.documents.any? %>">
+            <%= t('documents.absent') %>
+          </div>
         </div>
       </div>
     </div>

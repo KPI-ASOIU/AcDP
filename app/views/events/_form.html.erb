@@ -41,7 +41,7 @@
 
   <div class='field'>
     <%= f.label t('events.guests') %>
-    <%= select_tag :guests, options_for_select(User.all.map { |u| [u.full_name, u.id] }, event.guests.pluck(:id)), { class: "chosen-select", multiple: true, include_blank: true } %>
+    <%= select_tag :guests, options_for_select(User.all.map { |u| [u.full_name, u.id] }, event.guests.pluck(:id)), { class: "ui fluid search dropdown", multiple: true } %>
   </div>
   <div class='field'>
     <%= f.label t('documents.attached') %>
