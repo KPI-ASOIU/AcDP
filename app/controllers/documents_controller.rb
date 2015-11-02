@@ -62,15 +62,24 @@ class DocumentsController < ApplicationController
     if params[:documents][:doctype] == 'folder'
       if create_document(0).save
         flash[:notice] = t('documents.folder_creation_success')
+      else
+        flash[:error] = t('documents.error_create')
       end
     elsif params[:documents][:new_file].blank?
-      if create_document(1).save
+      doc = create_document(1)
+      if doc.save!
+        doc.__elasticsearch__.index_document
         flash[:notice] = t('documents.file_add_success')
+      else
+        flash[:error] = t('documents.error_create')
       end
     else
       doc = create_document(1)
       if save_file(doc)
+        doc.__elasticsearch__.index_document
         flash[:notice] = t('documents.file_add_success')
+      else
+        flash[:error] = t('documents.error_create')
       end
     end
     if request.referer.split('/')[3] == 'conversations'

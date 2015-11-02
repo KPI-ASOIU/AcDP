@@ -36,7 +36,7 @@
 
   <div id="role" class="field">
     <%= f.label :role, :class=>'col-sm-4 control-label' %>
-      <%= f.select :role, options_for_select(translate_roles(User::ROLES), @user.roles), {include_blank: true}, { :class => "chosen-select", :multiple => true } %>
+      <%= f.select :role, options_for_select(translate_roles(User::ROLES), @user.roles), {}, { :class => "ui fluid search dropdown", :multiple => true } %>
   </div>
 
   <div class="field">

@@ -15,16 +15,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id='docInfo' class="ui right sidebar vertical menu">
-      <div class="item">Just hello</div>
-      <div class="item">Adjacent matrix</div>
-      <div class="item">Crawl the Web</div>
-      <div class="item">About</div>
-    </div>
+    <div id='docInfo' class="ui right sidebar vertical menu"></div>
     <div class="pusher">
       <%= render partial: "shared/header", flash: flash %>
-      <%= render partial: "shared/flash_messages", flash: flash %>
       <div class="ui basic segment">
+        <%= render partial: "shared/flash_messages", flash: flash %>
         <%= yield %>
       </div>
     </div>

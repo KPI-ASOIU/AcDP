@@ -58,7 +58,7 @@
   overflow-y: auto;
 }
 
-.attached-docs-segment {
-  height: 100%;
-  min-height: 400px;
+.extended-doc i.delete.icon:hover {
+  color: #ff2733;
+  cursor: pointer;
 }

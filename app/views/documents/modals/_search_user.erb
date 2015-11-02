@@ -11,7 +11,7 @@
               <%= label_tag :new_doc_title, t('documents.select_users'), :class=>'col-sm-0 control-label' %>
               <%= hidden_field_tag :pk, '', :id => 'docs-add-access' %>
               <%= hidden_field_tag :access_type, '', :id => 'docs-add-access-type' %>
-              <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }), { class: "chosen-select", multiple: true, include_blank: true } %>
+              <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }), { class: "ui fluid search dropdown", multiple: true } %>
             </div>
           </div>
           <div class="modal-footer">

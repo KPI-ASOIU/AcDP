@@ -9,8 +9,11 @@
     position: absolute;
 }
 
-*:before, *:after {
-    box-sizing: border-box;
+.date.input table {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .date.input.top:after {
@@ -34,35 +37,6 @@
     z-index: 99999 !important;
 }
 
-.dropdown-menu {
-    background-clip: padding-box;
-    background-color: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
-    display: none;
-    float: left;
-    font-size: 14px;
-    left: 0;
-    list-style: none outside none;
-    margin: 2px 0 0;
-    min-width: 160px;
-    padding: 5px 0;
-    position: absolute;
-    top: 100%;
-    z-index: 1000;
-}
-
-.date.input > ul {
-    list-style-type: none;
-    margin: 0;
-}
-
-.list-unstyled {
-    list-style: none outside none;
-    padding-left: 0;
-}
-
 .date.input table {
     margin: 0;
     width: 100%;
@@ -72,7 +46,7 @@
     cursor: pointer;
 }
 
-.date.input thead th i {
+.date.input th i {
     margin: 0;
 }
 
@@ -128,7 +102,7 @@
 
 .date.input td.day:hover, .date.input td.hour:hover, 
 .date.input td.minute:hover, .date.input td.second:hover, 
-.date.input td span:hover, .date.input thead th:hover {
+.date.input th:hover {
     background: none repeat scroll #eee;
     cursor: pointer;
 }
@@ -177,4 +151,25 @@
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.date.input tfoot th, .date.input table.timepicker th {
+    color: #006dcc;
+}
+
+.date.input .popup {
+    max-width: none !important;
+}
+
+.date.input table.timepicker {
+    width: 252px;
+}
+
+.date.input table.timepicker tbody th {
+    font-size: 3em;
+    line-height: 1em;
+}
+
+.date.input table.timepicker td {
+    font-size: 1.25em;
 }

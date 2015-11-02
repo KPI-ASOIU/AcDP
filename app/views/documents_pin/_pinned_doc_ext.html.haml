@@ -1,14 +1,13 @@
-.ui.item.extended-doc{data: {document: 'attached', id: doc.id}}
-  .ui.top.right.attached.label
+.card.extended-doc{data: {document: 'attached', id: doc.id}}    
+  .content
+    %i.right.floated.delete.icon{data: {aim: 'detach'}}
     - file_info = doc.file_info
     -if file_info.present?
       = link_to file_info.file.url(:original, false) do
-        %i.download.disk.icon
+        %i.right.floated.download.disk.icon
     -else
       - parent = doc.parent_directory
       = link_to (parent ? document_path(parent) : documents_path) do
-        %i.info.icon
-    %i.delete.icon{data: {aim: 'detach'}}
-  .content
-    .name= doc.title
-    %p.description= doc.description ? doc.description : t('documents.no_description')
+        %i.right.floated.info.icon
+    .header= doc.title.truncate(20)
+    .description= doc.description.present? ? doc.description.truncate(33) : t('documents.no_description')

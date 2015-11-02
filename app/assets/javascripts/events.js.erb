@@ -1,14 +1,7 @@
-//= require ./chosen_select
 //= require ./datetimepicker
 //= require ./pin_docs
 
 $(document).ready(function() {
-  $('#eventSearch .chosen-select').chosen({
-    placeholder_text_multiple: ' ',
-    no_results_text: "<%= I18n.t('util.chosen_no_result') %>",
-    width: '100%'
-  });
-
   $('#eventSearch #searchBtn').on('click', function(e) { 
     $('#extendSearch').submit(); 
   });

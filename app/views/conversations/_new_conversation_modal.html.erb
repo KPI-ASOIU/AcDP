@@ -9,13 +9,13 @@
       </div>
       <div class="field">
         <%= f.label t('messages.receivers') %>
-        <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }, receiver_ids), { class: "chosen-select", multiple: true, include_blank: true } %>  
+        <%= select_tag :receiver_ids, options_for_select(User.all.reject { |u| u == current_user }.map { |u| [u.full_name, u.id] }, receiver_ids), { class: "ui fluid search dropdown", multiple: true } %>
       </div>
       <div class="field">
         <%= f.label t('messages.message') %>
         <%= text_area "message", :body %>
       </div>
       <%= f.submit class: "ui positive button", value: t('messages.send') %>
-    <% end %>    
+    <% end %>
   </div>
 </div>

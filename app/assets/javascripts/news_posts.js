@@ -1,4 +1,3 @@
-//= require ./chosen_select
 //= require ./pin_docs
 
 $(document).ready(function() {
