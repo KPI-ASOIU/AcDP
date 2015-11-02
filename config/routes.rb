@@ -14,23 +14,22 @@ AcDP::Application.routes.draw do
 
   get 'calendar', to: 'calendar'
   get 'calendar/day/:date', to: 'calendar#day', as: 'day'
+
   get 'documents/sidebar_info' => 'documents#sidebar_info', as: 'documents_sidebar_info'
   get 'documents', to: 'documents#index'
-
-  get 'documents/tree/:docdir/:type', to: 'documents#jstree'
-
   get 'documents/search' => 'documents#search', as: 'doc_search'
   get 'documents/shared', to: 'documents#shared'
   get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
   get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'
-  post 'documents', to: 'documents#new', as: 'new_document'
-  post 'documents/:id', to: 'documents#new', as: 'document_new'
   get 'documents/get_file_info', to: 'documents#get_file_doc_id', as: 'get_file_doc_id'
   get 'documents/:id', to: 'documents#index', as: 'document'
 
-  patch 'documents/update', to: 'documents#update'
+  post 'documents', to: 'documents#new', as: 'new_document'
+  post 'documents/:id', to: 'documents#new', as: 'document_new'
   post 'documents/change_file', to: 'documents#change_file'
-  post 'documents/update_lists', to: 'documents#update_lists'
+
+  patch 'documents/:id', to: 'documents#update'
+
   delete 'documents/file/:delete_id', to: 'documents#delete_file', as: 'document_delete_file'
   delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
   delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'

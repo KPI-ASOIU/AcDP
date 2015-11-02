@@ -1,32 +1,28 @@
 <div class="ui basic segment">
-  <h3 class="ui header"><%= doc.title %></h3>
-  <div class="ui form">
-    <div class="field">
-      <label><%= t('documents.owner') %></label>
-      <div class="ui icon input">
-        <i class="user icon"></i>
-        <input type="text" data-placeholder="Name" value="<%= doc.owner.full_name %>">
-      </div>
-    </div>
-    <div class="field">
-      <label><%= t('documents.for_roles') %></label>
-      <div class="ui input">
-        <input type="text" data-placeholder="Name" value="<%= User.int_to_roles(doc.for_roles).join ', ' %>">
-      </div>
-    </div>
-    <div class="field">
-      <label><%= t('documents.type') %></label>
-      <div class="ui input">
-        <input type="text" data-placeholder="Name" value="<%= doc.document_types.pluck(:title).join ', ' %>">
-      </div>
-    </div>
-    <div class="field">
-      <label><%= t('documents.description') %></label>
-      <textarea><%= doc.description %></textarea>
-    </div>
-    <%= link_to doc.file_info ? doc.file_info.file.url(:original, false) : '', target: :blank, class: 'ui green fluid labeled icon button' do %>
-      <i class='download icon'></i>
-      <%= t('documents.download') %>
-    <% end %>
+  <div class="ui center aligned basic segment">
+    <i class="huge <%= doc_format_icon(doc) %>"></i>
   </div>
+  <%= form_for(doc, :html => {class: "ui form", method: :patch }) do |f| %>
+    <div class="field">
+      <%= f.label :title, t('documents.title') %>
+      <%= f.text_field :title, :placeholder => t('documents.title') + '...' %>
+    </div>
+    <div class="field">
+      <%= f.label :for_roles, t('documents.for_roles') %>
+      <%= f.select :for_roles, options_for_select(User::ROLES.map { |r| [t("roles.#{r}"), r] }, User.int_to_roles(doc.for_roles)), {include_hidden: false}, {id: 'forRoles', class: "ui fluid search dropdown", multiple: true} %>
+    </div>
+    <div class="field">
+      <%= label_tag :document_types, t('documents.type') %>
+      <%= select_tag :document_types, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.title] }, doc.document_types.pluck(:title)), {id: 'docTypes', class: "ui fluid search dropdown", multiple: true} %>
+    </div>
+    <div class="field">
+      <%= f.label :description, t('documents.description') %>
+      <%= f.text_area :description %>
+    </div>
+    <div class="ui buttons">
+      <%= f.submit t('helpers.submit.update'), class: 'ui green button' %>
+      <div class="or" data-text="чи"></div>
+      <%= link_to t('documents.download'), doc.file_info ? doc.file_info.file.url(:original, false) : '', target: :blank, class: 'ui blue button' %>
+    </div>
+  <% end %>
 </div>

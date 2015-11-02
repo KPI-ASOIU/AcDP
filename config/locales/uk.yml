@@ -159,7 +159,7 @@ uk:
     submit:
       create: Створити %{model}а
       submit: Зберегти %{model}
-      update: Зберегти зміни
+      update: Оновити
   number:
     currency:
       format:
@@ -431,6 +431,7 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    available_for_all: Доступний для всіх
     absent: Немає документів
     attached: Прикріплені документи
     uploading: Додання документу

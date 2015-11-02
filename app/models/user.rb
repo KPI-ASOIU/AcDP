@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def self.int_to_roles(code)
-    mask = code.to_s(2).rjust(4, "0").chars.reverse
+    mask = code.to_s(2).rjust(ROLES.length, "0").chars.reverse
     ROLES.reject{|r| mask[ROLES.index(r)] == "0"}
   end
 

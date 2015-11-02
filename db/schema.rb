@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114205512) do
+ActiveRecord::Schema.define(version: 20151102210845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20141114205512) do
     t.integer  "parent_directory"
     t.integer  "doc_type",                                null: false
     t.integer  "owner_id",                                null: false
-    t.datetime "date_created",                            null: false
-    t.datetime "date_updated",                            null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "title",            limit: 80,             null: false
     t.string   "description"
     t.string   "tags"

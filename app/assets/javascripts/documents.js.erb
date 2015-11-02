@@ -40,6 +40,13 @@ $(document).ready(function() {
             success: function(data) {
                 docInfo.html(data);
                 docInfo.sidebar("show");
+                $('#forRoles').dropdown();
+                $('#docTypes').dropdown({
+                    allowAdditions: true,
+                    message: {
+                        addResult: 'Додати тип <b>{term}</b>'
+                    }
+                })
             },
             error: function() {
                 console.log("ERROR!")
