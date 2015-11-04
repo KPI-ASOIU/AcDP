@@ -1,15 +1,5 @@
 <h1><%= t('documents.documents') %></h1>
 
-<%= render 'search' %>
-
-<div class="text-center">
-    <%= link_to '/documents', :class => 'btn btn-info' do %>
-          <span class='glyphicon glyphicon-user'></span>
-          <%= t('documents.owned_docs') %>
-    <% end %>
-</div>
-<br>
-
 <div class="panel panel-primary">
   <div class="panel-heading">
     <%= t('documents.found_users') %>

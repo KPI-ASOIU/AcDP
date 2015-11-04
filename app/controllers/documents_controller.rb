@@ -52,7 +52,6 @@ class DocumentsController < ApplicationController
     elsif params[:documents][:new_file].blank?
       doc = create_document(1)
       if doc.save!
-        doc.__elasticsearch__.index_document
         flash[:notice] = t('documents.file_add_success')
       else
         flash[:error] = t('documents.error_create')
@@ -60,12 +59,13 @@ class DocumentsController < ApplicationController
     else
       doc = create_document(1)
       if save_file(doc)
-        doc.__elasticsearch__.index_document
         flash[:notice] = t('documents.file_add_success')
       else
         flash[:error] = t('documents.error_create')
       end
     end
+    # TODO (dkalpakchi): change this to appropriate index handling
+    Document.import force:true
     if request.referer.split('/')[3] == 'conversations'
       render json: {id: doc.id}
     else
@@ -98,7 +98,9 @@ class DocumentsController < ApplicationController
 
   def update
     @doc = Document.find(params[:id])
-    @doc.document_types = params[:document_types].map {|t| DocumentType.find_or_create_by(title: t) }
+    if params[:document_types].present?
+      @doc.document_types = params[:document_types].map {|t| DocumentType.find_or_create_by(title: t) }
+    end
     if params[:document][:for_roles]
       params[:document][:for_roles] = User.roles_to_int(params[:document][:for_roles])
     end
@@ -110,15 +112,6 @@ class DocumentsController < ApplicationController
         :error => "Wrong params!"
       }
     end
-    # if request.xhr?
-    #   render :json => {
-    #       :status => stat,
-    #       :msg => msg,
-    #       :doc_id => doc.nil? ? -1 : doc.id
-    #   }
-    # else
-    #   redirect_to action: 'index', id: params[:folder_id]
-    # end
   end
 
   def delete
@@ -168,6 +161,12 @@ class DocumentsController < ApplicationController
       format.js
       format.json { render json: @files.to_json.html_safe }
     end
+  end
+
+  def elastic_search
+  end
+
+  def extended_search
   end
 
   def get_file_doc_id
