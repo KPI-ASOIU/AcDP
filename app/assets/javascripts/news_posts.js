@@ -9,10 +9,6 @@ $(document).ready(function() {
             $('#for_groups').transition('slide down');
     });
 
-    $('.tag-input').select2({
-        tags: []
-    });
-
     $(document).on('click', '#btn_remove_news_post', function(e) {
         e.stopPropagation();
         e.preventDefault();

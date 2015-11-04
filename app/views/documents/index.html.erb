@@ -19,11 +19,28 @@
           <div class="ui label">1</div>
         </a>
         <div class="item">
-          <%= form_tag doc_search_path, :method => 'get', remote: true do %>
-            <div class="ui small fluid icon input">
+          <%= form_tag doc_search_path, :method => 'get', remote: true, class: 'ui basic form', id: "searchDocsForm" do %>
+            <div class="ui small fluid search icon input">
               <input name="query" placeholder="<%= t('documents.search_by_docs') %>..." type="text">
               <i class="search icon"></i>
             </div>
+            <div class="ui accordion">
+              <div class="title">
+                <i class="dropdown icon"></i>
+                <%= t('util.extended_search') %>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <label for="dateUploaded"><%= t('documents.date_created') %></label>
+                  <input name="dateUploaded" type="text">
+                </div>
+                <div class="field">
+                  <%= label_tag :document_types, t('documents.type') %>
+                  <%= select_tag :document_types, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.title] }, []), {id: 'docTypes', class: "ui fluid search dropdown", multiple: true} %>
+                </div>
+              </div>
+            </div>
+            <input type="submit" style="display: none;">
           <% end %>
         </div>
       </div>

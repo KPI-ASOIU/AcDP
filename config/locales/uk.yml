@@ -350,6 +350,7 @@ uk:
     undefined: Не визначено
     from: З
     to: До
+    search: Пошук
     extended_search: Розширений пошук
     I: Я
     not_I: 'Всі, крім мене'
@@ -440,8 +441,8 @@ uk:
     upload_from: Звідки ви хочете завантажити новий документ?
     pin: Прикріпити документи
     all: Всі документи
-    yours: Сховище
-    shared: Спільні документи
+    yours: Персональне сховище
+    shared: Спільні
     by_type: За типом
     recently_used: Недавні
     from_pc: Завантажити з ПК
@@ -451,10 +452,6 @@ uk:
     files: Файли
     file: Файл
     folder: Папка
-    owned: Власні
-    shared: Спільні
-    shared_docs: Спільні документи
-    owned_docs: Власні документи
     new_shared: Нові спільні
     formats: Формати
     types: Типи
