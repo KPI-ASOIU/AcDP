@@ -165,3 +165,24 @@ div {
 .auto-margins {
   margin: auto !important;
 }
+
+div.scrollable {
+  margin-top: 10px;
+  height: 95%;
+  overflow: auto;
+}
+
+div.scrollable > table {
+  table-layout: fixed;
+}
+
+div.scrollable td {
+  white-space: nowrap;
+  overflow: hidden;         /* <- this does seem to be required */
+  text-overflow: ellipsis;
+}
+
+.reduced.item {
+  border: none !important;
+  padding: 0 !important;
+}

@@ -1,17 +1,19 @@
 <div class="items">
   <%= f.nested_fields_for :checklists do |f| %>
-    <div class='ui mini left icon action input subtask'>
-      <span class="icon"> <%= f.check_box :done %> </span>
-      <%= f.text_field :name %>
-    	<span class="ui mini button remove"><i class="icon remove"></i></span>
-    </div>
-    
-    <%= f.hidden_field :id %>
-    <%= f.hidden_field :_destroy %>
+    <fieldset class="reduced item">
+      <div class='ui right labeled input subtask'>
+        <div class="ui label"><%= f.check_box :done %></div>
+        <%= f.text_field :name %>
+      	<a class="ui label button remove"><i class="icon remove no-margins"></i></a>
+      </div>
+
+      <%= f.hidden_field :id %>
+      <%= f.hidden_field :_destroy %>
+    </fieldset>
   <% end %>
 </div>
 
 <a class="ui basic fluid labeled icon button add">
-  <i class='icon add'></i> 
+  <i class='icon add'></i>
   <%= t('util.add_task') %>
 </a>

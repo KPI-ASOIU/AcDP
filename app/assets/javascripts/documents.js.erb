@@ -73,3 +73,8 @@ $(document).ready(function() {
         $input.addClass('error');
     })
 });
+
+// Change the selector if needed
+var $table = $('table.scrollable'),
+    $bodyCells = $table.find('tbody tr:first').children(),
+    colWidth;

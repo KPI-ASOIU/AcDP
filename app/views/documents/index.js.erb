@@ -3,5 +3,3 @@ $("table#docs tbody").append(
   "<%= escape_javascript(render(partial: 'doc', collection: @docs) ||
   '<tr><td class="center aligned" colspan="7">'.html_safe << t('documents.absent') << '</td></tr>'.html_safe) %>"
 )
-
-$('#paginator').html('<%= escape_javascript(paginate(@docs, :remote => true).to_s) %>');

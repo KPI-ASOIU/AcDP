@@ -112,11 +112,6 @@ div.subtask input[type='checkbox'] {
 	cursor: pointer;
 }
 
-div.subtask .button {
-	text-align: center;
-	width: 2%;
-}
-
 div.ui.progress {
 	margin-bottom: 15px;
 }
