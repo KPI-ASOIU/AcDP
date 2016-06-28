@@ -37,6 +37,13 @@ class DocumentsController < ApplicationController
   end
 
   def new
+    #
+    # It's assumed that the document can be created without a file (not sure why).
+    # params[:documents][:newfile] is the actual file (if it's there)
+    # If it's blank, we're just saving the document that's just a nutshell, basically,
+    # otherwise we're saving both the document and the file.
+    # The file is saved as FileInfo instance + actual file on hard drive
+    #
     if params[:documents][:doctype] == 'folder'
       if create_document(0).save
         flash[:notice] = t('documents.folder_creation_success')
@@ -74,6 +81,12 @@ class DocumentsController < ApplicationController
     doc.save_with_parameter(file)
   end
 
+  def update_file(doc)
+    file = doc.file_info
+    file.file = params[:new_version]
+    file.save
+  end
+
   def create_document(type)
     doc = Document.new
     doc.title = params[:documents][:new_doc_title]
@@ -107,7 +120,10 @@ class DocumentsController < ApplicationController
       }.each{|uha|
         uha.update_attributes(access_type: 2)
       }
+    end
 
+    if params[:new_version].present?
+      update_file(@doc)
     end
 
     if @doc.update_attributes(document_params)
@@ -183,9 +199,9 @@ class DocumentsController < ApplicationController
     r = d.search(params[:query])
     doc_ids = r.results.response.map {|r| r.id }
     if params[:current].present?
-      @files = Document.where(id: doc_ids, parent_directory: params[:current])
+      @files = Document.where(id: doc_ids, parent_directory: params[:current], owner: current_user)
     else
-      @files = Document.where(id: doc_ids)
+      @files = Document.where(id: doc_ids, owner: current_user)
     end
     @files
   end

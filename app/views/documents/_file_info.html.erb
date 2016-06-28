@@ -6,10 +6,14 @@
     <div class="ui center aligned basic segment">
       <i class="huge <%= doc_format_icon(doc) %>"></i>
     </div>
-    <%= form_for(doc, :html => {class: "ui form", method: :patch }) do |f| %>
+    <%= form_for(doc, :html => {class: "ui form", method: :patch, multipart: true }) do |f| %>
       <div class="field">
         <%= f.label :title, t('documents.title') %>
         <%= f.text_field :title, :placeholder => t('documents.title') + '...' %>
+      </div>
+      <div class="field">
+        <%= label_tag :new_version, t('documents.upload_new_version') %>
+        <%= file_field_tag :new_version %>
       </div>
       <div class="field">
         <%= f.label :for_roles, t('documents.for_roles') %>
@@ -91,6 +95,36 @@
           <%= doc.description.presence or t('documents.no_description') %>
         </td>
       </tr>
+    </table>
+  </div>
+<% end %>
+
+<% if doc.file_info && doc.file_info.versions.count > 0 %>
+  <div class="ui basic segment">
+    <div class="ui header"><%= t('documents.previous_versions') %></div>
+    <table class="ui table">
+      <thead>
+        <tr>
+          <th><%= t('util.version') %></th>
+          <th><%= t('documents.uploaded_at') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% doc.file_info.versions.each do |version| %>
+          <% file_info = doc.file_info %>
+          <% file_info.revert_to(file_info.version - 1) %>
+          <tr>
+            <td><%= file_info.version %></td>
+            <td><%= file_info.file_updated_at.localtime.to_formatted_s :docs_time %></td>
+            <td>
+              <%= link_to file_info ? file_info.file.url(:original, false) : '', target: :blank, class: 'ui tiny circular blue icon button', data: {id: 'downloadFile'} do %>
+                <i class='download icon'></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 <% end %>

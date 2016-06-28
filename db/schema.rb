@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627132301) do
+ActiveRecord::Schema.define(version: 20160628153225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,5 +224,26 @@ ActiveRecord::Schema.define(version: 20160627132301) do
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
+
+  create_table "versions", force: true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["created_at"], name: "index_versions_on_created_at", using: :btree
+  add_index "versions", ["number"], name: "index_versions_on_number", using: :btree
+  add_index "versions", ["tag"], name: "index_versions_on_tag", using: :btree
+  add_index "versions", ["user_id", "user_type"], name: "index_versions_on_user_id_and_user_type", using: :btree
+  add_index "versions", ["user_name"], name: "index_versions_on_user_name", using: :btree
+  add_index "versions", ["versioned_id", "versioned_type"], name: "index_versions_on_versioned_id_and_versioned_type", using: :btree
 
 end

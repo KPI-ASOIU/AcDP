@@ -95,3 +95,5 @@ gem 'masonry-rails'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'fullcalendar-rails'
+
+gem 'vestal_versions', :github => 'altagem/vestal_versions', branch: 'rails-4_1'
