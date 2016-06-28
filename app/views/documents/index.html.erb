@@ -19,6 +19,16 @@
           <%= t('documents.by_type') %>
         </a>
         <div class="item">
+          <%= link_to '', class: "reduced item", id: 'addFolder' do %>
+            <i class='folder icon'></i><%= t('documents.add_folder') %>
+          <% end %>
+        </div>
+        <div class="item">
+          <%= link_to '', class: "reduced item", id: 'addDocument' do %>
+            <i class='file icon'></i><%= t('news.add_doc') %>
+          <% end %>
+        </div>
+        <div class="item">
           <%= form_tag doc_search_path, :method => 'get', remote: true, class: 'ui basic form', id: "searchDocsForm" do %>
             <input type="hidden" name="current" value="<%= @current_folder.nil? ? nil : @current_folder.id %>">
             <div class="ui fluid search icon input field">
@@ -70,32 +80,24 @@
           <% end %>
         <% end %>
       </div>
-      <table id="docs" class="ui sortable table segment">
-        <thead>
-          <tr>
-            <th class="doc-icon"></th>
-            <th><%= t('documents.title') %></th>
-            <th><%= t('documents.type') %></th>
-            <th><%= t('documents.format') %></th>
-            <th><%= t('documents.date_created') %></th>
-            <th><%= t('documents.date_changed') %></th>
-            <th class="doc-icon"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render(partial: 'doc', collection: @docs) || '<tr><td class="center aligned" colspan="7">'.html_safe << t('documents.absent') << '</td></tr>'.html_safe %>
-        </tbody>
-        <tfoot>
-          <th colspan="7">
-            <%= link_to '', class: "ui teal labeled icon button", id: 'addFolder' do %>
-              <i class='folder icon'></i><%= t('documents.add_folder') %>
-            <% end %>
-            <%= link_to '', class: "ui green labeled icon button", id: 'addDocument' do %>
-              <i class='file icon'></i><%= t('news.add_doc') %>
-            <% end %>
-          </th>
-        </tfoot>
-      </table>
+      <div class="scrollable">
+        <table id="docs" class="ui sortable table">
+          <thead>
+            <tr>
+              <th class="doc-icon" style="width:40px;"></th>
+              <th><%= t('documents.title') %></th>
+              <th><%= t('documents.type') %></th>
+              <th><%= t('documents.format') %></th>
+              <th><%= t('documents.date_created') %></th>
+              <th><%= t('documents.date_changed') %></th>
+              <th class="doc-icon" style="width:55px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render(partial: 'doc', collection: @docs) || '<tr><td class="center aligned" colspan="7">'.html_safe << t('documents.absent') << '</td></tr>'.html_safe %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 </section>

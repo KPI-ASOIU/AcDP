@@ -48,3 +48,12 @@
 .ui.header {
 	word-wrap: break-word;
 }
+
+.ui.vertical.menu .reduced.item {
+	padding: 0 !important;
+}
+
+.ui.vertical.menu .reduced.item:hover,
+.ui.vertical.menu .active.reduced.item {
+	background: #FFF !important;
+}

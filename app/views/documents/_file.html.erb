@@ -2,8 +2,8 @@
 <% can_edit = file.edit_accesses.pluck(:user_id).include?(current_user.id) %>
 <tr data-id="file" class="docs-title">
   <td><i class="<%= doc_format_icon(file) %>"></i></td>
-  <td id="doc-title-<%= file.id %>"><%= file.title.truncate(45) %></td>
-  <td><%= file.document_types.pluck(:title).join(', ').truncate(20) %></td>
+  <td id="doc-title-<%= file.id %>"><%= file.title %></td>
+  <td><%= file.document_types.pluck(:title).join(', ') %></td>
   <td><%= File.extname(file_info.file.path) if file_info %></td>
   <td><%= file.created_at.to_formatted_s :docs_time %></td>
   <td><%= file.updated_at.to_formatted_s :docs_time %></td>
