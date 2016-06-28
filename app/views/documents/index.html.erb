@@ -2,55 +2,58 @@
   <section class="ui divided grid">
     <div class="four wide column">
       <div class="ui fluid vertical menu">
-        <a class="active item">
+        <%= link_to documents_path, method: :get, remote: true, class: 'item' do %>
           <%= t('documents.yours') %>
-          <div class="ui label">1</div>
-        </a>
+          <div class="ui label"><%= current_user.documents.length %></div>
+        <% end %>
+        <%= link_to doc_shared_path, method: :get, remote: true, class: 'item' do %>
+          <%= t('documents.shared') %>
+          <div class="ui label">
+            <%= (current_user.personal_shared_documents + current_user.role_shared_documents).uniq.length %>
+          </div>
+        <% end %>
         <a class="item">
           <%= t('documents.recently_used') %>
-          <div class="ui label">1</div>
-        </a>
-        <a class="item">
-          <%= t('documents.shared') %>
-          <div class="ui label">51</div>
         </a>
         <a class="item">
           <%= t('documents.by_type') %>
-          <div class="ui label">1</div>
         </a>
         <div class="item">
           <%= form_tag doc_search_path, :method => 'get', remote: true, class: 'ui basic form', id: "searchDocsForm" do %>
-            <div class="ui small fluid search icon input">
-              <input name="query" placeholder="<%= t('documents.search_by_docs') %>..." type="text">
+            <input type="hidden" name="current" value="<%= @current_folder.nil? ? nil : @current_folder.id %>">
+            <div class="ui fluid search icon input field">
+              <input name="query" placeholder="<%= t('documents.search_by_docs') %>..." type="search">
               <i class="search icon"></i>
             </div>
-            <div class="ui accordion">
-              <div class="title">
-                <i class="dropdown icon"></i>
-                <%= t('util.extended_search') %>
-              </div>
-              <div class="content">
-                <div class="field">
-                  <label for="dateUploaded"><%= t('documents.date_created') %></label>
-                  <input name="dateUploaded" type="text">
+            <%= fields_for :extended_search do |es| %>
+              <div class="ui accordion">
+                <div class="title">
+                  <i class="dropdown icon"></i>
+                  <%= t('util.extended_search') %>
                 </div>
-                <div class="field">
-                  <%= label_tag :document_types, t('documents.type') %>
-                  <%= select_tag :document_types, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.title] }, []), {id: 'docTypes', class: "ui fluid search dropdown", multiple: true} %>
+                <div class="content">
+                  <div class="date field">
+                    <%= es.label :dateUploaded, t('documents.date_created') %>
+                    <%= es.text_field :dateUploaded %>
+                  </div>
+                  <div class="field">
+                    <%= es.label :document_types, t('documents.type') %>
+                    <%= es.select :document_types, options_for_select(DocumentType.all.map { |dt| [dt.title, dt.title] }, []), {}, {id: 'docTypes', class: "ui fluid search dropdown", multiple: true} %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
             <input type="submit" style="display: none;">
           <% end %>
         </div>
       </div>
     </div>
     <div class="twelve wide column">
-      <% if !@current_folder.nil? %>
-        <div class="ui no-margins breadcrumb">
-          <%= link_to documents_path, :class => 'section' do %>
-            <%= t('documents.all') %>
-          <% end %>
+      <div class="ui no-margins breadcrumb">
+        <%= link_to documents_path, :class => 'section' do %>
+          <%= t('documents.all') %>
+        <% end %>
+        <% if !@current_folder.nil? %>
           <i class="right arrow icon divider"></i>
           <% path_from_root = @current_folder.path_from_root %>
           <% path_from_root.each do |folder| %>
@@ -65,8 +68,8 @@
               <i class="right arrow icon divider"></i>
             <% end %>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
       <table id="docs" class="ui sortable table segment">
         <thead>
           <tr>
@@ -80,8 +83,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= render partial: 'file', collection: @files %>
-          <%= render partial: 'folder', collection: @folders %>
+          <%= render(partial: 'doc', collection: @docs) || '<tr><td class="center aligned" colspan="7">'.html_safe << t('documents.absent') << '</td></tr>'.html_safe %>
         </tbody>
         <tfoot>
           <th colspan="7">
@@ -100,7 +102,3 @@
 
 <%= render partial: 'documents/modals/new_file' %>
 <%= render partial: 'documents/modals/new_folder' %>
-
-<div class="panel-body text-center">
-  <%= paginate @docs %>
-</div>

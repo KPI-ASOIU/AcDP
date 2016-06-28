@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   scope :with_roles, ->(roles) { where('role & ? > 0', User.roles_to_int(roles))}
 
   has_many :subscriptions
-  has_many :documents, through: :user_has_accesses
+  has_many :documents, foreign_key: :owner_id
   has_many :user_has_accesses, foreign_key: :user_id, :dependent => :destroy
 
   has_and_belongs_to_many :executing_tasks,
@@ -92,6 +92,17 @@ class User < ActiveRecord::Base
     ROLES.reject do |r|
       ((role.to_i || 0) & 2**ROLES.index(r)).zero?
     end
+  end
+
+  def personal_shared_documents
+    Document.includes('user_has_accesses')
+      .where(user_has_accesses: { user_id: self.id, access_type: 1...Float::INFINITY})
+      .where.not(owner_id: self.id)
+  end
+
+  def role_shared_documents
+    Document.where.not(for_roles: 0)
+      .select { |doc| (doc.for_roles & self.role) != 0 }
   end
 
   def unread_messages_count_sum

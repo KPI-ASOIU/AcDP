@@ -1,3 +1,5 @@
+//= require ./datetimepicker
+
 <% url = AcDP::Application.routes.url_helpers %>
 
 $(document).ready(function() {
@@ -41,13 +43,13 @@ $(document).ready(function() {
             success: function(data) {
                 docInfo.html(data);
                 docInfo.sidebar("show");
-                $('#forRoles').dropdown();
+                $('#forRoles,#personal').dropdown();
                 $('#docTypes').dropdown({
                     allowAdditions: true,
                     message: {
                         addResult: 'Додати тип <b>{term}</b>'
                     }
-                })
+                });
             },
             error: function() {
                 alert("ERROR!");
@@ -56,10 +58,18 @@ $(document).ready(function() {
     });
 
     docSearchForm.on('submit', function() {
-        $(this).find('.search.input').addClass('loading');
+        var $input = $(this).find('.search.input');
+        $input.addClass('loading');
+        $input.removeClass('error');
     });
 
     docSearchForm.on('ajax:success', function() {
         $(this).find('.search.input').removeClass('loading'); 
     });
+
+    docSearchForm.on('ajax:error', function() {
+        var $input = $(this).find('.search.input');
+        $input.removeClass('loading'); 
+        $input.addClass('error');
+    })
 });

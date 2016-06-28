@@ -23,8 +23,8 @@ $.fn.datetimepicker = function(config) {
             $target.popup({
                 hoverable: true,
                 inline: true,
-                on: 'click',
-                position: 'bottom left'
+                prefer: 'opposite',
+                on: 'click'
             });
             this.target = $target;
             this.addEventListeners();
@@ -240,18 +240,21 @@ $.fn.datetimepicker = function(config) {
     return this
 }
 
-$('#startDate').datetimepicker();
+// $('#startDate').datetimepicker();
 
-$('#endDate').datetimepicker();
+// $('#endDate').datetimepicker();
 
-$('#creationStartDate').datetimepicker();
+// $('#creationStartDate').datetimepicker();
 
-$('#creationEndDate').datetimepicker();
+// $('#creationEndDate').datetimepicker();
 
-$('#taskDate').datetimepicker();
+// $('#taskDate').datetimepicker();
 
-$('#eventDate').datetimepicker();
+// $('#eventDate').datetimepicker();
 
+$('.date.input').datetimepicker();
+
+$('.date.field input').datetimepicker();
 
 $('#taskDate').change(function() {
     if (!matchDateRegex($(this).val()))

@@ -1,0 +1,5 @@
+<% if doc.doc_type == 0 %>
+  <%= render partial: 'folder', locals: { folder: doc } %>
+<% else %>
+  <%= render partial: 'file', locals: { file: doc } %>
+<% end %>

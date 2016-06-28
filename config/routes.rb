@@ -18,9 +18,9 @@ AcDP::Application.routes.draw do
   get 'documents/sidebar_info' => 'documents#sidebar_info', as: 'documents_sidebar_info'
   get 'documents', to: 'documents#index'
   get 'documents/search' => 'documents#search', as: 'doc_search'
-  get 'documents/shared', to: 'documents#shared'
-  get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
-  get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'
+  get 'documents/shared', to: 'documents#shared', as: 'doc_shared'
+  # get 'documents/shared/:user_id', to: 'documents#shared', as: 'document_shared_root'
+  # get 'documents/shared/:user_id/:id', to: 'documents#shared', as: 'document_shared'
   get 'documents/get_file_info', to: 'documents#get_file_doc_id', as: 'get_file_doc_id'
   get 'documents/:id', to: 'documents#index', as: 'document'
 
@@ -30,9 +30,7 @@ AcDP::Application.routes.draw do
 
   patch 'documents/:id', to: 'documents#update'
 
-  delete 'documents/file/:delete_id', to: 'documents#delete_file', as: 'document_delete_file'
-  delete 'documents/delete/:delete_id', to: 'documents#delete', as: 'document_delete_root'
-  delete 'documents/:id/delete/:delete_id', to: 'documents#delete', as: 'document_delete'
+  delete 'documents/:id/delete', to: 'documents#delete', as: 'document_delete'
 
   root "users#dashboard"
 

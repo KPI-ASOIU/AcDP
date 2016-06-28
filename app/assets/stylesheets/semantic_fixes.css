@@ -27,3 +27,24 @@
 .ui.inline.checkboxes>.ui.checkbox:not(:last-child) {
 	margin-right: 30px;
 }
+
+.ui.form .fields.error .field i, 
+.ui.form .field.error i {
+	color: #9F3A38;
+}
+
+.exact.corner.label {
+	top: 0 !important;
+}
+
+.exact.right.corner.label {
+	right: 0 !important;
+}
+
+.exact.left.corner.label {
+	left: 0 !important;
+}
+
+.ui.header {
+	word-wrap: break-word;
+}
