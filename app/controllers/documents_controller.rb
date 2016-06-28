@@ -165,9 +165,11 @@ class DocumentsController < ApplicationController
   def search
     @files = nil
 
-    if params[:query].present?
-      @files = elastic_search
+    if !params[:query].present?
+      params[:query] = "*"
     end
+
+    @files = elastic_search
 
     if params[:extended_search].present?
       extended_search(@files)
