@@ -312,6 +312,7 @@ uk:
             end_date:
               invalid: недійсна
   util:
+    version: Версія
     not_specified: Не вказано
     chosen_no_result: 'Нічого не знайдено'
     actions: Дії
@@ -433,6 +434,9 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    uploaded_at: Завантажено
+    previous_versions: Попередні версії
+    upload_new_version: Завантажити нову версію
     no_type: Немає типу
     personal: Персонально
     available_for_all: Доступний для всіх

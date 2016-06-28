@@ -5,8 +5,8 @@
   <td id="doc-title-<%= file.id %>"><%= file.title %></td>
   <td><%= file.document_types.pluck(:title).join(', ') %></td>
   <td><%= File.extname(file_info.file.path) if file_info %></td>
-  <td><%= file.created_at.to_formatted_s :docs_time %></td>
-  <td><%= file.updated_at.to_formatted_s :docs_time %></td>
+  <td><%= file.created_at.localtime.to_formatted_s :docs_time %></td>
+  <td><%= file_info.file_updated_at.localtime.to_formatted_s :docs_time %></td>
   <td>
     <%= link_to file_info ? file_info.file.url(:original, false) : '', target: :blank, class: 'ui tiny circular blue icon button', data: {id: 'downloadFile'} do %>
       <i class='download icon'></i>
