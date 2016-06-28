@@ -1,45 +1,39 @@
+##
+# This class represents a controller for all document related tasks.
+
 class DocumentsController < ApplicationController
   def index
     if params[:id].blank?
-      @docs = Document.where(parent_directory: nil, owner_id: current_user.id).page(params[:page])
+      @docs = Document.where(parent_directory: nil, owner_id: current_user.id)
       @current_folder = nil
     else
-      @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id).page(params[:page])
+      @docs = Document.where(parent_directory: params[:id], owner_id: current_user.id)
       @current_folder = Document.find_by_id_and_doc_type(params[:id], 0)
       not_found if @current_folder.nil?
     end
 
-    @folders = @docs.select { |doc| doc.doc_type == 0 }
-    @files = @docs.select { |doc| doc.doc_type == 1 }
-    @shared = false
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def shared
-    @shared = true
-    if params[:user_id].blank?
-      @users = User.joins('LEFT OUTER JOIN documents ON documents.owner_id = users.id LEFT OUTER JOIN user_has_accesses ON documents.id = user_has_accesses.document_id').
-               where("user_has_accesses.user_id = #{current_user.id}").
-               where.not(id: current_user.id).
-               uniq.
-               page(params[:page])
-    elsif params[:id].blank?
-      @docs = Document.includes('user_has_accesses').where(parent_directory: nil, owner_id: params[:user_id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
-    else
-      @docs = Document.includes('user_has_accesses').where(parent_directory: params[:id], user_has_accesses: { user_id: current_user.id }).page(params[:page])
-      @can_edit_current_folder = UserHasAccess.where(user_id: current_user.id, document_id: params[:id]).first.access_type
-      @current_folder = Document.where(id: params[:id]).first
-    end
+    @docs_personal_shared = current_user.personal_shared_documents
 
-    @formats = FileInfo.uniq.pluck(:file_content_type)
-    @types = DocumentType.pluck(:title)
+    # TODO (dkalpakchi): maybe this can be done via db query
+    @docs_for_roles = current_user.role_shared_documents
+
+    @docs = @docs_personal_shared.push(*@docs_for_roles).uniq
 
     unless @docs.nil?
       @folders = @docs.select { |doc| doc.doc_type == 0 }
       @files = @docs.select { |doc| doc.doc_type == 1 }
-      render 'index'
     end
-    @types=DocumentType.pluck(:title)
-    @formats=FileInfo.uniq.pluck(:file_content_type)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new
@@ -101,8 +95,19 @@ class DocumentsController < ApplicationController
     if params[:document_types].present?
       @doc.document_types = params[:document_types].map {|t| DocumentType.find_or_create_by(title: t) }
     end
-    if params[:document][:for_roles]
-      params[:document][:for_roles] = User.roles_to_int(params[:document][:for_roles])
+    params[:document][:for_roles] = User.roles_to_int(params[:document][:for_roles] || [])
+
+    UserHasAccess.where(document: @doc).update_all(access_type: 0)
+
+    if params[:personal_shared].present?
+      # TODO: as create_or_update is deprecated, this method seems to be the only suitable,
+      #       find out how to fix this to one DB query easily
+      User.where(id: params[:personal_shared]).map { |u|
+        UserHasAccess.find_or_create_by(document: @doc, user: u)
+      }.each{|uha|
+        uha.update_attributes(access_type: 2)
+      }
+
     end
 
     if @doc.update_attributes(document_params)
@@ -115,24 +120,13 @@ class DocumentsController < ApplicationController
   end
 
   def delete
-    doc = Document.find(params[:delete_id])
+    doc = Document.find(params[:id])
+    current = doc.parent_directory
+    puts current
     if !doc.nil? and doc.destroy
       flash[:notice] = t('documents.flash_removed_item')
     end
-    redirect_to action: 'index'
-  end
-
-  def delete_file
-    stat = 'error'
-
-    if !params[:delete_id].blank?
-      doc = Document.find(params[:delete_id])
-      stat = 'ok' if doc.file_info.destroy
-    end
-
-    respond_to do |format|
-      format.json { render json: { status: stat, doc: doc ? doc.id : 0 } }
-    end
+    redirect_to action: 'index', id: current
   end
 
   def change_file
@@ -153,20 +147,20 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    d = Document.__elasticsearch__
-    r = d.search(params[:query])
-    doc_ids = r.results.response.map {|r| r.id }
-    @files = Document.where(id: doc_ids)
+    @files = nil
+
+    if params[:query].present?
+      @files = elastic_search
+    end
+
+    if params[:extended_search].present?
+      extended_search(@files)
+    end
+
     respond_to do |format|
       format.js
       format.json { render json: @files.to_json.html_safe }
     end
-  end
-
-  def elastic_search
-  end
-
-  def extended_search
   end
 
   def get_file_doc_id
@@ -184,6 +178,22 @@ class DocumentsController < ApplicationController
   end
 
   private
+  def elastic_search
+    d = Document.__elasticsearch__
+    r = d.search(params[:query])
+    doc_ids = r.results.response.map {|r| r.id }
+    if params[:current].present?
+      @files = Document.where(id: doc_ids, parent_directory: params[:current])
+    else
+      @files = Document.where(id: doc_ids)
+    end
+    @files
+  end
+
+  def extended_search(files)
+    ext_params = params[:extended_search]
+  end
+
   def document_params
     params.require(:document)
       .permit(:title, :description, :for_roles)

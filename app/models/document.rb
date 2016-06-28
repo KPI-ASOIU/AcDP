@@ -20,12 +20,6 @@ class Document < ActiveRecord::Base
   validates :description, length: { maximum: 256 }
   validates :tags, length: { maximum: 256 }
 
-  scope :with_matched_field, ->(value, field) {fields=field.split(" "); where(Document.arel_table[fields[0]].matches('%' + value + '%')) || where(Document.arel_table[fields[1]].matches('%' + value + '%')) }
-  scope :match_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
-  scope :match_description, ->(desc) { where("description ILIKE ?", "%#{desc}%") }
-  scope :match_title_or_nil, ->(title) { where("title ILIKE ? OR title IS NULL", "%#{title}%") }
-  scope :match_description_or_nil, ->(desc) { where("description ILIKE ? OR description IS NULL", "%#{desc}%") }
-
   def uniqueness_of_titles_per_user
     errors.add(:title, 'must be unique') if self.owner.documents.where(title: self.title).exists?
   end
@@ -92,7 +86,7 @@ class Document < ActiveRecord::Base
     } do
 
     mapping _source: { excludes: ['attachment'] } do
-      indexes :_all, analyzer: 'partial_name', search_analyzer: 'standard'
+      # indexes :_all, analyzer: 'partial_name', search_analyzer: 'standard'
       indexes :title, type: 'string'
       indexes :description, type: 'string'
       indexes :attachment, type: 'attachment'
@@ -108,5 +102,9 @@ class Document < ActiveRecord::Base
 
   def as_indexed_json(options={})
     self.as_json(methods: [:attachment])
+  end
+
+  def shared_to
+    User.where(id: UserHasAccess.where(document: self).where(access_type: 2..Float::INFINITY).pluck(:user_id))
   end
 end

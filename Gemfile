@@ -39,6 +39,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rdoc'
 end
 
 group :development do
@@ -49,6 +50,7 @@ group :development do
 end
 
 group :test do
+  gem 'brakeman', :require => false
   gem 'shoulda-matchers'
   gem "shoulda-callback-matchers", ">=0.3.0"
 end

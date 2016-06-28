@@ -383,6 +383,7 @@ uk:
       created: 'Групу успішно створено.'
       updated: 'Дані групи успішно оновлені.'
   roles:
+    all: 'Усі'
     admin: 'Адміністратор'
     student: 'Студент'
     teacher: 'Викладач'
@@ -432,6 +433,8 @@ uk:
   client_part: Користувацька частина
   calendar: Календар
   documents:
+    no_type: Немає типу
+    personal: Персонально
     available_for_all: Доступний для всіх
     absent: Немає документів
     attached: Прикріплені документи
@@ -507,7 +510,7 @@ uk:
     modal_confirm_remove_title: Видалення елементу
     modal_confirm_remove_message: Дійсно видалити?
     flash_removed_item: Елемент успішно видалено
-    for_roles: Доступний користувачам з ролями
+    for_roles: Для ролей
     query: Пошуковий запит (дати не враховуються)
   doctypes:
     manage: Типи документів
