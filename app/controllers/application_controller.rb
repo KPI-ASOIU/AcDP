@@ -10,9 +10,13 @@ class ApplicationController < ActionController::Base
   # By default it should be done with 
   # comment_destroy_conditions. But Opinio does not 
   # support Rails 4, so this method replace that helper
-	def can_destroy_opinio?(comment)
-		comment.owner == current_user
-	end
+	# def can_destroy_opinio?(comment)
+	# 	comment.owner == current_user
+	# end
+
+  comment_destroy_conditions do |comment|
+    comment.owner == current_user
+  end
 
   # As current_user is inaccessible via models,
   # solve that problem with before_action :set_current_user

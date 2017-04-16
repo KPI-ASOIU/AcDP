@@ -1,14 +1,14 @@
 module ApplicationHelper
-  def bootstrap_class_for flash_type
-    case flash_type
+  def semantic_class_for flash_type
+    case flash_type.to_sym
       when :success
-        "alert-success" # Green
+        "ui green message" # Green
       when :error
-        "alert-danger" # Red
+        "ui red message" # Red
       when :alert
-        "alert-warning" # Yellow
+        "ui yellow message" # Yellow
       when :notice
-        "alert-info" # Blue
+        "ui blue message" # Blue
       else
         flash_type.to_s
     end

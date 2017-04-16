@@ -16,14 +16,8 @@
   </head>
   <body>
     <%= render partial: "shared/header", flash: flash %>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <%= render partial: "shared/flash_messages", flash: flash %>
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "shared/flash_messages", flash: flash %>
+    <%= yield %>
     <%= javascript_include_tag "application"%>
     <%= content_for :javascript %>
     <%= timeago_script_tag %>

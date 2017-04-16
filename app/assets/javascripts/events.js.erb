@@ -1,0 +1,30 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+$(document).ready(function() {
+  $('#eventSearch .chosen-select').chosen({
+    placeholder_text_multiple: ' ',
+    no_results_text: "<%= I18n.t('util.chosen_no_result') %>",
+    width: '100%'
+  });
+
+  $('#eventSearch #searchBtn').on('click', function(e) { 
+    $('#extendSearch').submit(); 
+  });
+
+  $('#canVisit').click(function(e){
+    $.ajax({
+      type: 'GET',
+      url: e.target.getAttribute('data-url'),
+      data: { 'can_visit' : e.target.getAttribute('data-visit') == 'true' },
+      success: function() {
+        var canVisit = $('#canVisit'),
+            visit = !(canVisit.attr('data-visit') == 'true');
+        canVisit.attr('data-visit', visit);
+      },
+      error: function() {
+        alert('Cannot update your status due to server error! Please contact administrator')
+      }
+    })
+  });
+}());
