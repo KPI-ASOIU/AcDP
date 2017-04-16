@@ -1,7 +1,7 @@
-<button class="btn mb5 btn-block btn-primary" data-toggle="modal" data-target="#conversation-open-<%= receiver_ids.join('-') %>">
-  <span class="glyphicon glyphicon-envelope"></span>
+<div class="ui positive icon labeled fluid button modalSend">
+  <i class="mail icon"></i>
   <%= local_assigns[:button_text] || t('messages.send') %>
-</button>
+</div>
 
 <%= render partial: "conversations/new_conversation_modal", locals: {
       conversation: Conversation.new,

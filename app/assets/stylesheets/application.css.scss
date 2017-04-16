@@ -1,11 +1,6 @@
-@import "bootstrap";
-@import "bootstrap-datetimepicker";
 @import "chosen";
-@import "bootstrap3-editable/bootstrap-editable";
 @import "select2";
-@import "select2-bootstrap";
 @import "jstree-themes/default/style";
-@import "bootstrap-wysihtml5/core-b3";
 @import "jscrollpane";
 @import "activity";
 @import "calendar";
@@ -21,9 +16,17 @@
 @import "users";
 @import "admin/doctypes";
 @import "admin/groups";
+@import "datetimepicker";
+@import "semantic-ui";
+@import "comments";
+
 
 body {
-  padding-top: 10px;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 .sign-in-form {
@@ -65,6 +68,10 @@ body {
   color: grey;
 }
 
+.hidden {
+  display: none;
+}
+
 /* JScrollPane settings */
 .jspVerticalBar {
   width: 8px !important;
@@ -80,11 +87,6 @@ body {
   border-radius: 10px;
   width: 8px !important;
   background: #ccc !important;
-}
-
-/* For bootstrap fixed-top panel to display content properly */
-body {
-  margin-top: 60px;
 }
 
 @media (max-width: 1035px) {
@@ -126,4 +128,9 @@ body {
   .collapsing {
     overflow: hidden !important;
   }
+}
+
+/* Semantic UI fixes */
+.ui.buttons .or:before {
+  content: "чи" !important;
 }

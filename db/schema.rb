@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606193609) do
+ActiveRecord::Schema.define(version: 20141114205512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 20140606193609) do
     t.datetime "updated_at"
   end
 
+  create_table "conversations_documents", force: true do |t|
+    t.integer "conversation_id"
+    t.integer "document_id"
+  end
+
   create_table "document_has_types", force: true do |t|
     t.integer "document_type_id", null: false
     t.integer "document_id",      null: false
@@ -106,6 +111,11 @@ ActiveRecord::Schema.define(version: 20140606193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_id"
+  end
+
+  create_table "events_documents", force: true do |t|
+    t.integer "event_id"
+    t.integer "document_id"
   end
 
   create_table "executing_tasks_executors", force: true do |t|
@@ -183,6 +193,11 @@ ActiveRecord::Schema.define(version: 20140606193609) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "tasks_documents", force: true do |t|
+    t.integer "task_id"
+    t.integer "document_id"
   end
 
   create_table "user_has_accesses", force: true do |t|

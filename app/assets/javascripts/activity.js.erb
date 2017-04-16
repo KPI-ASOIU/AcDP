@@ -43,7 +43,7 @@ $(document).ready(function() {
  
  	$.each($('.countdown'), function() {
  		$(this).countdown({
-	 		until: new Date($(this).attr('data-time')),
+	 		until: Date($(this).attr('data-time')),
 	 		compactLabels: ["<%= I18n.t('date.compact.year') %>", "<%= I18n.t('date.compact.month') %>", 
 	 			"<%= I18n.t('date.compact.week') %>", "<%= I18n.t('date.compact.day') %>"],
 	 		format: 'yowdHMS',
@@ -51,5 +51,5 @@ $(document).ready(function() {
 	 		compact: true
 	 	});
  	});
-});
+}());
 

@@ -1,53 +1,59 @@
 = render 'document_select'
 
-= form_for(@news_post, :html => { :class => 'form-horizontal', role: 'form' }) do |f|
-  - if @news_post.errors.any?
-    .news-errors-block{ class: 'news-errors-block' }
-      %h2= t('activerecord.errors.template.header', count: @news_post.errors.count)
-      %ul
-        - @news_post.errors.full_messages.each do |msg|
-          %li= msg
-  .panel-body
-    .form-group
-      = f.label :title, :class=>'col-sm-2 control-label'
-      .col-sm-10
-        = f.text_field :title, :placeholder => t('news.ph_title'), :class => 'form-control'
-    .form-group
-      = f.label :content, :class=>'col-sm-2 control-label'
-      .col-sm-10
-        = f.text_area :content, :placeholder => t('news.ph_content'), :class => 'form-control no-resize', :id => 'news_post_content'
-    .form-group
-      = f.label :tags, :class=>'col-sm-2 control-label'
-      .col-sm-10
-        = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'form-control'
-    .form-group
-      = label_tag :icon, t('activerecord.attributes.news_post.icon'), :class=>'col-sm-2 control-label'
-      .col-sm-10
+.ui.attached.segment
+  = form_for(@news_post, :html => { :class => 'form-horizontal', role: 'form' }) do |f|
+    - if @news_post.errors.any?
+      .news-errors-block{ class: 'news-errors-block' }
+        %h2= t('activerecord.errors.template.header', count: @news_post.errors.count)
+        %ul
+          - @news_post.errors.full_messages.each do |msg|
+            %li= msg
+    .ui.grid
+      .two.wide.column
+        = f.label :title
+      .fourteen.wide.column
+        .ui.input
+          = f.text_field :title, :placeholder => t('news.ph_title'), :class => 'ui input'
+      .two.wide.column
+        = f.label :content
+      .fourteen.wide.column
+        = f.cktext_area :content, :placeholder => t('news.ph_content'), :ckeditor => {:language => 'uk', :toolbar => 'mini'}, :class => ''
+      .two.wide.column
+        = f.label :tags, :class=>'form-label'
+      .fourteen.wide.column
+        .ui.input
+          = f.text_field :tags, :placeholder => t('news.ph_tags'), :class => 'ui fluid input'
+      .two.wide.column
+        = label_tag :icon, t('activerecord.attributes.news_post.icon'), :class=>''
+      .fourteen.wide.column
         = f.file_field :icon
-        = image_tag @news_post.icon.url('medium'), class: 'c-user-medium-avatar'
+        = image_tag @news_post.icon.url('medium'), class: 'ui small image'
         - unless @news_post.new_record?
-          = link_to t('util.destroy'), icon_news_post_path(@news_post), :method => :delete, :class => 'btn btn-danger'
-    .form-group
-      = f.label :for_roles, :class=>'col-sm-2 control-label'
-      .col-sm-5
-        = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'form-control' }
-      .col-sm-5
+          = link_to t('util.destroy'), icon_news_post_path(@news_post), :method => :delete, :class => 'ui mini negative button'
+      .two.wide.column
+        = f.label :for_roles, :class=>''
+      .fourteen.wide.column
+        .ui.dropdown
+          = f.select :for_roles, options_for_select(post_roles, @news_post.category), {}, { class: 'ui selection dropdown' }
+      .two.wide.column
+        = f.label :for_groups
+      .fourteen.wide.column
         = select_tag :for_groups, options_for_select(Group.all.map { |g| [g.name, g.id] }, @news_post.groups.pluck(:id)), { class: 'chosen-select', multiple: true, include_blank: true, data: { placeholder: t('activerecord.models.group') + '...' } }
-    .form-group
-      = label_tag :documents, t('news.attached_docs'), :class=>'col-sm-2 control-label'
-      .col-sm-10
+      .two.wide.column
+        = label_tag :documents, t('news.attached_docs'), :class=>''
+      .fourteen.wide.column
         = f.hidden_field :documents, { :multiple => true }
-        %ul{ id: 'news-attached-docs' }
+        .ui.list{ id: 'news-attached-docs' }
           - unless @news_post.new_record?
             - @news_post.documents.each do |document|
-              %li
+              .item
                 = document.title
-        %br
-        =link_to '', id:'news-add-document-btn', data: { toggle: 'modal', target: '#modal_select_document' }, class: 'btn btn-success' do
-          %span{ class: 'glyphicon glyphicon-paperclip' }
+        =link_to '', id:'news-add-document-btn', data: { toggle: 'modal', target: '#modal_select_document' }, class: 'ui teal icon mini button' do
+          %i{ class: 'attachment icon' }
           = t('news.add_doc')
-  .panel-footer.text-right
-    = link_to t('util.back'), news_posts_path, :class => 'btn btn-default'
-    = button_tag type: 'submit', :class => 'btn btn-success' do
-      %span{ class: 'glyphicon glyphicon-bullhorn' }
+
+    = button_tag type: 'submit', :class => 'ui right floated positive icon button' do
+      %i{ class: 'bullhorn icon' }
       = t('news.publish')
+    = link_to t('util.back'), news_posts_path, :class => 'ui negative right floated button'
+

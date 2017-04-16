@@ -1,60 +1,53 @@
+<% if not @conversations.empty? %>
+  <table class="dialogs ui table padded blue segment table-hover">
+    <thead>
+      <tr>
+        <th><%= t('conversations.subject') %></th>
+        <th><%= t('conversations.participants') %></th>
+        <th><%= t('conversations.last_message') %></th>
+        <th class="c-admin-users-actions-column"><%= t('util.actions') %></th>
+      </tr>
+    </thead>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= t('conversations.dialogs') %>
-  </div>
-  <% if not @conversations.empty? %>
-    <table class="dialogs table table-hover table-verticle-centered">
-      <thead>
-        <tr>
-          <th><%= t('conversations.subject') %></th>
-          <th><%= t('conversations.participants') %></th>
-          <th><%= t('conversations.last_message') %></th>
-          <th class="c-admin-users-actions-column"></th>
+    <tbody>
+      <% @conversations.each do |conversation| %>
+        <tr data-link=<%= conversation_messages_path(conversation_id: conversation.id) %>>
+          <td>
+            <%= !conversation.subject.empty? ? conversation.subject : "(no topic)" %>
+            <% if (umc = conversation.subscriptions.find_by(user: current_user).unread_messages_count) != 0 %>
+              <div class="ui teal red label"><%= umc %></div>
+            <% end  %>
+          </td>
+          <td>
+            <% for p in Array(conversation.participants) do %>
+              <% if p != current_user %>
+                <%= link_to image_tag(p.avatar.url("small"), class: 'c-user-small-avatar',
+                  title: p.full_name), user_path(p.id) %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to image_tag((mes = conversation.messages.last).author.avatar.url("small"),
+              class: 'c-user-small-avatar', title: mes.author.full_name), user_path(mes.author.id) %>
+            <span><%= (lm = mes.body).length > 70 ? lm[0..70] << "..." : lm %></span>
+          </td>
+          <td>
+            <%= link_to conversation_path(conversation), method: :delete, class: "mini ui icon button" do %>
+              <i class="icon close"></i>
+            <% end %>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @conversations.each do |conversation| %>
-          <tr data-link=<%= conversation_messages_path(conversation_id: conversation.id) %>>
-            <td class="col-sm-2">
-              <%= !conversation.subject.empty? ? conversation.subject : "(no topic)" %>
-              <% if (umc = conversation.subscriptions.find_by(user: current_user).unread_messages_count) != 0 %>
-                <span class="badge um"><%= umc %></span>
-              <% end  %>
-            </td>
-            <td class="col-sm-3">
-              <% for p in Array(conversation.participants) do %>
-                <% if p != current_user %>
-                  <%= link_to image_tag(p.avatar.url("small"), class: 'c-user-small-avatar',
-                    title: p.full_name), user_path(p.id) %>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to image_tag((mes = conversation.messages.last).author.avatar.url("small"),
-                class: 'c-user-small-avatar', title: mes.author.full_name), user_path(mes.author.id) %>
-              <%= (lm = mes.body).length > 70 ? lm[0..70] << "..." : lm %>
-            </td>
-            <td class="text-center col-sm-1">
-              <!-- TODO Ajax delete button??? -->
-              <%= button_to conversation_path(conversation), method: :delete, class: "btn btn-danger btn-xs" do %>
-                <span class='glyphicon glyphicon-remove'></span>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-center text-muted no-conversations"><%= t('conversations.no_conversations') %></p>
-    <p class="text-center">
-      <%= render partial: "conversations/new_conversation_button", locals: {
-            receiver_ids: [],
-            modal_title: t('conversations.new'),
-            button_text: t('conversations.new_conversation')
-          } %>
-    </p>
-  <% end %>
-</div>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="ui info message no-conversations"><%= t('conversations.no_conversations') %></p>
+  <p class="text-center">
+    <%= render partial: "conversations/new_conversation_button", locals: {
+          receiver_ids: [],
+          modal_title: t('conversations.new'),
+          button_text: t('conversations.new_conversation')
+        } %>
+  </p>
+<% end %>
 

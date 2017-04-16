@@ -1,24 +1,19 @@
-<div id="modal_select_document" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title"><%= t('documents.select_doc') %></h4>
-      </div>
+<div id="modal_select_document" class="ui small modal">
+  <div class="header">
+    <button class="ui tiny right floated negative button close" data-dismiss="modal" area-hidden="true">&times;</button>
+    <%= t('documents.select_doc') %>
+  </div>
 
-      <div class="modal-body">
-        <p><%= t('documents.docs_list') %></p>
-        <div id="doc-select-jsPanel" class="select-document-panel">
-            <div id="modal-docs-list">
+  <div class="content">
+    <p><%= t('documents.docs_list') %></p>
+    <div id="doc-select-jsPanel" class="select-document-panel">
+        <div id="modal-docs-list">
 
-            </div>
         </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('util.cancel') %></button>
-        <button type="button" id="docs-select-confirm" class="btn btn-success" data-dismiss="modal"><%= t('util.add') %></button>
-      </div>
     </div>
+  </div>
+  <div class="actions">
+    <button type="button" class="ui negative button" data-dismiss="modal"><%= t('util.cancel') %></button>
+    <button type="button" id="docs-select-confirm" class="ui positive button" data-dismiss="modal"><%= t('util.add') %></button>
   </div>
 </div>
